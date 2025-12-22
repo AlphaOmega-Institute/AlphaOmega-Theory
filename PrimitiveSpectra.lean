@@ -1,1 +1,5 @@
 import PrimitiveSpectra.Algebra.Basic
+import PrimitiveSpectra.Algebra.Valuation
+import PrimitiveSpectra.Algebra.Injective
+import PrimitiveSpectra.Algebra.Order
+import PrimitiveSpectra.Archimedean

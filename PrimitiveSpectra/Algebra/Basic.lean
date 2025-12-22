@@ -8,7 +8,6 @@ import Mathlib.Tactic
 
 /-!
 # Primitive Spectra: Core Definitions
-
 The Exponent-Vector Group M and the Evaluation Map.
 -/
 
