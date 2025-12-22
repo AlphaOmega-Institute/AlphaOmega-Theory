@@ -6,4 +6,6 @@ lake-packages/
 # IDE files
 .vscode/
 *.code-workspace
-.DS_Store
+.DS_Store.lake/
+.lake/
+.cache/
