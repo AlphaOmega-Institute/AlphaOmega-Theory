@@ -21,19 +21,26 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-35 passed, 0 failed, 1 skipped in ...s
+36 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `36 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `37 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
 Tested with Python 3.11, NumPy 2.4 and SciPy 1.17.
+Timings vary with hardware and BLAS settings.
 
 ## What the checks establish
 
 Labels are the `\label{...}` names in the manuscript sources. `test_labels.py` fails if a
-check cites a label that no longer exists, so this mapping cannot silently go stale.
+check cites a label that no longer exists. It detects removed or renamed targets;
+changes to the mathematics under an unchanged label still require review.
+
+`test_linalg.py` checks that nearby resolved eigenvalues belong to disjoint spectral
+blocks, so their port weights sum to the total spectral mass without double-counting.
+It also checks that numerically coincident eigenvalues are merged at the declared
+rounding precision.
 
 ### Pair model — LG, `sec:finite-pair-realization`
 
@@ -114,6 +121,7 @@ in this repository.
 checks/
   run_all.py            runner (no dependencies beyond NumPy and SciPy)
   test_labels.py        cited labels must exist in the manuscripts
+  test_linalg.py        nearby eigenvalues must not double-count spectral mass
   lib/                  Fock-space operators and small linear-algebra helpers
   pair/                 pair model and its checks
   orbital/              orbital model and its checks

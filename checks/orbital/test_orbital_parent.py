@@ -138,7 +138,7 @@ def test_low_carrier_dynamics():
 
 def test_unfiltered_quadrupole_response():
     """For e_Q = Q_x G / ||Q_x G||: C_B(t) = C_0(t) cos(2 Omega_B t).  Only part of e_Q lies
-    in the low carrier, and |C_0| does not return to one."""
+    in the low carrier, and |C_0| can fall below one at sampled times."""
     ops, H0, HB, Om, w, G, e, m, QG = _carrier()
     eQ = QG / np.linalg.norm(QG)
     w0, V0 = np.linalg.eigh(H0.toarray())

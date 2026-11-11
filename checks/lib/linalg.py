@@ -10,17 +10,19 @@ def rank(M, tol=1e-10):
 def eigenspace(op, value, atol=1e-9):
     """Orthonormal basis (columns) of the eigenspace of a Hermitian matrix."""
     w, V = np.linalg.eigh(op)
-    return V[:, np.isclose(w, value, atol=atol)]
+    return V[:, np.isclose(w, value, atol=atol, rtol=0.0)]
 
 
 def spectral_blocks(H, decimals=9):
-    """List of (eigenvalue, orthonormal eigenbasis) for a Hermitian matrix,
-    with numerically coincident eigenvalues merged."""
+    """List of (eigenvalue, orthonormal eigenbasis) for a Hermitian matrix.
+
+    Eigenvalues equal after rounding to ``decimals`` places share a block.
+    The inverse bin labels assign every eigenvector to exactly one block;
+    overlapping tolerance windows would double-count the spectral mass.
+    """
     w, V = np.linalg.eigh(H)
-    out = []
-    for lam in np.unique(np.round(w, decimals)):
-        out.append((float(lam), V[:, np.isclose(w, lam, atol=10.0 ** (-decimals + 1))]))
-    return out
+    values, bins = np.unique(np.round(w, decimals), return_inverse=True)
+    return [(float(lam), V[:, bins == k]) for k, lam in enumerate(values)]
 
 
 def response_weights(H, Gamma):

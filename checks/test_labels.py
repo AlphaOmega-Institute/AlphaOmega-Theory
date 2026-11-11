@@ -1,5 +1,5 @@
-"""Every manuscript label cited by a check must exist in the manuscript source,
-so the mapping between checks and text cannot silently go stale."""
+"""Every cited manuscript label must exist. Mathematical changes under an
+unchanged label still require review of the associated check."""
 import ast
 import re
 import sys
