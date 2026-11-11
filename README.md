@@ -31,6 +31,10 @@ From `manuscripts/taum/`:
 latexmk -pdf -interaction=nonstopmode -halt-on-error Toward_a_Universal_Model_Self_Contained.tex
 ```
 
+## Verification checks
+
+`checks/` contains reproducible numerical checks of the pair, orbital and response calculations in the two manuscripts. Run `python checks/run_all.py` (NumPy and SciPy required). See [checks/README.md](checks/README.md) for what each check establishes and what it leaves open.
+
 ## Shared editing
 
 - Fetch the latest `main` before editing and inspect any intervening changes.
