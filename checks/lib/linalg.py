@@ -13,16 +13,33 @@ def eigenspace(op, value, atol=1e-9):
     return V[:, np.isclose(w, value, atol=atol, rtol=0.0)]
 
 
-def spectral_blocks(H, decimals=9):
+SPECTRAL_TOLERANCE = 1e-9
+
+
+def spectral_blocks(H, tol=SPECTRAL_TOLERANCE):
     """List of (eigenvalue, orthonormal eigenbasis) for a Hermitian matrix.
 
-    Eigenvalues equal after rounding to ``decimals`` places share a block.
-    The inverse bin labels assign every eigenvector to exactly one block;
-    overlapping tolerance windows would double-count the spectral mass.
+    Eigenvalues are grouped greedily from the lowest: a group starts at the lowest
+    eigenvalue not yet assigned and takes every eigenvalue within ``tol`` of that start.
+    Consequently
+
+    * every eigenvector belongs to exactly one block, so the blocks are disjoint and
+      exhaustive and the spectral weights sum to Gamma^* Gamma;
+    * no block spans more than ``tol``, so neighbours cannot chain into a wide group;
+    * the grouping does not depend on where eigenvalues fall relative to a decimal grid.
+
+    ``tol`` is an absolute tolerance in the units of H.  Energies closer than ``tol`` are
+    treated as one level.  For genuinely distinct energies that is a numerical
+    approximation to the exact response, which a smaller ``tol`` resolves.  The reported
+    eigenvalue is the mean of the group.
     """
     w, V = np.linalg.eigh(H)
-    values, bins = np.unique(np.round(w, decimals), return_inverse=True)
-    return [(float(lam), V[:, bins == k]) for k, lam in enumerate(values)]
+    blocks, start = [], 0
+    for k in range(1, len(w) + 1):
+        if k == len(w) or w[k] - w[start] > tol:
+            blocks.append((float(np.mean(w[start:k])), V[:, start:k]))
+            start = k
+    return blocks
 
 
 def response_weights(H, Gamma):

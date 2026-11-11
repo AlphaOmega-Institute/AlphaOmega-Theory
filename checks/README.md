@@ -21,10 +21,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-36 passed, 0 failed, 1 skipped in ...s
+40 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `37 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `41 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -99,6 +99,10 @@ in the manuscript, not this computation.
 | `test_symmetry_resolved_response` | The factorized response, departure and fixed-line weights; overlapping branches | `prop:opposite-sector-response` and its equations |
 | `test_three_state_example` | Weights, minimal space, defect line and transfer formula of the example | `ex:split-excitation-response` and its equations |
 | `test_intertwining_criterion_and_detuning_cap` | Prepared states never leave the range exactly when `(1 - AA^*) H A = 0`; detuning caps the reachable defect weight | not yet tied to a label |
+
+### Numerical tolerance for spectral grouping
+
+The response checks group eigenvalues into levels with an absolute tolerance of `1e-9` (`SPECTRAL_TOLERANCE` in `lib/linalg.py`). Groups are disjoint and exhaustive, and no group spans more than the tolerance. Energies closer than the tolerance are treated as one level; for genuinely distinct energies that is a numerical approximation to the exact response, which needs a separate direction for each distinct energy the port couples to. `test_linalg.py` covers the boundary cases.
 
 ## Scope
 
