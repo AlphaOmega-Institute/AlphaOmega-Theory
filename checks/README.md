@@ -40,7 +40,7 @@ changes to the mathematics under an unchanged label still require review.
 `test_linalg.py` checks that nearby resolved eigenvalues belong to disjoint spectral
 blocks, so their port weights sum to the total spectral mass without double-counting.
 It also checks that numerically coincident eigenvalues are merged at the declared
-rounding precision.
+absolute spectral tolerance.
 
 ### Pair model — LG, `sec:finite-pair-realization`
 
@@ -102,7 +102,7 @@ in the manuscript, not this computation.
 
 ### Numerical tolerance for spectral grouping
 
-The response checks group eigenvalues into levels with an absolute tolerance of `1e-9` (`SPECTRAL_TOLERANCE` in `lib/linalg.py`). Groups are disjoint and exhaustive, and no group spans more than the tolerance. Energies closer than the tolerance are treated as one level; for genuinely distinct energies that is a numerical approximation to the exact response, which needs a separate direction for each distinct energy the port couples to. `test_linalg.py` covers the boundary cases.
+The response checks group eigenvalues into levels with an absolute tolerance of `1e-9` (`SPECTRAL_TOLERANCE` in `lib/linalg.py`). Groups are disjoint and exhaustive, and no group spans more than the tolerance. Each group starts at its lowest member and contains only energies within that tolerance; nearby neighbours may fall in different groups when joining them would exceed the group's total-span limit. The group's mean represents its energy. Merging genuinely distinct energies approximates the exact response, which needs a separate direction for each distinct energy the port couples to. The reported response-generated space then belongs to this grouped Hamiltonian and need not reduce the original one. The `tol` argument of `minimal_space` controls the separate SVD rank cutoff. `test_linalg.py` covers the boundary cases.
 
 ## Scope
 
