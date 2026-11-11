@@ -1,13 +1,52 @@
-# PrimitiveSpectra
+# AlphaOmega-Theory
 
-## GitHub configuration
+Public work in progress for the AlphaOmega Institute's theoretical research.
 
-To set up your new GitHub repository, follow these steps:
+This repository is the shared working source for **LG** and **TAUM**. The files on `main` are the current shared drafts. They can be edited as the research develops; selected versions may later be released and archived with DOIs.
 
-* Under your repository name, click **Settings**.
-* In the **Actions** section of the sidebar, click "General".
-* Check the box **Allow GitHub Actions to create and approve pull requests**.
-* Click the **Pages** section of the settings sidebar.
-* In the **Source** dropdown menu, select "GitHub Actions".
+## Manuscripts
 
-After following the steps above, you can remove this section from the README file.
+| Manuscript | Self-contained TeX source |
+| --- | --- |
+| **LG — The Luminous Ground: Emptiness, Awareness, and the Algebra of Appearance** | [LG_Master_Unified.tex](manuscripts/lg/LG_Master_Unified.tex) |
+| **TAUM — Formalizing Buddhist (Meta)physics: Toward a Universal Model** | [Toward_a_Universal_Model_Self_Contained.tex](manuscripts/taum/Toward_a_Universal_Model_Self_Contained.tex) |
+
+The initial import on November 11, 2026 contains the November 10 manuscript revisions, unchanged. Later review suggestions have not been silently incorporated into that baseline. The manuscripts distinguish mathematical results, realization assumptions, interpretations, and open problems; their working-draft status applies throughout.
+
+Each manuscript includes its bibliography and is maintained as a single self-contained TeX file suitable for Overleaf. The initial import contains the sources; verification scripts and compiled release PDFs can be added separately.
+
+### Building
+
+Use a TeX Live or equivalent installation with pdfLaTeX, latexmk, KOMA-Script, and the packages named in the preamble.
+
+From `manuscripts/lg/`:
+
+```bash
+latexmk -pdf -interaction=nonstopmode -halt-on-error LG_Master_Unified.tex
+```
+
+From `manuscripts/taum/`:
+
+```bash
+latexmk -pdf -interaction=nonstopmode -halt-on-error Toward_a_Universal_Model_Self_Contained.tex
+```
+
+## Shared editing
+
+- Fetch the latest `main` before editing and inspect any intervening changes.
+- Use a separate branch for simultaneous or overlapping edits, then reconcile the changes before merging.
+- Make focused commits with messages describing the changes. Preserve other contributors' work and avoid force-pushing shared history.
+- Keep each manuscript self-contained, including its bibliography. Do not replace sections with dependencies on external companion notes or source files.
+- Synchronize Overleaf and Library copies deliberately with a known repository commit. Do not overwrite newer repository content with an older export.
+
+Git records the working history. A dated release is a separate publication step, and can be archived on Zenodo when appropriate.
+
+## Existing formalization
+
+The `PrimitiveSpectra/` directory, `PrimitiveSpectra.lean`, and the Lake/Lean configuration contain the existing PrimitiveSpectra formalization project. Its files and build configuration are preserved alongside the manuscripts.
+
+## Related repositories
+
+- [AlphaOmega-LQCD](https://github.com/AlphaOmega-Institute/AlphaOmega-LQCD): lattice engine and associated computations.
+- [magenta-gap](https://github.com/AlphaOmega-Institute/magenta-gap): color-model calculations and supporting material.
+

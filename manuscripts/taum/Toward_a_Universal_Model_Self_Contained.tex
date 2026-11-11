@@ -1,0 +1,4680 @@
+% Self-contained source generated from the July 18, 2026 Pass 7 project.
+% All project-local TeX inputs are inlined below.
+\documentclass[11pt,reqno]{scrartcl}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\hypersetup{
+  pdftitle={Formalizing Buddhist (Meta)physics: Toward a Universal Model},
+  pdfauthor={Alexander Yiannopoulos},
+  pdfsubject={Bipartite Krein transition algebra, compact symmetry compression, reference-state geometry, projector topology, effective dynamics, and passive response},
+  pdfkeywords={Krein space, closed operator, graded algebra, Haar projector, reference fidelity, projection bundle, Chern-Weil theory, gauge curvature, Schur complement, Herglotz function, Schur function, response realization}
+}
+\usepackage{aliascnt}
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+\usepackage{import}
+\usepackage{scrlayer-scrpage}
+
+
+% ===== BEGIN INLINED FILE: macros.tex =====
+% Core notation for Toward a Universal Model
+\newcommand{\CC}{\mathbb C}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+
+\newcommand{\scrK}{\mathscr K}
+\newcommand{\scrHp}{\mathscr H_{+}}
+\newcommand{\scrHm}{\mathscr H_{-}}
+\newcommand{\fundJ}{\mathfrak J}
+\newcommand{\Pp}{\Pi_{+}}
+\newcommand{\Pm}{\Pi_{-}}
+\newcommand{\idop}{\mathbf 1}
+
+\newcommand{\Aop}{\mathsf A}
+\newcommand{\Vop}{\mathsf V}
+\newcommand{\DB}{\mathbb D}
+\newcommand{\KB}{\mathbb K}
+\newcommand{\DeltaB}{\Delta}
+\newcommand{\Cp}{\mathscr C_{+}}
+\newcommand{\Cm}{\mathscr C_{-}}
+
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\braket}[2]{\langle #1\mid #2\rangle}
+\newcommand{\inner}[2]{\langle #1,#2\rangle}
+\newcommand{\kInner}[2]{[#1,#2]_{\fundJ}}
+
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\Graph}{Graph}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Span}{span}
+
+\newcommand{\restr}[2]{#1\!\upharpoonright_{#2}}
+\newcommand{\dsum}{\mathbin{[\dotplus]}}
+
+% Polar geometry and cohomology
+\newcommand{\polu}{u_B}
+\newcommand{\suppP}{\pi_{+,B}}
+\newcommand{\suppM}{\pi_{-,B}}
+\newcommand{\SuppB}{\Pi_B}
+\newcommand{\RB}{\mathcal R_B}
+\newcommand{\IB}{\mathcal I_B}
+\newcommand{\Harm}{\mathscr H}
+
+% Reserved notation for later realizations
+\newcommand{\scalarpot}[1]{U\!\left(#1\right)}
+\newcommand{\gaugeA}{\mathcal A}
+\newcommand{\gaugeF}{\mathcal F}
+
+% Boundary response layer
+\newcommand{\scrX}{\mathscr X}
+\newcommand{\scrE}{\mathscr E}
+\newcommand{\Mresp}{M_{\Gamma}}
+\newcommand{\Sresp}{\mathscr S_{\Gamma}}
+\newcommand{\KM}{\mathcal K_{M}}
+\newcommand{\KS}{\mathcal K_{\mathscr S}}
+\newcommand{\Cplus}{\mathbb C_{+}}
+\newcommand{\Hmin}{\mathscr X_{\min}}
+
+% Reference-state geometry
+\newcommand{\vref}[1]{v_{#1}}
+\newcommand{\Zref}[1]{Z_{#1}}
+\DeclareMathOperator{\rank}{rank}
+
+% Integration pass
+% ===== END INLINED FILE: macros.tex =====
+
+
+\setstretch{1.15}
+\setlength{\emergencystretch}{3em}
+\setkomafont{section}{\Large\bfseries}
+\setkomafont{subsection}{\large\bfseries}
+\setkomafont{disposition}{\normalfont}
+\DeclareTOCStyleEntry[numwidth=3.5em]{tocline}{subsection}
+
+\clearpairofpagestyles
+\ihead{\textit{Toward a Universal Model}}
+\ohead{}
+\cfoot{\pagemark}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{assumption}{theorem}
+\newtheorem{assumption}[assumption]{Assumption}
+\aliascntresetthe{assumption}
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\crefname{theorem}{theorem}{theorems}
+\crefname{proposition}{proposition}{propositions}
+\crefname{lemma}{lemma}{lemmas}
+\crefname{corollary}{corollary}{corollaries}
+\crefname{definition}{definition}{definitions}
+\crefname{assumption}{assumption}{assumptions}
+\crefname{example}{example}{examples}
+\crefname{section}{section}{sections}
+\crefname{appendix}{appendix}{appendices}
+
+\title{\textbf{Formalizing Buddhist (Meta)physics: Toward a Universal Model}}
+\author{Alexander Yiannopoulos\\[2pt]
+\small A$\lvert\Omega\rangle$ Institute, New Orleans, Louisiana, USA\\
+\small\texttt{ayianno@ao.institute}}
+\date{July 18, 2026; revised November 10, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Let \(\scrK=\scrHp\dsum\scrHm\) be a bipartite Krein space and let
+\(B:\Dom B\subseteq\scrHp\to\scrHm\) be densely defined and closed.  We
+construct its nilpotent oriented transitions, Hilbert/Hodge and
+Krein/rotational odd branches, positive partner Laplacian, polar geometry,
+two-term cohomology, and paired nonzero spectra.  When \(B\) is Fredholm,
+its zero-mode imbalance gives \(\ind B\); under the stated trace-class
+heat-kernel hypotheses, the same index is the graded heat supertrace.  A
+norm-\(C^2\) field of orthogonal projections produces bounded tangent channels
+\(B_\mu\) and the Grassmann curvature
+\(\gaugeF_{\mu\nu}^{\Pi}=B_\mu^*B_\nu-B_\nu^*B_\mu\).  Under the additional
+smooth finite-rank hypothesis, its trace polynomials give the Chern--Weil
+forms.  A bounded channel coupling
+between self-adjoint diagonal generators yields the sign-sensitive
+Schur--Feshbach operator
+\(L_{\mathrm{eff}}^{(\varepsilon)}(z)=L_+-\varepsilon
+B^*(L_--z)^{-1}B\).  A bounded port into a self-adjoint realization gives
+an operator-valued Herglotz response, a Schur Cayley transform, and positive
+Nevanlinna and de Branges--Rovnyak kernels; minimal realizations are unique up
+to unitary equivalence.  A symmetry-resolved response theorem
+distinguishes dynamically reached final defects from permanently
+unobserved directions, and an explicit three-state example preserves
+a ground while exhibiting complete departure from a two-dimensional
+preparation range.  Gaussian functional calculus regularizes
+singular boundary inputs without changing the internal spectrum.  A supplied
+ground state also gives the exact reference-fidelity decomposition
+\(E_{\mathrm{exc}}(\psi)=Z_\psi(1-|\braket0\psi|^2)\) off the reference ray,
+with zero excitation on that ray.  Scalar,
+translation, oscillator, and quasiperiodic channels exhibit finite,
+continuous, positive-integer, and compact discrete spectral types.  For the
+oscillator channel \(B=a^*\), the Mellin transform of the heat trace of the
+squared positive return,
+\(\operatorname{Tr}e^{-\pi t(B^*B)^2}\), equals
+\(\pi^{-s/2}\Gamma(s/2)\zeta(s)\) for \(\operatorname{Re}s>1\).  An
+explicit scope ledger separates this established local architecture from
+extensions requiring additional realization data.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} Krein space; closed operator; graded algebra;
+two-term Hilbert complex; compact-group averaging; reference fidelity;
+projection bundle; Chern--Weil theory; gauge curvature; Schur complement;
+Herglotz response; Schur transfer; minimal realization; heat-kernel smoothing.
+
+\clearpage
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\clearpage
+
+% ===== BEGIN INLINED FILE: sections/00_introduction.tex =====
+\section{Introduction and scope}
+\label{sec:introduction}
+
+This paper develops a common operator architecture for systems with two
+complementary sectors, an indefinite grading, and a positive compressed
+response.  The starting datum is deliberately small: a bipartite Krein space
+and one densely defined closed channel between its two Hilbert sectors.  From
+that datum one obtains two nilpotent directional maps, two canonical odd
+branches, a positive partner Laplacian, a supportwise polar geometry, a
+two-term cohomology, and, under Fredholm hypotheses, an index.  When the
+selected sector varies over a
+parameter space, the same algebra yields the Grassmann connection and its
+curvature.  When the complementary sector is eliminated through a resolvent,
+the same closed excursion yields a Schur--Feshbach self-energy.  Finally, a
+bounded port into a self-adjoint realization produces a Herglotz response, a
+Schur transfer function, and positive reproducing kernels.
+
+The adjective \emph{universal} refers to this architecture, not to a fixed
+spectrum or a fixed physical realization.  The channel operator determines
+the spectral type.  The scalar, translation, oscillator, and quasiperiodic
+examples in \cref{sec:examples} therefore instantiate the same algebra with,
+respectively, finite, continuous, positive-integer, and compact discrete
+spectra.
+
+Most component tools used below--polar decomposition, two-term Hilbert
+complexes, Grassmann connections, Schur complements, and Nevanlinna kernels--
+are classical.  The contribution of the present paper is their classification
+and synthesis around one oriented channel pair, including the exact sign
+dichotomy between the Hilbert and Krein branches and the recurrence of the
+same closed-return pattern in curvature, effective dynamics, and passive
+response.
+
+\subsection{Primitive data and derived structures}
+
+The fixed-channel layer begins with a fundamental decomposition
+\(\scrK=\scrHp\dsum\scrHm\), its symmetry \(\fundJ\), and one densely
+defined closed channel
+\(B:\Dom B\subseteq\scrHp\to\scrHm\).  The associated differential and
+codifferential are denoted by \(d_B\) and \(d_B^*\), and
+\begin{equation}
+  \Aop_B:=-d_B,
+  \qquad
+  \Vop_B:=d_B^*.
+  \label{eq:intro-AV}
+\end{equation}
+The letters \(\Aop\) and \(\Vop\) label the two orientations of the
+transition channel.  Their Hilbert/Hodge and Krein/rotational branches are
+\begin{equation}
+  \DB_B=\Vop_B-\Aop_B,
+  \qquad
+  \KB_B=\Vop_B+\Aop_B=\fundJ\DB_B,
+\end{equation}
+with
+\begin{equation}
+  \DB_B^2=\DeltaB_B,
+  \qquad
+  \KB_B^2=-\DeltaB_B,
+  \qquad
+  \DeltaB_B=\diag(B^*B,BB^*)\ge0.
+\end{equation}
+All unbounded products use their natural composition domains, collected in
+\hyperref[app:domains]{Appendix~\ref*{app:domains}}.  Independently, a compact unitary symmetry may be
+averaged to the invariant projection \(\Pi_G\); this projection is kept
+distinct from the fixed sector projections, the support of \(B\), and a
+moving projection field.
+
+\subsection{One closed excursion in three forms}
+
+The same algebra appears in three mathematically distinct settings.
+
+First, for a norm-\(C^2\) orthogonal projection field \(\Pi(x)\), the tangent
+channel
+\begin{equation}
+  B_\mu=\Pi^\perp(\partial_\mu\Pi)\Pi
+\end{equation}
+produces the projector curvature
+\begin{equation}
+  \gaugeF_{\mu\nu}^{\Pi}
+  =B_\mu^*B_\nu-B_\nu^*B_\mu.
+  \label{eq:intro-curvature}
+\end{equation}
+Thus curvature is the antisymmetric difference of two mixed returns.
+
+Second, let \(L_-\) be self-adjoint, let
+\(B\in\mathcal B(\scrHp,\scrHm)\), and take \(z\in\rho(L_-)\).  The
+resolvent return
+\begin{equation}
+  \Sigma_B(z)=B^*(L_--z)^{-1}B
+  \label{eq:intro-self-energy}
+\end{equation}
+produces the sign-sensitive effective operator
+\begin{equation}
+  L_{\mathrm{eff}}^{(\varepsilon)}(z)
+  =L_+-\varepsilon\Sigma_B(z),
+  \qquad \varepsilon\in\{+1,-1\}.
+  \label{eq:intro-effective}
+\end{equation}
+
+Third, for a self-adjoint response generator \(H\) and bounded port
+\(\Gamma\), the compressed resolvent
+\begin{equation}
+  M_\Gamma(z)=\Gamma^*(H-z)^{-1}\Gamma
+  \label{eq:intro-response}
+\end{equation}
+is Herglotz--Nevanlinna on the upper half-plane.  Its Cayley transform is
+Schur and its defect kernel is positive.  These three constructions are not
+identified with one another; rather, they are generated by the same
+orientation-and-return pattern under different hypotheses.
+
+\subsection{Reference states and topology}
+
+A normalized vector \(\ket0\in\Dom B\subseteq\scrHp\) may be chosen as a
+distinguished
+reference.  Its one-step image is
+\begin{equation}
+  \ket\Omega:=\Aop_B\ket0,
+  \qquad
+  \Aop_B\ket\Omega=0.
+  \label{eq:intro-reference-image}
+\end{equation}
+No ground-state or cyclicity property is included in this definition.  When a
+self-adjoint realization additionally makes \(\ket0\) a ground state, the
+reference-state theorem of \cref{sec:reference-state} gives an exact
+factorization of excitation energy by the fidelity with the reference ray.
+
+For a strongly continuous unitary action of a compact group, the Haar
+average gives the exact orthogonal projection onto invariant vectors; see
+\cref{sec:symmetry-averaging}.  This construction supplies invariant
+compression but does not identify that compression with the selected sector
+unless a realization proves the identification.
+
+For a finite-rank smooth projection bundle, the curvature in
+\eqref{eq:intro-curvature} also generates the standard Chern--Weil forms.  In
+rank one, the resulting flux through a closed oriented two-cycle is integral.
+This supplies the topological consequence of the projector construction
+without imposing a quantization condition on the holonomy of every closed
+loop.
+
+\subsection{Logical organization}
+
+The paper is divided into four layers.
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{Fixed-channel algebra:} closed operators, polar geometry,
+  cohomology, spectral pairing, and index.
+  \item \emph{Variable compression:} projector curvature and
+  characteristic classes.
+  \item \emph{Effective and boundary dynamics:} Schur--Feshbach reduction,
+  Herglotz response, Schur kernels, and minimal realization.
+  \item \emph{Realizations and open extensions:} canonical examples and a
+  precise ledger of which further constructions require additional data.
+\end{enumerate}
+The exact hypotheses of each result are local to its theorem.  No example is
+used to prove the abstract algebra, and no spectral identity from one
+realization is promoted to a universal spectrum.
+% ===== END INLINED FILE: sections/00_introduction.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/01_setup.tex =====
+\section{Bipartite Krein geometry}
+\label{sec:setup}
+
+\subsection{Fundamental decomposition}
+
+Let \(\scrHp\) and \(\scrHm\) be complex separable Hilbert spaces. Their inner
+products are written with the same brackets and are taken to be linear in the
+second argument. Set
+\begin{equation}
+  \scrK:=\scrHp\oplus\scrHm
+\end{equation}
+with the direct-sum Hilbert product
+\begin{equation}
+  \inner{(x_+,x_-)}{(y_+,y_-)}
+  :=\inner{x_+}{y_+}_{+}+\inner{x_-}{y_-}_{-}.
+\end{equation}
+Define the bounded self-adjoint involution
+\begin{equation}
+  \fundJ:=
+  \begin{pmatrix}
+    \idop_{+}&0\\
+    0&-\idop_{-}
+  \end{pmatrix},
+  \qquad
+  \fundJ^*=\fundJ,
+  \qquad
+  \fundJ^2=\idop_{\scrK}.
+  \label{eq:J}
+\end{equation}
+The associated indefinite form is
+\begin{equation}
+  \kInner{\xi}{\eta}:=\inner{\xi}{\fundJ\eta},
+  \qquad \xi,\eta\in\scrK.
+  \label{eq:Krein-form}
+\end{equation}
+Thus, after the canonical sector embeddings into \(\scrK\),
+\begin{equation}
+  \kInner{(x_+,0)}{(x_+,0)}=\|x_+\|^2,
+  \qquad
+  \kInner{(0,x_-)}{(0,x_-)}=-\|x_-\|^2.
+\end{equation}
+and the corresponding fundamental decomposition is written
+\begin{equation}
+  \boxed{\scrK=\scrHp\dsum\scrHm.}
+  \label{eq:fundamental-decomposition}
+\end{equation}
+This is a Krein space in the standard sense \cite{Bognar,AzizovIokhvidov}.
+The Hilbert topology is used for closure, domains, norms, and ordinary
+adjoints; the indefinite form records the sector grading and defines the
+Krein adjoint.
+
+The fixed sector projections are
+\begin{equation}
+  \Pp:=
+  \begin{pmatrix}\idop_+&0\\0&0\end{pmatrix},
+  \qquad
+  \Pm:=
+  \begin{pmatrix}0&0\\0&\idop_-\end{pmatrix},
+  \label{eq:sector-projections}
+\end{equation}
+so that
+\begin{equation}
+  \Pp+\Pm=\idop_{\scrK},
+  \qquad
+  \Pp\Pm=0,
+  \qquad
+  \fundJ=\Pp-\Pm.
+\end{equation}
+
+\subsection{Adjoints and grading}
+
+For a densely defined operator \(X\) on \(\scrK\), its Hilbert adjoint is
+written \(X^*\). Whenever the expression is defined as a closed operator, its
+Krein adjoint is
+\begin{equation}
+  X^\sharp:=\fundJ X^*\fundJ.
+  \label{eq:Krein-adjoint}
+\end{equation}
+The domain is
+\begin{equation}
+  \Dom(X^\sharp)=\fundJ\Dom(X^*).
+\end{equation}
+
+\begin{definition}[Grading-odd operator]
+A densely defined operator \(X\) on \(\scrK\) is \emph{grading-odd} when
+\(\fundJ\Dom X=\Dom X\) and
+\begin{equation}
+  \fundJ X\xi=-X\fundJ\xi,
+  \qquad \xi\in\Dom X.
+  \label{eq:odd}
+\end{equation}
+Equivalently, its diagonal sector blocks vanish on their natural domains:
+\begin{equation}
+  \Pp X\Pp=0,
+  \qquad
+  \Pm X\Pm=0.
+\end{equation}
+\end{definition}
+
+The \(\fundJ\)-invariance of the domain is essential for unbounded operators:
+it permits the domain itself to split into its two sector components.
+
+\begin{lemma}[Odd-adjoint conversion]
+\label{lem:odd-adjoint}
+Let \(X\) be densely defined, closed, and grading-odd. Then
+\begin{equation}
+  X^\sharp=X
+  \quad\Longleftrightarrow\quad
+  X^*=-X.
+  \label{eq:odd-adjoint-conversion}
+\end{equation}
+Likewise,
+\begin{equation}
+  X^\sharp=-X
+  \quad\Longleftrightarrow\quad
+  X^*=X.
+  \label{eq:odd-adjoint-conversion-2}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+If \(X^\sharp=X\), then \(X^*=\fundJ X\fundJ\), including equality of
+domains. Oddness gives \(\fundJ X\fundJ=-X\), hence \(X^*=-X\). The reverse
+implication is the same calculation in the opposite order. Replacing
+\(X^\sharp=X\) by \(X^\sharp=-X\) gives the second equivalence.
+\end{proof}
+
+\begin{remark}
+For an odd operator, Krein self-adjointness is therefore equivalent to
+Hilbert skew-adjointness. Krein skew-adjointness is equivalent to Hilbert
+self-adjointness. The sign is structural and will distinguish the two
+canonical odd branches associated with one channel.
+\end{remark}
+
+\subsection{Equal-carrier realization}
+
+The universal construction does not require \(\scrHp\) and \(\scrHm\) to be
+isomorphic. If they are specified as copies of a common Hilbert space
+\(\mathscr H\), however, then
+\begin{equation}
+  \scrK\simeq\CC^{1,1}\otimes\mathscr H
+  \simeq\mathscr H\oplus\mathscr H,
+\end{equation}
+with
+\begin{equation}
+  \fundJ=\sigma_z\otimes\idop_{\mathscr H}.
+\end{equation}
+This equal-carrier representation is a specialization of the direct-sum
+geometry, not a replacement for it.
+% ===== END INLINED FILE: sections/01_setup.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/02_classification.tex =====
+\section{Closed channels and canonical odd branches}
+\label{sec:classification}
+
+\subsection{The two-dimensional sector factor}
+
+Before introducing an operator-valued channel, consider
+\begin{equation}
+  M=
+  \begin{pmatrix}
+    0&a\\
+    b&0
+  \end{pmatrix},
+  \qquad a,b\in\CC,
+\end{equation}
+on \(\CC^{1,1}\) with fundamental symmetry \(\sigma_z\).
+
+\begin{proposition}[Canonical sector matrix]
+\label{prop:canonical-sector}
+The matrix \(M\) is Krein-self-adjoint if and only if
+\begin{equation}
+  b=-\overline a.
+\end{equation}
+If \(a\neq0\), a diagonal \(\sigma_z\)-unitary phase transformation carries
+\(M\) to
+\begin{equation}
+  |a|\,i\sigma_y
+  =|a|
+  \begin{pmatrix}
+    0&1\\
+    -1&0
+  \end{pmatrix}.
+  \label{eq:i-sigma-y}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+A direct calculation gives
+\begin{equation}
+  M^\sharp
+  =\sigma_zM^*\sigma_z
+  =
+  \begin{pmatrix}
+    0&-\overline b\\
+    -\overline a&0
+  \end{pmatrix}.
+\end{equation}
+Thus \(M^\sharp=M\) is equivalent to \(b=-\overline a\). Write
+\(a=|a|e^{i\theta}\) and define
+\begin{equation}
+  U_\theta:=\diag(e^{-i\theta/2},e^{i\theta/2}).
+\end{equation}
+Then \(U_\theta^*\sigma_zU_\theta=\sigma_z\) and
+\(U_\theta M U_\theta^{-1}=|a|i\sigma_y\).
+\end{proof}
+
+\subsection{A closed channel and its two-term complex}
+
+\begin{assumption}[Closed transition channel]
+\label{ass:B}
+Let
+\begin{equation}
+  B:\Dom B\subseteq\scrHp\longrightarrow\scrHm
+  \label{eq:B}
+\end{equation}
+be densely defined and closed. We use the standard graph, closure, and adjoint
+conventions for unbounded operators \cite{Kato,ReedSimon}. Its Hilbert adjoint is
+\begin{equation}
+  B^*:\Dom B^*\subseteq\scrHm\longrightarrow\scrHp.
+\end{equation}
+\end{assumption}
+
+Define the two-term differential
+\begin{equation}
+  d_B:=
+  \begin{pmatrix}
+    0&0\\
+    B&0
+  \end{pmatrix},
+  \qquad
+  \Dom d_B:=\Dom B\oplus\scrHm.
+  \label{eq:dB}
+\end{equation}
+Its Hilbert adjoint is
+\begin{equation}
+  d_B^*=
+  \begin{pmatrix}
+    0&B^*\\
+    0&0
+  \end{pmatrix},
+  \qquad
+  \Dom d_B^*:=\scrHp\oplus\Dom B^*.
+  \label{eq:dBstar}
+\end{equation}
+
+\begin{definition}[Oriented transition pair]
+\label{def:AV}
+The two oriented transitions associated with \(B\) are
+\begin{equation}
+  \boxed{
+  \Aop_B:=-d_B
+  =
+  \begin{pmatrix}
+    0&0\\
+    -B&0
+  \end{pmatrix},
+  \qquad
+  \Vop_B:=d_B^*
+  =
+  \begin{pmatrix}
+    0&B^*\\
+    0&0
+  \end{pmatrix}.}
+  \label{eq:AV}
+\end{equation}
+The letters \(\Aop\) and \(\Vop\) label the two orientations of the
+transition channel.
+\end{definition}
+
+\begin{proposition}[Closedness, adjoints, and nilpotency]
+\label{prop:differential-basic}
+The operators \(d_B\), \(d_B^*\), \(\Aop_B\), and \(\Vop_B\) are densely
+defined and closed. Moreover,
+\begin{equation}
+  d_B^2=0,
+  \qquad
+  (d_B^*)^2=0,
+  \label{eq:d-nilpotent}
+\end{equation}
+with
+\begin{equation}
+  \Dom(d_B^2)=\Dom d_B,
+  \qquad
+  \Dom((d_B^*)^2)=\Dom d_B^*.
+\end{equation}
+The Hilbert and Krein adjoints of the oriented pair are
+\begin{align}
+  \Aop_B^*&=-\Vop_B,
+  &\Vop_B^*&=-\Aop_B,
+  \label{eq:AV-Hilbert-adjoint}\\
+  \Aop_B^\sharp&=\Vop_B,
+  &\Vop_B^\sharp&=\Aop_B.
+  \label{eq:AV-Krein-adjoint}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Closedness of \(d_B\) is equivalent to closedness of \(B\), because its graph
+is the direct product of \(\Graph(B)\) with the unrestricted second-sector
+coordinate. The adjoint calculation gives \eqref{eq:dBstar}, hence \(d_B^*\)
+is closed. The remaining closedness claims follow from multiplication by
+\(-1\).
+
+For \((x,y)\in\Dom d_B\), one has \(d_B(x,y)=(0,Bx)\). This output lies again
+in \(\Dom d_B\), because its first component is zero; therefore
+\(d_B^2(x,y)=0\). The codifferential case is identical. Finally,
+\(\Aop_B^*=-d_B^*=-\Vop_B\). Conjugation by \(\fundJ\) changes the sign of an
+off-diagonal block, giving \(\Aop_B^\sharp=\Vop_B\); the other identities
+follow symmetrically.
+\end{proof}
+
+\subsection{Classification of odd Krein-self-adjoint generators}
+
+The oriented pair combines into the Krein branch
+\begin{equation}
+  \KB_B:=\Aop_B+\Vop_B
+  =
+  \begin{pmatrix}
+    0&B^*\\
+    -B&0
+  \end{pmatrix},
+  \qquad
+  \Dom\KB_B=\Dom B\oplus\Dom B^*.
+  \label{eq:KB}
+\end{equation}
+
+\begin{theorem}[Odd Krein-self-adjoint classification]
+\label{thm:classification}
+Let \(X\) be a densely defined, closed, grading-odd operator on
+\(\scrK\) and suppose \(X^\sharp=X\). Then
+there exists a unique densely defined closed operator
+\(B:\Dom B\subseteq\scrHp\to\scrHm\) such that
+\begin{equation}
+  X=\KB_B
+  =
+  \begin{pmatrix}
+    0&B^*\\
+    -B&0
+  \end{pmatrix}.
+  \label{eq:classification-form}
+\end{equation}
+Conversely, every operator \(\KB_B\) defined by a densely defined closed
+channel \(B\) is closed, grading-odd, Hilbert-skew-adjoint, and
+Krein-self-adjoint.
+\end{theorem}
+
+\begin{proof}
+Because \(\Dom X\) is invariant under \(\fundJ\), it is invariant under
+\(\Pp=\tfrac12(\idop+\fundJ)\) and
+\(\Pm=\tfrac12(\idop-\fundJ)\). Hence its domain decomposes into dense sector
+domains. Oddness gives a block form
+\begin{equation}
+  X=
+  \begin{pmatrix}
+    0&C\\
+    D&0
+  \end{pmatrix},
+\end{equation}
+where
+\(D:\Dom D\subseteq\scrHp\to\scrHm\) and
+\(C:\Dom C\subseteq\scrHm\to\scrHp\). Closedness of \(X\) implies
+closedness of both restrictions. By \cref{lem:odd-adjoint},
+\(X^*=-X\). The block adjoint is
+\begin{equation}
+  X^*=
+  \begin{pmatrix}
+    0&D^*\\
+    C^*&0
+  \end{pmatrix},
+\end{equation}
+so \(D^*=-C\) and \(C^*=-D\). Set \(B:=-D\). Then \(C=B^*\), giving
+\eqref{eq:classification-form}. Uniqueness is immediate from the lower-left
+block.
+
+Conversely, the direct block calculation gives \(\KB_B^*=-\KB_B\).
+Closedness follows from closedness of \(B\) and \(B^*\), and oddness is
+manifest. The odd-adjoint conversion then yields \(\KB_B^\sharp=\KB_B\).
+\end{proof}
+
+\subsection{Hilbert and Krein branches}
+
+The same channel \(B\) determines a second canonical odd branch,
+\begin{equation}
+  \DB_B:=\Vop_B-\Aop_B
+  =d_B+d_B^*
+  =
+  \begin{pmatrix}
+    0&B^*\\
+    B&0
+  \end{pmatrix},
+  \qquad
+  \Dom\DB_B=\Dom B\oplus\Dom B^*.
+  \label{eq:DB}
+\end{equation}
+Define the partner Laplacian
+\begin{equation}
+  \DeltaB_B:=
+  \begin{pmatrix}
+    B^*B&0\\
+    0&BB^*
+  \end{pmatrix},
+  \label{eq:DeltaB}
+\end{equation}
+with
+\begin{equation}
+  \Dom\DeltaB_B
+  :=\Dom(B^*B)\oplus\Dom(BB^*).
+\end{equation}
+The operators \(B^*B\) and \(BB^*\) are positive and self-adjoint \cite{Kato,ReedSimon}; hence so
+is \(\DeltaB_B\).
+
+\begin{theorem}[Adjoint-sign dichotomy]
+\label{thm:dichotomy}
+The Hilbert/Hodge branch \(\DB_B\) and the Krein/rotational branch
+\(\KB_B\) satisfy
+\begin{align}
+  \DB_B^*&=\DB_B,
+  &\DB_B^\sharp&=-\DB_B,
+  &\DB_B^2&=+\DeltaB_B,
+  \label{eq:D-branch}\\
+  \KB_B^*&=-\KB_B,
+  &\KB_B^\sharp&=\KB_B,
+  &\KB_B^2&=-\DeltaB_B.
+  \label{eq:K-branch}
+\end{align}
+The two branches are related exactly by
+\begin{equation}
+  \boxed{\KB_B=\fundJ\DB_B.}
+  \label{eq:KJD}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The adjoint statements follow from the block matrices and
+\cref{lem:odd-adjoint}. Direct multiplication gives the square identities on
+\(\Dom\DeltaB_B\). Finally,
+\begin{equation}
+  \fundJ\DB_B
+  =
+  \begin{pmatrix}
+    \idop_+&0\\0&-\idop_-
+  \end{pmatrix}
+  \begin{pmatrix}
+    0&B^*\\B&0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0&B^*\\-B&0
+  \end{pmatrix}
+  =\KB_B.
+\end{equation}
+\end{proof}
+
+\begin{corollary}[Common magnitude]
+\label{cor:common-magnitude}
+Both odd branches have the same positive magnitude:
+\begin{equation}
+  |\DB_B|=|\KB_B|=\DeltaB_B^{1/2}.
+\end{equation}
+Moreover,
+\begin{equation}
+  \DB_B^*\DB_B
+  =\KB_B^*\KB_B
+  =\DeltaB_B.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For \(\DB_B\), self-adjointness and \(\DB_B^2=\DeltaB_B\) give the result.
+For \(\KB_B\), skew-adjointness and \(\KB_B^2=-\DeltaB_B\) imply
+\(\KB_B^*\KB_B=(-\KB_B)\KB_B=\DeltaB_B\).
+\end{proof}
+
+\subsection{Balanced equal-carrier channel}
+
+If \(\scrHp\) and \(\scrHm\) are identified with copies of one Hilbert space
+\(\mathscr H\), and if \(B=\Lambda=\Lambda^*\), then
+\begin{equation}
+  \DB_\Lambda=\sigma_x\otimes\Lambda,
+  \qquad
+  \KB_\Lambda=(i\sigma_y)\otimes\Lambda.
+  \label{eq:balanced-branches}
+\end{equation}
+Thus the Hilbert and Krein branches differ only in the two-dimensional sector
+factor. The channel magnitude remains \(|\Lambda|\).
+% ===== END INLINED FILE: sections/02_classification.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/03_transition_algebra.tex =====
+\section{The oriented transition algebra}
+\label{sec:algebra}
+
+\subsection{Multiplication table}
+
+\begin{theorem}[Complete \(\Aop/\Vop\) algebra]
+\label{thm:AV-algebra}
+Let \(B\) satisfy \cref{ass:B}. Then
+\begin{align}
+  \Aop_B^2&=0,
+  &\Vop_B^2&=0,
+  \label{eq:AV-nilpotent}\\
+  \Aop_B^*&=-\Vop_B,
+  &\Vop_B^*&=-\Aop_B,
+  \label{eq:AV-star}\\
+  \Aop_B^\sharp&=\Vop_B,
+  &\Vop_B^\sharp&=\Aop_B.
+  \label{eq:AV-ddagger}
+\end{align}
+Their ordered products are
+\begin{equation}
+  \Vop_B\Aop_B
+  =
+  \begin{pmatrix}
+    -B^*B&0\\
+    0&0
+  \end{pmatrix},
+  \qquad
+  \Aop_B\Vop_B
+  =
+  \begin{pmatrix}
+    0&0\\
+    0&-BB^*
+  \end{pmatrix}.
+  \label{eq:ordered-products}
+\end{equation}
+On \(\Dom\DeltaB_B\),
+\begin{align}
+  \{\Aop_B,\Vop_B\}&=-\DeltaB_B,
+  \label{eq:anticommutator}\\
+  [\Aop_B,\Vop_B]&=\fundJ\DeltaB_B,
+  \label{eq:commutator}\\
+  \KB_B&=\Aop_B+\Vop_B,
+  \label{eq:K-sum}\\
+  \DB_B&=\Vop_B-\Aop_B.
+  \label{eq:D-difference}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Nilpotency and the adjoint identities were proved in
+\cref{prop:differential-basic}. The ordered products follow by block
+multiplication on their natural composition domains. Adding them gives
+\(-\DeltaB_B\). Subtracting in the order
+\(\Aop_B\Vop_B-\Vop_B\Aop_B\) gives
+\(\diag(B^*B,-BB^*)=\fundJ\DeltaB_B\). The final two identities are the
+definitions of the two odd branches.
+\end{proof}
+
+\subsection{Positive return cycles}
+
+Define the positive ordered return operators
+\begin{equation}
+  \mathscr C_{+,B}:=-\Vop_B\Aop_B,
+  \qquad
+  \mathscr C_{-,B}:=-\Aop_B\Vop_B.
+  \label{eq:cycles}
+\end{equation}
+As operators on \(\scrK\),
+\begin{equation}
+  \mathscr C_{+,B}=
+  \begin{pmatrix}
+    B^*B&0\\
+    0&0
+  \end{pmatrix},
+  \qquad
+  \mathscr C_{-,B}=
+  \begin{pmatrix}
+    0&0\\
+    0&BB^*
+  \end{pmatrix}.
+  \label{eq:cycles-block}
+\end{equation}
+Their sector restrictions are the standard partner operators
+\begin{equation}
+  \restr{\mathscr C_{+,B}}{\scrHp}=B^*B,
+  \qquad
+  \restr{\mathscr C_{-,B}}{\scrHm}=BB^*.
+  \label{eq:partner-restrictions}
+\end{equation}
+The full Laplacian splits as
+\begin{equation}
+  \DeltaB_B=\mathscr C_{+,B}+\mathscr C_{-,B}
+  \quad\text{on }\Dom\DeltaB_B.
+  \label{eq:Delta-cycle-sum}
+\end{equation}
+
+\begin{proposition}[Positivity and quadratic forms]
+\label{prop:cycle-positivity}
+The cycle restrictions \(B^*B\) and \(BB^*\) are positive self-adjoint. For
+\(x\in\Dom B\) and \(y\in\Dom B^*\),
+\begin{align}
+  \|Bx\|^2&=\| (B^*B)^{1/2}x\|^2,
+  \label{eq:B-form}\\
+  \|B^*y\|^2&=\|(BB^*)^{1/2}y\|^2.
+  \label{eq:Bstar-form}
+\end{align}
+For \(\xi=(x,y)\in\Dom\KB_B=\Dom\DB_B\),
+\begin{equation}
+  \|\KB_B\xi\|^2
+  =\|\DB_B\xi\|^2
+  =\|Bx\|^2+\|B^*y\|^2
+  =\|\DeltaB_B^{1/2}\xi\|^2.
+  \label{eq:transition-energy}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Positivity and self-adjointness of \(B^*B\) and \(BB^*\) are standard for a
+closed densely defined operator. Their closed quadratic forms are
+\(x\mapsto\|Bx\|^2\) and \(y\mapsto\|B^*y\|^2\), giving the first two
+identities. The block forms of \(\KB_B\) and \(\DB_B\) give the last identity
+directly.
+\end{proof}
+
+\subsection{Zero modes}
+
+\begin{proposition}[Common kernel]
+\label{prop:kernel}
+The kernels of the two odd branches and the partner Laplacian coincide:
+\begin{equation}
+  \boxed{
+  \Ker\DB_B
+  =\Ker\KB_B
+  =\Ker\DeltaB_B
+  =\Ker B\oplus\Ker B^*.}
+  \label{eq:kernel}
+\end{equation}
+The sector kernels are
+\begin{equation}
+  \Ker(B^*B)=\Ker B,
+  \qquad
+  \Ker(BB^*)=\Ker B^*.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For \(\xi=(x,y)\),
+\begin{equation}
+  \DB_B\xi=(B^*y,Bx),
+  \qquad
+  \KB_B\xi=(B^*y,-Bx).
+\end{equation}
+Either expression vanishes exactly when \(x\in\Ker B\) and
+\(y\in\Ker B^*\). The Laplacian claim follows from positivity of the partner
+operators.
+\end{proof}
+
+\begin{remark}
+The two branches have identical zero modes and identical positive magnitude.
+Their difference lies entirely in the sector sign: \(\DB_B^2=+\DeltaB_B\)
+while \(\KB_B^2=-\DeltaB_B\).
+\end{remark}
+
+\subsection{A distinguished reference vector}
+
+Let \(\ket0\in\Dom B\subseteq\scrHp\) be a normalized reference vector,
+embedded in \(\scrK\) as \((\ket0,0)\). Define its transition image by
+\begin{equation}
+  \boxed{\ket\Omega:=\Aop_B\ket0.}
+  \label{eq:Omega}
+\end{equation}
+Explicitly,
+\begin{equation}
+  \ket\Omega=(0,-B\ket0)\in\scrHm.
+  \label{eq:Omega-block}
+\end{equation}
+No normalization or cyclicity property of \(\ket\Omega\) is implied by this
+definition.
+
+\begin{proposition}[One-step image and return]
+\label{prop:Omega}
+The transition image satisfies
+\begin{equation}
+  \boxed{\Aop_B\ket\Omega=0.}
+  \label{eq:A-Omega}
+\end{equation}
+If \(\ket0\in\Dom(B^*B)\), then the return transition is defined and obeys
+\begin{equation}
+  \Vop_B\ket\Omega
+  =-B^*B\ket0
+  =-\mathscr C_{+,B}\ket0.
+  \label{eq:V-Omega}
+\end{equation}
+Its Hilbert norm and Krein square are
+\begin{equation}
+  \|\ket\Omega\|^2=\|B\ket0\|^2,
+  \qquad
+  \kInner{\Omega}{\Omega}=-\|B\ket0\|^2.
+  \label{eq:Omega-norms}
+\end{equation}
+Hence \(\ket\Omega=0\) if and only if \(\ket0\in\Ker B\).
+\end{proposition}
+
+\begin{proof}
+Equation \eqref{eq:A-Omega} is nilpotency:
+\(\Aop_B\ket\Omega=\Aop_B^2\ket0=0\). Under the additional domain
+hypothesis,
+\(\Vop_B\ket\Omega=\Vop_B\Aop_B\ket0=-B^*B\ket0\). The norm identities
+follow from \eqref{eq:Omega-block} and from the negative sign of the Krein
+form on \(\scrHm\).
+\end{proof}
+% ===== END INLINED FILE: sections/03_transition_algebra.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/03_symmetry_averaging.tex =====
+\section{Compact symmetry averaging and invariant compression}
+\label{sec:symmetry-averaging}
+
+The fixed sector projections \(\Pp,\Pm\), a moving physical projection
+\(\Pi(x)\), and a symmetry-average projection are different mathematical
+objects.  This section records the standard compact-group construction and
+fixes the notation \(\Pi_G\) for the latter.
+
+\subsection{The Haar projector}
+
+Let \(G\) be a compact Hausdorff group with normalized Haar measure \(dg\),
+and let
+\begin{equation}
+  \rho:G\longrightarrow\mathcal U(\scrK)
+  \label{eq:unitary-representation}
+\end{equation}
+be a strongly continuous Hilbert-unitary representation.  Define
+\begin{equation}
+  \Pi_G\xi
+  :=\int_G\rho(g)\xi\,dg,
+  \qquad \xi\in\scrK,
+  \label{eq:Haar-projector}
+\end{equation}
+where the integral is the Bochner integral of the continuous vector-valued
+map \(g\mapsto\rho(g)\xi\).
+
+\begin{theorem}[Compact-group averaging]
+\label{thm:Haar-projector}
+The operator \(\Pi_G\) is the Hilbert-orthogonal projection onto the invariant
+subspace
+\begin{equation}
+  \scrK^G
+  :=\{\xi\in\scrK:\rho(g)\xi=\xi\ \text{for every }g\in G\}.
+  \label{eq:invariant-subspace}
+\end{equation}
+In particular,
+\begin{equation}
+  \Pi_G^2=\Pi_G,
+  \qquad
+  \Pi_G^*=\Pi_G,
+  \qquad
+  \rho(g)\Pi_G=\Pi_G\rho(g)=\Pi_G.
+  \label{eq:Haar-properties}
+\end{equation}
+If in addition
+\begin{equation}
+  [\rho(g),\fundJ]=0
+  \qquad(g\in G),
+  \label{eq:J-compatible-representation}
+\end{equation}
+then
+\begin{equation}
+  [\Pi_G,\fundJ]=0,
+  \label{eq:Haar-J-commute}
+\end{equation}
+so \(\Pi_G\) reduces the fundamental decomposition and is also
+Krein-self-adjoint.
+\end{theorem}
+
+\begin{proof}
+The estimate
+\begin{equation}
+  \|\Pi_G\xi\|
+  \le\int_G\|\rho(g)\xi\|\,dg
+  =\|\xi\|
+\end{equation}
+shows that \(\Pi_G\) is bounded.  Haar invariance gives, for \(h\in G\),
+\begin{equation}
+  \rho(h)\Pi_G\xi
+  =\int_G\rho(hg)\xi\,dg
+  =\Pi_G\xi,
+\end{equation}
+so \(\Ran\Pi_G\subseteq\scrK^G\).  Conversely, if \(\xi\in\scrK^G\), then
+\(\Pi_G\xi=\xi\), hence \(\Ran\Pi_G=\scrK^G\) and \(\Pi_G^2=\Pi_G\).
+For \(\xi,\eta\in\scrK\), unitarity and the substitution
+\(g\mapsto g^{-1}\) yield
+\begin{align}
+  \inner{\xi}{\Pi_G\eta}
+  &=\int_G\inner{\xi}{\rho(g)\eta}\,dg\\
+  &=\int_G\inner{\rho(g^{-1})\xi}{\eta}\,dg
+  =\inner{\Pi_G\xi}{\eta},
+\end{align}
+so \(\Pi_G^*=\Pi_G\).  The remaining intertwining identity follows from
+left and right Haar invariance.  Finally, \eqref{eq:J-compatible-representation}
+passes through the integral, giving \eqref{eq:Haar-J-commute}; then
+\(\Pi_G^\sharp=\fundJ\Pi_G\fundJ=\Pi_G\).
+\end{proof}
+
+\begin{corollary}[Finite symmetry group]
+\label{cor:finite-group-average}
+If \(G\) is finite, then
+\begin{equation}
+  \Pi_G=\frac1{|G|}\sum_{g\in G}\rho(g).
+  \label{eq:finite-group-projector}
+\end{equation}
+For a finite cubic rotation group, \eqref{eq:finite-group-projector} is the
+exact compression onto the trivial cubic representation.
+\end{corollary}
+
+\begin{remark}[Distinct projections]
+The construction of \(\Pi_G\) does not identify it with the sector projection
+\(\Pp\), the active-support projection \(\SuppB\), or a moving projection
+\(\Pi(x)\).  Such an identification is additional realization data and must
+be checked separately.  In particular, finite cubic invariance and continuum
+rotational invariance are different compression problems.
+\end{remark}
+% ===== END INLINED FILE: sections/03_symmetry_averaging.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/03A_reference_state.tex =====
+\section{Reference-state geometry and excitation energy}
+\label{sec:reference-state}
+
+The transition algebra only requires a normalized reference vector
+\(\ket0\in\Dom B\).  This section records an additional result available in
+realizations where the same vector is a ground state of a self-adjoint
+physical generator.  The statement is a Hilbert-space identity and does not
+use the indefinite form.
+
+\subsection{Vacuum fidelity}
+
+Let \(H_+\) be self-adjoint and bounded below on \(\scrHp\).  Assume that
+\(\ket0\in\Dom H_+\) is normalized and
+\begin{equation}
+  H_+\ket0=E_0\ket0,
+  \qquad
+  E_0=\inf\spec(H_+).
+  \label{eq:ground-reference}
+\end{equation}
+Define
+\begin{equation}
+  P_0:=\ket0\bra0,
+  \qquad
+  Q_0:=\idop_+-P_0.
+  \label{eq:P0Q0}
+\end{equation}
+For a normalized \(\psi\in\Dom H_+\), its reference fidelity is
+\begin{equation}
+  v_\psi:=\inner{\psi}{P_0\psi}
+  =|\braket{0}{\psi}|^2\in[0,1].
+  \label{eq:reference-fidelity}
+\end{equation}
+When \(v_\psi<1\), set
+\begin{equation}
+  \eta_\psi:=\frac{Q_0\psi}{\sqrt{1-v_\psi}}.
+  \label{eq:conditional-excitation-vector}
+\end{equation}
+Then \(\|\eta_\psi\|=1\) and \(\eta_\psi\perp\ket0\).
+
+\begin{theorem}[Reference-fidelity energy decomposition]
+\label{thm:reference-fidelity}
+For every normalized \(\psi\in\Dom H_+\) with \(v_\psi<1\),
+\begin{equation}
+  \boxed{
+  \inner{\psi}{(H_+-E_0)\psi}
+  =(1-v_\psi)
+  \inner{\eta_\psi}{(H_+-E_0)\eta_\psi}.}
+  \label{eq:reference-fidelity-energy}
+\end{equation}
+If \(v_\psi=1\), then \(\psi\) lies on the reference ray and the left-hand
+side vanishes; in that case the identity is stated separately with right-hand
+side zero, without defining \(\eta_\psi\) or \(Z_\psi\).
+\end{theorem}
+
+\begin{proof}
+Choose \(\theta\in\RR\) such that
+\(\braket0\psi=e^{i\theta}\sqrt{v_\psi}\).  Then
+\begin{equation}
+  \psi=e^{i\theta}\sqrt{v_\psi}\,\ket0
+       +\sqrt{1-v_\psi}\,\eta_\psi.
+  \label{eq:reference-orthogonal-decomposition}
+\end{equation}
+Since \((H_+-E_0)\ket0=0\), self-adjointness gives
+\begin{equation}
+  \inner{\ket0}{(H_+-E_0)\eta_\psi}
+  =\inner{(H_+-E_0)\ket0}{\eta_\psi}=0.
+\end{equation}
+Expanding the quadratic form of \(H_+-E_0\) in
+\eqref{eq:reference-orthogonal-decomposition} leaves only the orthogonal
+component and proves \eqref{eq:reference-fidelity-energy}.
+\end{proof}
+
+\begin{definition}[Conditional excitation scale]
+\label{def:conditional-excitation-scale}
+For \(v_\psi<1\), define
+\begin{equation}
+  Z_\psi
+  :=\inner{\eta_\psi}{(H_+-E_0)\eta_\psi}\ge0.
+  \label{eq:Zpsi}
+\end{equation}
+Then the excitation energy is
+\begin{equation}
+  E_{\mathrm{exc}}(\psi)
+  :=\inner{\psi}{(H_+-E_0)\psi}
+  =Z_\psi(1-v_\psi).
+  \label{eq:Eexc-Zv}
+\end{equation}
+\end{definition}
+
+The scalar \(Z_\psi\) is generally state-dependent.  A state-independent
+constant \(Z\) occurs only under additional spectral structure, for example
+when \(H_+-E_0\) is constant on the relevant excited subspace.
+
+\subsection{Gap consequence}
+
+\begin{corollary}[Fidelity bound from a spectral gap]
+\label{cor:fidelity-gap}
+Assume that for some \(m>0\),
+\begin{equation}
+  H_+-E_0\ge mQ_0
+  \label{eq:gap-Q0}
+\end{equation}
+in the quadratic-form sense.  For \(\psi\in\Dom((H_+-E_0)^{1/2})\), extend the excitation-energy
+notation by the closed quadratic form
+\begin{equation}
+  E_{\mathrm{exc}}(\psi)
+  :=\bigl\|(H_+-E_0)^{1/2}\psi\bigr\|^2.
+  \label{eq:Eexc-form-domain}
+\end{equation}
+Then every normalized \(\psi\) in this form domain satisfies
+\begin{equation}
+  \boxed{
+  E_{\mathrm{exc}}(\psi)\ge m(1-v_\psi).}
+  \label{eq:fidelity-gap-bound}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Apply \eqref{eq:gap-Q0} to \(\psi\) and use
+\(\inner\psi{Q_0\psi}=1-v_\psi\).
+\end{proof}
+
+If
+\begin{equation}
+  d_{\mathrm{FS}}([\psi],[\ket0])
+  :=\arccos|\braket0\psi|
+  \label{eq:FS-distance}
+\end{equation}
+is the Fubini--Study distance between the ray of \(\psi\) and the reference ray, then
+\begin{equation}
+  1-v_\psi=\sin^2 d_{\mathrm{FS}}([\psi],[\ket0]),
+\end{equation}
+and \eqref{eq:fidelity-gap-bound} becomes
+\begin{equation}
+  E_{\mathrm{exc}}(\psi)
+  \ge m\sin^2 d_{\mathrm{FS}}([\psi],[\ket0]).
+  \label{eq:FS-gap-bound}
+\end{equation}
+
+\subsection{Relation to the transition channel}
+
+The theorem above concerns a self-adjoint physical generator \(H_+\).  It may
+be applied to the positive return \(B^*B\), to a Schur--Feshbach effective
+operator at a real parameter \(\lambda\in\rho(L_-)\) for which that operator
+is self-adjoint, or to another self-adjoint realization, provided the stated
+ground-state and domain hypotheses hold.  These cases
+must be checked separately.  In particular, the definition
+\(\ket\Omega=\Aop_B\ket0\) does not imply that \(\ket0\) is a ground state,
+and a ground state in \(\ker B\) has \(\ket\Omega=0\).
+
+Cyclicity is likewise an optional representation property.  If a
+\(*\)-algebra \(\mathfrak M\subseteq\mathcal B(\scrHp)\) is specified, the
+reference is cyclic when
+\begin{equation}
+  \overline{\mathfrak M\ket0}=\scrHp.
+  \label{eq:cyclic-reference}
+\end{equation}
+No cyclicity assumption is needed for \cref{thm:reference-fidelity}.
+% ===== END INLINED FILE: sections/03A_reference_state.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/04_polar_geometry.tex =====
+\section{Polar geometry of the transition channel}
+\label{sec:polar}
+
+The algebra of the preceding sections separates the orientation of a
+transition from its positive magnitude.  The polar decomposition makes that
+separation canonical.
+
+\subsection{Polar decomposition and support projections}
+
+Set
+\begin{equation}
+  |B|:=(B^*B)^{1/2},
+  \qquad
+  |B^*|:=(BB^*)^{1/2}.
+  \label{eq:moduli}
+\end{equation}
+Both are positive self-adjoint, with
+\begin{equation}
+  \Dom |B|=\Dom B,
+  \qquad
+  \Dom |B^*|=\Dom B^*.
+\end{equation}
+
+\begin{theorem}[Polar decomposition]
+\label{thm:polar-decomposition}
+There is a unique partial isometry
+\begin{equation}
+  u_B:\scrHp\longrightarrow\scrHm
+\end{equation}
+such that
+\begin{equation}
+  B=u_B|B|.
+  \label{eq:polar-B}
+\end{equation}
+Its initial and final spaces are
+\begin{align}
+  \mathscr H_{+,B}^{\mathrm{act}}
+  &:=(\Ker B)^\perp
+  =\overline{\Ran |B|}
+  =\overline{\Ran B^*},
+  \label{eq:active-plus}\\
+  \mathscr H_{-,B}^{\mathrm{act}}
+  &:=(\Ker B^*)^\perp
+  =\overline{\Ran |B^*|}
+  =\overline{\Ran B}.
+  \label{eq:active-minus}
+\end{align}
+The support projections are
+\begin{equation}
+  \pi_{+,B}:=u_B^*u_B
+  =\idop_+-\operatorname{proj}_{\Ker B},
+  \qquad
+  \pi_{-,B}:=u_Bu_B^*
+  =\idop_--\operatorname{proj}_{\Ker B^*}.
+  \label{eq:support-sector}
+\end{equation}
+Moreover,
+\begin{equation}
+  |B^*|=u_B|B|u_B^*,
+  \qquad
+  B^*=|B|u_B^*=u_B^*|B^*|.
+  \label{eq:polar-intertwining}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This is the polar decomposition theorem for a densely defined closed
+operator.  The support identities follow from
+\((\Ran B^*)^\perp=\Ker B\) and
+\((\Ran B)^\perp=\Ker B^*\).  The remaining identities follow from
+functional calculus applied to \(B^*B\) and \(BB^*\); see
+\cite{Kato,ReedSimon}.
+\end{proof}
+
+Define the total active-support projection
+\begin{equation}
+  \Pi_B:=
+  \begin{pmatrix}
+    \pi_{+,B}&0\\
+    0&\pi_{-,B}
+  \end{pmatrix}.
+  \label{eq:PiB}
+\end{equation}
+Then
+\begin{equation}
+  \idop_{\scrK}-\Pi_B=\operatorname{proj}_{\Ker\DeltaB_B},
+  \qquad
+  \Ran\Pi_B=(\Ker\DeltaB_B)^\perp.
+  \label{eq:PiB-kernel}
+\end{equation}
+Thus \(\Pi_B\) removes precisely the kernel data at zero and retains the
+part of the two sectors on which the channel has nonzero magnitude.  Any
+continuous spectral behavior at zero on the active support remains paired by
+\(u_B\).
+
+\subsection{Polar reflection and polar complex structure}
+
+\begin{definition}[Polar reflection and polar complex structure]
+\label{def:polar-phases}
+The bounded polar reflection and polar complex structure associated with
+\(B\) are
+\begin{align}
+  \mathcal R_B
+  &:={}
+  \begin{pmatrix}
+    0&u_B^*\\
+    u_B&0
+  \end{pmatrix},
+  \label{eq:polar-reflection}\\
+  \mathcal I_B
+  &:={}
+  \begin{pmatrix}
+    0&u_B^*\\
+    -u_B&0
+  \end{pmatrix}.
+  \label{eq:polar-complex}
+\end{align}
+\end{definition}
+
+\begin{theorem}[Supportwise reflection and rotation]
+\label{thm:polar-properties}
+The polar operators satisfy
+\begin{align}
+  \mathcal R_B^*&=\mathcal R_B,
+  &\mathcal R_B^\sharp&=-\mathcal R_B,
+  &\mathcal R_B^2&=\Pi_B,
+  \label{eq:R-properties}\\
+  \mathcal I_B^*&=-\mathcal I_B,
+  &\mathcal I_B^\sharp&=\mathcal I_B,
+  &\mathcal I_B^2&=-\Pi_B.
+  \label{eq:I-properties}
+\end{align}
+They vanish on \(\Ker\DeltaB_B\), preserve \(\Ran\Pi_B\), and obey
+\begin{equation}
+  \boxed{
+  \mathcal I_B=\fundJ\mathcal R_B,
+  \qquad
+  \mathcal R_B=\fundJ\mathcal I_B.}
+  \label{eq:IJR}
+\end{equation}
+On the active support, \(\mathcal R_B\) is a self-adjoint involution and
+\(\mathcal I_B\) is a skew-adjoint complex structure.
+\end{theorem}
+
+\begin{proof}
+The adjoint identities follow directly from the block matrices.  Using
+\(u_B^*u_B=\pi_{+,B}\) and \(u_Bu_B^*=\pi_{-,B}\) gives the two square
+identities.  Multiplication by \(\fundJ\) changes the sign of the lower-left
+block and yields \eqref{eq:IJR}.  Since \(u_B\) and \(u_B^*\) vanish on the
+orthogonal complements of their initial spaces, both polar operators vanish
+on \(\Ker B\oplus\Ker B^*=\Ker\DeltaB_B\).
+\end{proof}
+
+\begin{theorem}[Polar factorization of the odd branches]
+\label{thm:polar-factorization}
+On the common domain
+\begin{equation}
+  \Dom\DeltaB_B^{1/2}=\Dom B\oplus\Dom B^*,
+\end{equation}
+the canonical odd branches factor as
+\begin{align}
+  \DB_B
+  &=\mathcal R_B\DeltaB_B^{1/2}
+  =\DeltaB_B^{1/2}\mathcal R_B,
+  \label{eq:D-polar}\\
+  \KB_B
+  &=\mathcal I_B\DeltaB_B^{1/2}
+  =\DeltaB_B^{1/2}\mathcal I_B.
+  \label{eq:K-polar}
+\end{align}
+Consequently, \(\mathcal R_B\) and \(\mathcal I_B\) are the bounded polar
+phases of \(\DB_B\) and \(\KB_B\), respectively.
+\end{theorem}
+
+\begin{proof}
+The positive square root is
+\begin{equation}
+  \DeltaB_B^{1/2}
+  =\begin{pmatrix}|B|&0\\0&|B^*|\end{pmatrix}.
+\end{equation}
+Multiplying by \(\mathcal R_B\) or \(\mathcal I_B\) and using
+\eqref{eq:polar-intertwining} gives the stated block matrices.  The same
+intertwining identities show that the products agree in either order and
+have the claimed common domain.
+\end{proof}
+
+\begin{remark}[Generalized inverse formulation]
+Let \(\DeltaB_{B,0}^{-1/2}\) be the generalized inverse defined by spectral
+calculus from the function \(\lambda\mapsto\lambda^{-1/2}\) on
+\((0,\infty)\), with value zero at \(\lambda=0\), and with its natural
+spectral domain.  On \(\Ran\DeltaB_B^{1/2}\),
+\begin{equation}
+  \DB_B\DeltaB_{B,0}^{-1/2}=\restr{\mathcal R_B}{\Ran\DeltaB_B^{1/2}},
+  \qquad
+  \KB_B\DeltaB_{B,0}^{-1/2}=\restr{\mathcal I_B}{\Ran\DeltaB_B^{1/2}}.
+\end{equation}
+Because \(\Ran\DeltaB_B^{1/2}\) is dense in the active support
+\(\Ran\Pi_B\), these products extend uniquely to bounded operators on that
+support.  Extending the active-support operators by zero on
+\(\Ker\DeltaB_B\) gives the globally defined polar operators
+\(\mathcal R_B\) and \(\mathcal I_B\).
+\end{remark}
+
+\subsection{Support-normalized oriented transitions}
+
+\begin{definition}[Normalized transition pair]
+\label{def:normalized-AV}
+The support-normalized oriented transitions are
+\begin{equation}
+  \widehat{\Aop}_B
+  :=\begin{pmatrix}0&0\\-u_B&0\end{pmatrix},
+  \qquad
+  \widehat{\Vop}_B
+  :=\begin{pmatrix}0&u_B^*\\0&0\end{pmatrix}.
+  \label{eq:normalized-AV}
+\end{equation}
+They are bounded on \(\scrK\).
+\end{definition}
+
+\begin{proposition}[Normalized cycle algebra]
+\label{prop:normalized-cycle}
+The normalized pair satisfies
+\begin{align}
+  \widehat{\Aop}_B^2&=0,
+  &\widehat{\Vop}_B^2&=0,
+  &\widehat{\Aop}_B^\sharp&=\widehat{\Vop}_B,
+  \label{eq:normalized-basic}\\
+  \widehat{\Aop}_B+\widehat{\Vop}_B&=\mathcal I_B,
+  &\widehat{\Vop}_B-\widehat{\Aop}_B&=\mathcal R_B,
+  \label{eq:normalized-sums}
+\end{align}
+and
+\begin{align}
+  -\widehat{\Vop}_B\widehat{\Aop}_B
+  &=\begin{pmatrix}\pi_{+,B}&0\\0&0\end{pmatrix},
+  \label{eq:normalized-cycle-plus}\\
+  -\widehat{\Aop}_B\widehat{\Vop}_B
+  &=\begin{pmatrix}0&0\\0&\pi_{-,B}\end{pmatrix}.
+  \label{eq:normalized-cycle-minus}
+\end{align}
+In particular,
+\begin{equation}
+  -\{\widehat{\Aop}_B,\widehat{\Vop}_B\}=\Pi_B.
+  \label{eq:normalized-anticommutator}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+All statements follow by bounded block multiplication and the support
+identities for \(u_B\).
+\end{proof}
+
+\subsection{The supportwise rotation group}
+
+\begin{theorem}[Canonical rotation generated by \(\mathcal I_B\)]
+\label{thm:rotation-group}
+For \(\theta\in\RR\), define
+\begin{equation}
+  \mathscr E_B(\theta):=e^{\theta\mathcal I_B}.
+\end{equation}
+Then \(\mathscr E_B(\theta)\) is a strongly continuous Hilbert-unitary group
+and
+\begin{equation}
+  \boxed{
+  \mathscr E_B(\theta)
+  =(\idop_{\scrK}-\Pi_B)
+   +\cos\theta\,\Pi_B
+   +\sin\theta\,\mathcal I_B.}
+  \label{eq:rotation-exponential}
+\end{equation}
+On the active support,
+\begin{equation}
+  \mathscr E_B(\pi/2)=\mathcal I_B,
+  \qquad
+  \mathscr E_B(\pi)=-\idop,
+  \qquad
+  \mathscr E_B(2\pi)=\idop.
+  \label{eq:quarter-turn}
+\end{equation}
+Globally,
+\begin{equation}
+  \mathscr E_B(\pi)=\idop_{\scrK}-2\Pi_B,
+\end{equation}
+so the zero-mode space is fixed pointwise.
+\end{theorem}
+
+\begin{proof}
+Since \(\mathcal I_B^*=-\mathcal I_B\), its exponential is Hilbert-unitary.
+The identities \(\mathcal I_B^2=-\Pi_B\) and
+\(\mathcal I_B(\idop-\Pi_B)=0\) separate the exponential series into the
+kernel and active-support parts, giving \eqref{eq:rotation-exponential}.
+The special values follow immediately.
+\end{proof}
+
+\begin{remark}
+The sign \(\mathcal I_B^2=-\Pi_B\) is a normalized two-step return law.  It
+is an algebraic cycle sign.  The term \emph{holonomy} will be reserved for a
+connection transported around an actual closed path in a parameter space.
+\end{remark}
+% ===== END INLINED FILE: sections/04_polar_geometry.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/05_cohomology_index.tex =====
+\section{Cohomology, spectral pairing, and index}
+\label{sec:cohomology}
+
+The one-way differential \(d_B\) defines an actual two-term Hilbert complex.
+Its cohomology records the zero modes that are not paired by the transition
+channel, while the polar partial isometry pairs the entire nonzero spectral
+content of the two sectors.
+
+\subsection{The two-term Hilbert complex}
+
+Consider the complex
+\begin{equation}
+  0\longrightarrow\scrHp
+  \xrightarrow{\;B\;}
+  \scrHm\longrightarrow0,
+  \label{eq:two-term-complex}
+\end{equation}
+where the differential in degree zero is the closed operator \(B\) with
+domain \(\Dom B\).
+
+\begin{definition}[Ordinary and reduced cohomology]
+\label{def:cohomology}
+The degree-zero and degree-one cohomology spaces are
+\begin{equation}
+  H_B^0:=\Ker B,
+  \qquad
+  H_B^1:=\scrHm/\Ran B.
+  \label{eq:ordinary-cohomology}
+\end{equation}
+The reduced degree-one cohomology is
+\begin{equation}
+  \overline H_B^1:=\scrHm/\overline{\Ran B}.
+  \label{eq:reduced-cohomology}
+\end{equation}
+When \(\Ran B\) is closed, ordinary and reduced degree-one cohomology
+coincide.
+\end{definition}
+
+\begin{remark}
+If \(\Ran B\) is not closed, \(H_B^1\) need not be Hausdorff in the quotient
+topology.  The reduced quotient \(\overline H_B^1\) is always a Hilbert
+space.  This is the standard distinction for Hilbert complexes
+\cite{BruningLesch}.
+\end{remark}
+
+\subsection{Hodge decomposition and harmonic representatives}
+
+\begin{theorem}[Two-sector Hodge decomposition]
+\label{thm:Hodge-decomposition}
+The sector spaces admit the orthogonal decompositions
+\begin{align}
+  \scrHp
+  &=\Ker B\oplus\overline{\Ran B^*},
+  \label{eq:Hodge-plus}\\
+  \scrHm
+  &=\Ker B^*\oplus\overline{\Ran B}.
+  \label{eq:Hodge-minus}
+\end{align}
+Consequently,
+\begin{equation}
+  \boxed{
+  \scrK
+  =\Ker\DeltaB_B
+   \oplus\overline{\Ran d_B^*}
+   \oplus\overline{\Ran d_B}.}
+  \label{eq:Hodge-full}
+\end{equation}
+All sums are Hilbert-orthogonal.  If \(\Ran B\) is closed, the closures in
+\eqref{eq:Hodge-full} may be omitted.
+\end{theorem}
+
+\begin{proof}
+Since \(B\) is densely defined and closed,
+\begin{equation}
+  (\Ran B^*)^\perp=\Ker B,
+  \qquad
+  (\Ran B)^\perp=\Ker B^*.
+\end{equation}
+Taking orthogonal complements gives \eqref{eq:Hodge-plus} and
+\eqref{eq:Hodge-minus}.  Since
+\begin{equation}
+  \Ker\DeltaB_B=\Ker B\oplus\Ker B^*,
+\end{equation}
+while
+\begin{equation}
+  \overline{\Ran d_B^*}
+  =\overline{\Ran B^*}\oplus\{0\},
+  \qquad
+  \overline{\Ran d_B}
+  =\{0\}\oplus\overline{\Ran B},
+\end{equation}
+the full decomposition follows.  Closedness of one of \(\Ran B\) and
+\(\Ran B^*\) implies closedness of the other.
+\end{proof}
+
+\begin{corollary}[Harmonic representation of reduced cohomology]
+\label{cor:harmonic-representatives}
+There are canonical Hilbert-space isomorphisms
+\begin{equation}
+  H_B^0\simeq\Ker B,
+  \qquad
+  \overline H_B^1\simeq\Ker B^*.
+  \label{eq:harmonic-cohomology}
+\end{equation}
+Thus the total reduced cohomology is represented by the harmonic space
+\begin{equation}
+  H_B^0\oplus\overline H_B^1
+  \simeq\Ker\DeltaB_B.
+  \label{eq:total-harmonic}
+\end{equation}
+If \(\Ran B\) is closed, the same statement holds for ordinary cohomology.
+\end{corollary}
+
+\begin{proof}
+The degree-zero statement is tautological.  In degree one, the orthogonal
+projection of \(\scrHm\) onto \(\Ker B^*\) has kernel
+\(\overline{\Ran B}\), hence descends to an isometric isomorphism from the
+reduced quotient.
+\end{proof}
+
+\subsection{Pairing of the nonzero spectra}
+
+Let
+\begin{equation}
+  H_{+,B}:=B^*B,
+  \qquad
+  H_{-,B}:=BB^*.
+  \label{eq:partner-H}
+\end{equation}
+The active subspaces from \cref{thm:polar-decomposition} reduce these
+operators.  Write
+\begin{equation}
+  H_{+,B}^{\mathrm{act}}
+  :=\restr{H_{+,B}}{\mathscr H_{+,B}^{\mathrm{act}}},
+  \qquad
+  H_{-,B}^{\mathrm{act}}
+  :=\restr{H_{-,B}}{\mathscr H_{-,B}^{\mathrm{act}}}.
+\end{equation}
+
+\begin{theorem}[Unitary equivalence of the active partner operators]
+\label{thm:partner-unitary-equivalence}
+The polar partial isometry restricts to a unitary operator
+\begin{equation}
+  u_B:\mathscr H_{+,B}^{\mathrm{act}}
+  \longrightarrow
+  \mathscr H_{-,B}^{\mathrm{act}},
+\end{equation}
+and
+\begin{equation}
+  \boxed{
+  H_{-,B}^{\mathrm{act}}
+  =u_B H_{+,B}^{\mathrm{act}}u_B^*.}
+  \label{eq:partner-unitary}
+\end{equation}
+Equivalently, for every bounded Borel function \(f\),
+\begin{equation}
+  f(H_{-,B}^{\mathrm{act}})
+  =u_B f(H_{+,B}^{\mathrm{act}})u_B^*.
+  \label{eq:partner-functional-calculus}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+On the active spaces, \(u_B^*u_B\) and \(u_Bu_B^*\) are the identity, so
+\(u_B\) is unitary.  The polar decomposition gives
+\begin{equation}
+  BB^*=u_B|B|^2u_B^*=u_B(B^*B)u_B^*
+\end{equation}
+on the final support, including equality of operator domains.  The Borel
+functional-calculus identity follows from unitary equivalence.
+\end{proof}
+
+\begin{corollary}[Spectral projection pairing]
+\label{cor:spectral-projection-pairing}
+Let \(E_+\) and \(E_-\) be the spectral measures of \(B^*B\) and \(BB^*\).
+For every Borel set \(S\subset(0,\infty)\),
+\begin{equation}
+  E_-(S)=u_BE_+(S)u_B^*.
+  \label{eq:spectral-projection-pairing}
+\end{equation}
+Hence
+\begin{equation}
+  \spec(B^*B)\setminus\{0\}
+  =\spec(BB^*)\setminus\{0\},
+  \label{eq:nonzero-spectrum}
+\end{equation}
+and all nonzero eigenvalue multiplicities agree.
+\end{corollary}
+
+\begin{corollary}[Explicit eigenvector pairing]
+\label{cor:eigenvector-pairing}
+If \(\lambda>0\) and
+\begin{equation}
+  B^*Bx=\lambda x,
+\end{equation}
+then
+\begin{equation}
+  y:=\lambda^{-1/2}Bx=u_Bx
+\end{equation}
+is an eigenvector of \(BB^*\) with eigenvalue \(\lambda\).  Conversely,
+\(x=\lambda^{-1/2}B^*y=u_B^*y\).  These maps preserve norms and give an
+isomorphism of the corresponding eigenspaces.
+\end{corollary}
+
+\begin{proof}
+The first claim follows from
+\begin{equation}
+  BB^*(Bx)=B(B^*Bx)=\lambda Bx.
+\end{equation}
+Moreover,
+\begin{equation}
+  \|Bx\|^2=\inner{x}{B^*Bx}=\lambda\|x\|^2.
+\end{equation}
+The converse is symmetric.
+\end{proof}
+
+\subsection{Closed range and a support gap}
+
+\begin{theorem}[Closed-range criterion]
+\label{thm:closed-range-criterion}
+The following conditions are equivalent:
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item \(\Ran B\) is closed;
+  \item there exists \(c_B>0\) such that
+  \begin{equation}
+    \|Bx\|\ge c_B\|x\|
+    \quad
+    \text{for all }x\in\Dom B\cap(\Ker B)^\perp;
+    \label{eq:B-below}
+  \end{equation}
+  \item on the positive active support, in the quadratic-form sense,
+  \begin{equation}
+    B^*B\ge c_B^2\pi_{+,B};
+    \label{eq:gap-plus}
+  \end{equation}
+  \item on the negative active support, in the quadratic-form sense,
+  \begin{equation}
+    BB^*\ge c_B^2\pi_{-,B}.
+    \label{eq:gap-minus}
+  \end{equation}
+\end{enumerate}
+When these conditions hold, zero is isolated from the active spectrum of
+\(\DeltaB_B\) by at least \(c_B^2\).
+\end{theorem}
+
+\begin{proof}
+For a closed operator, closedness of the range is equivalent to bounded
+invertibility of the restriction
+\begin{equation}
+  B:\Dom B\cap(\Ker B)^\perp\longrightarrow\Ran B
+\end{equation}
+when the domain is equipped with its graph norm.  The bounded inverse theorem
+gives \eqref{eq:B-below}, and the converse is immediate.  Squaring the norm
+inequality yields \eqref{eq:gap-plus}.  The negative-sector statement follows
+from \cref{thm:partner-unitary-equivalence}.
+\end{proof}
+
+\subsection{Fredholm index and graded zero-mode balance}
+
+\begin{definition}[Fredholm channel]
+\label{def:Fredholm-channel}
+The closed channel \(B\) is \emph{Fredholm} when
+\begin{equation}
+  \Ran B\text{ is closed},
+  \qquad
+  \dim\Ker B<\infty,
+  \qquad
+  \dim\Ker B^*<\infty.
+\end{equation}
+Its index is
+\begin{equation}
+  \ind B:=\dim\Ker B-\dim\Ker B^*.
+  \label{eq:index}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Cohomological and graded index formulas]
+\label{thm:index-formulas}
+If \(B\) is Fredholm, then
+\begin{equation}
+  \boxed{
+  \ind B
+  =\dim H_B^0-\dim H_B^1
+  =\Tr\!\left(\restr{\fundJ}{\Ker\DeltaB_B}\right).}
+  \label{eq:index-formulas}
+\end{equation}
+Equivalently, if \(P_{0,B}:=\operatorname{proj}_{\Ker\DeltaB_B}\), then
+\begin{equation}
+  \ind B=\Tr(\fundJ P_{0,B}).
+  \label{eq:index-projection}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Closed range identifies \(H_B^1\) with \(\Ker B^*\) by
+\cref{cor:harmonic-representatives}.  On
+\(\Ker\DeltaB_B=\Ker B\oplus\Ker B^*\), the grading \(\fundJ\) acts as
+\(+1\) on \(\Ker B\) and \(-1\) on \(\Ker B^*\).  Taking the finite
+dimensional trace gives the result.
+\end{proof}
+
+\begin{corollary}[Fredholm structure of the odd branches]
+\label{cor:odd-Fredholm}
+If \(B\) is Fredholm, then \(\DB_B\) and \(\KB_B\) have closed range and
+finite-dimensional common kernel.  Their ungraded Fredholm indices vanish,
+while the grading of their zero-mode space records \(\ind B\) through
+\eqref{eq:index-projection}.
+\end{corollary}
+
+\subsection{Heat supertrace}
+
+\begin{definition}[Graded trace]
+For a block-diagonal trace-class operator
+\(X=\diag(X_+,X_-)\), define
+\begin{equation}
+  \operatorname{Str}_{\fundJ}(X)
+  :=\Tr(\fundJ X)
+  =\Tr(X_+)-\Tr(X_-).
+  \label{eq:supertrace}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Heat supertrace index identity]
+\label{thm:heat-index}
+Suppose \(B\) is Fredholm and both \(e^{-tB^*B}\) and
+\(e^{-tBB^*}\) are trace class for every \(t>0\).  Then, for every
+\(t>0\),
+\begin{equation}
+  \boxed{
+  \operatorname{Str}_{\fundJ}(e^{-t\DeltaB_B})
+  =\Tr(e^{-tB^*B})-\Tr(e^{-tBB^*})
+  =\ind B.}
+  \label{eq:heat-index}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The active restrictions of \(B^*B\) and \(BB^*\) are unitarily equivalent,
+so their heat traces agree on the nonzero spectral subspaces.  The remaining
+contributions are the zero modes, giving
+\begin{equation}
+  \dim\Ker B-\dim\Ker B^*=\ind B.
+\end{equation}
+The value is therefore independent of \(t\).
+\end{proof}
+
+\begin{remark}
+The heat supertrace isolates the zero-mode imbalance while cancelling the
+entire paired nonzero spectrum.  In later realizations, this identity will
+separate an index contribution from an ordinary positive heat trace.
+\end{remark}
+% ===== END INLINED FILE: sections/05_cohomology_index.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/06_projector_geometry.tex =====
+\section{Moving decompositions and projector curvature}
+\label{sec:projector-geometry}
+
+The preceding sections concern one fixed fundamental decomposition.  We now
+allow the selected subspace itself to vary over a parameter manifold.  The
+resulting tangent operators are automatically grading-odd and therefore fall
+under the classification already proved.
+
+\subsection{Norm-\texorpdfstring{\(C^2\)}{C2} projection fields}
+
+Let \(X\) be a finite-dimensional \(C^2\) manifold and let the underlying
+positive Hilbert carrier of \(\scrK\) remain fixed.  Suppose
+\begin{equation}
+  \Pi:X\longrightarrow\mathcal B(\scrK)
+  \label{eq:projection-field}
+\end{equation}
+is twice continuously differentiable in the operator norm and satisfies
+\begin{equation}
+  \Pi(x)^2=\Pi(x)=\Pi(x)^*,
+  \qquad x\in X.
+  \label{eq:orthogonal-projection-field}
+\end{equation}
+Write
+\begin{equation}
+  \Pi^\perp:=\idop_{\scrK}-\Pi,
+  \qquad
+  \mathscr E_x:=\Ran\Pi(x),
+  \qquad
+  \mathscr E_x^\perp:=\Ran\Pi^\perp(x).
+  \label{eq:moving-splitting}
+\end{equation}
+Norm continuity makes the range and corange dimensions locally constant in
+the appropriate Hilbert-space sense; hence, on each connected component, the
+ranges define a \(C^2\) Hilbert subbundle
+\(\mathscr E\subset X\times\scrK\).  At each point, the projection determines
+an induced fundamental symmetry
+\begin{equation}
+  \fundJ_{\Pi}(x):=2\Pi(x)-\idop_{\scrK}
+  =\Pi(x)-\Pi^\perp(x).
+  \label{eq:moving-J}
+\end{equation}
+Thus
+\begin{equation}
+  \scrK=\mathscr E_x\dsum\mathscr E_x^\perp
+\end{equation}
+with respect to the moving grading \(\fundJ_\Pi(x)\).  The fixed geometry of
+\cref{sec:setup} is recovered at any base point for which
+\(\Pi(x_0)=\Pp\).
+
+\begin{lemma}[Off-diagonal tangent identity]
+\label{lem:projection-tangent}
+For every \(C^1\) vector field \(Y\) on \(X\),
+\begin{align}
+  \Pi(Y\Pi)\Pi&=0,
+  &
+  \Pi^\perp(Y\Pi)\Pi^\perp&=0,
+  \label{eq:tangent-diagonal-zero}
+\end{align}
+and hence
+\begin{equation}
+  Y\Pi
+  =\Pi^\perp(Y\Pi)\Pi+\Pi(Y\Pi)\Pi^\perp.
+  \label{eq:tangent-off-diagonal}
+\end{equation}
+Moreover, \(Y\Pi\) is Hilbert-self-adjoint.
+\end{lemma}
+
+\begin{proof}
+Differentiate \(\Pi^2=\Pi\) in the direction \(Y\):
+\begin{equation}
+  (Y\Pi)\Pi+\Pi(Y\Pi)=Y\Pi.
+  \label{eq:differentiate-projection}
+\end{equation}
+Multiplication by \(\Pi\) on both sides gives
+\(\Pi(Y\Pi)\Pi=0\).  Replacing \(\Pi\) by \(\Pi^\perp\) gives the second
+identity.  The decomposition \eqref{eq:tangent-off-diagonal} follows by
+inserting \(\Pi+\Pi^\perp=\idop\) on both sides of \(Y\Pi\).  Finally,
+\((Y\Pi)^*=Y(\Pi^*)=Y\Pi\).
+\end{proof}
+
+\begin{definition}[Tangent channel]
+\label{def:tangent-channel}
+For a \(C^1\) vector field \(Y\), define the bounded channel
+\begin{equation}
+  B_Y(x):=\Pi^\perp(x)(Y\Pi)(x)\Pi(x)
+  :\mathscr E_x\longrightarrow\mathscr E_x^\perp.
+  \label{eq:tangent-channel}
+\end{equation}
+Its adjoint is
+\begin{equation}
+  B_Y(x)^*=\Pi(x)(Y\Pi)(x)\Pi^\perp(x).
+  \label{eq:tangent-channel-adjoint}
+\end{equation}
+In local coordinates \(x^\mu\), we abbreviate
+\begin{equation}
+  B_\mu:=B_{\partial_\mu}
+  =\Pi^\perp(\partial_\mu\Pi)\Pi.
+  \label{eq:Bmu}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Tangent realization by the two odd branches]
+\label{thm:tangent-realization}
+Relative to the moving splitting
+\(\scrK=\mathscr E_x\oplus\mathscr E_x^\perp\),
+\begin{align}
+  \partial_\mu\Pi
+  &=
+  \begin{pmatrix}
+    0&B_\mu^*\\
+    B_\mu&0
+  \end{pmatrix}
+  =\DB_{B_\mu},
+  \label{eq:dPi-D}\\
+  \fundJ_\Pi\partial_\mu\Pi
+  &=
+  \begin{pmatrix}
+    0&B_\mu^*\\
+    -B_\mu&0
+  \end{pmatrix}
+  =\KB_{B_\mu}.
+  \label{eq:JdPi-K}
+\end{align}
+Equivalently, if
+\begin{equation}
+  \Aop_\mu:=-d_{B_\mu},
+  \qquad
+  \Vop_\mu:=d_{B_\mu}^*,
+  \label{eq:moving-AV}
+\end{equation}
+then
+\begin{equation}
+  \partial_\mu\Pi=\Vop_\mu-\Aop_\mu,
+  \qquad
+  \fundJ_\Pi\partial_\mu\Pi=\Vop_\mu+\Aop_\mu.
+  \label{eq:moving-DK-AV}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The first block identity is exactly \cref{lem:projection-tangent} together
+with \eqref{eq:tangent-channel-adjoint}.  Multiplication on the left by
+\(\fundJ_\Pi=\diag(\idop_{\mathscr E},-\idop_{\mathscr E^\perp})\) changes
+the sign of the lower off-diagonal block and gives the second identity.  The
+last line follows from the definitions of the two oriented maps.
+\end{proof}
+
+\begin{remark}
+The two branches now have a direct differential-geometric meaning.  The
+Hilbert-self-adjoint operator \(\partial_\mu\Pi\) is the tangent to the
+Grassmannian of closed subspaces.  Multiplication by the induced fundamental
+symmetry rotates that tangent into the Krein-self-adjoint transition
+\(\fundJ_\Pi\partial_\mu\Pi\).
+\end{remark}
+
+\subsection{The projected connection}
+
+Let \(C^2(X,\mathscr E)\) denote the \(C^2\) sections of the range bundle.
+The trivial ambient bundle \(X\times\scrK\) has the flat derivative \(d\).
+
+\begin{definition}[Grassmann connection]
+\label{def:Grassmann-connection}
+The projected, or Grassmann, connection on \(\mathscr E\) is
+\begin{equation}
+  \nabla^\Pi_Y s:=\Pi\,Y s,
+  \qquad s\in C^2(X,\mathscr E).
+  \label{eq:Grassmann-connection}
+\end{equation}
+In local coordinates, \(\nabla^\Pi_\mu=\Pi\partial_\mu\).
+\end{definition}
+
+\begin{theorem}[Projector curvature]
+\label{thm:projector-curvature}
+For commuting coordinate vector fields, the curvature of
+\(\nabla^\Pi\) is
+\begin{align}
+  \gaugeF_{\mu\nu}^{\Pi}
+  &:=[\nabla^\Pi_\mu,\nabla^\Pi_\nu]
+  \label{eq:curvature-def}\\
+  &=\Pi[\partial_\mu\Pi,\partial_\nu\Pi]\Pi
+  \label{eq:curvature-projector}\\
+  &=B_\mu^*B_\nu-B_\nu^*B_\mu
+  \quad\text{on }\mathscr E.
+  \label{eq:curvature-channel}
+\end{align}
+Thus the curvature is the antisymmetric part of the mixed closed return
+through the complementary bundle.
+\end{theorem}
+
+\begin{proof}
+Let \(s\in C^2(X,\mathscr E)\), so \(\Pi s=s\).  Then
+\begin{align}
+  \nabla^\Pi_\mu\nabla^\Pi_\nu s
+  &=\Pi\partial_\mu(\Pi\partial_\nu s)\\
+  &=\Pi(\partial_\mu\Pi)\partial_\nu s
+    +\Pi\partial_\mu\partial_\nu s.
+\end{align}
+Differentiating \(s=\Pi s\) gives
+\(\partial_\nu s=(\partial_\nu\Pi)s+\Pi\partial_\nu s\).  The term with
+\(\Pi\partial_\nu s\) vanishes because
+\(\Pi(\partial_\mu\Pi)\Pi=0\).  Antisymmetrizing in \(\mu,\nu\) therefore
+gives \eqref{eq:curvature-projector}.  In the block form of
+\cref{thm:tangent-realization}, the positive-sector block of
+\([\partial_\mu\Pi,\partial_\nu\Pi]\) is
+\(B_\mu^*B_\nu-B_\nu^*B_\mu\).
+\end{proof}
+
+\begin{definition}[Mixed return operators]
+\label{def:mixed-return}
+For two tangent directions, define the positive-sector mixed return
+\begin{equation}
+  \mathscr C_{\mu\nu}^{\Pi}
+  :=-\restr{\Vop_\mu\Aop_\nu}{\mathscr E}
+  =B_\mu^*B_\nu.
+  \label{eq:mixed-return}
+\end{equation}
+\end{definition}
+
+\begin{corollary}[Curvature as an antisymmetrized closed excursion]
+\label{cor:curvature-AV}
+The curvature may be written
+\begin{align}
+  \gaugeF_{\mu\nu}^{\Pi}
+  &=\mathscr C_{\mu\nu}^{\Pi}-\mathscr C_{\nu\mu}^{\Pi}
+  \label{eq:curvature-mixed-return}\\
+  &=\restr{\Vop_\nu\Aop_\mu-\Vop_\mu\Aop_\nu}{\mathscr E}.
+  \label{eq:curvature-AV}
+\end{align}
+\end{corollary}
+
+\begin{remark}
+For a single fixed channel, the ordered return
+\(-\Vop_B\Aop_B=B^*B\) is positive.  Curvature is not one such return but
+the antisymmetric difference of two mixed returns associated with distinct
+tangent directions.  Nonzero curvature therefore measures the failure of
+these directional closed excursions to agree under interchange.
+\end{remark}
+
+\subsection{Local frames and gauge covariance}
+
+Suppose that \(\mathscr E\) has finite rank \(r\) over a coordinate
+neighborhood \(U\subseteq X\).  Choose a \(C^2\) orthonormal frame written as
+an isometry
+\begin{equation}
+  W:U\longrightarrow\mathcal B(\CC^r,\scrK),
+  \qquad
+  W^*W=\idop_r,
+  \qquad
+  WW^*=\Pi.
+  \label{eq:local-frame}
+\end{equation}
+We use the anti-Hermitian convention for the local connection matrix.
+
+\begin{definition}[Local gauge data]
+\label{def:local-gauge-data}
+The connection and curvature in the frame \(W\) are
+\begin{align}
+  \gaugeA_\mu^{(W)}&:=W^*\partial_\mu W,
+  \qquad
+  (\gaugeA_\mu^{(W)})^*=-\gaugeA_\mu^{(W)},
+  \label{eq:local-connection}\\
+  \gaugeF_{\mu\nu}^{(W)}
+  &:=\partial_\mu\gaugeA_\nu^{(W)}
+    -\partial_\nu\gaugeA_\mu^{(W)}
+    +[\gaugeA_\mu^{(W)},\gaugeA_\nu^{(W)}].
+  \label{eq:local-curvature}
+\end{align}
+\end{definition}
+
+\begin{theorem}[Frame covariance]
+\label{thm:frame-covariance}
+The local curvature is the frame representation of the projector curvature:
+\begin{equation}
+  \boxed{
+  \gaugeF_{\mu\nu}^{(W)}
+  =W^*\gaugeF_{\mu\nu}^{\Pi}W
+  =W^*(B_\mu^*B_\nu-B_\nu^*B_\mu)W.}
+  \label{eq:frame-curvature}
+\end{equation}
+If \(W'=Wg\) for a \(C^2\) map \(g:U\to\mathrm U(r)\), then
+\begin{align}
+  \gaugeA_\mu^{(W')}
+  &=g^{-1}\gaugeA_\mu^{(W)}g+g^{-1}\partial_\mu g,
+  \label{eq:gauge-transform-A}\\
+  \gaugeF_{\mu\nu}^{(W')}
+  &=g^{-1}\gaugeF_{\mu\nu}^{(W)}g.
+  \label{eq:gauge-transform-F}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+The transformation law for \(\gaugeA\) follows immediately from
+\((Wg)^*\partial_\mu(Wg)\) and \(g^*=g^{-1}\).  Substitution into
+\eqref{eq:local-curvature} gives the curvature covariance.  For the projector
+formula, differentiate \(\Pi=WW^*\), use \(W^*W=\idop_r\), and simplify the
+standard identity
+\begin{equation}
+  d(W^*dW)+(W^*dW)\wedge(W^*dW)
+  =W^*(d\Pi\wedge d\Pi)W.
+\end{equation}
+Its coordinate form is exactly \eqref{eq:frame-curvature}.
+\end{proof}
+
+\begin{definition}[Holonomy]
+\label{def:holonomy}
+Let \(\gamma:[0,1]\to U\) be a piecewise \(C^1\) loop.  Parallel transport in
+the frame \(W\) is the solution of
+\begin{equation}
+  \dot c(t)+\gaugeA^{(W)}_{\gamma(t)}(\dot\gamma(t))c(t)=0.
+  \label{eq:parallel-transport}
+\end{equation}
+The resulting unitary endomorphism of the initial fiber is the holonomy
+\begin{equation}
+  \operatorname{Hol}_\gamma(\nabla^\Pi)\in\mathrm U(r).
+  \label{eq:holonomy}
+\end{equation}
+\end{definition}
+
+\begin{remark}
+This is the point at which the term \emph{holonomy} acquires its standard
+geometric meaning.  The fixed-channel identity \(\mathcal I_B^2=-\Pi_B\) of
+\cref{sec:polar} is a supportwise cycle sign; holonomy requires a connection
+and transport around an actual loop in the base manifold.
+\end{remark}
+
+\subsection{Fiberwise inheritance of the fixed-channel algebra}
+
+At every \(x\in X\) and every tangent direction \(Y\in T_xX\), the bounded
+channel
+\begin{equation}
+  B_Y(x):\mathscr E_x\longrightarrow\mathscr E_x^\perp
+\end{equation}
+inherits all fixed-channel identities of \cref{sec:classification,sec:algebra,sec:polar}.  In particular,
+\begin{equation}
+  \Delta_{B_Y}
+  =\begin{pmatrix}B_Y^*B_Y&0\\0&B_YB_Y^*\end{pmatrix},
+  \qquad
+  (\fundJ_\Pi Y\Pi)^2=-\Delta_{B_Y}.
+  \label{eq:fiberwise-Laplacian}
+\end{equation}
+The moving-projection layer therefore adds no new local odd algebra.  It
+selects a geometrically canonical family of channels and couples distinct
+directions through their mixed returns.
+
+\begin{equation}
+  \boxed{
+  \text{projection tangent}
+  \xrightarrow{\ \fundJ_\Pi\ }
+  \text{Krein transition},
+  \qquad
+  \text{antisymmetrized mixed return}
+  =\text{curvature}.}
+  \label{eq:projector-summary}
+\end{equation}
+% ===== END INLINED FILE: sections/06_projector_geometry.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/06A_characteristic_classes.tex =====
+\section{Characteristic classes of the projector bundle}
+\label{sec:characteristic-classes}
+
+The projector curvature of \cref{sec:projector-geometry} has the standard
+Chern--Weil consequences when the selected bundle has finite rank.  This
+section records those consequences and expresses them in terms of the mixed
+transition returns.
+
+Let \(X\) be a smooth manifold and let
+\(\Pi:X\to\mathcal B(\scrK)\) be a smooth finite-rank orthogonal projection
+field.  The range bundle is \(\mathscr E=\Ran\Pi\to X\), equipped with the
+Grassmann connection \(\nabla^\Pi=\Pi d\).  Its anti-Hermitian curvature is
+\begin{equation}
+  \gaugeF^\Pi
+  =\Pi(d\Pi\wedge d\Pi)\Pi.
+  \label{eq:curvature-form}
+\end{equation}
+In coordinates this is the operator-valued two-form whose components are
+\begin{equation}
+  \gaugeF_{\mu\nu}^{\Pi}
+  =B_\mu^*B_\nu-B_\nu^*B_\mu.
+  \label{eq:curvature-return-components}
+\end{equation}
+
+\subsection{Chern--Weil forms}
+
+\begin{theorem}[Chern character from closed returns]
+\label{thm:chern-character}
+The differential form
+\begin{equation}
+  \operatorname{ch}(\mathscr E,\nabla^\Pi)
+  :=\Tr_{\mathscr E}
+  \exp\!\left(\frac{i}{2\pi}\gaugeF^\Pi\right)
+  \label{eq:chern-character}
+\end{equation}
+is closed.  Its de Rham cohomology class is independent of the chosen
+connection and equals the Chern character of \(\mathscr E\).  In particular,
+the first Chern form is
+\begin{equation}
+  c_1(\mathscr E,\nabla^\Pi)
+  =\frac{i}{2\pi}\Tr_{\mathscr E}(\gaugeF^\Pi)
+  =\frac{i}{2\pi}\Tr_{\mathscr E}
+    \bigl(\Pi(d\Pi\wedge d\Pi)\Pi\bigr).
+  \label{eq:first-chern-form}
+\end{equation}
+In local coordinates,
+\begin{equation}
+  c_1(\mathscr E,\nabla^\Pi)_{\mu\nu}
+  =\frac{i}{2\pi}
+  \Tr_{\mathscr E}
+  \bigl(B_\mu^*B_\nu-B_\nu^*B_\mu\bigr).
+  \label{eq:first-chern-mixed-return}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The Grassmann connection is a unitary connection on the finite-rank Hermitian
+bundle \(\mathscr E\).  The Chern--Weil theorem applies to the invariant
+polynomials \(A\mapsto\Tr(A^k)\), proving closedness and connection
+independence of the resulting cohomology classes
+\cite{KobayashiNomizu,Husemoller}.  Formula
+\eqref{eq:first-chern-form} is the degree-two component of
+\eqref{eq:chern-character}.  Substitution of
+\eqref{eq:curvature-return-components} gives
+\eqref{eq:first-chern-mixed-return}.
+\end{proof}
+
+Thus the same mixed returns that generate local curvature also generate the
+characteristic forms of the selected bundle.  Higher-degree terms are
+obtained from
+\begin{equation}
+  \operatorname{ch}_k(\mathscr E,\nabla^\Pi)
+  =\frac{1}{k!}
+  \left(\frac{i}{2\pi}\right)^k
+  \Tr_{\mathscr E}\bigl((\gaugeF^\Pi)^{\wedge k}\bigr).
+  \label{eq:higher-chern-character}
+\end{equation}
+
+\subsection{Integral flux in rank one}
+
+\begin{corollary}[Line-bundle flux quantization]
+\label{cor:line-flux}
+Suppose \(\mathscr E\to X\) has rank one and let \(\Sigma\) be a closed
+oriented smooth two-cycle.  Then
+\begin{equation}
+  \boxed{
+  \frac{i}{2\pi}\int_\Sigma \gaugeF^\Pi\in\ZZ.}
+  \label{eq:line-flux-integral}
+\end{equation}
+The integer is the pairing
+\(\langle c_1(\mathscr E),[\Sigma]\rangle\).
+\end{corollary}
+
+\begin{proof}
+For a Hermitian line bundle, the de Rham class of
+\((i/2\pi)\gaugeF^\Pi\) is the image of the integral class
+\(c_1(\mathscr E)\in H^2(X;\ZZ)\).  Pairing with the integral homology class
+\([\Sigma]\) gives an integer.
+\end{proof}
+
+The connection convention in this paper is anti-Hermitian.  If the
+curvature is converted to the Hermitian two-form
+\begin{equation}
+  \gaugeF_{\mathrm H}:=i\gaugeF,
+\end{equation}
+then \eqref{eq:line-flux-integral} becomes
+\begin{equation}
+  \frac{1}{2\pi}\int_\Sigma\gaugeF_{\mathrm H}\in\ZZ.
+  \label{eq:physics-flux-integral}
+\end{equation}
+
+\begin{remark}[Holonomy versus characteristic number]
+The holonomy of a connection around a closed loop need not be an integral
+multiple of \(2\pi\); even a contractible loop can have nontrivial holonomy
+when curvature is present.  The integral statement is instead the pairing of
+the curvature class with a closed two-cycle, as in
+\eqref{eq:line-flux-integral}.
+\end{remark}
+
+\subsection{Transition-algebra form}
+
+Using the mixed-return notation of \cref{def:mixed-return},
+\begin{equation}
+  \gaugeF_{\mu\nu}^{\Pi}
+  =\mathscr C_{\mu\nu}^{\Pi}
+   -\mathscr C_{\nu\mu}^{\Pi}.
+\end{equation}
+Consequently, every Chern--Weil density is a trace polynomial in
+antisymmetrized closed excursions.  For example,
+\begin{equation}
+  \operatorname{ch}_2(\mathscr E,\nabla^\Pi)
+  =\frac{1}{2}
+   \left(\frac{i}{2\pi}\right)^2
+   \Tr_{\mathscr E}(\gaugeF^\Pi\wedge\gaugeF^\Pi).
+  \label{eq:ch2-return}
+\end{equation}
+This is an exact bundle-theoretic statement.  Identifying a particular
+characteristic number with a physical charge requires additional realization
+data and is not part of the projector theorem itself.
+% ===== END INLINED FILE: sections/06A_characteristic_classes.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/07_effective_dynamics.tex =====
+\section{Schur--Feshbach reduction and effective dynamics}
+\label{sec:effective-dynamics}
+
+The preceding curvature is built from undressed mixed returns
+\(B_\mu^*B_\nu\).  We now eliminate one sector from a block generator.  The
+same transition channel then reappears as a resolvent-dressed closed return.
+To keep the operator domains fully controlled, this pass states the exact
+bounded-coupling theorem.  Form-coupled and relatively bounded extensions
+require additional hypotheses and are not assumed here.
+
+\subsection{Two sign conventions for one block channel}
+
+\begin{assumption}[Diagonal generators and bounded coupling]
+\label{ass:block-generator}
+Let
+\begin{equation}
+  L_+:\Dom L_+\subseteq\scrHp\to\scrHp,
+  \qquad
+  L_-:\Dom L_-\subseteq\scrHm\to\scrHm
+  \label{eq:diagonal-generators}
+\end{equation}
+be self-adjoint, and let
+\begin{equation}
+  B\in\mathcal B(\scrHp,\scrHm).
+  \label{eq:bounded-coupling}
+\end{equation}
+For \(\varepsilon\in\{+1,-1\}\), define
+\begin{equation}
+  \mathbb L^{(\varepsilon)}
+  :=
+  \begin{pmatrix}
+    L_+&B^*\\
+    \varepsilon B&L_-
+  \end{pmatrix},
+  \qquad
+  \Dom\mathbb L^{(\varepsilon)}
+  :=\Dom L_+\oplus\Dom L_-.
+  \label{eq:block-generator}
+\end{equation}
+\end{assumption}
+
+\begin{proposition}[Hilbert and Krein block branches]
+\label{prop:block-branches}
+Let
+\begin{equation}
+  \mathbb L_0:=\diag(L_+,L_-).
+\end{equation}
+Then
+\begin{align}
+  \mathbb L^{(+1)}
+  &=\mathbb L_0+\DB_B,
+  &
+  (\mathbb L^{(+1)})^*&=\mathbb L^{(+1)},
+  \label{eq:block-Hilbert-branch}\\
+  \mathbb L^{(-1)}
+  &=\mathbb L_0+\KB_B,
+  &
+  (\mathbb L^{(-1)})^\sharp&=\mathbb L^{(-1)}.
+  \label{eq:block-Krein-branch}
+\end{align}
+Thus the same channel \(B\) produces a Hilbert-self-adjoint coupling for
+\(\varepsilon=+1\) and a Krein-self-adjoint coupling for
+\(\varepsilon=-1\).
+\end{proposition}
+
+\begin{proof}
+Because \(B\) is bounded, both block matrices are bounded perturbations of
+\(\mathbb L_0\) on its natural domain.  The off-diagonal part for
+\(\varepsilon=+1\) is \(\DB_B\), which is Hilbert-self-adjoint.  The
+off-diagonal part for \(\varepsilon=-1\) is \(\KB_B\), which is
+Krein-self-adjoint.  The diagonal operator commutes with \(\fundJ\) and is
+self-adjoint in both sectors, so it is also Krein-self-adjoint.
+\end{proof}
+
+\subsection{The operator-valued Schur complement}
+
+Let \(z\in\rho(L_-)\) and set
+\begin{equation}
+  R_-(z):=(L_--z)^{-1}.
+  \label{eq:Rminus}
+\end{equation}
+The complementary-sector return is the bounded operator
+\begin{equation}
+  \Sigma_B(z):=B^*R_-(z)B
+  \in\mathcal B(\scrHp).
+  \label{eq:self-energy}
+\end{equation}
+
+\begin{definition}[Effective operator and Schur pencil]
+\label{def:effective-operator}
+For \(\varepsilon\in\{+1,-1\}\), define
+\begin{align}
+  L_{\mathrm{eff}}^{(\varepsilon)}(z)
+  &:=L_+-\varepsilon\Sigma_B(z),
+  \label{eq:effective-operator}\\
+  S_\varepsilon(z)
+  &:=L_{\mathrm{eff}}^{(\varepsilon)}(z)-z
+  =L_+-z-\varepsilon B^*R_-(z)B
+  \label{eq:Schur-pencil}
+\end{align}
+on \(\Dom L_+\).
+\end{definition}
+
+\begin{theorem}[Schur factorization and compressed resolvent]
+\label{thm:Schur-factorization}
+For \(z\in\rho(L_-)\),
+\begin{equation}
+  \mathbb L^{(\varepsilon)}-z
+  =
+  \begin{pmatrix}
+    \idop_+&B^*R_-(z)\\
+    0&\idop_-
+  \end{pmatrix}
+  \begin{pmatrix}
+    S_\varepsilon(z)&0\\
+    \varepsilon B&L_--z
+  \end{pmatrix}.
+  \label{eq:Schur-factorization}
+\end{equation}
+Consequently,
+\begin{equation}
+  z\in\rho(\mathbb L^{(\varepsilon)})
+  \quad\Longleftrightarrow\quad
+  0\in\rho(S_\varepsilon(z)).
+  \label{eq:Schur-invertibility}
+\end{equation}
+When these equivalent conditions hold,
+\begin{equation}
+  (\mathbb L^{(\varepsilon)}-z)^{-1}
+  =
+  \begin{pmatrix}
+    S_\varepsilon(z)^{-1}
+    &-S_\varepsilon(z)^{-1}B^*R_-(z)\\[2mm]
+    -\varepsilon R_-(z)B S_\varepsilon(z)^{-1}
+    &R_-(z)+\varepsilon R_-(z)B S_\varepsilon(z)^{-1}B^*R_-(z)
+  \end{pmatrix}.
+  \label{eq:block-resolvent}
+\end{equation}
+In particular,
+\begin{equation}
+  \boxed{
+  \Pp(\mathbb L^{(\varepsilon)}-z)^{-1}\Pp
+  =\bigl(L_{\mathrm{eff}}^{(\varepsilon)}(z)-z\bigr)^{-1}.}
+  \label{eq:compressed-resolvent}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Multiplication of the two block factors gives the upper-left entry
+\begin{equation}
+  S_\varepsilon(z)+\varepsilon B^*R_-(z)B=L_+-z,
+\end{equation}
+the upper-right entry \(B^*R_-(z)(L_--z)=B^*\), and the stated lower row.
+The first factor is boundedly invertible.  Since \(L_--z\) is invertible, the
+second factor is invertible exactly when \(S_\varepsilon(z)\) is invertible.  Direct
+block multiplication then verifies \eqref{eq:block-resolvent}; its
+positive-sector corner gives \eqref{eq:compressed-resolvent}.
+\end{proof}
+
+\subsection{The self-energy as a dressed closed excursion}
+
+Embed the negative resolvent into \(\scrK\) by
+\begin{equation}
+  \widetilde R_-(z):=
+  \begin{pmatrix}
+    0&0\\
+    0&R_-(z)
+  \end{pmatrix}.
+  \label{eq:embedded-resolvent}
+\end{equation}
+
+\begin{proposition}[Oriented excursion formula]
+\label{prop:oriented-self-energy}
+The self-energy is the return obtained by leaving the positive sector through
+\(\Aop_B\), propagating in the complementary sector, and returning through
+\(\Vop_B\):
+\begin{equation}
+  \boxed{
+  \Sigma_B(z)
+  =-\restr{\Vop_B\widetilde R_-(z)\Aop_B}{\scrHp}.}
+  \label{eq:self-energy-AV}
+\end{equation}
+Hence
+\begin{equation}
+  L_{\mathrm{eff}}^{(\varepsilon)}(z)
+  =L_++\varepsilon
+  \restr{\Vop_B\widetilde R_-(z)\Aop_B}{\scrHp}.
+  \label{eq:effective-AV}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For \(x\in\scrHp\),
+\begin{equation}
+  \Aop_Bx=(0,-Bx),
+  \qquad
+  \widetilde R_-(z)\Aop_Bx=(0,-R_-(z)Bx),
+\end{equation}
+and applying \(\Vop_B\) gives
+\((-B^*R_-(z)Bx,0)\).  Restriction to the positive sector and multiplication
+by \(-1\) yields \(\Sigma_B(z)\).
+\end{proof}
+
+\begin{remark}
+The sign in the effective operator is not a matter of notation.  It is fixed
+by the operator category of the full block generator:
+\begin{align}
+  L_{\mathrm{eff}}^{(+1)}(z)
+  &=L_+-\Sigma_B(z),
+  \label{eq:Leff-plus}\\
+  L_{\mathrm{eff}}^{(-1)}(z)
+  &=L_++\Sigma_B(z).
+  \label{eq:Leff-minus}
+\end{align}
+The Hilbert/Hodge and Krein/rotational branches therefore induce opposite
+self-energy signs after the same complementary sector is eliminated.
+\end{remark}
+
+\subsection{Analytic and positivity properties of the return}
+
+\begin{theorem}[Nevanlinna property of the self-energy]
+\label{thm:self-energy-Herglotz}
+The map
+\begin{equation}
+  \Sigma_B:\CC\setminus\RR\longrightarrow\mathcal B(\scrHp)
+\end{equation}
+is analytic and satisfies
+\begin{equation}
+  \Sigma_B(\overline z)=\Sigma_B(z)^*.
+  \label{eq:self-energy-symmetry}
+\end{equation}
+For \(z\in\CC_+:=\{z:\operatorname{Im}z>0\}\),
+\begin{align}
+  \operatorname{Im}\Sigma_B(z)
+  &:=\frac{\Sigma_B(z)-\Sigma_B(z)^*}{2i}
+  \label{eq:Im-Sigma-def}\\
+  &=(\operatorname{Im}z)
+    B^*R_-(z)R_-(z)^*B
+  \ge0.
+  \label{eq:Im-Sigma}
+\end{align}
+Thus \(\Sigma_B\) is an operator-valued Herglotz--Nevanlinna function.
+\end{theorem}
+
+\begin{proof}
+Analyticity and the adjoint symmetry follow from the resolvent of the
+self-adjoint operator \(L_-\).  The resolvent identity gives
+\begin{equation}
+  R_-(z)-R_-(\overline z)
+  =(z-\overline z)R_-(z)R_-(\overline z).
+\end{equation}
+Since \(R_-(\overline z)=R_-(z)^*\), multiplication by \(B^*\) and \(B\)
+gives \eqref{eq:Im-Sigma}.  Positivity is immediate.
+\end{proof}
+
+\begin{corollary}[Opposite dissipative signs]
+\label{cor:effective-imaginary-sign}
+For \(z\in\CC_+\),
+\begin{align}
+  \operatorname{Im}L_{\mathrm{eff}}^{(+1)}(z)
+  &=-\operatorname{Im}\Sigma_B(z)\le0,
+  \label{eq:Leff-plus-imag}\\
+  \operatorname{Im}L_{\mathrm{eff}}^{(-1)}(z)
+  &=+\operatorname{Im}\Sigma_B(z)\ge0.
+  \label{eq:Leff-minus-imag}
+\end{align}
+\end{corollary}
+
+\begin{corollary}[Real energies below the complementary spectrum]
+\label{cor:static-self-energy}
+If \(\lambda\in\RR\) satisfies
+\(\lambda<\inf\spec L_-\), then
+\begin{equation}
+  R_-(\lambda)>0,
+  \qquad
+  \Sigma_B(\lambda)\ge0.
+  \label{eq:static-positive-self-energy}
+\end{equation}
+Accordingly, the Hilbert branch lowers the effective quadratic form by
+\(\Sigma_B(\lambda)\), whereas the Krein branch raises it by the same return.
+\end{corollary}
+
+\subsection{One mechanism in two geometric forms}
+
+The variable-projection curvature of \cref{sec:projector-geometry} and the
+Schur self-energy of the present section are built from the same algebraic
+primitive.
+
+\begin{theorem}[Undressed and dressed closed returns]
+\label{thm:two-return-forms}
+Let \(B_\mu\) be the tangent channels of a norm-\(C^2\) projection field.  Then
+\begin{equation}
+  \gaugeF_{\mu\nu}^{\Pi}
+  =B_\mu^*B_\nu-B_\nu^*B_\mu
+  \label{eq:undressed-return}
+\end{equation}
+is the antisymmetrized undressed mixed return.  For a block generator with
+complementary dynamics \(L_-\),
+\begin{equation}
+  \Sigma_B(z)=B^*(L_--z)^{-1}B
+  \label{eq:dressed-return}
+\end{equation}
+is the resolvent-dressed return through that sector.  Both are closed
+positive-sector excursions of the form
+\begin{equation}
+  \mathscr H_+
+  \xrightarrow{\ B\ }
+  \mathscr H_-
+  \xrightarrow{\ \text{intermediate operation}\ }
+  \mathscr H_-
+  \xrightarrow{\ B^*\ }
+  \mathscr H_+.
+  \label{eq:excursion-template}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The first identity is \cref{thm:projector-curvature}; the second is the
+definition of the Schur self-energy.  Their common source and target follow
+from the channel types.
+\end{proof}
+
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+  \text{antisymmetrized mixed return}
+  &\longrightarrow \text{connection curvature},\\
+  \text{resolvent-dressed return}
+  &\longrightarrow \text{effective dynamics}.
+  \end{aligned}}
+  \label{eq:pass3-summary}
+\end{equation}
+% ===== END INLINED FILE: sections/07_effective_dynamics.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/08_boundary_response.tex =====
+\section{Boundary response and passive realizations}
+\label{sec:boundary-response}
+
+The Schur--Feshbach reduction of \cref{sec:effective-dynamics} identifies the
+operator seen after the complementary sector has been eliminated.  We now
+separate that reduction from a second issue: how a self-adjoint realization
+is coupled to a finite or otherwise controlled port space.  This distinction
+is essential.  Positivity of a response follows from Hilbert-space
+self-adjointness and does not follow from Krein self-adjointness alone.
+The operator-valued Nevanlinna, Schur, and reproducing-kernel constructions
+used in this section are standard; see
+\cite{Donoghue,Aronszajn,deBrangesRovnyak}.
+
+\subsection{Compressed resolvents}
+
+Let \(\scrX\) and \(\scrE\) be complex Hilbert spaces.  The space
+\(\scrE\) will be called the port space; no finite-dimensionality assumption
+is needed unless stated explicitly.
+
+\begin{assumption}[Self-adjoint response realization]
+\label{ass:selfadjoint-response}
+Let
+\begin{equation}
+  H:\Dom H\subseteq\scrX\longrightarrow\scrX
+  \label{eq:response-H}
+\end{equation}
+be self-adjoint and let
+\begin{equation}
+  \Gamma\in\mathcal B(\scrE,\scrX).
+  \label{eq:response-Gamma}
+\end{equation}
+For \(z\in\CC\setminus\RR\), write
+\begin{equation}
+  R_H(z):=(H-z)^{-1}.
+  \label{eq:response-resolvent}
+\end{equation}
+\end{assumption}
+
+\begin{definition}[Boundary response]
+\label{def:boundary-response}
+The compressed resolvent, or boundary response, of the realization
+\((H,\Gamma)\) is
+\begin{equation}
+  \boxed{
+  \Mresp(z):=\Gamma^*R_H(z)\Gamma,
+  \qquad z\in\CC\setminus\RR.}
+  \label{eq:boundary-response}
+\end{equation}
+\end{definition}
+
+The word ``boundary'' refers to the role of \(\Gamma\) as an input or trace
+channel.  The definition itself is abstract and applies equally to interior,
+finite-rank, and regularized distributional inputs.
+
+\begin{theorem}[Herglotz--Nevanlinna response]
+\label{thm:response-Herglotz}
+The response \(\Mresp\) is analytic on \(\CC\setminus\RR\), satisfies
+\begin{equation}
+  \Mresp(\overline z)=\Mresp(z)^*,
+  \label{eq:response-symmetry}
+\end{equation}
+and, for \(z\in\Cplus\),
+\begin{equation}
+  \boxed{
+  \operatorname{Im}\Mresp(z)
+  =(\operatorname{Im}z)\,
+  \Gamma^*R_H(z)R_H(z)^*\Gamma
+  \geq0.}
+  \label{eq:response-positive-imaginary}
+\end{equation}
+Thus \(\Mresp\) is an operator-valued Herglotz--Nevanlinna function.
+\end{theorem}
+
+\begin{proof}
+Analyticity and the adjoint symmetry are inherited from the resolvent of the
+self-adjoint operator \(H\).  The resolvent identity gives
+\begin{equation}
+  R_H(z)-R_H(\overline z)
+  =(z-\overline z)R_H(z)R_H(\overline z).
+\end{equation}
+Since \(R_H(\overline z)=R_H(z)^*\), compression by \(\Gamma\) gives
+\eqref{eq:response-positive-imaginary}.
+\end{proof}
+
+\begin{definition}[Nevanlinna kernel]
+\label{def:Nevanlinna-kernel}
+For \(z,w\in\Cplus\), define
+\begin{equation}
+  \KM(z,w)
+  :=\frac{\Mresp(z)-\Mresp(w)^*}{z-\overline w}.
+  \label{eq:Nevanlinna-kernel}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Positive response kernel]
+\label{thm:positive-response-kernel}
+The kernel \(\KM\) is positive in the sense that, for every finite collection
+\(z_1,\ldots,z_N\in\Cplus\) and \(h_1,\ldots,h_N\in\scrE\),
+\begin{equation}
+  \sum_{i,j=1}^{N}
+  \inner{h_i}{\KM(z_i,z_j)h_j}_{\scrE}\geq0.
+  \label{eq:Nevanlinna-kernel-positive}
+\end{equation}
+More precisely,
+\begin{equation}
+  \boxed{
+  \KM(z,w)=\Gamma^*R_H(z)R_H(w)^*\Gamma.}
+  \label{eq:Nevanlinna-kernel-factor}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The two-point resolvent identity gives
+\begin{equation}
+  R_H(z)-R_H(\overline w)
+  =(z-\overline w)R_H(z)R_H(\overline w).
+\end{equation}
+After compression, this is \eqref{eq:Nevanlinna-kernel-factor}.  Hence the
+left-hand side of \eqref{eq:Nevanlinna-kernel-positive} equals
+\begin{equation}
+  \left\|
+  \sum_{j=1}^{N}R_H(z_j)^*\Gamma h_j
+  \right\|_{\scrX}^{2}.
+\end{equation}
+\end{proof}
+
+\begin{corollary}[Canonical transition response]
+\label{cor:canonical-transition-response}
+For the transition channel \(B\) of \cref{sec:setup}, the positive return
+operator
+\begin{equation}
+  H_{+,B}:=B^*B
+  \label{eq:positive-return-H}
+\end{equation}
+is self-adjoint and nonnegative.  Therefore every bounded input
+\(\Gamma:\scrE\to\scrHp\) defines the canonical response
+\begin{equation}
+  M_{B,\Gamma}(z)
+  :=\Gamma^*(B^*B-z)^{-1}\Gamma,
+  \label{eq:canonical-transition-response}
+\end{equation}
+which obeys \cref{thm:response-Herglotz,thm:positive-response-kernel}.
+\end{corollary}
+
+\begin{corollary}[Response of the Hilbert block branch]
+\label{cor:Hilbert-block-response}
+Under \cref{ass:block-generator}, let \(\varepsilon=+1\), let
+\(\Gamma_+\in\mathcal B(\scrE,\scrHp)\), and set
+\begin{equation}
+  \widetilde\Gamma_+h:=(\Gamma_+h,0)\in\scrK.
+\end{equation}
+Because \(\mathbb L^{(+1)}\) is Hilbert-self-adjoint, its response is
+Herglotz and, whenever \(z\in\rho(L_-)\cap\rho(\mathbb L^{(+1)})\),
+\begin{equation}
+  \boxed{
+  \widetilde\Gamma_+^*(\mathbb L^{(+1)}-z)^{-1}\widetilde\Gamma_+
+  =\Gamma_+^*S_{+1}(z)^{-1}\Gamma_+.}
+  \label{eq:Hilbert-block-response}
+\end{equation}
+\end{corollary}
+
+\begin{remark}[Positivity boundary]
+\label{rem:positivity-boundary}
+The analogous Krein branch \(\mathbb L^{(-1)}\) is generally not
+Hilbert-self-adjoint.  Its compressed resolvent therefore does not inherit
+\cref{thm:response-Herglotz} without an additional positive realization or a
+separate metric theorem.  No such positivity is assumed here.
+\end{remark}
+
+\subsection{Cayley transform and the Schur kernel}
+
+The upper-half-plane Cayley transform converts a passive response into a
+contractive transfer function.
+
+\begin{definition}[Schur response]
+\label{def:Schur-response}
+For \(z\in\Cplus\), define
+\begin{equation}
+  \boxed{
+  \Sresp(z)
+  :=\bigl(\Mresp(z)-i\idop_{\scrE}\bigr)
+    \bigl(\Mresp(z)+i\idop_{\scrE}\bigr)^{-1}.}
+  \label{eq:Schur-response}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[Cayley denominator]
+\label{lem:Cayley-denominator}
+For every \(z\in\Cplus\), the operator
+\(\Mresp(z)+i\idop_{\scrE}\) is boundedly invertible.
+\end{lemma}
+
+\begin{proof}
+For \(h\in\scrE\),
+\begin{equation}
+  \|\bigl(\Mresp(z)+i\idop\bigr)h\|\,\|h\|
+  \geq
+  \operatorname{Im}\inner{h}{(\Mresp(z)+i\idop)h}
+  \geq\|h\|^2.
+\end{equation}
+Thus the operator is bounded below.  For its adjoint,
+\begin{equation}
+  -\operatorname{Im}\inner{h}{(\Mresp(z)^*-i\idop)h}
+  \ge \|h\|^2,
+\end{equation}
+so the adjoint is also bounded below and has trivial kernel.  Therefore the
+original range is dense.  Since a bounded-below operator has closed range,
+its range is all of \(\scrE\).
+\end{proof}
+
+\begin{theorem}[Schur contractivity]
+\label{thm:Schur-contractivity}
+The function \(\Sresp\) is analytic on \(\Cplus\) and satisfies
+\begin{equation}
+  \boxed{
+  \idop_{\scrE}-\Sresp(z)^*\Sresp(z)
+  =4\bigl(\Mresp(z)^*-i\idop\bigr)^{-1}
+  \operatorname{Im}\Mresp(z)
+  \bigl(\Mresp(z)+i\idop\bigr)^{-1}
+  \geq0.}
+  \label{eq:Schur-contractive-identity}
+\end{equation}
+In particular, \(\|\Sresp(z)\|\leq1\).
+\end{theorem}
+
+\begin{proof}
+Put \(M=\Mresp(z)\).  Multiplying
+\(\idop-\Sresp(z)^*\Sresp(z)\) on the left by \(M^*-i\idop\) and on the
+right by \(M+i\idop\) gives
+\begin{align}
+  &(M^*-i\idop)(M+i\idop)
+   -(M^*+i\idop)(M-i\idop)\\
+  &\hspace{3cm}=2i(M^*-M)=4\operatorname{Im}M.
+\end{align}
+The asserted factorization and positivity follow.
+\end{proof}
+
+\begin{definition}[de Branges--Rovnyak kernel]
+\label{def:dBR-kernel}
+For \(z,w\in\Cplus\), define
+\begin{equation}
+  \KS(z,w)
+  :=\frac{\idop_{\scrE}-\Sresp(z)\Sresp(w)^*}
+  {-i(z-\overline w)}.
+  \label{eq:dBR-kernel}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Positive Schur defect kernel]
+\label{thm:positive-Schur-kernel}
+The kernel \(\KS\) is positive.  It is related to the Nevanlinna kernel by
+\begin{equation}
+  \boxed{
+  \KS(z,w)
+  =2\bigl(\Mresp(z)+i\idop\bigr)^{-1}
+  \KM(z,w)
+  \bigl(\Mresp(w)^*-i\idop\bigr)^{-1}.}
+  \label{eq:Schur-kernel-factor}
+\end{equation}
+Consequently, \(\KS\) is the reproducing kernel of an operator-valued
+de Branges--Rovnyak space.
+\end{theorem}
+
+\begin{proof}
+A direct calculation gives
+\begin{align}
+ &(\Mresp(z)+i\idop)
+  \bigl(\idop-\Sresp(z)\Sresp(w)^*\bigr)
+  (\Mresp(w)^*-i\idop)\\
+ &\hspace{3cm}=-2i\bigl(\Mresp(z)-\Mresp(w)^*\bigr).
+\end{align}
+Division by \(-i(z-\overline w)\) yields
+\eqref{eq:Schur-kernel-factor}.  Positivity follows from
+\cref{thm:positive-response-kernel} by congruence with the analytic factor
+\(\sqrt2(\Mresp(z)+i\idop)^{-1}\).
+\end{proof}
+
+\subsection{Spectral measure and time-domain response}
+
+Let \(E_H\) denote the projection-valued spectral measure of \(H\).
+
+\begin{definition}[Compressed spectral measure]
+\label{def:compressed-spectral-measure}
+The positive operator-valued measure associated with \((H,\Gamma)\) is
+\begin{equation}
+  \Sigma_\Gamma(\Delta)
+  :=\Gamma^*E_H(\Delta)\Gamma,
+  \qquad \Delta\subseteq\RR\text{ Borel}.
+  \label{eq:compressed-spectral-measure}
+\end{equation}
+Its total mass is
+\begin{equation}
+  \Sigma_\Gamma(\RR)=\Gamma^*\Gamma.
+  \label{eq:spectral-measure-total-mass}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Spectral and temporal representations]
+\label{thm:spectral-temporal-response}
+For \(z\in\CC\setminus\RR\),
+\begin{equation}
+  \boxed{
+  \Mresp(z)=\int_{\RR}\frac{1}{\lambda-z}\,
+  d\Sigma_\Gamma(\lambda).}
+  \label{eq:response-spectral-representation}
+\end{equation}
+The time-domain compressed evolution
+\begin{equation}
+  C_\Gamma(t):=\Gamma^*e^{-itH}\Gamma
+  \label{eq:time-response}
+\end{equation}
+satisfies
+\begin{equation}
+  \boxed{
+  C_\Gamma(t)=\int_{\RR}e^{-it\lambda}\,
+  d\Sigma_\Gamma(\lambda).}
+  \label{eq:time-response-spectral}
+\end{equation}
+Moreover, \(C_\Gamma\) is operator-valued positive definite:
+\begin{equation}
+  \sum_{i,j=1}^{N}
+  \inner{h_i}{C_\Gamma(t_i-t_j)h_j}_{\scrE}\geq0.
+  \label{eq:time-response-positive-definite}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The first two formulas are direct applications of the spectral theorem.
+For positive definiteness, the left-hand side of
+\eqref{eq:time-response-positive-definite} is
+\begin{equation}
+  \left\|
+  \sum_{j=1}^{N}e^{it_jH}\Gamma h_j
+  \right\|_{\scrX}^{2}.
+\end{equation}
+\end{proof}
+
+\subsection{Minimal response realizations}
+
+Only the spectral subspace reached from the port channel can influence the
+response.
+
+\begin{definition}[Response-generated subspace]
+\label{def:response-generated-subspace}
+Define
+\begin{equation}
+  \Hmin
+  :=\overline{\operatorname{span}}
+  \left\{
+    R_H(z)\Gamma h:
+    z\in\CC\setminus\RR,\ h\in\scrE
+  \right\}
+  \subseteq\scrX.
+  \label{eq:minimal-subspace}
+\end{equation}
+The realization \((H,\Gamma)\) is called minimal if
+\(\Hmin=\scrX\).
+\end{definition}
+
+\begin{theorem}[Canonical minimal reduction]
+\label{thm:canonical-minimal-reduction}
+The subspace \(\Hmin\) reduces \(H\), contains \(\Ran\Gamma\), and the
+restricted operator
+\begin{equation}
+  H_{\min}:=\restr{H}{\Dom H\cap\Hmin}
+  \label{eq:Hmin}
+\end{equation}
+is self-adjoint on \(\Hmin\).  Viewing \(\Gamma\) as a map into \(\Hmin\),
+\begin{equation}
+  \boxed{
+  \Gamma^*(H-z)^{-1}\Gamma
+  =\Gamma^*(H_{\min}-z)^{-1}\Gamma.}
+  \label{eq:minimal-response-invariance}
+\end{equation}
+Thus every realization admits a canonical minimal part with exactly the same
+response.
+\end{theorem}
+
+\begin{proof}
+For \(z,\zeta\in\CC\setminus\RR\), the resolvent identity gives
+\begin{equation}
+  R_H(\zeta)R_H(z)
+  =\frac{R_H(\zeta)-R_H(z)}{\zeta-z}.
+\end{equation}
+Hence \(\Hmin\) is invariant under every resolvent.  It is also invariant
+under their adjoints because \(R_H(\zeta)^*=R_H(\overline\zeta)\).  It
+therefore reduces \(H\).  Furthermore,
+\begin{equation}
+  -iy(H-iy)^{-1}\longrightarrow\idop
+  \quad\text{strongly as }y\to+\infty,
+\end{equation}
+so \(\Ran\Gamma\subseteq\Hmin\).  The remaining statements follow from the
+spectral theorem for reducing subspaces.
+\end{proof}
+
+\begin{theorem}[Unitary uniqueness of minimal realizations]
+\label{thm:minimal-uniqueness}
+Let \((H_1,\Gamma_1)\) on \(\scrX_1\) and \((H_2,\Gamma_2)\) on
+\(\scrX_2\) be minimal realizations over the same port space \(\scrE\).  If
+\begin{equation}
+  \Gamma_1^*(H_1-z)^{-1}\Gamma_1
+  =\Gamma_2^*(H_2-z)^{-1}\Gamma_2
+  \label{eq:equal-minimal-responses}
+\end{equation}
+for all \(z\in\CC\setminus\RR\), then there is a unique unitary
+\(U:\scrX_1\to\scrX_2\) satisfying
+\begin{equation}
+  UH_1=H_2U,
+  \qquad
+  U\Gamma_1=\Gamma_2.
+  \label{eq:minimal-unitary-equivalence}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let \(R_j(z)=(H_j-z)^{-1}\).  On finite response sums define
+\begin{equation}
+  U_0\left(\sum_{k=1}^N R_1(z_k)\Gamma_1h_k\right)
+  :=\sum_{k=1}^N R_2(z_k)\Gamma_2h_k.
+  \label{eq:U0-response-sums}
+\end{equation}
+For \(z,w\in\CC\setminus\RR\) with \(w\ne\overline z\), the
+resolvent identity gives
+\begin{equation}
+  \inner{R_j(z)\Gamma_jh}{R_j(w)\Gamma_jk}_{\scrX_j}
+  =\inner{h}{
+    \frac{M_j(w)-M_j(z)^*}{w-\overline z}
+    k}_{\scrE}.
+  \label{eq:minimal-Gram-formula}
+\end{equation}
+The case \(w=\overline z\) follows by norm-continuous limiting from nearby
+nonreal parameters.  The common response therefore gives identical Gram matrices for arbitrary
+finite response sums in the two realizations.  Equation \eqref{eq:U0-response-sums} is consequently
+well-defined and isometric.  Minimality makes its initial and final spaces
+dense, so it extends uniquely to a unitary \(U\).
+
+The resolvent identity shows on the dense response span that
+\begin{equation}
+  UR_1(\zeta)=R_2(\zeta)U,
+  \qquad \zeta\in\CC\setminus\RR.
+\end{equation}
+Hence \(UH_1=H_2U\).  Finally,
+\begin{equation}
+  -iyR_j(iy)\Gamma_j\longrightarrow\Gamma_j
+  \qquad (y\to+\infty)
+\end{equation}
+strongly, which yields \(U\Gamma_1=\Gamma_2\).
+\end{proof}
+
+\begin{corollary}[Finite response dimension and indirect directions]
+\label{cor:finite-response-defect}
+Suppose the compressed spectral measure has finite support at distinct
+real numbers \(\lambda_1,\ldots,\lambda_m\), with finite-rank weights
+\(R_j\succeq0\), so that
+\begin{equation}
+  \Mresp(z)=\sum_{j=1}^{m}\frac{R_j}{\lambda_j-z}.
+  \label{eq:finite-response-weights}
+\end{equation}
+The space reached by the dynamics outside the direct port range is
+\begin{equation}
+  \mathcal D_\Gamma
+  :=\Hmin\ominus\overline{\Ran\Gamma}
+  =\Hmin\cap\Ker\Gamma^*.
+  \label{eq:indirect-response-space}
+\end{equation}
+Its dimension is determined by the response:
+\begin{equation}
+  \boxed{
+  \dim\mathcal D_\Gamma
+  =\sum_{j=1}^{m}\operatorname{rank}R_j
+   -\operatorname{rank}\!\left(\sum_{j=1}^{m}R_j\right).}
+  \label{eq:finite-response-defect-count}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let \(E_j=E_H(\{\lambda_j\})\).  The spectral measure gives
+\(R_j=\Gamma^*E_j\Gamma=(E_j\Gamma)^*(E_j\Gamma)\), hence
+\(\dim\Ran(E_j\Gamma)=\operatorname{rank}R_j\).
+The response-generated space is the orthogonal direct sum of these ranges.
+Indeed, the finite spectral support makes their sum invariant under every
+resolvent, and the distinct spectral projections can be recovered on that
+sum by polynomial interpolation in \(H\).  Thus
+\(\dim\Hmin=\sum_j\operatorname{rank}R_j\).
+Also \(\Gamma^*\Gamma=\sum_jR_j\), so
+\(\dim\Ran\Gamma=\operatorname{rank}(\sum_jR_j)\).
+Both spaces are finite-dimensional and the direct range lies in \(\Hmin\).
+Subtracting their dimensions proves the formula.
+\end{proof}
+
+The count concerns a specified port and its complete response.  An
+invertible change of input coordinates preserves it.  Positivity gives
+\(\Ran(\sum_j R_j)=\sum_j\Ran R_j\), since the two finite-dimensional
+spaces have orthogonal complement \(\bigcap_j\Ker R_j\).
+Thus the count is the dimension of the space of relations
+\(\sum_j x_j=0\) with \(x_j\in\Ran R_j\).  It vanishes precisely when
+those ranges form a direct sum in the port space.  Adding independent
+ports can change the count.
+
+If a realization takes \(B=\Gamma\) with codomain \(\Hmin\), then
+\(\Ker B^*=\mathcal D_\Gamma\).  With the full codomain \(\scrX\), one
+has instead
+\begin{equation}
+  \Ker\Gamma^*=\mathcal D_\Gamma\oplus(\scrX\ominus\Hmin).
+  \label{eq:ambient-response-defect}
+\end{equation}
+The second summand is orthogonal to every state generated by the port
+and is undetermined by the response.  Injectivity of the input channel
+requires \(\Ker\Gamma=\Ker(\sum_j R_j)=\{0\}\).
+The choice of transition channel and any ground correspondence are
+additional realization data, as described in \cref{eq:realization-datum}.
+
+\begin{proposition}[Permanent invisibility to a fixed port]
+\label{prop:permanent-port-invisibility}
+For the self-adjoint realization $(H,\Gamma)$, define
+\begin{equation}
+ \mathcal N_\Gamma
+ =\{x\in\scrX:\Gamma^*e^{-itH}x=0
+                 \text{ for every }t\in\RR\}.
+\end{equation}
+Then $\mathcal N_\Gamma=\Hmin^\perp$.  In particular, no nonzero
+vector in $\mathcal D_\Gamma$ is permanently invisible to the same
+port under the full unitary group.
+\end{proposition}
+\begin{proof}
+By the spectral theorem, the closed span of
+$e^{itH}\Gamma h$, with $t\in\RR$ and $h\in\scrE$, is the same
+reducing subspace as the resolvent span in
+\eqref{eq:minimal-subspace}.  For instance, Laplace transforms of
+the unitary group give its nonreal resolvents, and invariance under
+all resolvents gives the spectral projections and hence the group.
+The displayed condition says exactly that $x$ is orthogonal to
+this span.
+\end{proof}
+
+The conclusion concerns the stated port and all real times.  It
+does not assert detectability in every finite observation window
+or for every other observable.  A dynamically accessible final
+defect and a permanently decoupled ambient sector are therefore
+different objects.
+
+
+\subsection{Symmetry-resolved response and departure from a port}
+\label{sec:symmetry-response}
+
+A conserved generator can preserve a reference state while separating the
+energies present in a prepared superposition.  Commutation of the generator
+with the Hamiltonian does not imply that the direct port range is invariant.
+The following statement uses the same time convention as
+\eqref{eq:time-response}, namely $\hbar=1$.
+
+\begin{proposition}[Opposite symmetry sectors]
+\label{prop:opposite-sector-response}
+Let $H_0$ and $L$ be strongly commuting self-adjoint operators on $\scrX$,
+and define $H_\nu=H_0-\nu L$ by their joint functional calculus.  Suppose
+that a normalized vector $g$ satisfies $H_0g=E_0g$ and $Lg=0$.  Let
+$\ell>0$, and let $q_\pm\in\Ker(L\mp\ell\idop)$ be normalized vectors
+with the same spectral measure for $H_0-E_0$:
+\begin{equation}
+ \inner{q_+}{E_{H_0-E_0}(\Delta)q_+}
+ =\inner{q_-}{E_{H_0-E_0}(\Delta)q_-}
+ =:\mu(\Delta).
+ \label{eq:opposite-sector-measure}
+\end{equation}
+Set
+\begin{equation}
+ e:=\frac{q_++q_-}{\sqrt2},\qquad
+ d:=\frac{q_+-q_-}{i\sqrt2},\qquad
+ \Gamma(c_0,c_1):=c_0g+c_1e,
+ \qquad C_0(t):=\int_{\RR}e^{-it\lambda}\,d\mu(\lambda).
+ \label{eq:opposite-sector-port}
+\end{equation}
+Then $g,e,d$ are orthonormal, $\Gamma$ is an isometry, and the normalized
+excitation response is
+\begin{equation}
+ C_\nu(t):=\inner{e}{e^{-it(H_\nu-E_0)}e}
+ =C_0(t)\cos(\nu\ell t).
+ \label{eq:opposite-sector-factorization}
+\end{equation}
+Writing $\psi(t)=e^{-it(H_\nu-E_0)}e$, the weight outside the direct port
+range equals
+\begin{equation}
+ \|P_{\mathcal D_\Gamma}\psi(t)\|^2
+ =1-|C_0(t)|^2\cos^2(\nu\ell t),
+ \label{eq:opposite-sector-departure}
+\end{equation}
+where $\mathcal D_\Gamma$ is defined using the minimal response space of
+$(H_\nu,\Gamma)$.  For $\nu\ne0$, this weight equals one at
+$t_* =\pi/(2|\nu|\ell)$.  The weight on the fixed analysis line $\CC d$ is
+\begin{equation}
+ |\inner{d}{\psi(t)}|^2
+ =|C_0(t)|^2\sin^2(\nu\ell t),
+ \label{eq:opposite-sector-fixed-line}
+\end{equation}
+and the weight orthogonal to $\Span\{g,e,d\}$ is $1-|C_0(t)|^2$.
+\end{proposition}
+
+\begin{proof}
+Distinct eigenspaces of $L$ are orthogonal.  Strong commutation implies
+\[
+ e^{-it(H_\nu-E_0)}q_\pm
+ =e^{\pm it\nu\ell}e^{-it(H_0-E_0)}q_\pm.
+\]
+Taking the inner products with $e$ and $d$ gives respectively
+$C_0(t)\cos(\nu\ell t)$ and $-C_0(t)\sin(\nu\ell t)$.
+The evolving vector remains orthogonal to $g$ and belongs to $\Hmin$.
+Consequently its projection onto $\Ran\Gamma$ has squared norm
+$|C_\nu(t)|^2$, which proves \eqref{eq:opposite-sector-departure}.
+The last identity follows by subtracting the squared projections onto $e$
+and $d$ from the conserved unit norm.
+\end{proof}
+
+Matched measures in \eqref{eq:opposite-sector-measure} can follow from a
+unitary reflection, or an antiunitary symmetry such as time reversal,
+that commutes with $H_0$, reverses $L$, and exchanges $q_+$ and $q_-$.
+In the antiunitary case the spectral projections are preserved and their
+expectations are real, so the two spectral measures still agree.
+The fixed-reference identity $Lg=0$ by itself proves
+that $g$ remains an eigenvector, not that it remains the lowest-energy
+state: preservation of a ground requires a separate no-crossing condition.
+Similarly, complete departure from the direct port does not ensure a
+complete return; at $\nu\ell t\in\pi\ZZ$, the return weight is
+$|C_0(t)|^2$.
+
+The line $\CC d$ is an analysis direction in the ambient carrier.  If the
+two shifted spectral branches overlap, $d$ need not belong to $\Hmin$.
+It must not then be identified with an individually reachable minimal
+defect line.  Formula \eqref{eq:opposite-sector-departure} still concerns
+the response-generated defect because $\psi(t)\in\Hmin$.  An isolated
+pair of distinct eigenvalues gives the simpler finite case below.
+
+
+\subsection{Heat-smoothed singular inputs}
+
+A point trace or boundary delta is usually not a vector of the carrier
+Hilbert space.  Gaussian functional calculus gives a canonical way to turn
+such formal data into a bounded port channel.
+
+For \(s\geq0\), let
+\begin{equation}
+  \scrX_s:=\Dom(\idop+H^2)^{s/2}
+\end{equation}
+with its graph norm, and let \(\scrX_{-s}\) denote its anti-dual with pivot
+\(\scrX\).
+
+\begin{assumption}[Distributional trace]
+\label{ass:distributional-trace}
+Let
+\begin{equation}
+  \gamma:\scrX_s\longrightarrow\scrE
+\end{equation}
+be bounded.  Its adjoint is interpreted as
+\begin{equation}
+  \gamma^*:\scrE\longrightarrow\scrX_{-s}.
+\end{equation}
+\end{assumption}
+
+\begin{theorem}[Heat-smoothed distributional port]
+\label{thm:heat-smoothed-distributional-port}
+For every \(\tau>0\), the operator
+\begin{equation}
+  \boxed{
+  \Gamma_{\tau,\gamma}
+  :=e^{-\tau H^2/2}\gamma^*
+  \in\mathcal B(\scrE,\scrX)}
+  \label{eq:heat-smoothed-distributional-port}
+\end{equation}
+is bounded.  Its compressed resolvent
+\begin{equation}
+  M_{\tau,\gamma}(z)
+  :=\Gamma_{\tau,\gamma}^*(H-z)^{-1}
+  \Gamma_{\tau,\gamma}
+  \label{eq:heat-smoothed-distributional-response}
+\end{equation}
+is therefore a Herglotz response with finite total spectral mass
+\begin{equation}
+  \Sigma_{\tau,\gamma}(\RR)
+  =\Gamma_{\tau,\gamma}^*\Gamma_{\tau,\gamma}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The spectral multiplier
+\begin{equation}
+  (1+\lambda^2)^{s/2}e^{-\tau\lambda^2/2}
+\end{equation}
+is bounded on \(\RR\).  Hence \(e^{-\tau H^2/2}\) extends boundedly from
+\(\scrX_{-s}\) to \(\scrX\).  Composition with \(\gamma^*\) proves
+\eqref{eq:heat-smoothed-distributional-port}; the response claims follow from
+\cref{thm:response-Herglotz,def:compressed-spectral-measure}.
+\end{proof}
+
+\begin{assumption}[Discrete spectral realization]
+\label{ass:discrete-response-spectrum}
+Assume that \(H\) has a complete orthonormal eigenbasis
+\(\{e_n\}_{n\in I}\) with
+\begin{equation}
+  He_n=\lambda_ne_n,
+  \qquad \lambda_n\in\RR.
+  \label{eq:discrete-spectrum}
+\end{equation}
+Let \(\{\gamma_n\}_{n\in I}\subseteq\scrE\) specify a formal port through
+its spectral coefficients.
+\end{assumption}
+
+\begin{theorem}[Heat-smoothed port channel]
+\label{thm:heat-smoothed-channel}
+Fix \(\tau>0\) and suppose
+\begin{equation}
+  \sum_{n\in I}e^{-\tau\lambda_n^2}\|\gamma_n\|_{\scrE}^2<\infty.
+  \label{eq:heat-smoothing-summability}
+\end{equation}
+Then
+\begin{equation}
+  \Gamma_\tau h
+  :=\sum_{n\in I}
+  e^{-\tau\lambda_n^2/2}
+  \inner{\gamma_n}{h}_{\scrE}\,e_n
+  \label{eq:heat-smoothed-input}
+\end{equation}
+defines a Hilbert--Schmidt operator \(\Gamma_\tau:\scrE\to\scrX\), and
+its response is
+\begin{equation}
+  \boxed{
+  M_\tau(z)
+  =\sum_{n\in I}
+  \frac{e^{-\tau\lambda_n^2}}
+  {\lambda_n-z}\,
+  \gamma_n\gamma_n^*.}
+  \label{eq:heat-smoothed-response}
+\end{equation}
+The series converges locally uniformly in operator norm on
+\(\CC\setminus\RR\).  The total compressed spectral mass is
+\begin{equation}
+  \boxed{
+  \Gamma_\tau^*\Gamma_\tau
+  =\sum_{n\in I}e^{-\tau\lambda_n^2}\gamma_n\gamma_n^*,}
+  \label{eq:heat-smoothed-total-mass}
+\end{equation}
+with convergence in trace norm.
+\end{theorem}
+
+\begin{proof}
+The Hilbert--Schmidt norm is exactly the sum in
+\eqref{eq:heat-smoothing-summability}.  On every compact set \(K\subset\CC\setminus\RR\),
+\(\sup_{z\in K}|\lambda_n-z|^{-1}\leq\operatorname{dist}(K,\RR)^{-1}\).
+Hence the response series converges locally uniformly in operator norm.
+The total-mass identity follows by direct computation, and the trace norm of
+each positive rank-one summand is
+\(e^{-\tau\lambda_n^2}\|\gamma_n\|^2\).
+\end{proof}
+
+\begin{remark}[Normalization]
+\label{rem:heat-channel-normalization}
+For a scalar port space, if
+\begin{equation}
+  c_\tau:=\|\Gamma_\tau 1\|^2>0,
+\end{equation}
+then \(\widehat\Gamma_\tau:=c_\tau^{-1/2}\Gamma_\tau\) has a compressed
+spectral measure of total mass one.  For a general port space, write the polar decomposition
+\(\Gamma_\tau=V_\tau(\Gamma_\tau^*\Gamma_\tau)^{1/2}\).  The partial
+isometry \(V_\tau\), restricted to the support of
+\(\Gamma_\tau^*\Gamma_\tau\), is the bounded support-normalized port.  This
+formulation remains valid even when the positive operator has spectrum
+accumulating at zero.
+\end{remark}
+% ===== END INLINED FILE: sections/08_boundary_response.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/09_examples.tex =====
+\section{Canonical realizations}
+\label{sec:examples}
+
+The transition algebra fixes the relations among
+\(\Aop_B,\Vop_B,\DB_B,\KB_B\), and \(\DeltaB_B\), but it does not fix the
+spectrum.  Spectral type enters through the closed channel \(B\).  The
+following examples exhibit finite, continuous, oscillator, and compact
+quasiperiodic realizations of the same algebra.
+
+\subsection{A scalar channel}
+
+\begin{example}[One-dimensional realization]
+\label{ex:scalar-channel}
+Let \(\scrHp=\scrHm=\CC\) and let \(Bx=bx\) for \(b\in\CC\).  Then
+\begin{align}
+  \DB_B
+  &=\begin{pmatrix}0&\overline b\\ b&0\end{pmatrix},
+  &
+  \KB_B
+  &=\begin{pmatrix}0&\overline b\\ -b&0\end{pmatrix},
+  \label{eq:scalar-odd-operators}\\
+  \DeltaB_B
+  &=|b|^2\idop_{\CC^2}.
+  \label{eq:scalar-laplacian}
+\end{align}
+If \(b\ne0\), the active support is all of \(\CC^2\), the polar phase is
+\(u_B=b/|b|\), and \(\ind B=0\).  Taking
+\begin{equation}
+  H_b:=|b|^2\quad\text{on }\CC,
+  \qquad
+  \Gamma_b:=\idop_\CC,
+\end{equation}
+gives the minimal scalar response
+\begin{equation}
+  M_b(z)=\frac{1}{|b|^2-z}.
+  \label{eq:scalar-response}
+\end{equation}
+\end{example}
+
+This example contains no spectral multiplicity or hidden domain issue.  It is
+the local normal form of a single active transition amplitude.
+
+\subsection{An invariant ground with a one-dimensional response defect}
+\label{sec:three-state-response}
+
+\begin{example}[Split excitations and a grounded two-dimensional port]
+\label{ex:split-excitation-response}
+Let $g,f_+,f_-$ be an orthonormal basis of $\scrX=\CC^3$ and take
+\begin{equation}
+ H_0g=E_0g,\qquad H_0f_\pm=E_2f_\pm,
+ \qquad Lg=0,\qquad Lf_\pm=\pm\ell f_\pm,
+ \label{eq:three-state-data}
+\end{equation}
+where $\ell>0$ and $0<|\nu|\ell<E_2-E_0$.  For
+$H_\nu=H_0-\nu L$, $g$ is therefore the unique ground and the two
+excitation energies are $E_2\mp\nu\ell$.  Define
+\begin{equation}
+ e=\frac{f_++f_-}{\sqrt2},\qquad
+ d=\frac{f_+-f_-}{i\sqrt2},\qquad
+ \Gamma(c_0,c_1)=c_0g+c_1e.
+ \label{eq:three-state-port}
+\end{equation}
+In the standard basis of $\scrE=\CC^2$, the complete response is
+\begin{equation}
+ M_\Gamma(z)=
+ \begin{pmatrix}
+ (E_0-z)^{-1}&0\\
+ 0&\dfrac{1}{2(E_2-\nu\ell-z)}
+    +\dfrac{1}{2(E_2+\nu\ell-z)}
+ \end{pmatrix}.
+ \label{eq:three-state-response}
+\end{equation}
+Its three distinct atoms have weights
+\begin{equation}
+ R_0=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+ R_+=R_-=\frac12\begin{pmatrix}0&0\\0&1\end{pmatrix},
+ \qquad R_0+R_++R_-=\idop_{\CC^2}.
+ \label{eq:three-state-weights}
+\end{equation}
+Thus \cref{cor:finite-response-defect} gives
+\begin{equation}
+ \Hmin=\scrX,\qquad \dim\mathcal D_\Gamma=3-2=1,
+ \qquad \mathcal D_\Gamma=\CC d.
+ \label{eq:three-state-minimal-defect}
+\end{equation}
+Explicitly,
+\begin{equation}
+ e^{-it(H_\nu-E_0)}e
+ =e^{-it(E_2-E_0)}
+   \bigl[\cos(\nu\ell t)e-\sin(\nu\ell t)d\bigr].
+ \label{eq:three-state-transfer}
+\end{equation}
+The defect weight is $\sin^2(\nu\ell t)$, and both positive response
+weights are $1/2$.  At zero bias, the two excited atoms coincide and must
+be merged: the minimal carrier drops to $\Span\{g,e\}$ and the
+response-generated defect vanishes.
+\end{example}
+
+Taking $\scrHp=\CC^2$, $\scrHm=\Hmin$ and $B=\Gamma$ yields
+$B^*B=\idop_{\CC^2}$, $\Ker B=\{0\}$ and $\Ker B^*=\CC d$.
+The normalized port ground $(1,0)$ maps to $g$.  If its input Hamiltonian
+is the compression $\Gamma^*H_\nu\Gamma=\diag(E_0,E_2)$, the input
+and output grounds correspond exactly.  The response Hamiltonian
+$H_\nu$ is additional realization data: it is neither $B^*B$ nor $BB^*$.
+The port is not dynamically invariant when $\nu\ne0$, despite
+$[H_\nu,L]=0$.
+
+
+\subsection{The translation channel and continuous spectrum}
+
+\begin{example}[Free translation channel]
+\label{ex:translation-channel}
+Let
+\begin{equation}
+  \scrHp=\scrHm=L^2(\RR),
+  \qquad
+  B=D_x:=-i\frac{d}{dx},
+  \qquad
+  \Dom D_x=H^1(\RR).
+  \label{eq:translation-channel}
+\end{equation}
+Then \(D_x=D_x^*\), and the partner operators coincide:
+\begin{equation}
+  B^*B=BB^*=D_x^2=-\frac{d^2}{dx^2},
+  \qquad
+  \Dom D_x^2=H^2(\RR).
+  \label{eq:free-partner}
+\end{equation}
+Under the unitary Fourier transform, \(D_x\) is multiplication by \(k\) and
+\(D_x^2\) is multiplication by \(k^2\).  Hence
+\begin{equation}
+  \spec(D_x^2)=[0,\infty)
+  \label{eq:free-spectrum}
+\end{equation}
+is purely continuous.
+\end{example}
+
+The channel has trivial kernel but no support gap.  Indeed, choose normalized
+vectors \(f_n\) whose Fourier transforms are supported in
+\([-1/n,1/n]\).  Then
+\begin{equation}
+  \|D_xf_n\|\le\frac1n,
+  \qquad
+  \|f_n\|=1,
+  \label{eq:no-translation-gap}
+\end{equation}
+so no positive lower bound can hold on \((\Ker D_x)^\perp=L^2(\RR)\).  By the
+closed-range criterion of \cref{thm:closed-range-criterion}, \(\Ran D_x\) is not
+closed.
+
+For any normalized \(g\in L^2(\RR)\), let
+\(\Gamma_gc=cg\) and take \(H_{\mathrm{free}}=D_x^2\).  The corresponding
+response is
+\begin{equation}
+  M_g(z)
+  =\int_{\RR}\frac{|\widehat g(k)|^2}{k^2-z}\,dk,
+  \qquad z\in\CC\setminus[0,\infty),
+  \label{eq:free-response}
+\end{equation}
+where \(\widehat g\) is the unitary Fourier transform of \(g\).  Thus an
+absolutely continuous response measure and the absence of a support gap are
+compatible with the same A/V algebra used in the discrete examples below.
+
+\subsection{The oscillator channel and the integer heat trace}
+
+Let \(\mathfrak h=\ell^2(\NN_0)\) with orthonormal basis
+\((e_n)_{n\ge0}\).  Define
+\begin{align}
+  ae_0&=0,
+  &ae_n&=\sqrt n\,e_{n-1}\quad(n\ge1),
+  \label{eq:annihilation-action}\\
+  a^*e_n&=\sqrt{n+1}\,e_{n+1}.
+  \label{eq:creation-action}
+\end{align}
+Their natural domains are
+\begin{align}
+  \Dom a
+  &=\left\{x=(x_n):\sum_{n\ge0}n|x_n|^2<\infty\right\},
+  \label{eq:annihilation-domain}\\
+  \Dom a^*
+  &=\left\{x=(x_n):\sum_{n\ge0}(n+1)|x_n|^2<\infty\right\}.
+  \label{eq:creation-domain}
+\end{align}
+Let \(N=a^*a\) be the number operator.
+
+\begin{theorem}[Oscillator transition channel]
+\label{thm:oscillator-channel}
+Take \(\scrHp=\scrHm=\mathfrak h\) and
+\begin{equation}
+  B=a^*.
+  \label{eq:oscillator-B}
+\end{equation}
+Then
+\begin{equation}
+  B^*B=aa^*=N+\idop,
+  \qquad
+  BB^*=a^*a=N.
+  \label{eq:oscillator-partners}
+\end{equation}
+The range of \(B\) is closed,
+\begin{equation}
+  \Ker B=\{0\},
+  \qquad
+  \Ker B^*=\operatorname{span}\{e_0\},
+  \qquad
+  \ind B=-1.
+  \label{eq:oscillator-index}
+\end{equation}
+The positive return operator has spectrum
+\begin{equation}
+  \spec(B^*B)=\{1,2,3,\ldots\},
+  \label{eq:positive-integer-spectrum}
+\end{equation}
+whereas its partner contains one additional zero mode.
+\end{theorem}
+
+\begin{proof}
+The identities in \eqref{eq:oscillator-partners} follow on the basis vectors.
+Moreover,
+\begin{equation}
+  \|a^*x\|^2
+  =\sum_{n\ge0}(n+1)|x_n|^2
+  \ge\|x\|^2,
+\end{equation}
+so \(a^*\) is bounded below and has closed range.  The kernel statements are
+immediate, and the index follows from \cref{thm:index-formulas}.  The
+spectral statement is the diagonal action of \(N+\idop\).
+\end{proof}
+
+\begin{corollary}[Index defect in the heat trace]
+\label{cor:oscillator-heat-index}
+For every \(t>0\),
+\begin{equation}
+  \Tr\bigl(e^{-t(N+\idop)}\bigr)
+  -\Tr\bigl(e^{-tN}\bigr)
+  =-1
+  =\ind B.
+  \label{eq:oscillator-linear-heat-index}
+\end{equation}
+The same unpaired zero mode gives
+\begin{equation}
+  \Tr\bigl(e^{-\pi t(N+\idop)^2}\bigr)
+  -\Tr\bigl(e^{-\pi tN^2}\bigr)
+  =-1.
+  \label{eq:oscillator-square-heat-index}
+\end{equation}
+\end{corollary}
+
+\begin{theorem}[Mellin transform of the positive integer heat trace]
+\label{thm:oscillator-zeta}
+For \(\operatorname{Re}s>1\),
+\begin{align}
+  \int_0^\infty
+  t^{s/2-1}
+  \Tr\bigl(e^{-\pi t(B^*B)^2}\bigr)\,dt
+  &=\int_0^\infty
+  t^{s/2-1}\sum_{n=1}^\infty e^{-\pi n^2t}\,dt
+  \label{eq:oscillator-Mellin-start}\\
+  &=\pi^{-s/2}\Gamma\!\left(\frac s2\right)\zeta(s).
+  \label{eq:oscillator-Mellin-zeta}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+For \(\operatorname{Re}s>1\), positivity and absolute convergence permit
+termwise integration.  The substitution \(u=\pi n^2t\) gives
+\begin{equation}
+  \int_0^\infty t^{s/2-1}e^{-\pi n^2t}\,dt
+  =\pi^{-s/2}n^{-s}\Gamma\!\left(\frac s2\right).
+\end{equation}
+Summation over \(n\ge1\) proves the result.
+\end{proof}
+
+\begin{remark}
+The right-hand side of \eqref{eq:oscillator-Mellin-zeta} is the standard
+Gamma-completed zeta factor
+\(\pi^{-s/2}\Gamma(s/2)\zeta(s)\).  It is not the entire Riemann
+\(\xi\)-function, which includes the additional factor
+\(\tfrac12s(s-1)\), and it makes no assertion about the spectrum of the
+nontrivial zeta zeros.
+\end{remark}
+
+The oscillator also gives a simple minimal response.  For \(0<r<1\), set
+\begin{equation}
+  g_r:=\sqrt{1-r^2}\sum_{n=0}^\infty r^n e_n,
+  \qquad
+  \Gamma_rc:=cg_r.
+  \label{eq:oscillator-cyclic-vector}
+\end{equation}
+Then \(\|g_r\|=1\), and for \(H_{\mathrm{osc}}=N+\idop\),
+\begin{equation}
+  M_r(z)
+  =(1-r^2)\sum_{n=0}^\infty
+  \frac{r^{2n}}{n+1-z}.
+  \label{eq:oscillator-response}
+\end{equation}
+Every spectral coefficient of \(g_r\) is nonzero.  Since the spectral
+projections of the simple pure-point operator \(N+\idop\) are recovered from
+its resolvent, the resolvent orbit of \(g_r\) contains every basis direction;
+hence the realization is minimal.  Thus the response uniquely determines
+this oscillator realization
+up to unitary equivalence by \cref{thm:minimal-uniqueness}.
+
+\subsection{A quasiperiodic compact channel and a smoothed point input}
+
+\begin{example}[First-order generator on a compact interval]
+\label{ex:quasiperiodic-channel}
+Let \(L>0\), \(\vartheta\in[0,2\pi)\), and
+\begin{equation}
+  \mathfrak h_L:=L^2(-L,L).
+\end{equation}
+Define
+\begin{align}
+  D_{L,\vartheta}
+  &:=-i\frac{d}{du},
+  \label{eq:quasiperiodic-generator}\\
+  \Dom D_{L,\vartheta}
+  &:=\left\{f\in H^1(-L,L):
+  f(L)=e^{i\vartheta}f(-L)\right\}.
+  \label{eq:quasiperiodic-domain}
+\end{align}
+Then \(D_{L,\vartheta}\) is self-adjoint with eigenvalues and normalized
+eigenfunctions
+\begin{align}
+  \lambda_n
+  &=\frac{2\pi n+\vartheta}{2L},
+  \label{eq:quasiperiodic-eigenvalues}\\
+  e_n(u)
+  &=\frac{1}{\sqrt{2L}}
+  \exp\bigl(i\lambda_n(u+L)\bigr),
+  \qquad n\in\ZZ.
+  \label{eq:quasiperiodic-eigenfunctions}
+\end{align}
+Taking \(B=D_{L,\vartheta}\) between two copies of \(\mathfrak h_L\) gives
+\begin{equation}
+  B^*B=BB^*=D_{L,\vartheta}^2.
+  \label{eq:quasiperiodic-partners}
+\end{equation}
+The channel has index zero.  Its spectrum is discrete.  After removing a
+possible zero mode, its active support has a positive gap from zero.
+\end{example}
+
+For \(u_0\in(-L,L)\), the point source \(\delta_{u_0}\) is not an element of
+\(L^2(-L,L)\).  Regarded as an element of a negative Sobolev scale, its spectral coefficient
+with respect to the point-evaluation trace is \(e_n(u_0)\), and hence
+\begin{equation}
+  |e_n(u_0)|^2=\frac{1}{2L}.
+  \label{eq:uniform-point-weights}
+\end{equation}
+Consequently, the unsmoothed total spectral mass diverges:
+\begin{equation}
+  \sum_{n\in\ZZ}|e_n(u_0)|^2=\infty.
+  \label{eq:unsmoothed-point-mass}
+\end{equation}
+
+For \(\tau>0\), apply \cref{thm:heat-smoothed-distributional-port} to the self-adjoint
+generator \(H=D_{L,\vartheta}\).  The heat-smoothed point port vector is
+\begin{equation}
+  b_{\tau,u_0}
+  :=e^{-\tau D_{L,\vartheta}^2/2}\delta_{u_0}
+  =\sum_{n\in\ZZ}
+  e^{-\tau\lambda_n^2/2}\overline{e_n(u_0)}e_n,
+  \label{eq:smoothed-point-vector}
+\end{equation}
+with finite mass
+\begin{equation}
+  Z_{\tau,L,\vartheta}
+  :=\|b_{\tau,u_0}\|^2
+  =\frac{1}{2L}\sum_{n\in\ZZ}e^{-\tau\lambda_n^2}<\infty.
+  \label{eq:theta-mass}
+\end{equation}
+The value is independent of \(u_0\).  The associated scalar response is
+\begin{equation}
+  M_{\tau,u_0}(z)
+  =\frac{1}{2L}\sum_{n\in\ZZ}
+  \frac{e^{-\tau\lambda_n^2}}{\lambda_n-z}.
+  \label{eq:quasiperiodic-smoothed-response}
+\end{equation}
+After normalizing
+\begin{equation}
+  \widehat b_{\tau,u_0}
+  :=Z_{\tau,L,\vartheta}^{-1/2}b_{\tau,u_0},
+  \label{eq:normalized-smoothed-point}
+\end{equation}
+the compressed spectral measure has total mass one, while the internal
+spectrum \((\lambda_n)\) remains unchanged.
+
+\begin{remark}
+When \(\vartheta=0\), the constant mode is a zero mode.  On its orthogonal
+complement, the first nonzero magnitude is \(\pi/L\).  When
+\(\vartheta\ne0\), the first-order gap is
+\begin{equation}
+  \frac{\operatorname{dist}(\vartheta,2\pi\ZZ)}{2L},
+\end{equation}
+and the return operator \(D_{L,\vartheta}^2\) has the square of this gap.
+\end{remark}
+
+\subsection{What is universal and what depends on the channel}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.20\textwidth} >{\raggedright\arraybackslash}p{0.21\textwidth} >{\raggedright\arraybackslash}p{0.20\textwidth} X}
+\toprule
+\textbf{Channel} & \textbf{Positive return} & \textbf{Spectral type} & \textbf{Distinguishing feature} \\
+\midrule
+\(B=b\) on \(\CC\) & \(|b|^2\) & finite, one level & Full support for \(b\ne0\); index zero. \\
+\(-i\,d/dx\) on \(\RR\) & \(-d^2/dx^2\) & continuous \([0,\infty)\) & No closed range and no support gap. \\
+\(B=a^*\) & \(N+\idop\) & positive integers & Index \(-1\); exact theta/zeta heat trace. \\
+\(D_{L,\vartheta}\) & \(D_{L,\vartheta}^2\) & discrete quasiperiodic & Point input becomes finite after Gaussian smoothing. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The identities of the transition algebra are unchanged across all four
+examples.  Finite versus continuous spectrum, zero-mode imbalance, support
+gap, and response measure are properties of the realization \(B\), not of
+the abstract A/V relations alone.
+% ===== END INLINED FILE: sections/09_examples.tex =====
+
+
+% ===== BEGIN INLINED FILE: sections/10_scope_open_problems.tex =====
+\section{Synthesis, realization data, and open extensions}
+\label{sec:scope-open}
+
+The preceding sections establish a local operator architecture.  This final
+section states precisely what is common to all realizations, what depends on
+the channel, and which extensions require additional mathematics.
+
+\subsection{Architecture theorem}
+
+\begin{theorem}[Universal transition-response architecture]
+\label{thm:architecture}
+Let \(B:\Dom B\subseteq\scrHp\to\scrHm\) be densely defined and closed.
+Then the following structures are canonically determined.
+\begin{enumerate}[label=(\alph*)]
+  \item The nilpotent oriented pair \(\Aop_B=-d_B\),
+  \(\Vop_B=d_B^*\), the positive partner Laplacian
+  \(\DeltaB_B\), and the two odd branches \(\DB_B\), \(\KB_B\).
+  \item The polar reflection \(\RB\), polar complex structure \(\IB\),
+  support projection \(\SuppB\), and the supportwise rotation generated by
+  \(\IB\).
+  \item The two-term cohomology, paired nonzero partner spectra, and, when
+  \(B\) is Fredholm, the index \(\ind B\).
+\end{enumerate}
+If a compact Hilbert-unitary symmetry action commuting with \(\fundJ\) is
+supplied, Haar averaging gives a reducing invariant projection.  If
+\(B=B_\mu\) arises from a norm-\(C^2\) projection field, its mixed returns
+produce the Grassmann curvature.  If, in addition, the selected bundle is
+smooth and finite rank, the same curvature produces the ordinary
+Chern--Weil forms used here.  If the channel is
+bounded and couples two self-adjoint diagonal generators, its
+resolvent-dressed return produces the Schur--Feshbach effective operator.  If a self-adjoint realization is supplied
+with a bounded port, its compressed resolvent produces a Herglotz response, a
+Schur transfer function, and positive response kernels.
+\end{theorem}
+
+\begin{proof}
+Items (a)--(c) collect
+\cref{thm:AV-algebra},
+\cref{thm:polar-properties,thm:polar-factorization},
+\cref{thm:Hodge-decomposition,thm:partner-unitary-equivalence}, and
+\cref{thm:index-formulas}.
+The compact-symmetry statement is \cref{thm:Haar-projector}; the
+variable-projection statement is
+\cref{thm:tangent-realization,thm:projector-curvature,thm:chern-character};
+the effective-dynamics statement is \cref{thm:Schur-factorization}; and the
+response statement is
+\cref{thm:response-Herglotz,thm:Schur-contractivity,thm:positive-Schur-kernel}.
+\end{proof}
+
+The theorem concerns the architecture generated by the channel and the
+additional realization data.  It does not imply that different choices of
+\(B\), \(\Pi\), \(H\), or \(\Gamma\) are physically or spectrally
+equivalent.
+
+\subsection{Realization datum}
+
+A concrete model may be organized by the tuple
+\begin{equation}
+  \mathfrak R
+  =\bigl(
+    X,\scrK,\fundJ,\rho,\Pi_G,\Pi,B,\ket0,
+    \mathbb L^{(\varepsilon)},H,\Gamma
+   \bigr),
+  \label{eq:realization-datum}
+\end{equation}
+with only the entries needed by that realization retained.  Their roles are:
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth} X}
+\toprule
+\textbf{Datum} & \textbf{Mathematical role} \\
+\midrule
+\(X\) & Parameter manifold for a moving projection, when present. \\
+\((\scrK,\fundJ)\) & Bipartite Hilbert/Krein carrier and fixed grading. \\
+\(\rho,\Pi_G\) & Optional compact symmetry action and its invariant Haar projection. \\
+\(\Pi\) & Selected subbundle and Grassmann connection; finite rank is required for the ordinary Chern--Weil forms used here. \\
+\(B\) & Closed transition channel; it determines the partner spectra. \\
+\(\ket0\) & Optional normalized reference; it lies in \(\Dom B\) when the transition image is used, while ground-state or cyclicity properties require separate hypotheses. \\
+\(\mathbb L^{(\varepsilon)}\) & Block generator for sector elimination. \\
+\(H\) & Self-adjoint internal generator for passive response. \\
+\(\Gamma\) & External port; it determines the compressed spectral measure. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+A compact symmetry action may additionally supply the Haar projector
+\(\Pi_G\) of \cref{thm:Haar-projector}.  It is a derived invariant
+compression, not a replacement for the fixed grading or the moving projector.
+
+A physical implementation must also specify a preparation procedure
+for the selected port states and a measurement procedure yielding the
+stated response.  Deriving an internal Hamiltonian or a source coupling
+does not by itself derive those procedures.  A numerical or electronic
+implementation can test its prescribed operations, precision and errors;
+the physical identification of the underlying degrees of freedom is a
+separate claim.
+
+The data are not redundant.  In particular, the fixed fundamental symmetry
+\(\fundJ\), a gauge-averaging projection, a moving physical projection, a
+spectral half-line projection, and a boundary port are operators of different
+types and should not share a symbol unless an explicit theorem identifies
+them.
+
+\subsection{Claim-status convention}
+
+The formal environments already distinguish definitions, assumptions, and
+theorems.  For proposed extensions beyond the present paper, the following
+status language will be used.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} X}
+\toprule
+\textbf{Status} & \textbf{Meaning} \\
+\midrule
+Established & Proved in the present manuscript under the displayed hypotheses. \\
+Model choice & A selected operator, domain, normalization, boundary condition, or realization datum. \\
+Conditional & A theorem whose antecedent contains a separately named construction problem. \\
+Open realization & A required map or object has not yet been constructed. \\
+Obstruction & A known reason that a tempting identification does not follow from the current hypotheses. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The dependency rule is simple: an example cannot prove the abstract algebra;
+a model choice cannot be cited as a derived normalization; and an open global
+realization cannot be used to strengthen a local theorem.
+
+\subsection{Established layers and boundaries}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} X}
+\toprule
+\textbf{Layer} & \textbf{Status} & \textbf{Boundary} \\
+\midrule
+Fixed \(\Aop/\Vop\) algebra & Established & Requires a densely defined closed channel and natural product domains. \\
+Compact symmetry averaging & Established & Requires a compact group and a strongly continuous Hilbert-unitary representation; it yields an invariant projection, not a preferred dynamics. \\
+Polar/cohomological structure & Established & Hodge decompositions without range closures require closed range; index formulas require Fredholmness. \\
+Projector curvature & Established & Uses a norm-\(C^2\) orthogonal projection field; Chern forms here use a smooth finite-rank selected bundle. \\
+Schur--Feshbach reduction & Established & The main statement assumes bounded channel coupling between self-adjoint diagonal blocks. \\
+Passive response & Established & Full Herglotz positivity uses a Hilbert-self-adjoint realization and bounded port. \\
+Heat-smoothed singular port & Established under the displayed Hilbert-scale hypothesis & Gaussian smoothing gives a bounded port for every \(\tau>0\); discrete series formulas additionally require the stated summability. \\
+Positive-integer heat trace & Established example & Realized by \(B=a^*\); it does not determine a nontrivial-zero spectrum. \\
+Symmetry-resolved response & Established under the displayed hypotheses & Ground preservation needs a no-crossing condition; the full defect is defined relative to the minimal carrier and the specified port. \\
+Physical or arithmetic identification & Open realization & Requires additional operators, maps, domains, and comparison theorems. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Open mathematical extensions}
+
+The following problems arise naturally from the established core.
+
+\begin{enumerate}[label=\textbf{G\arabic*.},leftmargin=3.5em]
+  \item \textbf{Unbounded block coupling.}
+  Extend the Schur--Feshbach factorization from bounded \(B\) to closed
+  unbounded channels using form sums, boundary triples, or compatible graph
+  norms while retaining precise resolvent and positivity statements.
+
+  \item \textbf{\(C^2\) families of unbounded channels.}
+  Develop a graph-topology version of the projector-tangent correspondence for
+  parameter-dependent unbounded \(B_x\), including domain transport and
+  differentiability of polar factors.
+
+  \item \textbf{Families index.}
+  Relate the curvature and Chern character of a family of active subspaces to
+  the family of Fredholm channels and its index bundle.
+
+  \item \textbf{Finite-to-continuum symmetry compression.}
+  Control convergence of finite invariant projections, such as a cubic
+  trivial-isotypic compression, to a continuum compact-group projection,
+  together with convergence of the compressed generators and responses.
+
+  \item \textbf{Singular boundary systems.}
+  Replace the heat-smoothed bounded port by a full boundary-triple or rigged
+  Hilbert-space treatment, and identify when the unsmoothed Weyl function is
+  already well defined.
+
+  \item \textbf{Krein-passive realization.}
+  Determine conditions on the generator, port and pairing under which
+  a Krein-self-adjoint block yields a positive physical response.
+  Similarity to a Hilbert-self-adjoint operator does not by itself
+  guarantee positivity of an unchanged Krein-paired port response.
+  Any positive replacement pairing must be derived or stated as
+  additional realization data.
+
+  \item \textbf{Global assembly.}
+  Specify a category of local channels and gluing morphisms for which closed
+  excursions, indices, and response kernels assemble functorially over a
+  global base.
+
+  \item \textbf{Arithmetic realization.}
+  The oscillator channel gives the exact positive-integer heat trace and its
+  Mellin transform.  A further construction would have to produce arithmetic
+  primitive data, an appropriate global determinant, and a positive
+  comparison kernel without inserting those objects by definition.
+\end{enumerate}
+
+\subsection{Visible limitations}
+
+The canonical realizations make several boundaries explicit.
+\begin{enumerate}[label=\textbf{O\arabic*.},leftmargin=3.5em]
+  \item The translation channel has continuous spectrum touching zero and no
+  support gap.  The transition algebra alone therefore does not force a gap.
+  \item Krein self-adjointness does not by itself imply passivity of the full
+  compressed resolvent; the response theorem uses a Hilbert-self-adjoint
+  realization.
+  \item Compact-group averaging produces an invariant subspace but does not
+  determine a Hamiltonian, action, or preferred structure group.
+  \item Projector curvature produces characteristic classes, whereas the
+  holonomy of an arbitrary closed loop need not be quantized.
+  \item The oscillator integer heat trace does not construct a spectrum of
+  nontrivial zeta zeros or the endpoint factors of the entire completed
+  function.
+\end{enumerate}
+
+\subsection{Conclusion}
+
+The common content is the functorial passage from a closed channel to its
+oriented differential pair, positive return, polar support geometry, and
+cohomology; from a moving channel to curvature; from a resolvent-dressed
+channel to effective dynamics; and from a ported self-adjoint realization to
+a passive positive response.  Spectral type, topology, and physical content
+remain properties of the realization datum rather than consequences of the
+abstract orientation algebra alone.
+% ===== END INLINED FILE: sections/10_scope_open_problems.tex =====
+
+
+\clearpage
+\appendix
+
+% ===== BEGIN INLINED FILE: appendices/A_domains.tex =====
+\section{Domain bookkeeping}
+\label{app:domains}
+
+This appendix collects the natural domains of every unbounded operator used
+in the main text. No block product is intended outside its composition
+domain.
+
+\subsection{First-order operators}
+
+For the closed densely defined channel
+\(B:\Dom B\subseteq\scrHp\to\scrHm\),
+\begin{align}
+  \Dom d_B
+  &=\Dom\Aop_B
+  =\Dom B\oplus\scrHm,\\
+  \Dom d_B^*
+  &=\Dom\Vop_B
+  =\scrHp\oplus\Dom B^*,\\
+  \Dom\DB_B
+  &=\Dom\KB_B
+  =\Dom B\oplus\Dom B^*.
+\end{align}
+The square domains of the nilpotent one-way maps are unchanged:
+\begin{equation}
+  \Dom(\Aop_B^2)=\Dom\Aop_B,
+  \qquad
+  \Dom(\Vop_B^2)=\Dom\Vop_B.
+\end{equation}
+
+\subsection{Ordered products and Laplacian}
+
+The ordered products have domains
+\begin{align}
+  \Dom(\Vop_B\Aop_B)
+  &=\Dom(B^*B)\oplus\scrHm,\\
+  \Dom(\Aop_B\Vop_B)
+  &=\scrHp\oplus\Dom(BB^*).
+\end{align}
+Indeed, for \((x,y)\in\Dom\Aop_B\),
+\(\Aop_B(x,y)=(0,-Bx)\) lies in \(\Dom\Vop_B\) precisely when
+\(Bx\in\Dom B^*\), equivalently \(x\in\Dom(B^*B)\). The other product is
+symmetric.
+
+The common domain on which the anticommutator, commutator, and squares of the
+odd branches are evaluated is
+\begin{equation}
+  \Dom\DeltaB_B
+  =\Dom(B^*B)\oplus\Dom(BB^*).
+\end{equation}
+On this domain,
+\begin{equation}
+  \DB_B^2=\DeltaB_B,
+  \qquad
+  \KB_B^2=-\DeltaB_B,
+  \qquad
+  \{\Aop_B,\Vop_B\}=-\DeltaB_B.
+\end{equation}
+
+\subsection{Reference-state relations}
+
+The definition \(\ket\Omega=\Aop_B\ket0\) requires only
+\(\ket0\in\Dom B\). The nilpotent identity
+\(\Aop_B\ket\Omega=0\) then holds automatically because every vector in the
+negative sector belongs to \(\Dom\Aop_B\). The return expression
+\(\Vop_B\ket\Omega=-B^*B\ket0\) requires the stronger condition
+\(\ket0\in\Dom(B^*B)\).
+
+\subsection{Polar factors}
+
+The partial isometry \(u_B\), support projections
+\(\pi_{+,B},\pi_{-,B},\Pi_B\), polar reflection \(\mathcal R_B\), polar
+complex structure \(\mathcal I_B\), and normalized transitions
+\(\widehat{\Aop}_B,\widehat{\Vop}_B\) are bounded and defined on all of
+\(\scrK\). The square-root domain is
+\begin{equation}
+  \Dom\DeltaB_B^{1/2}
+  =\Dom B\oplus\Dom B^*
+  =\Dom\DB_B
+  =\Dom\KB_B.
+\end{equation}
+Consequently, the factorizations
+\begin{equation}
+  \DB_B=\mathcal R_B\DeltaB_B^{1/2},
+  \qquad
+  \KB_B=\mathcal I_B\DeltaB_B^{1/2}
+\end{equation}
+have exactly this first-order domain. The reverse-order products have the
+same domain because the polar factors intertwine \(|B|\) and \(|B^*|\).
+
+Let \(\DeltaB_{B,0}^{-1/2}\) denote the generalized inverse defined by
+spectral calculus from the function \(\lambda\mapsto\lambda^{-1/2}\) for
+\(\lambda>0\), with value zero at \(\lambda=0\). Its domain is
+\begin{equation}
+  \Dom\DeltaB_{B,0}^{-1/2}
+  =\left\{\xi\in\scrK:
+  \int_{(0,\infty)}\lambda^{-1}\,d\mu_\xi^{\DeltaB_B}(\lambda)<\infty
+  \right\},
+\end{equation}
+where \(\mu_\xi^{\DeltaB_B}\) is the scalar spectral measure of
+\(\DeltaB_B\) at \(\xi\). On \(\Ran\DeltaB_B^{1/2}\), these products agree with the restrictions of
+\(\mathcal R_B\) and \(\mathcal I_B\) to the active support.  They extend
+uniquely there; extension by zero on \(\Ker\DeltaB_B\) gives the bounded
+polar operators used in the main text.
+
+\subsection{Partner restrictions and cohomology}
+
+The active restrictions of \(B^*B\) and \(BB^*\) are self-adjoint on the
+reducing subspaces
+\begin{equation}
+  (\Ker B)^\perp,
+  \qquad
+  (\Ker B^*)^\perp.
+\end{equation}
+The two-term cohomology uses \(B\) with its original closed domain
+\(\Dom B\); no bounded extension of \(B\) is implied. If \(\Ran B\) is not
+closed, the ordinary quotient \(\scrHm/\Ran B\) may be non-Hausdorff, while
+\(\scrHm/\overline{\Ran B}\) is the reduced Hilbert-space cohomology.
+
+The heat-supertrace identity is asserted only when the two heat semigroups
+are trace class. This is an additional spectral hypothesis and does not
+follow from Fredholmness alone.
+
+\subsection{Moving projections}
+
+The projection field \(\Pi:X\to\mathcal B(\scrK)\) is assumed to be
+\(C^2\) in the operator norm.  Consequently, every tangent
+\(\partial_\mu\Pi\) and every channel
+\(B_\mu=\Pi^\perp(\partial_\mu\Pi)\Pi\) is bounded and defined on the full
+fiber.  All operators
+\begin{equation}
+  \Aop_\mu,\quad
+  \Vop_\mu,\quad
+  \DB_{B_\mu},\quad
+  \KB_{B_\mu}
+\end{equation}
+are therefore bounded on the moving decomposition
+\(\mathscr E_x\oplus\mathscr E_x^\perp\).  The curvature products
+\(B_\mu^*B_\nu\) require no additional domain hypotheses.
+
+\subsection{Schur--Feshbach block generators}
+
+In \cref{sec:effective-dynamics}, the coupling channel is assumed bounded:
+\(B\in\mathcal B(\scrHp,\scrHm)\).  The block generators
+\begin{equation}
+  \mathbb L^{(\varepsilon)}
+  =\begin{pmatrix}L_+&B^*\\ \varepsilon B&L_-\end{pmatrix}
+\end{equation}
+have the common domain
+\begin{equation}
+  \Dom\mathbb L^{(\varepsilon)}
+  =\Dom L_+\oplus\Dom L_-.
+\end{equation}
+For \(z\in\rho(L_-)\), the return
+\(\Sigma_B(z)=B^*(L_--z)^{-1}B\) is bounded on \(\scrHp\), and the Schur
+pencil
+\begin{equation}
+  S_\varepsilon(z)=L_+-z-\varepsilon\Sigma_B(z)
+\end{equation}
+is closed on \(\Dom L_+\).  The block inverse formula is asserted only when
+\(0\in\rho(S_\varepsilon(z))\).  No claim about an unbounded off-diagonal
+coupling is made in this pass.
+
+\subsection{Boundary response}
+
+In \cref{sec:boundary-response}, the response generator
+\(H:\Dom H\subseteq\scrX\to\scrX\) is self-adjoint and the port
+\(\Gamma\in\mathcal B(\scrE,\scrX)\) is bounded.  Hence
+\((H-z)^{-1}\Gamma\) is bounded for every \(z\in\CC\setminus\RR\), and
+\begin{equation}
+  M_\Gamma(z)=\Gamma^*(H-z)^{-1}\Gamma
+\end{equation}
+is defined on all of \(\scrE\).  The Cayley denominator
+\(M_\Gamma(z)+i\mathbf1_{\scrE}\) is boundedly invertible in the upper
+half-plane by \cref{lem:Cayley-denominator}.
+
+For \(s\ge0\), the Hilbert scale is
+\begin{equation}
+  \scrX_s=\Dom(\mathbf1+H^2)^{s/2},
+\end{equation}
+with anti-dual \(\scrX_{-s}\).  If
+\(\gamma:\scrX_s\to\scrE\) is bounded, then
+\(\gamma^*:\scrE\to\scrX_{-s}\), and functional calculus gives a bounded map
+\begin{equation}
+  e^{-\tau H^2/2}:\scrX_{-s}\longrightarrow\scrX
+\end{equation}
+for every \(\tau>0\).  Thus
+\(\Gamma_{\tau,\gamma}=e^{-\tau H^2/2}\gamma^*\) is an ordinary bounded
+port.  The internal operator \(H\) and its domain are unchanged by this
+smoothing.
+
+\subsection{Example domains}
+
+For the translation channel,
+\begin{equation}
+  D_x=-i\frac{d}{dx},
+  \qquad
+  \Dom D_x=H^1(\RR),
+  \qquad
+  \Dom D_x^2=H^2(\RR).
+\end{equation}
+For the oscillator channel, \(a\) and \(a^*\) have their standard maximal
+closed domains in \(\ell^2(\NN_0)\); the products \(aa^*=N+\mathbf1\) and
+\(a^*a=N\) are evaluated on the corresponding number-operator domains.
+For the quasiperiodic compact channel,
+\begin{equation}
+  D_{L,\vartheta}=-i\frac{d}{du},
+\end{equation}
+with domain
+\begin{equation}
+  \Dom D_{L,\vartheta}
+  =\{f\in H^1(-L,L):f(L)=e^{i\vartheta}f(-L)\}.
+\end{equation}
+Point evaluation at \(u_0\) is used only as a bounded functional on
+\(H^s(-L,L)\) with \(s>1/2\); its delta adjoint is smoothed before entering
+the \(L^2\) response.
+
+\subsection{Reference-state geometry}
+
+For \cref{thm:reference-fidelity}, the vector \(\psi\) lies in
+\(\Dom H_+\), so the expectation of \(H_+\) and the orthogonal decomposition
+are well defined.  Its gap corollary is stated on the form domain
+\(\Dom((H_+-E_0)^{1/2})\), where
+\(E_{\mathrm{exc}}(\psi)=\|(H_+-E_0)^{1/2}\psi\|^2\).  The rank-one projection \(P_0\) is bounded.
+No transition-channel domain condition is needed unless \(H_+\) is later
+identified with \(B^*B\) or another channel-derived operator.
+
+\subsection{Characteristic classes}
+
+The Chern--Weil section assumes that \(\Pi(x)\) has finite rank and is smooth
+enough for the operator-valued differential forms displayed there.  The
+fiber trace is then finite.  For infinite-rank bundles, trace-class or
+regularized characteristic forms require additional hypotheses and are not
+covered by \cref{thm:chern-character}.
+% ===== END INLINED FILE: appendices/A_domains.tex =====
+
+\clearpage
+
+% ===== BEGIN INLINED FILE: appendices/B_notation.tex =====
+\section{Notation index}
+\label{app:notation}
+
+\subsection{Fixed-channel algebra}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.28\textwidth} X}
+\toprule
+\textbf{Symbol} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\(\scrHp,\scrHm\) & Hilbert spaces & Positive and negative carrier spaces. \\
+\(\scrK\) & Hilbert/Krein space & \(\scrHp\oplus\scrHm\) with fundamental decomposition \(\scrHp\dsum\scrHm\). \\
+\(\fundJ\) & Bounded involution & \(\diag(\idop_+,-\idop_-)\). \\
+\(\Pp,\Pm\) & Orthogonal projections & Fixed projections onto \(\scrHp\) and \(\scrHm\). \\
+\(X^*\) & Hilbert adjoint & Ordinary adjoint in the positive Hilbert topology. \\
+\(X^\sharp\) & Krein adjoint & \(\fundJ X^*\fundJ\). \\
+\(B\) & Closed channel & \(B:\Dom B\subseteq\scrHp\to\scrHm\). \\
+\(d_B\) & Differential & \(\bigl(\begin{smallmatrix}0&0\\B&0\end{smallmatrix}\bigr)\). \\
+\(d_B^*\) & Codifferential & \(\bigl(\begin{smallmatrix}0&B^*\\0&0\end{smallmatrix}\bigr)\). \\
+\(\Aop_B\) & Oriented transition & \(-d_B\). \\
+\(\Vop_B\) & Oriented transition & \(d_B^*\). \\
+\(\DB_B\) & Hilbert/Hodge branch & \(\Vop_B-\Aop_B=d_B+d_B^*\). \\
+\(\KB_B\) & Krein/rotational branch & \(\Vop_B+\Aop_B=d_B^*-d_B\). \\
+\(\DeltaB_B\) & Positive Laplacian & \(\diag(B^*B,BB^*)\). \\
+\(\mathscr C_{+,B},\mathscr C_{-,B}\) & Ordered cycles & \(-\Vop_B\Aop_B\) and \(-\Aop_B\Vop_B\). \\
+\(u_B\) & Polar partial isometry & Polar phase in \(B=u_B|B|\). \\
+\(\pi_{+,B},\pi_{-,B}\) & Support projections & \(u_B^*u_B\) and \(u_Bu_B^*\). \\
+\(\Pi_B\) & Active-support projection & \(\diag(\pi_{+,B},\pi_{-,B})=\mathbf1_{(0,\infty)}(\DeltaB_B)\). \\
+\(\mathcal R_B\) & Polar reflection & \(\bigl(\begin{smallmatrix}0&u_B^*\\u_B&0\end{smallmatrix}\bigr)\), with \(\mathcal R_B^2=\Pi_B\). \\
+\(\mathcal I_B\) & Polar complex structure & \(\bigl(\begin{smallmatrix}0&u_B^*\\-u_B&0\end{smallmatrix}\bigr)\), with \(\mathcal I_B^2=-\Pi_B\). \\
+\(\widehat{\Aop}_B,\widehat{\Vop}_B\) & Normalized transitions & The oriented pair with \(B\) replaced by \(u_B\). \\
+\(H_B^0,H_B^1\) & Cohomology & \(\Ker B\) and \(\scrHm/\Ran B\). \\
+\(\overline H_B^1\) & Reduced cohomology & \(\scrHm/\overline{\Ran B}\). \\
+\(\ind B\) & Fredholm index & \(\dim\Ker B-\dim\Ker B^*\). \\
+\(\operatorname{Str}_{\fundJ}\) & Graded trace & \(\Tr(\fundJ\,\cdot)\) when defined. \\
+\(\ket0\) & Reference vector & A normalized vector in \(\Dom B\subseteq\scrHp\). \\
+\(\ket\Omega\) & Transition image & \(\Aop_B\ket0\in\scrHm\). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Moving projections and effective dynamics}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.28\textwidth} X}
+\toprule
+\textbf{Symbol} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\(\Pi_G\) & Symmetry-average projection & Haar projection onto the invariant subspace of a compact unitary action. \\
+\(\Pi(x),\Pi^\perp(x)\) & Moving projections & Smooth orthogonal projection and its complement. \\
+\(\mathfrak J_\Pi\) & Moving fundamental symmetry & \(2\Pi-\mathbf1\). \\
+\(B_\mu\) & Tangent channel & \(\Pi^\perp(\partial_\mu\Pi)\Pi\). \\
+\(\mathsf A_\mu,\mathsf V_\mu\) & Tangent transitions & Oriented pair associated with \(B_\mu\). \\
+\(\mathcal A_\mu^{(W)}\) & Local connection & \(W^*\partial_\mu W\), in the anti-Hermitian convention. \\
+\(\mathcal F_{\mu\nu}^{\Pi}\) & Projector curvature & \(\Pi[\partial_\mu\Pi,\partial_\nu\Pi]\Pi\). \\
+\(\mathscr C_{\mu\nu}^{\Pi}\) & Mixed return & \(B_\mu^*B_\nu=-\mathsf V_\mu\mathsf A_\nu\) on \(\operatorname{Ran}\Pi\). \\
+\(\mathbb L^{(\varepsilon)}\) & Block generator & \(\bigl(\begin{smallmatrix}L_+&B^*\\\varepsilon B&L_-\end{smallmatrix}\bigr)\). \\
+\(R_-(z)\) & Complementary resolvent & \((L_--z)^{-1}\). \\
+\(\Sigma_B(z)\) & Self-energy/return & \(B^*R_-(z)B\). \\
+\(L_{\mathrm{eff}}^{(\varepsilon)}(z)\) & Effective operator & \(L_+-\varepsilon\Sigma_B(z)\). \\
+\(S_\varepsilon(z)\) & Schur pencil & \(L_{\mathrm{eff}}^{(\varepsilon)}(z)-z\). \\
+\(\rho(g)\) & Group representation & Reserved for a symmetry-group action. \\
+\(U(\phi)\) & Scalar potential & Reserved for field-theoretic realizations. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Boundary response and realizations}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.28\textwidth} X}
+\toprule
+\textbf{Symbol} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\(\scrX\) & Internal Hilbert space & Carrier of the self-adjoint response generator. \\
+\(\scrE\) & Port Hilbert space & External input--output space. \\
+\(H\) & Response generator & Self-adjoint operator on \(\scrX\). \\
+\(\Gamma\) & Input map & Bounded map \(\scrE\to\scrX\). \\
+\(\Sigma_\Gamma\) & Compressed spectral measure & \(\Gamma^*E_H(\cdot)\Gamma\). \\
+\(M_\Gamma(z)\) & Herglotz response & \(\Gamma^*(H-z)^{-1}\Gamma\). \\
+\(C_\Gamma(t)\) & Time response & \(\Gamma^*e^{-itH}\Gamma\). \\
+\(\mathcal K_M(z,w)\) & Herglotz kernel & \((M_\Gamma(z)-M_\Gamma(w)^*)/(z-\bar w)\). \\
+\(\mathscr S_\Gamma(z)\) & Schur response & Cayley transform of \(M_\Gamma(z)\). \\
+\(\mathcal K_{\mathscr S}(z,w)\) & de Branges--Rovnyak kernel & \((\mathbf1-\mathscr S_\Gamma(z)\mathscr S_\Gamma(w)^*)/[-i(z-\bar w)]\). \\
+\(\mathscr X_{\min}(H,\Gamma)\) & Reachable subspace & Closed span of \((H-z)^{-1}\Gamma e\). \\
+\(\scrX_{\pm s}(H)\) & Hilbert scale & Scale generated by \((\mathbf1+H^2)^{s/2}\). \\
+\(\Gamma_{\tau,\gamma}\) & Smoothed port & \(e^{-\tau H^2/2}\gamma^*\). \\
+\(D_{L,\vartheta}\) & Compact first-order generator & \(-i\,d/du\) with quasiperiodic boundary condition. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Reference-state and topological notation}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.28\textwidth} X}
+\toprule
+\textbf{Symbol} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\(P_0\) & Rank-one projection & \(\ket0\bra0\) when \(\ket0\) is a normalized ground state. \\
+\(Q_0\) & Complementary projection & \(\mathbf1-P_0\). \\
+\(v_\psi\) & Reference fidelity & \(|\braket0\psi|^2\). \\
+\(\eta_\psi\) & Conditional excitation vector & \(Q_0\psi/\sqrt{1-v_\psi}\). \\
+\(Z_\psi\) & Conditional excitation scale & \(\inner{\eta_\psi}{(H_+-E_0)\eta_\psi}\). \\
+\(\operatorname{ch}_k(\mathscr E)\) & Characteristic form & Degree-\(2k\) component generated from \(\mathcal F^\Pi\). \\
+\(c_1(\mathscr E)\) & Integral characteristic class & First Chern class of a finite-rank selected bundle. \\
+\(\mathfrak R\) & Realization datum & Tuple collecting only the carrier, channel, projection, generator, and port data used by a concrete model. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+% ===== END INLINED FILE: appendices/B_notation.tex =====
+
+
+\clearpage
+\begin{thebibliography}{99}
+\bibitem{AzizovIokhvidov}
+T.~Ya. Azizov and I.~S. Iokhvidov,
+\emph{Linear Operators in Spaces with an Indefinite Metric},
+Wiley, 1989.
+
+\bibitem{Bognar}
+J.~Bogn\'ar,
+\emph{Indefinite Inner Product Spaces},
+Springer, 1974.
+
+\bibitem{Kato}
+T.~Kato,
+\emph{Perturbation Theory for Linear Operators},
+Springer, 2nd ed., 1995.
+
+\bibitem{ReedSimon}
+M.~Reed and B.~Simon,
+\emph{Methods of Modern Mathematical Physics, Vol. I: Functional Analysis},
+Academic Press, 1980.
+
+\bibitem{BruningLesch}
+J.~Br\"uning and M.~Lesch,
+``Hilbert complexes,''
+\emph{Journal of Functional Analysis} \textbf{108} (1992), 88--132,
+\href{https://doi.org/10.1016/0022-1236(92)90147-B}{doi:10.1016/0022-1236(92)90147-B}.
+
+\bibitem{Donoghue}
+W.~F. Donoghue, Jr.,
+\emph{Monotone Matrix Functions and Analytic Continuation},
+Springer, 1974.
+
+\bibitem{Aronszajn}
+N.~Aronszajn,
+``Theory of reproducing kernels,''
+\emph{Transactions of the American Mathematical Society} \textbf{68}
+(1950), 337--404,
+\href{https://doi.org/10.1090/S0002-9947-1950-0051437-7}{doi:10.1090/S0002-9947-1950-0051437-7}.
+
+\bibitem{deBrangesRovnyak}
+L.~de Branges and J.~Rovnyak,
+\emph{Square Summable Power Series},
+Holt, Rinehart and Winston, 1966.
+
+
+\bibitem{KobayashiNomizu}
+S.~Kobayashi and K.~Nomizu,
+\emph{Foundations of Differential Geometry, Vol. II},
+Wiley, 1969.
+
+\bibitem{Husemoller}
+D.~Husemoller,
+\emph{Fibre Bundles},
+Springer, 3rd ed., 1994.
+\end{thebibliography}
+
+\end{document}
