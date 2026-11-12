@@ -13,6 +13,8 @@ This repository is the shared working source for **LG** and **TAUM**. The files 
 
 The initial import on November 11, 2026 contains the November 10 manuscript revisions, unchanged. Later review suggestions have not been silently incorporated into that baseline. The manuscripts distinguish mathematical results, realization assumptions, interpretations, and open problems; their working-draft status applies throughout.
 
+The November 12 housekeeping update clarifies finite-isometric correspondence versus evolution and the pair input Hamiltonian, adds the Gilbert and Kalman attribution to the finite-dimensional response discussion, corrects the TAUM abstract attribution, and updates LG's citation of the public TAUM working manuscript. The original axioms, results and numerical examples are unchanged. Both self-contained sources compile without warnings (LG: 112 pages; TAUM: 59 pages), the edited pages have been visually inspected, and all 41 numerical checks pass, including the full orbital convergence check.
+
 Each manuscript includes its bibliography and is maintained as a single self-contained TeX file suitable for Overleaf. The initial import contains the sources; verification scripts and compiled release PDFs can be added separately.
 
 ### Building

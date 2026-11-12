@@ -258,7 +258,7 @@
 \author{Alexander Yiannopoulos\\[2pt]
 \small A$\lvert\Omega\rangle$ Institute, New Orleans, Louisiana, USA\\
 \small\texttt{ayianno@ao.institute}}
-\date{July 2026; revised November 10, 2026\\[5pt]\small Canonical reference manuscript}
+\date{July 2026; revised November 12, 2026\\[5pt]\small Canonical reference manuscript}
 
 \begin{document}
 \maketitle
@@ -7280,6 +7280,12 @@ Expansion of the rotated pair states gives
   \qquad A_{\theta}^*A_{\theta}=I_{\scrHP}.
   \label{eq:pair-channel}
 \end{equation}
+In the basis $(g_\Psi,e_\Psi)$, the specified input generator is
+$H_\Psi=\diag(-j,j)$, whereas
+$A_\theta^*H_\Phi A_\theta=\diag(-j,ju^2)$.
+Thus the input generator is the restriction to the original paired
+plane, rather than the compression through the rotated preparation.
+
 In the remainder of this example, $A=A_{\theta}$ has codomain $\scrHF$.
 Write $\widetilde A=\iota A$ for the same preparation into $\mathcal F_2$,
 where $\iota$ is the inclusion.  One can recover $\scrHF$ from the
@@ -7343,6 +7349,27 @@ $\rho_t=\proj{e^{-itH_{\Phi}/\hbar}b}$.  Direct evolution gives
 \end{equation}
 At $\theta=\pi/8$ and $t=\pi\hbar/j$, the weight is one.
 Ground preservation and departure from the direct range therefore coexist.
+
+The Born correspondence remains exact for matched states in the
+range of $A$; ground compatibility alone imposes no intertwining
+of the full evolutions.  In finite dimensions, for an isometry
+$A:\scrHP\to\scrHF$ and self-adjoint $H_\Phi$, all prepared states
+remain in $\Ran A$ at all times exactly when
+\begin{equation}
+ (I_{\scrHF}-AA^*)H_\Phi A=0,
+ \qquad\text{equivalently}\qquad
+ H_\Phi A=A(A^*H_\Phi A).
+ \label{eq:finite-preparation-invariance}
+\end{equation}
+Indeed, this condition makes the preparation range reducing,
+and the induced input generator is $A^*H_\Phi A$.
+It is therefore equivalent to the existence of a unitary input
+group $U(t)$ satisfying
+$e^{-itH_\Phi/\hbar}A=AU(t)$.
+For the specified input generator $H_\Psi$, intertwining requires
+the additional equality $A^*H_\Phi A=H_\Psi$.
+Acquiring defect weight means that the evolving output has left
+the range on which this paired-state correspondence applies.
 
 For a normalized state $\rho$ supported on $\scrHF$,
 \eqref{eq:pair-readout-action} gives
@@ -8631,8 +8658,10 @@ Ph.D. dissertation, Emory University, 2020.
 
 \bibitem{TAUM2026}
 A.~Yiannopoulos,
-\emph{Toward a Universal Model},
-internal manuscript, July 2026.
+\emph{Formalizing Buddhist (Meta)physics: Toward a Universal Model},
+public working manuscript, November 2026,
+\href{https://github.com/AlphaOmega-Institute/AlphaOmega-Theory/blob/main/manuscripts/taum/Toward_a_Universal_Model_Self_Contained.tex}
+{AlphaOmega-Theory repository}.
 
 \bibitem{Singh2026PairTransfer}
 T.~P. Singh,

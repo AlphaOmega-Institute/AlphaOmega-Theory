@@ -152,7 +152,7 @@
 \author{Alexander Yiannopoulos\\[2pt]
 \small A$\lvert\Omega\rangle$ Institute, New Orleans, Louisiana, USA\\
 \small\texttt{ayianno@ao.institute}}
-\date{July 18, 2026; revised November 10, 2026}
+\date{July 18, 2026; revised November 12, 2026}
 
 \begin{document}
 \maketitle
@@ -177,11 +177,12 @@ Schur--Feshbach operator
 B^*(L_--z)^{-1}B\).  A bounded port into a self-adjoint realization gives
 an operator-valued Herglotz response, a Schur Cayley transform, and positive
 Nevanlinna and de Branges--Rovnyak kernels; minimal realizations are unique up
-to unitary equivalence.  A symmetry-resolved response theorem
-distinguishes dynamically reached final defects from permanently
-unobserved directions, and an explicit three-state example preserves
-a ground while exhibiting complete departure from a two-dimensional
-preparation range.  Gaussian functional calculus regularizes
+to unitary equivalence.  The response-minimal carrier separates
+dynamically reached final defects from permanently unobserved ambient
+directions.  A symmetry-resolved response theorem describes departure
+from a port, and an explicit three-state example preserves a ground
+while exhibiting complete departure from a two-dimensional preparation
+range.  Gaussian functional calculus regularizes
 singular boundary inputs without changing the internal spectrum.  A supplied
 ground state also gives the exact reference-fidelity decomposition
 \(E_{\mathrm{exc}}(\psi)=Z_\psi(1-|\braket0\psi|^2)\) off the reference ray,
@@ -3331,6 +3332,13 @@ Both spaces are finite-dimensional and the direct range lies in \(\Hmin\).
 Subtracting their dimensions proves the formula.
 \end{proof}
 
+After restriction to the finite-dimensional active port, the identity
+$\dim\Hmin=\sum_j\operatorname{rank}R_j$ is Gilbert's
+simple-pole minimal-realization formula applied to a positive spectral
+measure \cite[Theorem~7]{Gilbert1963}.  The final-defect count
+subtracts the dimension of the direct preparation range from that
+minimal dimension.
+
 The count concerns a specified port and its complete response.  An
 invertible change of input coordinates preserves it.  Positivity gives
 \(\Ran(\sum_j R_j)=\sum_j\Ran R_j\), since the two finite-dimensional
@@ -3375,6 +3383,12 @@ all resolvents gives the spectral projections and hence the group.
 The displayed condition says exactly that $x$ is orthogonal to
 this span.
 \end{proof}
+
+In finite dimensions, this is the controllability--observability
+duality for a system with input map $\Gamma$ and output map
+$\Gamma^*$ \cite[Sec.~5]{Kalman1963}.  The spectral-theorem argument
+above establishes the stated version for a possibly
+infinite-dimensional self-adjoint realization.
 
 The conclusion concerns the stated port and all real times.  It
 does not assert detectability in every finite observation window
@@ -4675,6 +4689,20 @@ Wiley, 1969.
 D.~Husemoller,
 \emph{Fibre Bundles},
 Springer, 3rd ed., 1994.
+\bibitem{Gilbert1963}
+E.~G. Gilbert,
+``Controllability and observability in multivariable control systems,''
+\emph{Journal of the Society for Industrial and Applied Mathematics,
+Series A: Control} \textbf{1}(2) (1963), 128--151,
+\href{https://doi.org/10.1137/0301009}{doi:10.1137/0301009}.
+
+\bibitem{Kalman1963}
+R.~E. Kalman,
+``Mathematical description of linear dynamical systems,''
+\emph{Journal of the Society for Industrial and Applied Mathematics,
+Series A: Control} \textbf{1}(2) (1963), 152--192,
+\href{https://doi.org/10.1137/0301010}{doi:10.1137/0301010}.
+
 \end{thebibliography}
 
 \end{document}
