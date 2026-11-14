@@ -3,6 +3,9 @@
 Working input for a merged outline. It lists every formal statement in the two manuscripts so that each result can be
 given one home, with what it needs and what it contributes. The manuscripts are not modified by anything here.
 
+The first proposed organization and section-level migration map are in [the consolidation outline](../OUTLINE.md).
+That map is not a completed proof-by-proof dependency audit.
+
 ```sh
 python consolidation/inventory/inventory.py     # from the repository root; rewrites statements.csv
 ```
@@ -12,7 +15,7 @@ Standard library only.
 | File | What it is |
 | --- | --- |
 | `inventory.py` | Reads both manuscript sources and writes `statements.csv` |
-| `statements.csv` | Generated: one row per theorem-like environment (235 rows) |
+| `statements.csv` | Generated: one row per theorem-like environment (281 rows, including model choices and doctrinal identifications) |
 | `annotations.csv` | Written by hand: the reviewed columns, keyed by manuscript and label |
 
 ## Columns
@@ -49,8 +52,8 @@ Two examples show both directions of error.
   projections in raw notation. The pattern now includes raw notation and the three words above, and can still miss
   others.
 
-Citations are a weaker guide still. Of LG's 124 statements other than its axioms, 14 cite an axiom directly or through
-other statements, while 64 show ground objects. A missing citation is not a missing hypothesis: standing assumptions
+Citations are a weaker guide still. Of LG's 170 statements other than its axioms, 16 cite an axiom directly or through
+other statements, while 90 show ground objects. A missing citation is not a missing hypothesis: standing assumptions
 and earlier definitions legitimately carry it. The point for the consolidated text is to make each result's hypotheses
 identifiable without repeating the axiom system in every theorem.
 
@@ -61,7 +64,16 @@ Neither flag measures dependence on injectivity or on strict excess.
 | | Statements | With a proof | With an explicit status label |
 | --- | --- | --- | --- |
 | TAUM | 106 | 52 | 0 (TAUM uses a summary table) |
-| LG | 129 | 71 | 13 |
+| LG | 175 | 71 | 14 |
+
+LG's total includes 29 doctrinal identifications and 17 model choices. Both kinds are part of the consolidation;
+excluding them would omit formal statements of the interpretive commitments and selected models. The extractor
+refuses any used, declared theorem-like environment that is not in its list of supported kinds.
 
 Six statements are reviewed so far. Add a row to `annotations.csv` after reading a proof; the script refuses annotations
 whose label does not exist.
+
+Thirteen TAUM remarks have no label. Their temporary annotation keys are `@` followed by the source line
+number (for example, `@100`); the CSV retains a blank label and a separate line column. Such keys are not stable across
+source edits. Assign or reconcile stable labels when those entries are migrated, rather than treating line numbers as
+permanent identifiers.

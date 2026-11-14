@@ -29,7 +29,7 @@ ROOT = HERE.parents[1]
 SRC = {"TAUM": ROOT / "manuscripts/taum/Toward_a_Universal_Model_Self_Contained.tex",
        "LG": ROOT / "manuscripts/lg/LG_Master_Unified.tex"}
 KINDS = ("theorem", "proposition", "lemma", "corollary", "definition", "axiom", "assumption",
-         "example", "remark", "openquestion")
+         "example", "remark", "openquestion", "modelchoice", "identification")
 ENV = re.compile(r"\\begin\{(" + "|".join(KINDS) + r")\}(\[[^\]]*\])?(.*?)\\end\{\1\}", re.S)
 REF = re.compile(r"\\(?:c|C)?(?:ref|eqref)\{([^}]*)\}")
 LAB = re.compile(r"\\label\{([^}]*)\}")
@@ -42,6 +42,13 @@ def parse(ms, path):
     text = path.read_text()
     start = text.index("\\begin{document}")
     body = text[start:text.index("\\begin{thebibliography}")]
+    # The interpretive and model-choice environments are formal statements too.
+    # Refuse to silently omit a newly declared statement kind used in a source.
+    declared = set(re.findall(r"\\newtheorem\*?\{([^}]+)\}", text[:start]))
+    used = set(re.findall(r"\\begin\{([^}]+)\}", body))
+    missing = (declared & used) - set(KINDS)
+    if missing:
+        raise ValueError(f"{ms}: unhandled statement environments: {sorted(missing)}")
     line0 = text.count("\n", 0, start)
     secs = [(m.start(), m.group(1)) for m in re.finditer(r"\\section\{([^}]*)\}", body)]
     out = []
