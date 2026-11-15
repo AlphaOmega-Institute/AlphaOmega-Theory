@@ -6,7 +6,7 @@ proposal.
 
 ## Source and review scope
 
-The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Three technical sections have been drafted: preparation and its dynamical reach, polar supports and matched observables, and neutral graphs and relative phase. Their numbering in the working draft can change as other result families are integrated.
+The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Four technical sections have been drafted: preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, and the ground correspondence. Their numbering in the working draft can change as other result families are integrated.
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
@@ -67,7 +67,7 @@ The working sections on polar supports and neutral graphs now give the supportwi
 | --- | --- |
 | Polar reflection and rotation, the neutral graph and its projectivization, sector factorization, phase blindness | II.2, drafted in `sec:neutral-graphs-phase`. The odd-branch factorizations and normalized transitions remain with their operator domains in the common architecture. |
 | `choice:active-physical-observable-algebra`, `choice:correspondence-versus-generation` | II.2 states the two selections. III.3 treats generators and V applies the choices to cognition. |
-| `cor:ground-inclusive-BRLC` | III.1, with the reference and bridge hypotheses |
+| `cor:ground-inclusive-BRLC` | III.1, drafted in `sec:ground-correspondence` with the reference and bridge hypotheses |
 | `id:BRLC-doctrinal`, `id:one-event-two-compressions` | V, after the mathematical graph and paired representation |
 | `q:operational-structural-phase` | Stated at the end of the sector-factorization discussion in II.2; carry to VI as the open question of operational access to the structural phase operators. |
 
@@ -83,6 +83,8 @@ These are optional extensions of the core, not a cumulative list every realizati
 a Hamiltonian ground, uniqueness, and a spectral gap. Develop reference fidelity and energy estimates under the
 assumptions they actually use. Introduce selected-line bridges, restricted polar orientations, weak versus strong
 compatibility, the reference-plane Pauli/phase geometry, and ground inclusion in the active graph. LG's R1 and R2 select a unique cyclic ground in each supplied representation. R3 sends the input ground to a nonzero multiple of the output ground. Keep strong polar compatibility under its additional hypothesis. V adopts these three conditions alongside R4 and R5 from II.3.
+
+The working ground section (`sec:ground-correspondence`) integrates LG’s restricted ground channel, five strong-compatibility conditions and ground-inclusive correspondence with TAUM’s conditional reference-fidelity energy identity and gap bound. It explains the cognitive interpretation of the weak bridge and tests whether it places those grounds on the aligned graph. The fuller ground-plane geometry, ground-state algebras and the doctrinal development in V remain to be migrated.
 
 **III.2 Supplied symmetries and moving subspaces.** Compact symmetry averaging, invariant compression, moving
 projection fields, frame covariance, Grassmann curvature, and characteristic classes. The group/action and, for

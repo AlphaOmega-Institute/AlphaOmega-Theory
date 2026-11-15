@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-47 passed, 0 failed, 1 skipped in ...s
+49 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `48 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `50 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -42,6 +42,13 @@ changes to the mathematics under an unchanged label still require review.
 blocks, so their port weights sum to the total spectral mass without double-counting.
 It also checks that numerically coincident eigenvalues are merged at the declared
 absolute spectral tolerance.
+
+### Ground correspondence
+
+| Check (`test_ground_bridge.py`) | Establishes | Labels |
+| --- | --- | --- |
+| `test_raw_ground_bridge_and_polar_ground_measurement` | Two choices of ground for the same weighted channel satisfy the forward bridge. The output-ground measurement under polar transport gives probability 9/10 or 1. The five strong conditions fail or hold together in those cases. | UM `prop:ground-polar-compatibility`, LG `thm:ground-channel-polar`, `thm:strong-ground-equivalences` |
+| `test_normalizing_polar_image_can_hide_a_kernel_component` | For a projection, a ground with a kernel component maps onto the designated output ray with squared norm 1/2. Normalizing the image discards that loss. | UM `prop:ground-polar-compatibility` |
 
 ### Pair model — LG, `sec:finite-pair-realization`
 
@@ -137,6 +144,7 @@ checks/
   run_all.py            runner (no dependencies beyond NumPy and SciPy)
   test_labels.py        cited labels must exist in the manuscripts
   test_linalg.py        nearby eigenvalues must not double-count spectral mass
+  test_ground_bridge.py raw and polar transport of ground states
   lib/                  Fock-space operators and small linear-algebra helpers
   pair/                 pair model and its checks
   orbital/              orbital model and its checks
