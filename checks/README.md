@@ -49,6 +49,7 @@ absolute spectral tolerance.
 | --- | --- | --- |
 | `test_raw_ground_bridge_and_polar_ground_measurement` | Two choices of ground for the same weighted channel satisfy the forward bridge. The output-ground measurement under polar transport gives probability 9/10 or 1. The five strong conditions fail or hold together in those cases. | UM `prop:ground-polar-compatibility`, LG `thm:ground-channel-polar`, `thm:strong-ground-equivalences` |
 | `test_normalizing_polar_image_can_hide_a_kernel_component` | For a projection, a ground with a kernel component maps onto the designated output ray with squared norm 1/2. Normalizing the image discards that loss. | UM `prop:ground-polar-compatibility` |
+| `test_path_ground_measurement_depends_on_cell_sizes` | Path Hamiltonians select constant grounds. Pullback across cells of sizes 1 and 4 gives ground-test probability 9/10 and excess energy 1/10. Equal cell sizes give probability 1 and zero excess energy. | UM `prop:ground-polar-compatibility`, `eq:ground-return-energy` |
 
 ### Pair model — LG, `sec:finite-pair-realization`
 

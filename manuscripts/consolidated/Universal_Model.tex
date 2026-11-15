@@ -436,7 +436,7 @@ Indeed $G_\eta^*z_*=-e_\Psi/2$. The vector has unit Hilbert norm and zero Krein 
 \section{When the two grounds form a matched pair}
 \label{sec:ground-correspondence}
 
-R1 and R2 let each sector select its own ground. R3 says that applying $A$ to the physical ground lands on the appearance ground. In the cognitive interpretation the two selections have different meanings. The image of the physical vacuum under the awareness map is called \emph{awareness of emptiness}. The ground selected by the Hamiltonian on the appearance side is called \emph{intrinsic luminosity}. R3 proposes that these descriptions pick out the same ray. If one now measures whether the appearance is in its ground, which state on the physical side does that measurement pick out? Section~\ref{sec:polar-matched-observables} gives a unique partner for the ground projection on the active input space. It takes a further condition for that partner to be the physical ground projection.
+R1 and R2 let each sector select its own ground. In the cognitive interpretation, the image of the physical vacuum under $A$ is called \emph{relative luminosity}, or \emph{awareness of emptiness}. The appearance-side Hamiltonian selects the luminous ground intrinsically. R3 says that these two selections give the same ray. This is the sense in which awareness of emptiness is identified with the natural state. If one now measures whether the appearance is in its ground, which state on the physical side does that measurement pick out? Section~\ref{sec:polar-matched-observables} gives a unique partner for the ground projection on the active input space. Identifying that partner with the physical ground projection is an optional condition beyond R1--R5.
 
 \subsection{Restricting to the grounds and taking the full polar map}
 
@@ -472,25 +472,40 @@ Under the weak bridge $y\in\Ran A\subseteq D$, so it always has a unique unit pa
 \begin{equation}
  r=u^*y=\frac{|A|x}{a},\qquad
  u^*P_y u=P_r,\qquad
- v=|\langle x,r\rangle|^2
+ F_x=|\langle x,r\rangle|^2
    =\frac{\langle x,|A|x\rangle^2}{\|Ax\|^2}.
  \label{eq:actual-ground-partner}
 \end{equation}
-The first equality follows by applying $u^*$ to $Ax=ay$ and using $|A|x\in S$. The number $v$ is the probability that a measurement of $P_x$ on the returned state $r$ finds the input reference. Because $|A|$ is positive and $Ax\ne0$, $\langle x,r\rangle$ is real and strictly positive. Thus $v=1$ exactly when $r=x$, equivalently when the grounds are strongly compatible. When that holds, the matched-probability theorem includes the two ground projections. Otherwise the transported measurement still matches exactly, with $P_r$ as its input effect.
+The first equality follows by applying $u^*$ to $Ax=ay$ and using $|A|x\in S$. The ground fidelity $F_x$ is the probability that the partner state $r$ passes the input ground test $P_x$. Because $|A|$ is positive and $Ax\ne0$, $\langle x,r\rangle$ is real and strictly positive. Thus $F_x=1$ exactly when $r=x$, equivalently when the grounds are strongly compatible. When that holds, the matched-probability theorem includes the two ground projections. Otherwise the transported measurement still matches exactly, with $P_r$ as its input effect.
 
-Here the reference vectors can do further work as actual grounds. Suppose $H_\Psi$ is self-adjoint and bounded below with $H_\Psi x=E_0x$ at the bottom of its spectrum. If $r\in\operatorname{Dom}H_\Psi$ and $v<1$, let $\eta=(I-P_x)r/\sqrt{1-v}$. Its norm is one. The reference-fidelity identity gives
+Here the reference vectors can do further work as actual grounds. Suppose $H_\Psi$ is self-adjoint and bounded below with $H_\Psi x=E_0x$ at the bottom of its spectrum. If $r\in\operatorname{Dom}H_\Psi$ and $F_x<1$, let $\eta=(I-P_x)r/\sqrt{1-F_x}$. Its norm is one. The reference-fidelity identity gives
 \begin{equation}
  \langle r,(H_\Psi-E_0 I)r\rangle
-   =(1-v)\langle\eta,(H_\Psi-E_0 I)\eta\rangle .
+   =(1-F_x)\langle\eta,(H_\Psi-E_0 I)\eta\rangle .
  \label{eq:ground-return-energy}
 \end{equation}
-Indeed $H_\Psi-E_0 I$ annihilates $x$, so the cross terms vanish. At $v=1$ the excess energy is zero. If the spectrum on $x^\perp$ starts at least $\Delta>0$ above $E_0$, a measured mean excess energy at most $\epsilon$ bounds $1-v$ by $\epsilon/\Delta$. A gap of that size is an additional physical input. The selection of the grounds, the return operation and the measurement of energy would each need a realization.
+Indeed $H_\Psi-E_0 I$ annihilates $x$, so the cross terms vanish. At $F_x=1$ the excess energy is zero. If the spectrum on $x^\perp$ starts at least $\Delta>0$ above $E_0$, a measured mean excess energy at most $\epsilon$ bounds $1-F_x$ by $\epsilon/\Delta$. A gap of that size is an additional physical input. The selection of the grounds, the return operation and the measurement of energy would each need a realization.
 
-For a finite example take the filter of Section~\ref{sec:polar-matched-observables}, $A(z_1,z_2)=(z_1/2,z_2,0)$ from $\C^2$ to $\C^3$. Specify the input and output Hamiltonians as $I-P_x$ and $I-P_y$, respectively, with
+\subsection{Grounds selected by two path Hamiltonians}
+
+Take a path of two sites and a path of five sites, with the counting inner product on each. On either path let the Hamiltonian have quadratic form
 \[
- x=(1,1)/\sqrt2,\qquad y=(1,2,0)/\sqrt5 .
+ \langle f,H_n f\rangle=\tfrac12\sum_{k=1}^{n-1}|f(k+1)-f(k)|^2 .
 \]
-Both grounds are unique and cyclic for the full matrix algebras. The raw map gives $Ax=\sqrt{5/8}\,y$, so the weak bridge holds. R4 and R5 hold as well. The polar isometry simply includes the first two coordinates, so the input partner of $y$ is $r=(1,2)/\sqrt5$. Its probability of passing the input ground test is $9/10$, and its mean excess energy is $1/10$ in the chosen units. All five realization hypotheses can therefore hold while the output ground test selects a different input ray. By comparison, the symmetric pair preparation in Section~\ref{subsec:pair-grounds-excitations} is an isometry and carries the physical ground to the output ground. There the same pair satisfies both correspondences. Which case a model of an observer realizes depends on how its awareness map weights the input ground.
+Its energy vanishes exactly on the constant functions. The two Hamiltonians therefore select the unit grounds $x=(1,1)/\sqrt2$ and $y=(1,1,1,1,1)/\sqrt5$ before a map between the paths is chosen. Each ground is cyclic even for the diagonal site algebra, since multiplying a nonzero constant by a site function produces any desired vector. Take the full matrix algebras for measurements, so that both ground tests are available.
+
+Divide the fine path into two cells. Pull a coarse function back by copying its value to every site of its cell, with an overall factor of $1/2$. For cells of sizes one and four this gives
+\[
+ A(z_1,z_2)=\tfrac12(z_1,z_2,z_2,z_2,z_2),\qquad
+ |A|=\operatorname{diag}(1/2,1),\qquad Ax=\sqrt{5/8}\,y .
+\]
+Every such partition preserves constants, so the forward ground correspondence follows from the copying rule. Both cells are nonempty, so $A$ is injective, and its range has codimension three. Thus R1--R5 hold. The polar isometry sends a coarse site to the \emph{normalized} constant on its cell. It follows that $u^*y=(1,2)/\sqrt5$: the input partner of the fine ground passes the coarse ground test with probability $9/10$. Its mean excess energy is $1/10$, since the two-site Hamiltonian has gap one.
+
+More generally, for two cells of sizes $m,n>0$ with the same counting convention, the two entries of $u^*y$ are proportional to $\sqrt m$ and $\sqrt n$. The ground fidelity is
+\[
+ F_x=\frac{(\sqrt m+\sqrt n)^2}{2(m+n)} .
+\]
+The ground tests match exactly when the cells have equal size. This conclusion depends on the input inner product: weighting the coarse sites by the sizes of their cells makes the unscaled copying map an isometry. In the pair preparation of Section~\ref{subsec:pair-grounds-excitations}, the preparation is already isometric, so once it takes one ground to the other their tests match as well.
 
 \begingroup\small
 \begin{thebibliography}{9}
