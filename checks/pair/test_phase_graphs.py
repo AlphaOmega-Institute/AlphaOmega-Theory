@@ -10,7 +10,7 @@ from pair.model import PairModel
 LABELS = {
     "UM": ["eq:polar-graph-projector", "prop:phase-readout",
            "eq:graph-evolution-phase", "eq:pair-graph-departure",
-           "eq:quarter-phase-readout", "eq:operational-phase-blindness"],
+           "eq:rotated-sector-imbalance", "eq:operational-phase-blindness"],
 }
 
 
@@ -75,7 +75,7 @@ def test_phase_readout_depends_on_active_cross_block_and_input():
         assert_allclose(np.vdot(psi, compressed @ psi), -np.sin(phase) / 2, atol=1e-12)
 
 
-def test_quarter_rotation_and_phase_blind_sector_swap():
+def test_pi_over_four_pulse_and_pi_over_two_swap():
     # Both sectors are written in active orthonormal bases.
     v = np.array([[0, 1j], [1, 0]])
     grading = block_diag(np.eye(2), -np.eye(2))

@@ -76,7 +76,7 @@ built on the 16-dimensional Fock space (`pair/model.py`).
 | --- | --- | --- |
 | `test_phase_graph_projectors_and_sector_population` | Graph projections, Hilbert normalization, Krein neutrality, the sine and cosine readouts, and paired effects across sector populations for fixed content | `eq:polar-graph-projector`, `prop:phase-readout` |
 | `test_phase_readout_depends_on_active_cross_block_and_input` | An ambient cross block can vanish on the active support. A nonzero active cross block can detect phase for one input and give a constant expectation for another. | `prop:phase-readout` |
-| `test_quarter_rotation_and_phase_blind_sector_swap` | The polar quarter rotation converts an input-sector count into a cosine readout. A sector swap reverses the grading while preserving the algebra of phase-blind effects. | `eq:quarter-phase-readout`, `eq:operational-phase-blindness` |
+| `test_pi_over_four_pulse_and_pi_over_two_swap` | The π/4 pulse gives a signed mean of cos φ and an input-sector probability of (1 + cos φ)/2. The π/2 swap reverses the grading and preserves the block-diagonal readouts. | `eq:rotated-sector-imbalance`, `eq:operational-phase-blindness` |
 | `test_pair_phase_graph_evolution_and_departure` | The minimal completion preserves the graphs; an input energy shift rotates their phase. At bare complete transfer the evolved excitation has squared projection 1/4 on every original phase graph. | `eq:graph-evolution-phase`, `eq:pair-graph-departure` |
 
 ### Orbital model — LG, `sec:orbital-ground-source`
