@@ -189,7 +189,7 @@ Retain the densely defined closed map $A=u|A|$ of Section~\ref{sec:preparation-e
 \end{equation}
 Here $u$ is the bounded polar partial isometry that vanishes on $\ker A$. Its restriction $V=u|_S:S\to D$ is unitary, including when $A$ has a kernel or a nonclosed range. All probabilities below use the positive Hilbert inner products. Neither sector needs a ground vector.
 
-\begin{proposition}[Born probabilities for matched states and effects]
+\begin{proposition}[Born Rule Locus Correspondence, effect form]
 \label{prop:matched-born-probabilities}
 For a density operator $\rho$ on $S$ and an effect $0\leq E\leq I_S$, put $\rho_D=V\rho V^*$ and $E_D=VEV^*$ on $D$. Then
 \begin{equation}
@@ -225,19 +225,38 @@ A positive-operator-valued measure $E$ on $S$ assigns an effect to each measurab
 \end{equation}
 for any output density operator $\sigma$. The enlarged measurement is normalized and inherits countable additivity by unitary transport and direct sum. If the input measurement is projection-valued, so is this completion.
 
-Paired preparations determine an ambient effect only through its compression to $D$. For example, an apparatus could assign all of $D^\perp$ to one existing outcome of a finite measurement. It would agree with the separate-outcome detector on every paired preparation. The same freedom concerns which observables are available. A realization may select a unital algebra $\mathcal M\subseteq\mathcal B(S)$ of admissible input observables. Its matched representation consists of the operators $X\oplus VXV^*$ on $S\oplus D$, with $X\in\mathcal M$. This selection specifies which questions are paired; the allowed generators on either sector require their own specification.
+Paired preparations determine an ambient effect only through its compression to $D$. For example, an apparatus could assign all of $D^\perp$ to one existing outcome of a finite measurement. It would agree with the separate-outcome detector on every paired preparation. The same freedom concerns which observables are available. A realization may select a unital $C^*$-subalgebra $\mathcal M\subseteq\mathcal B(S)$ of admissible input observables. Its matched representation consists of the operators $X\oplus VXV^*$ on $S\oplus D$, with $X\in\mathcal M$. This selection specifies which questions are paired; the allowed generators on either sector require their own specification.
 
 \subsection{The same detector after waiting}
 
+An input state prepared by $V$ and evolved by $U(t)$ reaches the subspace $D_t=U(t)D$ through the isometry $V_t=U(t)V$. For a fixed detector with outcome effects $F_k$ on the output, its probabilities on any input state $\rho$ are given by the input measurement
+\[
+ M_k(t)=V_t^*F_kV_t,\qquad
+ \Tr(\rho M_k(t))=\Tr(V_t\rho V_t^*F_k),\qquad \sum_k M_k(t)=I_S .
+\]
+On $D_t$ the compression of $F_k$ is exactly the transported effect $V_tM_k(t)V_t^*$. Thus the Born correspondence continues to hold on the evolved support. The input question answered by a fixed detector can change during the wait.
+
 In the pair model let $Z_{\mathrm{in}}=\operatorname{diag}(1,-1)$ in the input pair-occupation basis. On $\mathcal F_2$ the measured $Z_\theta$ equals $A_\theta Z_{\mathrm{in}}A_\theta^*$. Indeed its $+1$ and $-1$ eigenvectors are the two rotated pair occupations and it vanishes on their orthogonal complement. Its spectral measurement therefore realizes precisely the separate defect outcome in Eq.~\eqref{eq:matched-defect-outcome}.
 
-For bare transfer at $\theta=\pi/8$, prepare the \emph{incoherent mixture} $\rho=\operatorname{diag}(0.36,0.64)$ in that input basis. The probabilities for the three imbalance outcomes, in order $+1,-1,0$, are
+For this detector $V_t=\exp(-itH_s/\hbar)A_\theta$ and $F_0=I-\Pi_D$. Under $H_s$ the input ground stays on the ray of $g$, and the input excitation evolves from $b$ with amplitude $u_\theta v_\theta(1-e^{-i(j-s)t/\hbar})$ on $d$. Neither preparation reaches $W$. Hence the zero outcome pulls back to
+\begin{equation}
+ M_0(t)=\sin^2(4\theta)\sin^2\!\left(\frac{(j-s)t}{2\hbar}\right)\Pi_{e_\Psi}.
+ \label{eq:pair-detector-pullback}
+\end{equation}
+At the minimal completion $s=j$ this effect vanishes. For bare transfer at $\theta=\pi/8$ and $t_*=\pi\hbar/j$, the ground goes to $-g$ and $b$ goes to $d$. The two rotated pair occupations have equal squared overlap with $g$, so all three input effects are
+\begin{equation}
+ M_{+1}(t_*)=M_{-1}(t_*)=\tfrac12\Pi_{g_\Psi},\qquad M_0(t_*)=\Pi_{e_\Psi}.
+ \label{eq:pair-transfer-povm}
+\end{equation}
+The detector initially reads the two occupations. After this wait the probability of zero equals the initial excitation population. The other two probabilities sum to the ground population.
+
+For example, prepare the incoherent mixture $\rho=\operatorname{diag}(0.36,0.64)$ in the input occupation basis. It has equal populations on $g_\Psi$ and $e_\Psi$. The probabilities in order $+1,-1,0$ are
 \begin{equation}
  (0.36,0.64,0)\quad\text{at preparation},\qquad
- (0.25,0.25,0.50)\quad\text{at }t_*=\pi\hbar/j .
+ (0.25,0.25,0.50)\quad\text{at }t_* .
  \label{eq:pair-matched-probabilities}
 \end{equation}
-The mixture has equal populations on $g_\Psi$ and $e_\Psi$. At $t_*$ the output takes $g$ to $-g$ and $b$ to $d$. Only the ground contributes to the nonzero outcomes, with equal probabilities for the two occupations. The input evolution at the same time is $-I$ and preserves the original distribution. Initial occupation probabilities alone would leave the calculation underdetermined: the pure input with real amplitudes $(0.6,0.8)$ has those same initial counts but only $0.02$ weight on $e_\Psi$, all of which transfers to $d$.
+The input evolution at $t_*$ is $-I$ and preserves the original distribution. The coherent input with real amplitudes $(0.6,0.8)$ gives the same initial occupation counts. Its excitation weight is $|(0.6-0.8)/\sqrt2|^2=0.02$, so the same wait gives $(0.49,0.49,0.02)$.
 
 Equation~\eqref{eq:matched-effect-probability} applies whenever the states are paired. For example, if $U(t)D=D$ for all real $t$, then $V^*U(t)V$ is the induced input unitary group on $S$. For a \emph{specified} input group $U_\Psi(t)$ on $S$, exact vector pairing requires $U(t)V=VU_\Psi(t)$ (regarding $D$ as a subspace of the output). Matching every input state and every effect, with zero defect probability, allows a common phase at each time. Indeed the vanishing defect probability puts every evolved preparation in $D$, and agreement of all effects gives identical pure-state projections there. The two isometries thus agree on each ray; linearity applied to sums makes the phase independent of the ray. A particular input or a restricted set of measurements can retain its probabilities under weaker conditions.
 

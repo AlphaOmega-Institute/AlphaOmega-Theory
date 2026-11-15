@@ -11,7 +11,7 @@ from lib.linalg import eigenspace, rank, response_weights, minimal_space, genera
 from pair.model import PairModel
 
 LABELS = {
-    "UM": ["eq:pair-matched-probabilities"],
+    "UM": ["eq:pair-matched-probabilities", "eq:pair-detector-pullback", "eq:pair-transfer-povm"],
     "LG": [
         "sec:finite-pair-realization", "eq:pair-parent", "eq:pair-energy-vectors",
         "eq:pair-orbital-rotation", "eq:pair-preparation-map", "eq:pair-imbalance",
@@ -93,6 +93,12 @@ def test_matched_occupation_probabilities_before_and_after_waiting():
 
     hamiltonian = dag(model.F2) @ model.H @ model.F2
     evolution = expm(-1j * (np.pi / model.j) * hamiltonian)
+    waited = evolution @ preparation
+    ground = np.outer(model.gPsi, model.gPsi.conj())
+    excitation = np.outer(model.ePsi, model.ePsi.conj())
+    for measured, expected in zip(detector, (ground / 2, ground / 2, excitation)):
+        np.testing.assert_allclose(dag(waited) @ measured @ waited, expected, atol=1e-12)
+
     incoherent = np.diag([0.36, 0.64])
     amplitudes = np.array([0.6, 0.8])
     coherent = np.outer(amplitudes, amplitudes)
@@ -150,6 +156,19 @@ def test_defect_weight_and_two_line_correlation():
         Zt = dag(U) @ M.Ztheta @ U
         assert np.isclose(M.g @ Zt @ M.Ztheta @ M.g,
                           M.u**2 * np.exp(-2j * M.j * t) + M.v**2 * np.exp(-1j * M.j * t))
+    # Pull the detector's actual zero eigenspace back to the entire input plane.
+    for model in (M, PairModel(theta=0.14, j=0.8)):
+        preparation = dag(model.F2) @ model.A
+        zero_basis = eigenspace(dag(model.F2) @ model.Ztheta @ model.F2, 0)
+        excitation = np.outer(model.ePsi, model.ePsi.conj())
+        for s in (0, model.j, 2.5 * model.j):
+            hamiltonian = dag(model.F2) @ model.exchange_hamiltonian(s) @ model.F2
+            for t in (0.0, 0.4, 1.7):
+                waited = expm(-1j * t * hamiltonian) @ preparation
+                zero_amplitudes = dag(zero_basis) @ waited
+                weight = np.sin(4 * model.theta)**2 * np.sin((model.j - s) * t / 2)**2
+                np.testing.assert_allclose(dag(zero_amplitudes) @ zero_amplitudes,
+                                           weight * excitation, atol=1e-12)
     full = PairModel(theta=np.pi / 8)
     assert np.isclose(abs(full.dvec @ (expm(-1j * full.H * np.pi) @ full.b)) ** 2, 1.0)
 
