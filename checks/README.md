@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-46 passed, 0 failed, 1 skipped in ...s
+47 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `47 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `48 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -76,6 +76,7 @@ built on the 16-dimensional Fock space (`pair/model.py`).
 | --- | --- | --- |
 | `test_phase_graph_projectors_and_sector_population` | Graph projections, Hilbert normalization, Krein neutrality, the sine and cosine readouts, and paired effects across sector populations for fixed content | `eq:polar-graph-projector`, `prop:phase-readout` |
 | `test_phase_readout_depends_on_active_cross_block_and_input` | An ambient cross block can vanish on the active support. A nonzero active cross block can detect phase for one input and give a constant expectation for another. | `prop:phase-readout` |
+| `test_quarter_rotation_and_phase_blind_sector_swap` | The polar quarter rotation converts an input-sector count into a cosine readout. A sector swap reverses the grading while preserving the algebra of phase-blind effects. | `eq:quarter-phase-readout`, `eq:operational-phase-blindness` |
 | `test_pair_phase_graph_evolution_and_departure` | The minimal completion preserves the graphs; an input energy shift rotates their phase. At bare complete transfer the evolved excitation has squared projection 1/4 on every original phase graph. | `eq:graph-evolution-phase`, `eq:pair-graph-departure` |
 
 ### Orbital model — LG, `sec:orbital-ground-source`

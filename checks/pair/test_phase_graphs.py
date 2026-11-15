@@ -9,7 +9,8 @@ from pair.model import PairModel
 
 LABELS = {
     "UM": ["eq:polar-graph-projector", "prop:phase-readout",
-           "eq:graph-evolution-phase", "eq:pair-graph-departure"],
+           "eq:graph-evolution-phase", "eq:pair-graph-departure",
+           "eq:quarter-phase-readout", "eq:operational-phase-blindness"],
 }
 
 
@@ -72,6 +73,42 @@ def test_phase_readout_depends_on_active_cross_block_and_input():
         compressed = dag(graph) @ cross_observable(imaginary) @ graph
         assert_allclose(np.vdot(first, compressed @ first), 0, atol=1e-12)
         assert_allclose(np.vdot(psi, compressed @ psi), -np.sin(phase) / 2, atol=1e-12)
+
+
+def test_quarter_rotation_and_phase_blind_sector_swap():
+    # Both sectors are written in active orthonormal bases.
+    v = np.array([[0, 1j], [1, 0]])
+    grading = block_diag(np.eye(2), -np.eye(2))
+    input_sector = (np.eye(4) + grading) / 2
+    reflection = cross_observable(dag(v))
+    complex_structure = grading @ reflection
+    pulse = expm((np.pi / 4) * complex_structure)
+    assert_allclose(dag(pulse) @ pulse, np.eye(4), atol=1e-12)
+    assert_allclose(dag(pulse) @ grading @ pulse, reflection, atol=1e-12)
+    for observable in (reflection, -1j * complex_structure):
+        assert_allclose(dag(observable), observable, atol=1e-12)
+        assert_allclose(grading @ dag(observable) @ grading, -observable, atol=1e-12)
+
+    for phase in (0, 0.7, np.pi / 2, 2.0, np.pi):
+        graph = graph_map(v, phase)
+        rotated_graph = pulse @ graph
+        assert_allclose(dag(graph) @ input_sector @ graph, np.eye(2) / 2, atol=1e-12)
+        assert_allclose(dag(rotated_graph) @ input_sector @ rotated_graph,
+                        (1 + np.cos(phase)) * np.eye(2) / 2, atol=1e-12)
+
+    # A swap reverses the grading, yet pulls each diagonal effect back to
+    # another diagonal effect. Use different complex blocks on the two sides.
+    assert_allclose(dag(reflection) @ grading @ reflection, -grading, atol=1e-12)
+    input_effect = np.array([[0.5, 0.25j], [-0.25j, 0.5]])
+    output_effect = np.diag([0.1, 0.9])
+    diagonal_effect = block_diag(input_effect, output_effect)
+    swapped_effect = block_diag(dag(v) @ output_effect @ v, v @ input_effect @ dag(v))
+    swap_pulse = expm((np.pi / 2) * complex_structure)
+    assert_allclose(swap_pulse, complex_structure, atol=1e-12)
+    for swap in (reflection, swap_pulse):
+        assert_allclose(dag(swap) @ diagonal_effect @ swap, swapped_effect, atol=1e-12)
+    paired_effect = block_diag(input_effect, v @ input_effect @ dag(v))
+    assert_allclose(dag(pulse) @ paired_effect @ pulse, paired_effect, atol=1e-12)
 
 
 def test_pair_phase_graph_evolution_and_departure():
