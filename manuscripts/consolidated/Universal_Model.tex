@@ -318,17 +318,19 @@ For a detector, apply the proposition to each outcome effect. For an ambient eff
 
 \subsection{Paired observables and the sector coordinate}
 
-The unitary identification
+Write $\ket{\Psi},\ket{\Phi}$ for the basis of the sector coordinate $\C^2$, in input--output order. The unitary identification
 \[
- x\oplus y\ \longmapsto\ |+\rangle\otimes x+|-\rangle\otimes V^*y
+ x\oplus y\ \longmapsto\ \ket{\Psi}\otimes x+\ket{\Phi}\otimes V^*y
  \quad\text{from }S\oplus D\text{ to }\C^2\otimes S
 \]
-takes $G_\varphi\psi$ to $2^{-1/2}(|+\rangle+e^{i\varphi}|-\rangle)\otimes\psi$.
+takes $G_\varphi\psi$ to $2^{-1/2}(\ket{\Psi}+e^{i\varphi}\ket{\Phi})\otimes\psi$.
 It sends $J,\mathcal R,-i\mathcal I$ to $\sigma_z,\sigma_x,\sigma_y$ on the sector coordinate, each tensored with $I_S$. Their means on the graph state are therefore $0,\cos\varphi,\sin\varphi$, respectively. The latter two means together determine the phase modulo $2\pi$ when both measurements are available on repeated preparations.
 
 For $X\in\mathcal B(S)$ write $\iota(X)=X\oplus VXV^*$. In the same coordinates $\iota(X)=I_2\otimes X$, so $\iota(X)G_\varphi=G_\varphi X$. This identifies the matrix elements on every graph. A density operator $\rho$ on $S$ gives the same mean $\Tr(\rho X)$ in $\rho$, $V\rho V^*$ and $G_\varphi\rho G_\varphi^*$ for the three corresponding operators. Taking $X$ to be an effect gives the full input probability even when each sector has weight one half. Taking the spectral projections of a bounded self-adjoint input gives the equality for every measurable outcome set; these projections are defined in $\mathcal B(S)$ even when the selected algebra $\mathcal M$ is smaller.
 
-More generally the paired statistics on any state of $\C^2\otimes S$ depend only on its reduced state on $S$. An operator commutes with $I_2\otimes\mathcal M$ precisely when each of its four blocks commutes with $\mathcal M$. For the maximal choice $\mathcal M=\mathcal B(S)$ the blocks are scalars, so the commutant is $\mathcal B(\C^2)\otimes I_S$. The sector projections and phase operators belong to that commutant. Which, if any, can be measured? The polar map fixes their mathematical definition. A phase measurement requires a physically available cross-sector readout. The occupation detector of Section~\ref{sec:polar-matched-observables} acts within the output sector. If the admissible effects all preserve the sectors, relative phase is operationally invisible for those measurements. Whether a physical symmetry enforces that restriction remains open.
+More generally the paired statistics on any state of $\C^2\otimes S$ depend only on its reduced state on $S$. An operator commutes with $I_2\otimes\mathcal M$ precisely when each of its four blocks commutes with $\mathcal M$. For the maximal choice $\mathcal M=\mathcal B(S)$ the blocks are scalars, so the commutant is $\mathcal B(\C^2)\otimes I_S$. The sector projections and phase operators belong to that commutant. Which, if any, can be measured? The polar map fixes their mathematical definition. A phase measurement requires a physically available cross-sector readout. The occupation detector of Section~\ref{sec:polar-matched-observables} acts within the output sector.
+
+If every physically admissible measurement effect on $\mathcal K_A$ commutes with $J$, the two sectors obey a \emph{superselection rule} in the sense of Wick, Wightman and Wigner \cite{WickWightmanWigner1952}. Every such measurement gives the same probabilities for a coherent superposition across sectors and the mixture obtained by discarding its cross-sector coherences. An admissible effect whose two diagonal blocks differ after identification by $V$ can still distinguish sector populations. The paired algebra satisfies the commutation condition by construction. Whether a physical principle requires it of every accessible readout remains open, including readouts implemented by applying a control before measurement.
 
 \subsection{When evolution preserves, rotates, or leaves a graph}
 
@@ -358,6 +360,7 @@ Indeed $G_\eta^*z_*=-e_\Psi/2$. The vector has unit Hilbert norm and zero Krein 
 \bibitem{Gilbert1963} E.~G. Gilbert, Controllability and observability in multivariable control systems, \emph{J. SIAM Control} \textbf{1} (1963), 128--151. \href{https://doi.org/10.1137/0301009}{doi:10.1137/0301009}.
 \bibitem{Singh2026PairTransfer} T.~P. Singh, \emph{Interacting Generalised Trace Dynamics: Cohesive Emergence, Jordan Spectra and the Problem of Fundamental Constants}, P10, 31 October 2026, Sec.~3.4, summarizing P8. \href{https://doi.org/10.5281/zenodo.23853851}{doi:10.5281/zenodo.23853851}.
 \bibitem{Bognar1974} J.~Bogn\'ar, \emph{Indefinite Inner Product Spaces}, Springer, 1974. \href{https://doi.org/10.1007/978-3-642-65567-8}{doi:10.1007/978-3-642-65567-8}.
+\bibitem{WickWightmanWigner1952} G.~C. Wick, A.~S. Wightman and E.~P. Wigner, The intrinsic parity of elementary particles, \emph{Phys. Rev.} \textbf{88} (1952), 101--105. \href{https://doi.org/10.1103/PhysRev.88.101}{doi:10.1103/PhysRev.88.101}.
 \end{thebibliography}
 \endgroup
 \end{document}
