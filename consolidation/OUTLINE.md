@@ -46,7 +46,7 @@ The part and subsection codes below are planning identifiers, not final TeX labe
 
 Begin with the problem that grew out of Dharmakīrti's account of perception. In the cognitive reading, A relates physical states to their presentation. The grasper–grasped distinction arises within the presentation. Explain why presentation, the readout of selected content, and the physical conditions of that readout are separate questions. State the broader ambition toward physical unification and identify the missing selection principles.
 
-Introduce the five optional realization hypotheses in plain terms. End the opening with a table locating the tasks of presentation, physical conditions, determination, reflexivity, error and transformation, with the status of each proposed answer. Part V develops the cognitive argument in its own sequence and gives the reasons for its choices.
+Introduce the five optional realization hypotheses in plain terms. End the opening with a table locating the tasks of appearance, physical conditions, determination, reflexivity, error and transformation, with the status of each proposed answer. Part V develops the cognitive argument in its own sequence and gives the reasons for its choices.
 
 ### II. Common mathematical architecture
 
