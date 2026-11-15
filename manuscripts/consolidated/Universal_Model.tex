@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,microtype}
-\usepackage[margin=0.88in]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={Toward a Universal Model: Preparation, evolution, and the final defect}}
 \newtheorem{proposition}{Proposition}[section]
@@ -76,9 +76,9 @@ An arbitrarily short interval can therefore generate the full closed span even w
 
 For translations on $L^2(\R)$ the generator has spectrum $\R$. Write $(U(t)f)(x)=f(x-t)$, take $D$ to consist of functions supported on $[0,\infty)$, and use its inclusion as the port. A positive wait shifts every preparation to the right. Thus $M_+=D$. Translations through all real times generate $L^2(\R)$, since the union of the subspaces supported on $[-n,\infty)$ is dense. A nonzero function supported on the negative half-line can enter the port under a positive wait even though forward preparation has zero weight there.
 
-The criterion for $\mathcal D=\{0\}$ is $U(t)D=D$ for every $t\in\R$. For bounded $H$ and an isometric preparation $A$, put $P=AA^*$. The equivalent generator condition is
+The criterion for $\mathcal D=\{0\}$ is $U(t)D=D$ for every $t\in\R$. For bounded $H$ and an isometric preparation $A$, put $\Pi_D=AA^*$. The equivalent generator condition is
 \begin{equation}
- (I-P)HA=0,\qquad HA=A(A^*HA).
+ (I-\Pi_D)HA=0,\qquad HA=A(A^*HA).
  \label{eq:finite-preparation-invariance}
 \end{equation}
 The first equality says $HD\subseteq D$. Self-adjointness then makes $D$ reducing, and the exponential preserves $D$ for all $t$. Conversely, differentiation at zero gives invariance under $H$. The induced input generator is $A^*HA$. Intertwining a specified input Hamiltonian requires that it equal this compression.
@@ -128,7 +128,7 @@ For $s\ne j$, the three port weights at energies $-(s+j), j-s,0$ are $\Pi_{g_\Ps
  (I-A_\theta A_\theta^*)H_sA_\theta g_\Psi=0 .
  \label{eq:pair-invariance-amplitude}
 \end{equation}
-The defect weight from $b$ is $\sin^2(4\theta)\sin^2((j-s)t/(2\hbar))$. For bare transfer at $\theta=\pi/8$, the evolved state equals $d$ at $t=\pi\hbar/j$. At $s=j$ the excited lines merge and $d$ remains orthogonal to the entire orbit. With the same preparation and the full codomain, the two decompositions are
+The defect weight from $b$ is $\sin^2(4\theta)\sin^2((j-s)t/(2\hbar))$. For bare transfer at $\theta=\pi/8$, the evolved state equals $d$ at $t=\pi\hbar/j$. During the first one percent of that wait, the orbit of the prepared plane already spans $\Hmin$ by Proposition~\ref{prop:semibounded-waiting}, while the weight on $d$ from $b$ reaches only $\sin^2(\pi/200)\approx 0.0247\%$. At $s=j$ the excited lines merge and $d$ remains orthogonal to the entire orbit. With the same preparation and the full codomain, the two decompositions are
 \begin{center}
 \begin{tabular}{@{}llll@{}}\toprule
 Hamiltonian & Direct & Indirect & Invisible for all times\\\midrule
