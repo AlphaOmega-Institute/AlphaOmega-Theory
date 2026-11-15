@@ -8,7 +8,7 @@ from lib.linalg import rank, response_weights, in_span
 from pair.model import PairModel
 
 LABELS = {
-    "UM": ["eq:pair-invariance-amplitude", "eq:pair-leakage-readout"],
+    "UM": ["subsec:pair-grounds-excitations", "eq:pair-invariance-amplitude", "eq:pair-leakage-readout"],
     "LG": [
         "eq:pair-completed-hamiltonian", "eq:pair-completed-spectrum",
         "eq:pair-completed-response", "eq:pair-general-mixer",
@@ -94,6 +94,11 @@ def test_asymmetric_completion_moves_the_ground():
                            (ground @ M.exchange_hamiltonian(s_c, s_d) @ ground) * ground)
         assert np.allclose(M.Y @ ground, 1j * (alpha - beta) * M.m / np.sqrt(2))
         assert np.isclose(alpha, beta) == (s_c == s_d)
+        prepared_ground = M.A @ np.array([alpha, beta])
+        np.testing.assert_allclose(np.vdot(M.m, prepared_ground),
+                                   (alpha - beta) * M.v / np.sqrt(2), atol=1e-12)
+        fidelity = abs(np.vdot(ground, prepared_ground)) ** 2
+        assert np.isclose(fidelity, 1.0) == (s_c == s_d)
 
 
 def test_pair_controls_preserve_orbital_parity():

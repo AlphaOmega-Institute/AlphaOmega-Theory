@@ -66,7 +66,7 @@ built on the 16-dimensional Fock space (`pair/model.py`).
 | `test_exchange_completion_spectrum_and_response` | Spectrum, correlation and defect weight with symmetric self-channels `s` | `eq:pair-completed-hamiltonian`, `eq:pair-completed-spectrum`, `eq:pair-completed-response` |
 | `test_minimal_completion_removes_the_accessible_defect` | At `s = j` the prepared range is invariant and the response defect vanishes | `eq:pair-completed-spectrum` |
 | `test_projected_generator_on_ground_and_excitation` | The projected generator vanishes on the ground and gives the signed vector `−(j−s) cos(2θ) sin(2θ) d` on the excitation across five angles and four self-couplings | `eq:finite-preparation-invariance`, `eq:pair-completed-spectrum`, UM `eq:pair-invariance-amplitude` |
-| `test_asymmetric_completion_moves_the_ground` | Unequal self-channels move the ground off `g` | `eq:pair-completed-hamiltonian` |
+| `test_asymmetric_completion_moves_the_ground` | With unequal self-channels the prepared input ground has a nonzero `m` component and fidelity below one with the output ground | `eq:pair-completed-hamiltonian`, UM `subsec:pair-grounds-excitations` |
 | `test_pair_controls_preserve_orbital_parity` | Pair-only controls cannot reach `m` from the paired plane | `eq:pair-general-mixer` |
 | `test_mixer_ground_certificate`, `test_invariant_mixer_needs_equivalent_representations`, `test_unitary_intertwiner_gives_a_ground_preserving_mixer` | The mixer certificate and the representation criterion | `eq:pair-mixer-ground-certificate`, `prop:pair-invariant-mixer` |
 | `test_unused_space_is_not_protected_by_number_conservation` | A number-conserving operator couples `W` to `m` | `eq:pair-ambient-zero` |
