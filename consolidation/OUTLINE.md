@@ -6,9 +6,7 @@ proposal.
 
 ## Source and review scope
 
-The first section drafted on this branch is [Preparation, evolution, and the final defect](../manuscripts/consolidated/Universal_Model.tex).
-It brings the support, response and finite-pair results into one source and adds the forward-time qualification and the perturbed readout calculation.
-The remaining result families in the placement map await migration.
+The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Three technical sections have been drafted: preparation and its dynamical reach, polar supports and matched observables, and neutral graphs and relative phase. Their numbering in the working draft can change as other result families are integrated.
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
@@ -28,9 +26,7 @@ The remaining result families in the placement map await migration.
    editions.
 2. The final TeX must stand alone. Required proofs and technical appendices remain in that document. These planning
    files and the verification code are not substitutes for proofs in the manuscript.
-3. Notation remains open. Nothing here chooses `B` over `A`, or sector subscripts `+/-` over `Psi/Phi`. Existing labels
-   are retained as source identifiers, not as a commitment to their final spelling. A uniform `Psi/Phi/A` convention is
-   compatible with stating the general theory independently of its phenomenal interpretation.
+3. Use Ψ and Φ for the two sector labels and A for the typed channel from Ψ to Φ throughout the consolidated manuscript. These labels specify mathematical roles. Part V gives them their physical and phenomenal reading. The inventory retains the identifiers of the source manuscripts.
 4. State the long-term physical-unification ambition openly. Distinguish that aim from the architecture, conditional
    theorems, and realizations presently established. No Standard Model, physical gauge-ghost, or microscopic GTD
    derivation is added by consolidation.
@@ -48,14 +44,9 @@ The part and subsection codes below are planning identifiers, not final TeX labe
 
 ### I. Problem, origin, and program
 
-Explain the original problem of relating physical states and their presentation to an observer, its origin in
-Dharmakirti, and the broader ambition toward physical unification. Explain the logical roles of the subsequent
-parts before introducing the operator machinery.
+Begin with the problem that grew out of Dharmakīrti's account of perception. In the cognitive reading, A relates physical states to their presentation. The grasper–grasped distinction arises within the presentation. Explain why presentation, the readout of selected content, and the physical conditions of that readout are separate questions. State the broader ambition toward physical unification and identify the missing selection principles.
 
-Coalesce TAUM's introduction and LG's charter. Keep the distinction between a general architecture and a selected
-physical theory; replace the two-document hierarchy with an internal hierarchy of data, hypotheses, consequences,
-and interpretation. The opening should identify where additional physical principles would have to make the
-architecture selective. It should not imply that all subsequent results depend on all five LG axioms.
+Introduce the five optional realization hypotheses in plain terms. End the opening with a table locating the tasks of presentation, physical conditions, determination, reflexivity, error and transformation, with the status of each proposed answer. Part V develops the cognitive argument in its own sequence and gives the reasons for its choices.
 
 ### II. Common mathematical architecture
 
@@ -82,19 +73,16 @@ The working sections on polar supports and neutral graphs now give the supportwi
 
 **II.3 Kernels, cohomology, and index.** Closure-aware Hodge decomposition, partner spectral pairing, reduced
 cohomology, bounded transforms, Fredholm index, and conditional heat-supertrace statements. State the roles of
-closed range, Fredholmness, and trace-class assumptions where used. The interpretation of a final defect as
-phenomenal excess belongs in V, not in the definition of the kernel.
+closed range, Fredholmness, and trace-class assumptions where used. Introduce LG's two independent map hypotheses here: R4 is injectivity (`ker A = 0`) and R5 is strict final defect (`ker A* ≠ 0`). Each can be stated before choosing a reference vector or a Hamiltonian. V motivates and interprets their joint adoption in the cognitive realization.
 
 ### III. Additional structures and their consequences
 
 These are optional extensions of the core, not a cumulative list every realization must satisfy.
 
-**III.1 References, grounds, and channel subclasses.** Separate a selected unit vector, a cyclic representation,
+**III.1 Reference vectors, grounds, and the ground bridge.** Separate a selected unit vector, a cyclic representation,
 a Hamiltonian ground, uniqueness, and a spectral gap. Develop reference fidelity and energy estimates under the
 assumptions they actually use. Introduce selected-line bridges, restricted polar orientations, weak versus strong
-compatibility, the reference-plane Pauli/phase geometry, and ground inclusion in the active graph. State injectivity
-and nonzero final defect as independent subclass conditions. LG's R1-R5 receive neutral formulations here; their
-joint adoption and cognitive meanings are made explicit in V.
+compatibility, the reference-plane Pauli/phase geometry, and ground inclusion in the active graph. LG's R1 and R2 select a unique cyclic ground in each supplied representation. R3 sends the input ground to a nonzero multiple of the output ground. Keep strong polar compatibility under its additional hypothesis. V adopts these three conditions alongside R4 and R5 from II.3.
 
 **III.2 Supplied symmetries and moving subspaces.** Compact symmetry averaging, invariant compression, moving
 projection fields, frame covariance, Grassmann curvature, and characteristic classes. The group/action and, for
@@ -128,9 +116,7 @@ Retain the translation, oscillator, and quasiperiodic examples for their distinc
 material remains an explicitly limited example/open direction unless a later editorial decision removes it.
 An expanded introduction does not license silently dropping it.
 
-The separate colour and time projects can be situated here or in VI with exact statements of their relationship to
-the architecture. Their full texts are not automatically absorbed by this TAUM/LG merge, and no unverified bridge
-to either project is asserted.
+VI can discuss the exploratory colour encoding and the remaining task of establishing its readout. Placement of the separate time project awaits a review of its connections to the architecture.
 
 ### V. Cognitive realization and Buddhist interpretation
 
@@ -156,11 +142,23 @@ select currently free structure while preserving the intended observable content
 phase-insensitive selected observables, invariant operators, covariant operations, and a genuine BRST/ghost
 realization. Neither the negative sector sign nor nilpotency establishes that identification.
 
+The seven formal open questions from LG have the following destinations. The source labels preserve the distinction between a question about a chosen cognitive realization and a condition on a physical protocol.
+
+| Source question | Destination and issue to preserve |
+| --- | --- |
+| `q:matter-algebra` | III.1 introduces the represented algebra needed for cyclicity. VI asks which physical operations select a nontrivial choice in a realization. |
+| `q:luminous-purity` | III.1 gives the algebraic meaning of purity and faithfulness. V keeps both open for the luminous state on its chosen algebra. |
+| `q:phenomenal-algebra` | III.1 states what cyclicity requires. V asks which global algebra of phenomenal determinations to choose. |
+| `q:operational-structural-phase` | II.2 gives the criterion for detecting relative phase. VI asks which effects or controls realize it. |
+| `q:content-affect-algebra-choice` | V asks which subalgebras represent object content and affect in a given realization. |
+| `q:projection-or-effect-duality-frame` | V asks which frame represents the grasper–grasped distinction inside Φ, including the choice between sharp and unsharp effects. |
+| `oq:status-phenomenal-excess` | V asks which phenomenal determinations, if any, densely generate the final defect and what those directions represent. |
+
 ### Appendices
 
 - **A. Domains and technical proofs:** retain TAUM's domain appendix and integrate any additional LG requirements.
   Long physical-realization proofs may live here if that improves the main argument; they remain inside the TeX.
-- **B. Notation and operator types:** one charter, after the notation decision. Distinguish all projection types.
+- **B. Notation and operator types:** one charter for Ψ, Φ and A. Distinguish all projection types.
 - **C. Attribution and verification scope:** preserve scholarly provenance and precise primary citations. State what
   computations check and where they do not replace proof. Consolidate the bibliography and remove obsolete
   references to the superseded manuscript as though it were an external premise.
@@ -198,13 +196,12 @@ a forward reference to an application is not a logical dependency.
 
 ## Safe migration sequence
 
-1. Review this outline and the unresolved notation; no notation migration is made by this branch.
+1. Use the agreed Ψ, Φ and A convention in the consolidated draft and retain source identifiers in the crosswalk.
 2. Before editing the manuscripts, preserve their reviewed state with a clearly named snapshot/tag.
 3. Establish the consolidated preamble and the canonical homes for the shared channel/polar/reference results.
 4. Migrate one result family at a time, preserving domains, support conditions, weak/strong distinctions, citations,
    and the associated checks. Do not silently substitute stronger global assumptions for local ones.
-5. Split mixed sections as recorded in the source map. Carry all model choices and identifications forward to an
-   explicit destination; reconsideration must be a deliberate editorial decision.
+5. Split mixed sections as recorded in the source map. Give each model choice, doctrinal identification and formal open question an explicit destination. Record any decision to retire one.
 6. Reconcile the four colliding labels (`app:notation`, `eq:conditional-excitation-vector`, `eq:sector-projections`,
    `eq:two-term-complex`). Retain aliases for genuinely coalesced statements where safe; otherwise use an explicit
    old-to-new mapping. Assign stable labels to entries that currently lack them if checks need to reference them.
