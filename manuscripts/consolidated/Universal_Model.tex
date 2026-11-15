@@ -61,7 +61,7 @@ In finite dimensions this is Kalman's duality between controllability and observ
 
 \subsection{Forward waiting and the measured response}
 
-Forward preparation generates $M_+=\overline{\Span}\{U(t)v:v\in D,\ t\geq0\}$. Forward detection involves $U(-t)D$ for $t\geq0$, by the adjoint calculation above.
+Forward preparation generates $\mathcal H_{\mathrm{fwd}}=\overline{\Span}\{U(t)v:v\in D,\ t\geq0\}$. Forward detection involves $U(-t)D$ for $t\geq0$, by the adjoint calculation above.
 
 \begin{proposition}[Waiting with a semibounded output Hamiltonian]\label{prop:semibounded-waiting}
 If the spectrum of the self-adjoint output Hamiltonian $H$ is bounded below or bounded above, then every nonempty open time interval $\mathcal I$ generates the same closed linear span:
@@ -75,7 +75,7 @@ We use the boundary uniqueness argument of Hegerfeldt \cite[Sec.~2]{Hegerfeldt19
 \end{proof}
 An arbitrarily short interval can therefore generate the full closed span even when the amplitude on a particular direction is small throughout that interval. Transfer probabilities and the waiting time for complete transfer require their own calculation.
 
-For translations on $L^2(\R)$ the generator has spectrum $\R$. Write $(U(t)f)(x)=f(x-t)$, take $D$ to consist of functions supported on $[0,\infty)$, and use its inclusion as the port. A positive wait shifts every preparation to the right. Thus $M_+=D$. Translations through all real times generate $L^2(\R)$, since the union of the subspaces supported on $[-n,\infty)$ is dense. A nonzero function supported on the negative half-line can enter the port under a positive wait even though forward preparation has zero weight there.
+For translations on $L^2(\R)$ the generator has spectrum $\R$. Write $(U(t)f)(x)=f(x-t)$, take $D$ to consist of functions supported on $[0,\infty)$, and use its inclusion as the port. A positive wait shifts every preparation to the right. Thus $\mathcal H_{\mathrm{fwd}}=D$. Translations through all real times generate $L^2(\R)$, since the union of the subspaces supported on $[-n,\infty)$ is dense. A nonzero function supported on the negative half-line can enter the port under a positive wait even though forward preparation has zero weight there.
 
 The criterion for $\mathcal D=\{0\}$ is $U(t)D=D$ for every $t\in\R$. For bounded $H$ and an isometric preparation $A$, put $\Pi_D=AA^*$. The equivalent generator condition is
 \begin{equation}
