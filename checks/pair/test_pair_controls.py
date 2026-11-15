@@ -8,10 +8,12 @@ from lib.linalg import rank, response_weights, in_span
 from pair.model import PairModel
 
 LABELS = {
+    "UM": ["eq:pair-invariance-amplitude", "eq:pair-leakage-readout"],
     "LG": [
         "eq:pair-completed-hamiltonian", "eq:pair-completed-spectrum",
         "eq:pair-completed-response", "eq:pair-general-mixer",
         "eq:pair-mixer-ground-certificate", "prop:pair-invariant-mixer",
+        "eq:finite-preparation-invariance", "eq:pair-ambient-zero", "eq:pair-defect-evolution",
     ],
 }
 
@@ -66,6 +68,19 @@ def test_minimal_completion_removes_the_accessible_defect():
     g = M.Phi.T @ M.g
     orbit = np.column_stack([g, Zc @ g, Hc @ Zc @ g, Zc @ Hc @ Zc @ g, Hc @ Hc @ Zc @ g])
     assert rank(orbit) == 2
+
+
+def test_projected_generator_on_ground_and_excitation():
+    """Q H_s A annihilates the ground and sends the excitation to -(j-s)uv d."""
+    for theta in np.deg2rad([10, 15, 22.5, 30, 40]):
+        model = PairModel(theta=theta, j=1.3)
+        unprepared = model.P2 - model.A @ dag(model.A)
+        for s in (0.0, 0.4 * model.j, model.j, 1.7 * model.j):
+            departure = unprepared @ model.exchange_hamiltonian(s) @ model.A
+            coefficient = -(model.j - s) * np.cos(2 * theta) * np.sin(2 * theta)
+            np.testing.assert_allclose(departure @ model.gPsi, 0, atol=1e-12)
+            np.testing.assert_allclose(departure @ model.ePsi, coefficient * model.dvec,
+                                       atol=1e-12, rtol=1e-12)
 
 
 def test_asymmetric_completion_moves_the_ground():
@@ -159,3 +174,29 @@ def test_unused_space_is_not_protected_by_number_conservation():
     O = number(M.c[0]) - number(M.c[1]) - number(M.d[0]) + number(M.d[1])
     assert np.allclose(O @ M.w0, 2 * M.m) and np.allclose(O @ M.m, 2 * M.w0)
     assert np.allclose(O @ M.N, M.N @ O)
+
+
+def test_leakage_during_wait_changes_zero_readout():
+    """At pi/j the zero-count excess is the W weight acquired after preparation."""
+    model = PairModel(theta=np.pi / 8, j=1.3)
+    c1, c2 = model.c
+    d1, d2 = model.d
+    perturbation = number(c1) - number(c2) - number(d1) + number(d2)
+    prepared = model.A @ model.ePsi
+    np.testing.assert_allclose(dag(model.W) @ prepared, 0, atol=1e-12)
+
+    # Score the detector from its own measured eigenspace, independent of d and W.
+    z_values, z_vectors = np.linalg.eigh(dag(model.F2) @ model.Ztheta @ model.F2)
+    zero_space = model.F2 @ z_vectors[:, np.abs(z_values) < 1e-12]
+    time = np.pi / model.j  # hbar = 1
+    for strength in (0.0, 0.03 * model.j, 0.10 * model.j):
+        state = expm(-1j * time * (model.H + strength * perturbation)) @ prepared
+        line = abs(np.vdot(model.dvec, state)) ** 2
+        outside = np.linalg.norm(dag(model.W) @ state) ** 2
+        zero = np.linalg.norm(dag(zero_space) @ state) ** 2
+
+        # The e component changes sign; m rotates into w0 through angle 2*strength*time.
+        phase = strength * time
+        expected = [np.cos(phase)**4, np.sin(2 * phase)**2 / 2, 1 - np.sin(phase)**4]
+        np.testing.assert_allclose([line, outside, zero], expected, atol=1e-12, rtol=1e-12)
+        np.testing.assert_allclose(zero - line, outside, atol=1e-12, rtol=1e-12)

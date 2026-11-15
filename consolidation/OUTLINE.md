@@ -6,6 +6,10 @@ proposal.
 
 ## Source and review scope
 
+The first section drafted on this branch is [Preparation, evolution, and the final defect](../manuscripts/consolidated/Universal_Model.tex).
+It brings the support, response and finite-pair results into one source and adds the forward-time qualification and the perturbed readout calculation.
+The remaining result families in the placement map await migration.
+
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
 - The inventory now includes all used, declared theorem-like environments: 106 TAUM entries and 175 LG entries,

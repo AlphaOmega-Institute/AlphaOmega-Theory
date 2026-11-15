@@ -7,6 +7,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 MANUSCRIPTS = {
+    "UM": HERE.parent / "manuscripts" / "consolidated" / "Universal_Model.tex",
     "LG": HERE.parent / "manuscripts" / "lg" / "LG_Master_Unified.tex",
     "TAUM": HERE.parent / "manuscripts" / "taum" / "Toward_a_Universal_Model_Self_Contained.tex",
 }
