@@ -70,6 +70,16 @@ factorization and phase blindness. Separate the maximal constructed algebra from
 algebra. Explain that transport of Born probabilities is not a derivation of the Born rule. Ground-inclusive
 specializations belong in III.1.
 
+The working section on polar supports and matched observables takes up the supportwise probability and measurement results first. For the remaining material from LG §§16–19 and TAUM's polar section, use the following destinations.
+
+| Source material | Destination |
+| --- | --- |
+| Polar reflection and rotation, the neutral graph and its projectivization, sector factorization, phase blindness | II.2, following the supportwise correspondence |
+| `choice:active-physical-observable-algebra`, `choice:correspondence-versus-generation` | II.2 states the two selections. III.3 treats generators and V applies the choices to cognition. |
+| `cor:ground-inclusive-BRLC` | III.1, with the reference and bridge hypotheses |
+| `id:BRLC-doctrinal`, `id:one-event-two-compressions` | V, after the mathematical graph and paired representation |
+| `q:operational-structural-phase` | VI, as the open question of operational access to the structural phase operators |
+
 **II.3 Kernels, cohomology, and index.** Closure-aware Hodge decomposition, partner spectral pairing, reduced
 cohomology, bounded transforms, Fredholm index, and conditional heat-supertrace statements. State the roles of
 closed range, Fredholmness, and trace-class assumptions where used. The interpretation of a final defect as

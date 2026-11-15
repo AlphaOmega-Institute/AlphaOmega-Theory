@@ -7,10 +7,11 @@ import numpy as np
 from scipy.linalg import expm, null_space
 
 from lib.fock import dag, satisfies_car
-from lib.linalg import rank, response_weights, minimal_space, generated_algebra_dim
+from lib.linalg import eigenspace, rank, response_weights, minimal_space, generated_algebra_dim
 from pair.model import PairModel
 
 LABELS = {
+    "UM": ["eq:pair-matched-probabilities"],
     "LG": [
         "sec:finite-pair-realization", "eq:pair-parent", "eq:pair-energy-vectors",
         "eq:pair-orbital-rotation", "eq:pair-preparation-map", "eq:pair-imbalance",
@@ -72,6 +73,37 @@ def test_readout_on_full_two_particle_space():
     spectrum = np.linalg.eigvalsh(M.F2.T @ M.Ztheta @ M.F2)
     assert np.allclose(spectrum, [-1, 0, 0, 0, 0, 1], atol=1e-12)
     assert np.allclose(M.Ztheta @ M.W, 0) and np.allclose(M.H @ M.W, 0)
+
+
+def test_matched_occupation_probabilities_before_and_after_waiting():
+    """The calibrated detector matches both input occupations at preparation.
+    Inputs with the same occupation probabilities can give different defect weights later.
+    """
+    model = PairModel(theta=np.pi / 8, j=1.3)
+    preparation = dag(model.F2) @ model.A
+    imbalance = dag(model.F2) @ model.Ztheta @ model.F2
+    detector = []
+    for outcome in (1, -1, 0):
+        basis = eigenspace(imbalance, outcome)
+        detector.append(basis @ dag(basis))
+
+    for measured, column in zip(detector[:2], preparation.T):
+        np.testing.assert_allclose(measured, np.outer(column, column.conj()), atol=1e-12)
+    np.testing.assert_allclose(detector[2], np.eye(6) - preparation @ dag(preparation), atol=1e-12)
+
+    hamiltonian = dag(model.F2) @ model.H @ model.F2
+    evolution = expm(-1j * (np.pi / model.j) * hamiltonian)
+    incoherent = np.diag([0.36, 0.64])
+    amplitudes = np.array([0.6, 0.8])
+    coherent = np.outer(amplitudes, amplitudes)
+    for state, expected_after in ((incoherent, [0.25, 0.25, 0.50]),
+                                  (coherent, [0.49, 0.49, 0.02])):
+        output = preparation @ state @ dag(preparation)
+        evolved = evolution @ output @ dag(evolution)
+        before = [np.trace(effect @ output) for effect in detector]
+        after = [np.trace(effect @ evolved) for effect in detector]
+        np.testing.assert_allclose(before, [0.36, 0.64, 0], atol=1e-12)
+        np.testing.assert_allclose(after, expected_after, atol=1e-12)
 
 
 def test_zero_outcome_probability_for_ambient_states():

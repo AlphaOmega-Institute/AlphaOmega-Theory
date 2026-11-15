@@ -1,10 +1,11 @@
 # Verification checks
 
-Reproducible numerical checks of the pair, orbital and response calculations in the two
-working manuscripts in this repository:
+Reproducible numerical checks of the pair, orbital and response calculations in the
+working manuscripts and the consolidated draft:
 
 - **LG** — `manuscripts/lg/LG_Master_Unified.tex`
 - **TAUM** — `manuscripts/taum/Toward_a_Universal_Model_Self_Contained.tex`
+- **UM** — `manuscripts/consolidated/Universal_Model.tex`
 
 Each check rebuilds the objects a passage defines as explicit matrices and asserts the
 identities that passage displays. A check either passes or fails; nothing is fitted.
@@ -21,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-42 passed, 0 failed, 1 skipped in ...s
+43 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `43 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `44 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -53,6 +54,7 @@ built on the 16-dimensional Fock space (`pair/model.py`).
 | `test_preparation_channel` | `A g_Ψ = g`, `A e_Ψ = b`, `A^*A = I`, `Ker A^* = C d` | `eq:pair-preparation-map`, `eq:pair-channel`, `prop:pair-ground-defect` |
 | `test_readout_on_carrier`, `test_readout_on_full_two_particle_space` | `Z_θ^2 = AA^*` on the carrier; on the full sector `1 - Z_θ^2 = |d><d| + P_W` | `eq:pair-readout-action`, `eq:pair-defect-measurement`, `eq:pair-ambient-zero` |
 | `test_zero_outcome_probability_for_ambient_states` | `Pr(Z_θ = 0)` = line weight + weight in `W`, for arbitrary states | `eq:pair-ambient-zero` |
+| `test_matched_occupation_probabilities_before_and_after_waiting` | The three imbalance projections give the two transported occupations and the defect outcome. At the transfer time the 36:64 mixture has probabilities (0.25, 0.25, 0.50). A coherent input with the same initial occupations gives (0.49, 0.49, 0.02). | UM `eq:pair-matched-probabilities` |
 | `test_port_weights_recover_the_carrier` | The three spectral weights of the preparation port; rank count gives a one-dimensional defect | `eq:pair-port-weights` |
 | `test_defect_weight_and_two_line_correlation` | Defect weight `sin^2(4θ) sin^2(jt/2)`; two-frequency ground correlation | `eq:pair-defect-evolution`, `eq:pair-two-frequency-response` |
 | `test_generated_algebras_are_full_matrix_algebras` | Both generated algebras are full matrix algebras | `prop:pair-ground-defect` |
