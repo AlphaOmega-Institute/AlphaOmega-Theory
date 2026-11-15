@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-43 passed, 0 failed, 1 skipped in ...s
+46 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `44 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `47 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -71,6 +71,12 @@ built on the 16-dimensional Fock space (`pair/model.py`).
 | `test_mixer_ground_certificate`, `test_invariant_mixer_needs_equivalent_representations`, `test_unitary_intertwiner_gives_a_ground_preserving_mixer` | The mixer certificate and the representation criterion | `eq:pair-mixer-ground-certificate`, `prop:pair-invariant-mixer` |
 | `test_unused_space_is_not_protected_by_number_conservation` | A number-conserving operator couples `W` to `m` | `eq:pair-ambient-zero` |
 | `test_leakage_during_wait_changes_zero_readout` | Starting with zero weight in `W`, evolves the perturbed Hamiltonian and measures the imbalance. At the ideal transfer time its zero-count excess equals the acquired `W` weight. The line, leakage and detector probabilities agree with the exact solution at perturbations of 0, 0.03 and 0.10 times `j`. | `eq:pair-ambient-zero`, `eq:pair-defect-evolution`, UM `eq:pair-leakage-readout` |
+
+| Check (`pair/test_phase_graphs.py`) | Establishes | Consolidated labels |
+| --- | --- | --- |
+| `test_phase_graph_projectors_and_sector_population` | Graph projections, Hilbert normalization, Krein neutrality, the sine and cosine readouts, and paired effects across sector populations for fixed content | `eq:polar-graph-projector`, `prop:phase-readout` |
+| `test_phase_readout_depends_on_active_cross_block_and_input` | An ambient cross block can vanish on the active support. A nonzero active cross block can detect phase for one input and give a constant expectation for another. | `prop:phase-readout` |
+| `test_pair_phase_graph_evolution_and_departure` | The minimal completion preserves the graphs; an input energy shift rotates their phase. At bare complete transfer the evolved excitation has squared projection 1/4 on every original phase graph. | `eq:graph-evolution-phase`, `eq:pair-graph-departure` |
 
 ### Orbital model — LG, `sec:orbital-ground-source`
 
