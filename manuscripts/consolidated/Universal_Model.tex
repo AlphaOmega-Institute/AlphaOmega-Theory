@@ -35,7 +35,7 @@ Consider seeing a flash of light. We can record the response of the visual syste
 
 On Dharmak\=irti's account, the seeing is manifest in its very occurrence \cite[p.~31]{Yiannopoulos2020}. A flash can appear even while it remains an open question whether anything outside the observer flashed. We take this as a reason to give appearances a state space of their own. We can then ask how states in that space correspond to the physical conditions of seeing. The distinction between the one who sees and the flash as seen arises within the appearance itself \cite[pp.~27--28, 40--41]{Yiannopoulos2020}.
 
-We propose a linear map $A$ from the space of physical states to the space of appearances. Specifying the latter in its own terms lets us ask which appearances a given preparation can reach. For the states it pairs, the polar part of $A$ carries a measurement on the input side to one on the output side with the same outcome probabilities. Showing that a particular recording and a particular judgement of brightness realize such a pair would require independent evidence.
+We propose a linear map $A$ from the space of physical states to the space of appearances. Specifying the latter in its own terms lets us ask which appearances a given preparation can reach. For the states it pairs, the polar part of $A$ carries a measurement on the input side to one on the output side with the same outcome probabilities. Showing that a particular recording and a particular judgement of brightness realize such a pair would require independent evidence. Section~\ref{sec:asymmetric-nonduality-moments} asks what changes when the observer remembers an earlier flash, and states the conjecture that some possibilities of appearance have no physical counterpart.
 
 \subsection*{What is being mapped?}
 Write $\mathcal H_\Psi$ for the input space, $\mathcal H_\Phi$ for the output space, and
@@ -73,7 +73,7 @@ Physical conditions & A model specifies the preparation, dynamics and readout. T
 Determination & A chosen algebra specifies which vectors its action generates and which distinctions its measurements detect (Section~\ref{sec:determination}). Interpreting exclusion and superimposition as determining an object's content is a further cognitive proposal. \\[4pt]
 Reflexivity & The Buddhist reading takes a cognition to be manifest in its own occurrence. Relating that claim to an operator requires an identification. Equality of matched probabilities alone says nothing about self-awareness. \\[4pt]
 Error & The reading locates the grasper--grasped division within phenomenal determination. A criterion for when a particular judgement mistakes its object remains to be specified. \\[4pt]
-Transformation & One can specify an evolution that reduces a chosen component of a state. For a deconditioning model that component is the weight outside the direct preparation space. Reading its decay as a change in a cognitive disposition requires an independent link to that disposition. \\
+Transformation & When the luminous ground is paired, canonical deconditioning reduces excess weight and fixes the relaxation law on the physical side (Section~\ref{sec:asymmetric-nonduality-moments}). Its interpretation as a change in a particular disposition requires an independent link. \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -544,6 +544,73 @@ The sign change is the relative-phase calculation of Proposition~\ref{prop:phase
 The agreement extends to any finite sequence in which each outcome operation pulls site-diagonal effects back to site-diagonal effects. Starting with the final site readout and pulling it back along a recorded sequence leaves a diagonal effect at every step, even when earlier outcomes determine the choice of later operation. The path Hamiltonian supplies a control outside this class. Write $p_\psi(3,\tau)=|\langle e_3,e^{-i\tau H_5}\psi\rangle|^2$, with $\tau=t/\hbar$. Expansion at zero gives $p_\xi(3,\tau)-p_\eta(3,\tau)=\tau^2/8+O(\tau^4)$: the second derivatives are $1/8$ and $-1/8$, respectively, and the probabilities are even since $H_5,\xi,\eta$ are real in the site basis. A short wait followed by the same site count therefore detects a difference. The site algebra generates both states from the ground throughout this example. Which measurements discriminate them depends on the controls available before the count.
 
 For the flash, an account of the judgement \emph{bright} must specify which distinctions the observer can read and how those distinctions enter the judgement. Agreement on that report leaves open whether the appearances were alike.
+
+\section{Asymmetric nonduality across two moments}
+\label{sec:asymmetric-nonduality-moments}
+
+A first flash is seen. After a pause a second flash appears, and the observer judges it brighter than the first. By the second moment the physical conditions of seeing include the observer, the trace left by the first flash, and the processes of retention and retrieval. Throughout this section $\mathcal H_\Psi$ denotes the whole proposed physical sector, including those conditions. The flashes are two stimuli presented to that system.
+
+The conjecture of \emph{asymmetric nonduality} is that every physical state has a norm-preserving appearance counterpart and that some genuine possibilities of appearance lie orthogonal to all physical presentations. The two descriptions belong to one proposed correspondence. Under R4 and R5 the polar map obeys $V^*V=I_\Psi$ and $VV^*=\Pi_D\ne I_\Phi$. These identities give the conjecture mathematical content once the two spaces and the admissible correspondence are specified. A physical realization with a restricted preparation, such as the pair model, already satisfies both identities. The stronger cognitive reading requires grounds for counting the missing directions as appearances and for treating the physical correspondence as exhaustive.
+
+The freedom to enlarge the input makes the second requirement precise. On the active input space $S$ of Section~\ref{sec:polar-matched-observables}, the map $(h,k)\mapsto Vh+k$ from $S\oplus D^\perp$ onto $\mathcal H_\Phi$ is unitary. It extends the polar correspondence. Admitting the extra coordinates as physical would remove its defect. An independently specified physical dynamics can constrain that enlargement. For example, intertwining the enlarged system with the appearance dynamics while keeping the old input autonomous with its given unitary evolution requires $U_\Phi(t)V=VU_\Psi(t)$ on $S$ (up to a common phase for state probabilities). The bare pair transfer violates even invariance of $D$. Likewise, if several physical preparations $A_c$ are admissible at the same moment, the directions missing from all of them form $\bigcap_c\ker A_c^*$. The existence of a direction in that intersection and its interpretation as a possible appearance are separate claims.
+
+\subsection{What must agree between moments?}
+A momentary description on the appearance side specifies a space, a ground projection and a state at each moment, with a channel $\mathcal T_n$ taking the state at $n$ to the state at $n+1$. Here a channel is a completely positive trace-preserving map on trace-class operators. These data alone leave open how the awareness map at one moment relates to the map at the next. To compare the two descriptions, specify the physical step $\mathcal S_n$ and a polar pairing $V_n$ at each moment. Write $\mathcal E_n(\rho)=V_n\rho V_n^*$. Agreement for every paired preparation requires
+\begin{equation}
+ \mathcal T_n\bigl(\mathcal E_n(\rho)\bigr)
+   =\mathcal E_{n+1}\bigl(\mathcal S_n(\rho)\bigr)
+ \quad\text{for every density operator $\rho$ on $S_n$.}
+ \label{eq:two-moment-correspondence}
+\end{equation}
+Only the next moment's pairing enters the right-hand side. If the left-hand side has weight outside $D_{n+1}=\Ran V_{n+1}$, no physical step on these active spaces can give equality. If it is supported in $D_{n+1}$ for every input, compression by $V_{n+1}^*$ gives the unique candidate channel on $S_n$ with output on $S_{n+1}$. Agreement with a physical step specified independently can then be tested.
+
+For the two flashes we identify the spaces across the interval and assume the awareness map stays fixed. The input state can change throughout the interval. The hypothesis fixes how that changing state is paired. Allowing the map to change requires its own law. For unitary steps, for instance, choosing $V_{n+1}=U_\Phi V_n U_\Psi^*$ after the evolutions are given would make Eq.~\eqref{eq:two-moment-correspondence} hold by construction.
+
+\subsection{Deconditioning and the partner of the luminous ground}
+Take the appearance transition to be relaxation toward a unit vector $y$. In the cognitive model $y$ is the luminous ground. Write $P_y=\ket{y}\bra{y}$, $Q_y=I-P_y$, $s=e^{-\gamma t/2}$ with $\gamma>0$, and $L_y=P_y+sQ_y$. Canonical deconditioning acts on a density operator $\sigma$ by
+\begin{equation}
+ \mathcal D_t^y(\sigma)=L_y\sigma L_y+(1-s^2)\Tr(Q_y\sigma)P_y .
+ \label{eq:moment-deconditioning}
+\end{equation}
+The first term attenuates amplitudes orthogonal to $y$. The second returns the lost probability to $y$. Together they define a channel since the reset term is completely positive and $L_y^2+(1-s^2)Q_y=I$. Composing two steps multiplies their attenuation factors, as can be seen by taking the four blocks relative to $P_y$ and $Q_y$. This is a specific model of deconditioning. Its implementation in an observer remains open.
+
+\begin{proposition}[Deconditioning under a fixed pairing]
+\label{prop:two-moment-deconditioning}
+Let $V:S\to\mathcal H_\Phi$ be an isometry with nonzero range $D$ and put $Q_D=I-VV^*$. At any $t>0$, $\mathcal D_t^y$ takes all states supported in $D$ to states supported in $D$ exactly when $y\in D$. In that case, for every appearance state $\sigma$ and every active physical state $\rho$,
+\begin{align}
+ \Tr\bigl(Q_D\mathcal D_t^y(\sigma)\bigr)
+    &=e^{-\gamma t}\Tr(Q_D\sigma), \label{eq:moment-excess-decay}\\
+ \mathcal D_t^y(V\rho V^*)&=V\mathcal D_t^{p}(\rho)V^*,
+       \qquad p=V^*y . \label{eq:moment-physical-target}
+\end{align}
+Thus $\mathcal D_t^{p}$ is the unique channel on $S$ satisfying the two-moment correspondence for this appearance step.
+\end{proposition}
+\begin{proof}
+If $y\in D$, then $Q_D P_y=0$ and $Q_D L_y=sQ_D$. Taking the trace of Eq.~\eqref{eq:moment-deconditioning} against $Q_D$ gives Eq.~\eqref{eq:moment-excess-decay}, including for states with coherence across $D$ and $D^\perp$. Also $P_yV=VP_p$ and $Q_yV=VQ_p$, so substitution gives Eq.~\eqref{eq:moment-physical-target}. Multiplication by $V^*$ and $V$ recovers the physical channel uniquely. Conversely, if one positive-time step preserves states supported in $D$, so do all its iterates. In the $k$th iterate $s$ is replaced by $s^k$. The output of any state converges in trace norm to $P_y$ by Eq.~\eqref{eq:moment-deconditioning}. Starting with a state supported in $D$ therefore gives $y\in D$.
+\end{proof}
+
+An example gives the size of the failure when the target lies partly outside $D$. Put $w=\langle y,Q_D y\rangle$ and $f=\Tr(P_y\sigma)$ for a state $\sigma$ supported in $D$. Equation~\eqref{eq:moment-deconditioning} gives
+\[
+ \Tr\bigl(Q_D\mathcal D_t^y(\sigma)\bigr)
+ =w\bigl[(1-s)^2 f+(1-s^2)(1-f)\bigr].
+\]
+For $0<s<1$ this is largest at $f=0$, attained whenever $D$ contains a unit vector orthogonal to $y$. On the path, a target with $w=1/3$ at half relaxation ($s^2=1/2$) thus gives a maximum excess weight of $1/6$.
+
+The three ground conditions have different consequences. Membership $y\in D$ suffices for a physical partner $p$ and for the channel just proved. The ground bridge $Ax=\|Ax\|y$ identifies that partner as $p=|A|x/\|Ax\|$. Strong polar compatibility identifies $p$ with the physical vacuum $x$. On the unequal-cell path of Section~\ref{sec:ground-correspondence}, relaxation on the fine sites therefore requires relaxation toward $(1,2)/\sqrt5$ on the coarse sites. A test for the physical vacuum on this limiting state succeeds with probability $9/10$. Relaxation toward the coarse vacuum would give probability one. A unitary step on the two coarse sites also fails the test of Eq.~\eqref{eq:two-moment-correspondence}: at $s^2=1/2$ a pure input orthogonal to $p$ becomes the equal mixture of that input and $P_p$. A unitary preserves purity.
+
+\subsection{Remembering the first flash}
+What, if anything, does the excess contribute to the judgement \emph{the second flash was brighter}? Equation~\eqref{eq:moment-excess-decay} rules out canonical deconditioning as the source of new excess when the ground is paired. An ordinary Hamiltonian wait can produce it, as the pair model shows. To claim that retrieval first produces excess, we must locate the step at which the state leaves $D$. Retrieval could also change a component already present. In either case we must establish what that component contributes to the judgement.
+
+For example, write the recognition sequence on appearance amplitudes as $C_\lambda M K_n\cdots K_1 y$. The $K_j$ describe the history preceding retrieval, $M$ is a proposed mnemonic operation, and $C_\lambda$ is the subsequent conceptual determination. For the normalized state $h$ left by that history, suppose $h\in D$. The first question about $M$ is then whether $Q_D M h\ne0$. An operator with $Q_D MV\ne0$ passes this test for \emph{some} paired input. The retrieval claim concerns the particular $h$ that the first flash and the delay can prepare. To apply Eq.~\eqref{eq:two-moment-correspondence} we also need the physical retention and retrieval steps and the corresponding appearance transition. A word of operators on amplitudes alone does not specify their timing or the probabilities of their outcomes.
+
+The second question concerns readout. Let $F$ be the effect for the report \emph{brighter}, pulled back through the second flash and the subsequent decision to the time just after retrieval. The predicted probability is $\Tr(F\sigma)$ for the retrieved state $\sigma$. One possible comparison is to test $\Pi_D$ at that moment and ignore the outcome. The difference in report probability between uninterrupted evolution and this intervention is
+\[
+ \Tr(F\sigma)-\Tr\bigl(F(\Pi_D\sigma\Pi_D+Q_D\sigma Q_D)\bigr)
+   =2\operatorname{Re}\Tr(F\Pi_D\sigma Q_D).
+\]
+This comparison tests coherence between the two spaces. The population term $\Tr(FQ_D\sigma Q_D)$ survives the intervention and can contribute even if the difference vanishes.
+
+Section~\ref{sec:determination} gives an excess state and a paired state with identical site counts. The pair model illustrates a different possibility. Prepare $b$ at $\theta=\pi/8$ under bare transfer and wait twice for $t_*/2$, where $t_*=\pi\hbar/j$. Uninterrupted evolution gives zero probability of return to $b$. At the midpoint the probabilities in $D$ and $D^\perp$ are each $1/2$. A projective test of those alternatives, with both outcomes retained and the record ignored, gives a final return probability of $1/2$: each branch contributes $1/4$. The change measures the effect of removing coherence between the alternatives. For the two flashes, the analogous comparison must be specified for the observer. A dependence of the report on the first flash is already compatible with a physical state that retains its history. Whether a genuine phenomenal excess contributes to that report remains open.
 
 \begingroup\small
 \begin{thebibliography}{9}

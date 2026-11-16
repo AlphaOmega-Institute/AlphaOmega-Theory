@@ -6,7 +6,7 @@ proposal.
 
 ## Source and review scope
 
-The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Five sections have been drafted: preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. Their numbering in the working draft can change as other result families are integrated.
+The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Its first five sections cover preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. A sixth takes up asymmetric nonduality across two moments. The numbering can change as other result families are integrated.
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
@@ -129,6 +129,8 @@ Retain the doctrinal map and its sources; the ground/emptiness/luminosity argume
 algebras; dispositions and generator classes; the operator-stage model; derived grasper/grasped frames; sems and
 rig pa; reflexive terminality; non-alteration, deconditioning, momentariness, and the Third/Fourth Yoga account;
 Volition, actualization, and the proposed interpretation of excess/index.
+
+The working section `sec:asymmetric-nonduality-moments` states the strong claim about phenomenal excess as a conjecture. It takes Ψ to include the observer and retained history, and tests a fixed awareness map across two moments. For canonical deconditioning, `prop:two-moment-deconditioning` identifies exactly when paired states remain paired and which state the corresponding physical dynamics relaxes toward. In the two-flash example it remains open which operation introduces an excess component and whether that component affects the later brightness judgment.
 
 Refer internally to general theorems instead of repeating them in new notation. Keep elementary mathematics local
 when it belongs to a specifically chosen cognitive model: extracting every lemma into Part II would obscure the

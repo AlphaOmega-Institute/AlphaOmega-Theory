@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-52 passed, 0 failed, 1 skipped in ...s
+54 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `53 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `55 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -50,6 +50,10 @@ absolute spectral tolerance.
 | `test_raw_ground_bridge_and_polar_ground_measurement` | Two choices of ground for the same weighted channel satisfy the forward bridge. The output-ground measurement under polar transport gives probability 9/10 or 1. The five strong conditions fail or hold together in those cases. | UM `prop:ground-polar-compatibility`, LG `thm:ground-channel-polar`, `thm:strong-ground-equivalences` |
 | `test_normalizing_polar_image_can_hide_a_kernel_component` | For a projection, a ground with a kernel component maps onto the designated output ray with squared norm 1/2. Normalizing the image discards that loss. | UM `prop:ground-polar-compatibility` |
 | `test_path_ground_measurement_depends_on_cell_sizes` | Path Hamiltonians select constant grounds. Pullback across cells of sizes 1 and 4 gives ground-test probability 9/10 and excess energy 1/10. Equal cell sizes give probability 1 and zero excess energy. | UM `prop:ground-polar-compatibility`, `eq:ground-return-energy` |
+
+### Deconditioning across two moments
+
+`test_deconditioning.py` checks the relaxation law on the two coarse sites by comparing its action on all four matrix units with deconditioning on the five fine sites. The target passes the coarse ground test with probability 9/10. At half relaxation an orthogonal pure input becomes maximally mixed. The tests also verify the exponential decay of excess weight for a paired target and the maximum leakage of 1/6 for a target with one third of its weight outside the paired space (UM `prop:two-moment-deconditioning`).
 
 ### Determination on the five-site path
 
@@ -152,6 +156,7 @@ checks/
   test_labels.py        cited labels must exist in the manuscripts
   test_linalg.py        nearby eigenvalues must not double-count spectral mass
   test_ground_bridge.py raw and polar transport of ground states
+  test_deconditioning.py paired relaxation and leakage on the five-site path
   test_determination.py cyclic generation and readout on a finite path
   lib/                  Fock-space operators and small linear-algebra helpers
   pair/                 pair model and its checks
