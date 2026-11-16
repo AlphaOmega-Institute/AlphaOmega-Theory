@@ -6,7 +6,7 @@ proposal.
 
 ## Source and review scope
 
-The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Four technical sections have been drafted: preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, and the ground correspondence. Their numbering in the working draft can change as other result families are integrated.
+The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Five sections have been drafted: preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. Their numbering in the working draft can change as other result families are integrated.
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
@@ -85,6 +85,8 @@ assumptions they actually use. Introduce selected-line bridges, restricted polar
 compatibility, the reference-plane Pauli/phase geometry, and ground inclusion in the active graph. LG's R1 and R2 select a unique cyclic ground in each supplied representation. R3 sends the input ground to a nonzero multiple of the output ground. Keep strong polar compatibility under its additional hypothesis. V adopts these three conditions alongside R4 and R5 from II.3.
 
 The working ground section (`sec:ground-correspondence`) integrates LG’s restricted ground channel, five strong-compatibility conditions and ground-inclusive correspondence with TAUM’s conditional reference-fidelity energy identity and gap bound. It explains the cognitive interpretation of the weak bridge and tests whether it places those grounds on the aligned graph. The fuller ground-plane geometry, ground-state algebras and the doctrinal development in V remain to be migrated.
+
+The working section on determination carries forward LG’s selected algebra, concrete GNS construction, centering, covariance, and ground fidelity. The five-site example distinguishes generation from the ground from the ability to discriminate states by direct measurement. The interpretation of appearances as determinations of luminosity is introduced here. The disposition-dependent generators, conceptual judgement and grasper–grasped frame remain with Part V.
 
 **III.2 Supplied symmetries and moving subspaces.** Compact symmetry averaging, invariant compression, moving
 projection fields, frame covariance, Grassmann curvature, and characteristic classes. The group/action and, for
