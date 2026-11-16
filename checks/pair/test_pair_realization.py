@@ -11,7 +11,8 @@ from lib.linalg import eigenspace, rank, response_weights, minimal_space, genera
 from pair.model import PairModel
 
 LABELS = {
-    "UM": ["eq:pair-matched-probabilities", "eq:pair-detector-pullback", "eq:pair-transfer-povm"],
+    "UM": ["eq:pair-matched-probabilities", "eq:pair-detector-pullback", "eq:pair-transfer-povm",
+           "eq:pair-two-setting-ranges"],
     "LG": [
         "sec:finite-pair-realization", "eq:pair-parent", "eq:pair-energy-vectors",
         "eq:pair-orbital-rotation", "eq:pair-preparation-map", "eq:pair-imbalance",
@@ -212,7 +213,13 @@ def test_endpoint_angles_have_no_defect():
 def test_doubled_preparation_channel():
     """L(x, y) = A_0 x + A_{pi/4} y has range span{g, e, m} (no final defect) and
     kernel C (g_Psi, -g_Psi)."""
-    L = M.Phi.T @ np.hstack([M.preparation(0.0), M.preparation(np.pi / 4)])
+    middle = PairModel(theta=np.pi / 8)
+    defect = dag(M.Phi) @ middle.dvec
+    settings = [dag(M.Phi) @ M.preparation(angle) for angle in (0.0, np.pi / 4)]
+    for setting in settings:
+        np.testing.assert_allclose(dag(setting) @ setting, np.eye(2), atol=1e-12)
+        assert np.isclose(np.linalg.norm(dag(setting) @ defect)**2, 1 / 2)
+    L = np.column_stack(settings)
     assert rank(L) == 3
     kernel = null_space(L)
     assert kernel.shape[1] == 1

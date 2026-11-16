@@ -5,7 +5,7 @@ from scipy.linalg import expm
 
 LABELS = {
     "LG": ["thm:concrete-GNS-appearance", "prop:covariance-content-inner-product"],
-    "UM": ["prop:cyclic-determination-content", "eq:path-readout-states"],
+    "UM": ["prop:cyclic-determination-content", "eq:path-readout-states", "prop:cyclic-common-excess"],
 }
 
 PREPARED = np.array([0, 1, 1, 1, 1]) / 2
@@ -31,6 +31,11 @@ def test_cell_and_site_determinations_on_the_path():
 
     cell_orbit = ground[:, None] * cell_indicators
     assert_allclose(cell_orbit @ np.linalg.pinv(cell_orbit), direct_projection, atol=1e-14)
+    assert_allclose(direct_projection @ ground, ground)
+    # Projecting the cyclic ground onto the second site takes it outside the cell span.
+    second_site = site_indicators[:, 1] * ground
+    outside = second_site - direct_projection @ second_site
+    assert_allclose(np.vdot(outside, outside), 3 / 20)
     assert_allclose(abs(PREPARED) ** 2, abs(DEFECT) ** 2)
     assert_allclose(PREPARED @ direct_projection @ PREPARED, 1)
     assert_allclose(DEFECT @ direct_projection @ DEFECT, 0, atol=1e-14)

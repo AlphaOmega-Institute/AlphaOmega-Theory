@@ -6,6 +6,8 @@
 \hypersetup{pdftitle={Toward a Universal Model: Perception as a correspondence between state spaces}}
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{conjecture}[proposition]{Conjecture}
 \DeclareMathOperator{\Ran}{Ran}
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\rank}{rank}
@@ -25,7 +27,7 @@ Working manuscript
 \end{center}
 \begin{abstract}
 \noindent
-We model the relation between physical conditions and perceptual appearance by a linear map between Hilbert spaces. What can a preparation reach, and which differences can an observer detect? The polar part of the map pairs states and measurements with equal Born probabilities on its active supports. Pairing the ground measurements requires a further condition even when the map carries one ground to the other. In a four-mode fermion model, evolution can take a prepared state entirely outside the preparation range. On a five-site path, site operators generate every vector from the ground, yet site counts alone give identical statistics on two orthogonal states. A perceptual realization must identify the preparations, controls and measurements available to the observer.
+We model perception by a linear map from physical states to a space of appearances. The conjecture of asymmetric nonduality says that every physical state has a norm-preserving presentation and that some possible appearance is orthogonal to every admissible physical presentation. The polar part of the map pairs measurements with equal Born probabilities. In a fermion pair, a second preparation setting removes the common defect in the three-dimensional carrier. On a five-site path, site operators generate every vector from the ground, yet site counts give identical statistics on two orthogonal states. For a fixed pairing across two moments, we prove that canonical deconditioning preserves paired states exactly when its target is paired, and determine the unique physical relaxation on the active input space. Whether remembering a first flash uses an unpaired component to judge the brightness of a second remains open.
 \end{abstract}
 
 \part{Problem, origin, and program}
@@ -35,7 +37,7 @@ Consider seeing a flash of light. We can record the response of the visual syste
 
 On Dharmak\=irti's account, the seeing is manifest in its very occurrence \cite[p.~31]{Yiannopoulos2020}. A flash can appear even while it remains an open question whether anything outside the observer flashed. We take this as a reason to give appearances a state space of their own. We can then ask how states in that space correspond to the physical conditions of seeing. The distinction between the one who sees and the flash as seen arises within the appearance itself \cite[pp.~27--28, 40--41]{Yiannopoulos2020}.
 
-We propose a linear map $A$ from the space of physical states to the space of appearances. Specifying the latter in its own terms lets us ask which appearances a given preparation can reach. For the states it pairs, the polar part of $A$ carries a measurement on the input side to one on the output side with the same outcome probabilities. Showing that a particular recording and a particular judgement of brightness realize such a pair would require independent evidence. Section~\ref{sec:asymmetric-nonduality-moments} asks what changes when the observer remembers an earlier flash, and states the conjecture that some possibilities of appearance have no physical counterpart.
+We propose a linear map $A$ from the space of physical states to the space of appearances. Specifying the latter in its own terms lets us ask which appearances a given preparation can reach. For the states it pairs, the polar part of $A$ carries a measurement on the input side to one on the output side with the same outcome probabilities. Showing that a particular recording and a particular judgement of brightness realize such a pair would require independent evidence. Section~\ref{sec:asymmetric-nonduality-moments} asks what changes when the observer remembers an earlier flash, and states the claim that some possibilities of appearance have no physical counterpart (Conjecture~\ref{conj:asymmetric-nonduality}).
 
 \subsection*{What is being mapped?}
 Write $\mathcal H_\Psi$ for the input space, $\mathcal H_\Phi$ for the output space, and
@@ -550,9 +552,47 @@ For the flash, an account of the judgement \emph{bright} must specify which dist
 
 A first flash is seen. After a pause a second flash appears, and the observer judges it brighter than the first. By the second moment the physical conditions of seeing include the observer, the trace left by the first flash, and the processes of retention and retrieval. Throughout this section $\mathcal H_\Psi$ denotes the whole proposed physical sector, including those conditions. The flashes are two stimuli presented to that system.
 
-The conjecture of \emph{asymmetric nonduality} is that every physical state has a norm-preserving appearance counterpart and that some genuine possibilities of appearance lie orthogonal to all physical presentations. The two descriptions belong to one proposed correspondence. Under R4 and R5 the polar map obeys $V^*V=I_\Psi$ and $VV^*=\Pi_D\ne I_\Phi$. These identities give the conjecture mathematical content once the two spaces and the admissible correspondence are specified. A physical realization with a restricted preparation, such as the pair model, already satisfies both identities. The stronger cognitive reading requires grounds for counting the missing directions as appearances and for treating the physical correspondence as exhaustive.
+Fix a moment. Let $\{A_c\}_{c\in\mathcal C}$ be the family of admissible physical correspondences into the same appearance space, including the proposed awareness map $A$. Each map is densely defined on its input space. The joint span of their presentations and its orthogonal complement are
+\begin{equation}
+ D_{\mathcal C}=\overline{\Span\!\bigcup_{c\in\mathcal C}\Ran A_c},
+ \qquad D_{\mathcal C}^{\perp}=\bigcap_{c\in\mathcal C}\ker A_c^* .
+ \label{eq:joint-presentation-space}
+\end{equation}
+The equality follows by testing orthogonality against every range. A choice of setting prepares through one map. Taking the closed linear span lets us ask which directions are orthogonal to \emph{every} preparation.
 
-The freedom to enlarge the input makes the second requirement precise. On the active input space $S$ of Section~\ref{sec:polar-matched-observables}, the map $(h,k)\mapsto Vh+k$ from $S\oplus D^\perp$ onto $\mathcal H_\Phi$ is unitary. It extends the polar correspondence. Admitting the extra coordinates as physical would remove its defect. An independently specified physical dynamics can constrain that enlargement. For example, intertwining the enlarged system with the appearance dynamics while keeping the old input autonomous with its given unitary evolution requires $U_\Phi(t)V=VU_\Psi(t)$ on $S$ (up to a common phase for state probabilities). The bare pair transfer violates even invariance of $D$. Likewise, if several physical preparations $A_c$ are admissible at the same moment, the directions missing from all of them form $\bigcap_c\ker A_c^*$. The existence of a direction in that intersection and its interpretation as a possible appearance are separate claims.
+\begin{conjecture}[Asymmetric nonduality]\label{conj:asymmetric-nonduality}
+Every ray of the full physical sector $\mathcal H_\Psi$ has a norm-preserving presentation through the polar part $V$ of the awareness map $A$. There is a unit vector $\phi$ representing a genuine possibility of appearance that is orthogonal to the range of every physical correspondence admissible at that moment. Thus
+\[
+ V^*V=I_\Psi,\qquad \phi\in D_{\mathcal C}^{\perp},\qquad \|\phi\|=1 .
+\]
+\end{conjecture}
+For a single exhaustive map, R4 makes $V$ isometric on the full input and R5 gives $VV^*=\Pi_D\ne I_\Phi$. The conjecture gives these conditions a cognitive reading. It requires independent grounds both for counting $\phi$ as a possible appearance and for treating the physical family as exhaustive. In this reading, the physical state and its paired appearance describe one event.
+
+The freedom to enlarge the input makes the second requirement precise. On the active input space $S$ of Section~\ref{sec:polar-matched-observables}, the map $(h,k)\mapsto Vh+k$ from $S\oplus D^\perp$ onto $\mathcal H_\Phi$ is unitary. It extends the polar correspondence. Admitting the extra coordinates as physical would remove its defect. An independently specified physical dynamics can constrain that enlargement. For example, intertwining the enlarged system with the appearance dynamics while keeping the old input autonomous with its given unitary evolution requires $U_\Phi(t)V=VU_\Psi(t)$ on $S$ (up to a common phase for state probabilities). The bare pair transfer violates even invariance of $D$.
+
+\subsection{Changing the preparation and acting on the ground}
+Consider the endpoint settings of the orbital rotation from Section~\ref{subsec:pair-grounds-excitations}. Its preparation formula extends to $\theta=0,\pi/4$. In the carrier $\mathcal K=\Span\{g,e,m\}$ the two maps have ranges
+\begin{equation}
+ D_0=\Span\{g,e\},\qquad D_{\pi/4}=\Span\{g,m\},\qquad
+ D_{\{0,\pi/4\}}=\mathcal K .
+ \label{eq:pair-two-setting-ranges}
+\end{equation}
+Neither setting alone prepares the vector $d=(m-e)/\sqrt2$ from the $\pi/8$ example. Its squared projection onto each endpoint plane is $1/2$. Nevertheless, no nonzero vector in $\mathcal K$ is orthogonal to both planes. In the full six-dimensional codomain $\mathcal F_2$, the common defect is instead the three-dimensional space $W$.
+
+Each endpoint map is injective. If the two input amplitudes can also be combined coherently, the map on the doubled input is $L(h,k)=A_0 h+A_{\pi/4}k$. Its range is again $\mathcal K$, and both maps send $g_\Psi$ to $g$. Rank--nullity on the four-dimensional input then gives $\ker L=\C(g_\Psi,-g_\Psi)$. Allowing either setting already makes the common defect zero in $\mathcal K$. The loss of injectivity occurs in the additional coherent map.
+
+\begin{proposition}[Cyclicity and the common excess]\label{prop:cyclic-common-excess}
+Let $y\in D_{\mathcal C}$ be a unit ground vector cyclic for the specified algebra of determinations $\mathfrak D$ on $\mathcal H_\Phi$. Write $Q_{\mathcal C}$ for the projection onto $D_{\mathcal C}^{\perp}$. Then
+\[
+ D_{\mathcal C}^{\perp}\ne\{0\}
+ \quad\Longleftrightarrow\quad
+ Q_{\mathcal C}Xy\ne0 \text{ for some } X\in\mathfrak D .
+\]
+\end{proposition}
+\begin{proof}
+Cyclicity makes $\mathfrak D y$ dense in $\mathcal H_\Phi$. Applying $Q_{\mathcal C}$ to approximants of any vector in $D_{\mathcal C}^{\perp}$ shows that $Q_{\mathcal C}\mathfrak D y$ is dense in that complement. Thus the complement is nonzero exactly when some $Xy$ has a nonzero projection into it.
+\end{proof}
+With R2 for this algebra and R3 for an admitted channel, the ground is cyclic and paired. If a common excess survives all settings, some determination must therefore take the ground outside their joint span. On the five-site path of Section~\ref{sec:determination}, selecting site 2 in the fine ground gives the normalized state $e_2$. Its squared overlap with the constant unit vector on the four-site cell is $1/4$, so its weight outside the paired space is $3/4$. The general conclusion likewise concerns a component of $Xy$. Identifying the operation as retrieval and showing that a later judgement can detect that component require further evidence.
 
 \subsection{What must agree between moments?}
 A momentary description on the appearance side specifies a space, a ground projection and a state at each moment, with a channel $\mathcal T_n$ taking the state at $n$ to the state at $n+1$. Here a channel is a completely positive trace-preserving map on trace-class operators. These data alone leave open how the awareness map at one moment relates to the map at the next. To compare the two descriptions, specify the physical step $\mathcal S_n$ and a polar pairing $V_n$ at each moment. Write $\mathcal E_n(\rho)=V_n\rho V_n^*$. Agreement for every paired preparation requires
@@ -599,7 +639,7 @@ For $0<s<1$ this is largest at $f=0$, attained whenever $D$ contains a unit vect
 The three ground conditions have different consequences. Membership $y\in D$ suffices for a physical partner $p$ and for the channel just proved. The ground bridge $Ax=\|Ax\|y$ identifies that partner as $p=|A|x/\|Ax\|$. Strong polar compatibility identifies $p$ with the physical vacuum $x$. On the unequal-cell path of Section~\ref{sec:ground-correspondence}, relaxation on the fine sites therefore requires relaxation toward $(1,2)/\sqrt5$ on the coarse sites. A test for the physical vacuum on this limiting state succeeds with probability $9/10$. Relaxation toward the coarse vacuum would give probability one. A unitary step on the two coarse sites also fails the test of Eq.~\eqref{eq:two-moment-correspondence}: at $s^2=1/2$ a pure input orthogonal to $p$ becomes the equal mixture of that input and $P_p$. A unitary preserves purity.
 
 \subsection{Remembering the first flash}
-What, if anything, does the excess contribute to the judgement \emph{the second flash was brighter}? Equation~\eqref{eq:moment-excess-decay} rules out canonical deconditioning as the source of new excess when the ground is paired. An ordinary Hamiltonian wait can produce it, as the pair model shows. To claim that retrieval first produces excess, we must locate the step at which the state leaves $D$. Retrieval could also change a component already present. In either case we must establish what that component contributes to the judgement.
+What, if anything, does the excess contribute to the judgement \emph{the second flash was brighter}? Equation~\eqref{eq:moment-excess-decay} rules out canonical deconditioning as the source of new excess when the ground is paired. An ordinary Hamiltonian wait can produce it, as the pair model shows. Proposition~\ref{prop:cyclic-common-excess} guarantees that some determination can produce an excess component when the ground is paired and cyclic and the common excess is nonzero. To claim that retrieval first produces excess, we must locate the step at which the state leaves $D$. Retrieval could also change a component already present. In either case we must establish what that component contributes to the judgement.
 
 For example, write the recognition sequence on appearance amplitudes as $C_\lambda M K_n\cdots K_1 y$. The $K_j$ describe the history preceding retrieval, $M$ is a proposed mnemonic operation, and $C_\lambda$ is the subsequent conceptual determination. For the normalized state $h$ left by that history, suppose $h\in D$. The first question about $M$ is then whether $Q_D M h\ne0$. An operator with $Q_D MV\ne0$ passes this test for \emph{some} paired input. The retrieval claim concerns the particular $h$ that the first flash and the delay can prepare. To apply Eq.~\eqref{eq:two-moment-correspondence} we also need the physical retention and retrieval steps and the corresponding appearance transition. A word of operators on amplitudes alone does not specify their timing or the probabilities of their outcomes.
 
