@@ -571,28 +571,29 @@ For a single exhaustive map, R4 makes $V$ isometric on the full input and R5 giv
 The freedom to enlarge the input makes the second requirement precise. On the active input space $S$ of Section~\ref{sec:polar-matched-observables}, the map $(h,k)\mapsto Vh+k$ from $S\oplus D^\perp$ onto $\mathcal H_\Phi$ is unitary. It extends the polar correspondence. Admitting the extra coordinates as physical would remove its defect. An independently specified physical dynamics can constrain that enlargement. For example, intertwining the enlarged system with the appearance dynamics while keeping the old input autonomous with its given unitary evolution requires $U_\Phi(t)V=VU_\Psi(t)$ on $S$ (up to a common phase for state probabilities). The bare pair transfer violates even invariance of $D$.
 
 \subsection{Changing the preparation and acting on the ground}
-Consider the endpoint settings of the orbital rotation from Section~\ref{subsec:pair-grounds-excitations}. Its preparation formula extends to $\theta=0,\pi/4$. In the carrier $\mathcal K=\Span\{g,e,m\}$ the two maps have ranges
+Consider the endpoint settings of the orbital rotation from Section~\ref{subsec:pair-grounds-excitations}. Its preparation formula extends to $\theta=0,\pi/4$. The two ranges and their joint span are
 \begin{equation}
  D_0=\Span\{g,e\},\qquad D_{\pi/4}=\Span\{g,m\},\qquad
- D_{\{0,\pi/4\}}=\mathcal K .
+ D_{\{0,\pi/4\}}=\Span\{g,e,m\}.
  \label{eq:pair-two-setting-ranges}
 \end{equation}
-Neither setting alone prepares the vector $d=(m-e)/\sqrt2$ from the $\pi/8$ example. Its squared projection onto each endpoint plane is $1/2$. Nevertheless, no nonzero vector in $\mathcal K$ is orthogonal to both planes. In the full six-dimensional codomain $\mathcal F_2$, the common defect is instead the three-dimensional space $W$.
+Neither setting alone prepares the vector $d=(m-e)/\sqrt2$ from the $\pi/8$ example. Its squared projection onto each endpoint plane is $1/2$. No nonzero vector in this three-dimensional pair carrier is orthogonal to both planes. In the full six-dimensional codomain $\mathcal F_2$, the common defect is the three-dimensional space $W$.
 
-Each endpoint map is injective. If the two input amplitudes can also be combined coherently, the map on the doubled input is $L(h,k)=A_0 h+A_{\pi/4}k$. Its range is again $\mathcal K$, and both maps send $g_\Psi$ to $g$. Rank--nullity on the four-dimensional input then gives $\ker L=\C(g_\Psi,-g_\Psi)$. Allowing either setting already makes the common defect zero in $\mathcal K$. The loss of injectivity occurs in the additional coherent map.
+Each endpoint map is injective. If the two input amplitudes can also be combined coherently, the map on the doubled input is $L(h,k)=A_0 h+A_{\pi/4}k$. Its range is again the pair carrier, and both maps send $g_\Psi$ to $g$. Rank--nullity on the four-dimensional input then gives $\ker L=\C(g_\Psi,-g_\Psi)$. Allowing either setting already makes the common defect zero in the pair carrier. The loss of injectivity occurs in the additional coherent map.
 
 \begin{proposition}[Cyclicity and the common excess]\label{prop:cyclic-common-excess}
-Let $y\in D_{\mathcal C}$ be a unit ground vector cyclic for the specified algebra of determinations $\mathfrak D$ on $\mathcal H_\Phi$. Write $Q_{\mathcal C}$ for the projection onto $D_{\mathcal C}^{\perp}$. Then
+Let $y$ be any unit vector cyclic for the specified unital algebra of determinations $\mathfrak D$ on $\mathcal H_\Phi$. Write $Q_{\mathcal C}$ for the projection onto $D_{\mathcal C}^{\perp}$. Then
 \[
  D_{\mathcal C}^{\perp}\ne\{0\}
  \quad\Longleftrightarrow\quad
  Q_{\mathcal C}Xy\ne0 \text{ for some } X\in\mathfrak D .
 \]
+If $y\in D_{\mathcal C}$, the common excess is nonzero exactly when some determination fails to preserve $D_{\mathcal C}$.
 \end{proposition}
 \begin{proof}
-Cyclicity makes $\mathfrak D y$ dense in $\mathcal H_\Phi$. Applying $Q_{\mathcal C}$ to approximants of any vector in $D_{\mathcal C}^{\perp}$ shows that $Q_{\mathcal C}\mathfrak D y$ is dense in that complement. Thus the complement is nonzero exactly when some $Xy$ has a nonzero projection into it.
+Cyclicity makes $\mathfrak D y$ dense in $\mathcal H_\Phi$. Applying $Q_{\mathcal C}$ to approximants of any vector in $D_{\mathcal C}^{\perp}$ shows that $Q_{\mathcal C}\mathfrak D y$ is dense in that complement. This proves the first equivalence. If $y\in D_{\mathcal C}$, any $X$ with $Q_{\mathcal C}Xy\ne0$ takes $y$ out of $D_{\mathcal C}$. Conversely, if some $X$ takes any vector of $D_{\mathcal C}$ outside it, the closed joint span is proper and its orthogonal complement is nonzero.
 \end{proof}
-With R2 for this algebra and R3 for an admitted channel, the ground is cyclic and paired. If a common excess survives all settings, some determination must therefore take the ground outside their joint span. On the five-site path of Section~\ref{sec:determination}, selecting site 2 in the fine ground gives the normalized state $e_2$. Its squared overlap with the constant unit vector on the four-site cell is $1/4$, so its weight outside the paired space is $3/4$. The general conclusion likewise concerns a component of $Xy$. Identifying the operation as retrieval and showing that a later judgement can detect that component require further evidence.
+When $y$ already has an outside component, the identity itself witnesses $Q_{\mathcal C}Xy\ne0$. R2 makes the ground cyclic for the specified algebra, and R3 puts it in the joint span. A surviving common excess then requires a determination that takes the ground out of that span. On the five-site path of Section~\ref{sec:determination}, selecting site 2 in the fine ground gives the normalized state $e_2$. Its squared overlap with the constant unit vector on the four-site cell is $1/4$, so its weight outside the paired space is $3/4$. The general conclusion likewise concerns a component of $Xy$. Identifying the operation as retrieval and showing that a later judgement can detect that component require further evidence.
 
 \subsection{What must agree between moments?}
 A momentary description on the appearance side specifies a space, a ground projection and a state at each moment, with a channel $\mathcal T_n$ taking the state at $n$ to the state at $n+1$. Here a channel is a completely positive trace-preserving map on trace-class operators. These data alone leave open how the awareness map at one moment relates to the map at the next. To compare the two descriptions, specify the physical step $\mathcal S_n$ and a polar pairing $V_n$ at each moment. Write $\mathcal E_n(\rho)=V_n\rho V_n^*$. Agreement for every paired preparation requires
