@@ -1,11 +1,15 @@
 """Generation and readout in the five-site path example."""
 import numpy as np
 from numpy.testing import assert_allclose
+from scipy.linalg import expm
 
 LABELS = {
     "LG": ["thm:concrete-GNS-appearance", "prop:covariance-content-inner-product"],
     "UM": ["prop:cyclic-determination-content", "eq:path-readout-states"],
 }
+
+PREPARED = np.array([0, 1, 1, 1, 1]) / 2
+DEFECT = np.array([0, 1, 1, -1, -1]) / 2
 
 
 def test_cell_and_site_determinations_on_the_path():
@@ -27,8 +31,23 @@ def test_cell_and_site_determinations_on_the_path():
 
     cell_orbit = ground[:, None] * cell_indicators
     assert_allclose(cell_orbit @ np.linalg.pinv(cell_orbit), direct_projection, atol=1e-14)
-    prepared = np.array([0, 1, 1, 1, 1]) / 2
-    defect = np.array([0, 1, 1, -1, -1]) / 2
-    assert_allclose(abs(prepared) ** 2, abs(defect) ** 2)
-    assert_allclose(prepared @ direct_projection @ prepared, 1)
-    assert_allclose(defect @ direct_projection @ defect, 0, atol=1e-14)
+    assert_allclose(abs(PREPARED) ** 2, abs(DEFECT) ** 2)
+    assert_allclose(PREPARED @ direct_projection @ PREPARED, 1)
+    assert_allclose(DEFECT @ direct_projection @ DEFECT, 0, atol=1e-14)
+
+
+def test_free_wait_reveals_the_sign_at_site_three():
+    differences = np.diff(np.eye(5), axis=0)
+    hamiltonian = differences.T @ differences / 2
+    site_three = np.diag([0, 0, 1, 0, 0])
+
+    # The Heisenberg effect has second derivative -[H,[H,P]] at zero.
+    commutator = hamiltonian @ site_three - site_three @ hamiltonian
+    second_derivative = commutator @ hamiltonian - hamiltonian @ commutator
+    assert_allclose(PREPARED @ second_derivative @ PREPARED, 1 / 8)
+    assert_allclose(DEFECT @ second_derivative @ DEFECT, -1 / 8)
+
+    tau = 0.01
+    wait = expm(-1j * tau * hamiltonian)
+    probabilities = abs(wait[2] @ np.column_stack((PREPARED, DEFECT))) ** 2
+    assert_allclose((probabilities[0] - probabilities[1]) / tau**2, 1 / 8, rtol=1e-4)

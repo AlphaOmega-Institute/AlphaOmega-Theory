@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-51 passed, 0 failed, 1 skipped in ...s
+52 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `52 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `53 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -54,6 +54,8 @@ absolute spectral tolerance.
 ### Determination on the five-site path
 
 `test_determination.py` checks the centered cell and site orbits (dimensions 1 and 4), their covariance Gram matrices, and the cell orbit's equality to the preparation range. Two unit states have identical site probabilities and respective preparation-range probabilities 1 and 0 (UM `prop:cyclic-determination-content`, `eq:path-readout-states`; LG `thm:concrete-GNS-appearance`, `prop:covariance-content-inner-product`).
+
+A free wait under the path Hamiltonian changes the site-3 readout. The second derivatives of the two probabilities at zero are +1/8 and −1/8 in units of τ = t/ℏ. Direct evolution at a short time also checks the resulting τ²/8 coefficient in their difference.
 
 ### Pair model — LG, `sec:finite-pair-realization`
 
