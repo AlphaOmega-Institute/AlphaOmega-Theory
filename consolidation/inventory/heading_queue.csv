@@ -1,0 +1,115 @@
+source,start_line,end_line,heading_path,display_blocks,source_labels,priority
+LG,319,351,"Scope, status, and axiomatic spine > Purpose and logical hierarchy",1,eq:hierarchy,standard
+LG,384,441,"Scope, status, and axiomatic spine > The five realization axioms",4,sec:axiomatic-spine eq:bridge-preview,standard
+LG,872,894,"Typed channel, odd extension, and polar orientation > Three objects, not one",1,eq:three-object-summary,standard
+LG,1037,1070,Doctrinal map and interpretive constraints > Relative luminosity and the luminous ground,4,eq:Omega-doctrinal eq:Omega0-doctrinal eq:ground-bridge-preview2 eq:awareness-emptiness-natural,standard
+LG,1153,1176,Doctrinal map and interpretive constraints > The algebra of appearance,1,eq:appearance-location,standard
+LG,1177,1204,Doctrinal map and interpretive constraints > Concordance table,0,,standard
+LG,1205,1213,Pointed cyclic representations and ground-state data,0,sec:pointed-ground-representations,standard
+LG,1398,1414,Pointed cyclic representations and ground-state data > Zero is not a state,1,,standard
+LG,1415,1422,The physical cyclic vacuum,0,sec:physical-cyclic-vacuum,standard
+LG,1464,1499,The physical cyclic vacuum > The physical vacuum state functional,3,eq:physical-vacuum-functional eq:physical-pointed-representation eq:physical-ground-levels,standard
+LG,1631,1638,The luminous phenomenal ground,0,sec:luminous-cyclic-ground,standard
+LG,1681,1712,The luminous phenomenal ground > The luminous ground state functional,4,eq:phenomenal-ground-functional eq:phenomenal-pointed-representation,standard
+LG,1883,1889,"Ground fidelity, orthogonality, and excitation",0,sec:ground-fidelity,standard
+LG,2084,2095,"Ground fidelity, orthogonality, and excitation > Physical ground fidelity",1,,standard
+LG,2096,2109,"Ground fidelity, orthogonality, and excitation > The grounds are state types, not enduring substances",0,,standard
+LG,2110,2119,Awareness of emptiness and the luminous ground bridge,0,sec:ground-bridge,standard
+LG,2381,2404,Awareness of emptiness and the luminous ground bridge > Normalized relative luminosity,2,,standard
+LG,2405,2423,The restricted ground channel and its canonical orientation,1,sec:ground-channel-orientation eq:ground-bridge-fixed,standard
+LG,2665,2672,The Krein-neutral nondual ground line,0,sec:neutral-ground-line,standard
+LG,2862,2881,The Krein-neutral nondual ground line > Ground cyclicity remains sectoral,1,eq:sectoral-cyclicity-retained,standard
+LG,2882,2889,"Ground reflection, complex structure, and relative phase",0,sec:ground-reflection-phase,standard
+LG,3065,3087,"Ground reflection, complex structure, and relative phase > Relative-phase coordinates",1,eq:R0-phase-expectation eq:Q0-phase-expectation eq:J-phase-expectation,standard
+LG,3121,3127,Embedding the ground line into the full polar geometry,0,sec:ground-full-polar,standard
+LG,3128,3169,Embedding the ground line into the full polar geometry > The full active-support polar reflection,4,eq:full-polar-supports eq:full-polar-RI eq:full-polar-squares eq:full-active-aligned-graph-preview,standard
+LG,3303,3311,Active-support polar correspondence and the BRLC graph,0,sec:active-support-brlc-geometry,standard
+LG,3621,3628,The Born Rule Locus Correspondence,0,sec:born-rule-locus-correspondence,standard
+LG,3909,3916,The paired observable algebra,0,sec:paired-observable-algebra,standard
+LG,4241,4250,"SSP factorization, phase blindness, and structural observables",0,sec:ssp-factorization-phase,standard
+LG,4549,4560,The phenomenal determination algebra and the appearance space,1,sec:phenomenal-determination-gns eq:full-phenomenal-cyclicity,standard
+LG,4828,4835,V\=asan\=a-conditioned generators and the word algebra of appearance,0,sec:vasana-generator-system,standard
+LG,4962,4998,V\=asan\=a-conditioned generators and the word algebra of appearance > Profile-relative differentiated appearance,4,eq:profile-relative-appearance-space eq:profile-appearance-inclusion eq:differentiated-production-functional,standard
+LG,5054,5061,Operator stages of ordinary appearance,0,sec:operator-stages-appearance,standard
+LG,5133,5162,"Operator stages of ordinary appearance > Memory, recognition, and concatenation",3,eq:recognition-word eq:recognition-state,named
+LG,5244,5250,Derived grasper--grasped frames inside the phenomenal sector,0,sec:derived-duality-frames,standard
+LG,5411,5416,"Sems, v\=asan\=a exhaustion, and exact ground recovery",0,sec:sems-exhaustion-ground-recovery,standard
+LG,5584,5606,"Sems, v\=asan\=a exhaustion, and exact ground recovery > The Third and Fourth Yogas revisited",1,eq:third-fourth-same-ground-ray,standard
+LG,5607,5613,Reflexive terminality and exact realization,0,sec:reflexive-terminality-recognition,standard
+LG,5783,5790,Ground non-alteration and stabilizer structure,0,sec:ground-nonalteration,standard
+LG,5946,5953,"Recognition, deconditioning, and ground-attractive dynamics",0,sec:deconditioning-dynamics,standard
+LG,5954,5977,"Recognition, deconditioning, and ground-attractive dynamics > Recognition and deconditioning are not identical",0,,standard
+LG,6147,6154,Momentary cognitive continua and stabilization,0,sec:momentary-stabilization,standard
+LG,6304,6310,The Third and Fourth Yogas as one ground realization,0,sec:third-fourth-yoga-same-ground,standard
+LG,6451,6473,The Third and Fourth Yogas as one ground realization > Recognition without fabrication,1,eq:unconditioned-ground-two-conditions,standard
+LG,6474,6495,Volition as adjoint return and normalized orientation,2,sec:volition-return-orientation eq:typed-volition eq:polar-volition,standard
+LG,6614,6633,Volition as adjoint return and normalized orientation > Raw ground return,2,eq:raw-ground-return-general eq:raw-ground-return-strong,standard
+LG,6666,6673,Asymmetric presentability and the one-sided inverse law,0,sec:asymmetric-presentability,standard
+LG,6805,6834,Asymmetric presentability and the one-sided inverse law > Final-support and defect components,3,eq:phenomenal-rep-exc-decomp eq:return-sees-representable eq:phen-return-cycle-projection,standard
+LG,6835,6845,Asymmetric presentability and the one-sided inverse law > Canonical example,0,,standard
+LG,6846,6855,Mental causation as phenomenal-to-physical actualization,0,sec:mental-causation-actualization,standard
+LG,6958,6972,Mental causation as phenomenal-to-physical actualization > Raw Volition and spectral reweighting,1,eq:raw-volition-vector-return,standard
+LG,7010,7055,Mental causation as phenomenal-to-physical actualization > Ground actualization,6,eq:ground-fully-actualizable eq:restricted-ground-return-operation eq:restricted-ground-return-formula eq:ground-global-actualization,named
+LG,7056,7063,"Phenomenal excess, differentiated appearance, and deconditioning",0,sec:phenomenal-excess-deconditioning,standard
+LG,7162,7180,"Phenomenal excess, differentiated appearance, and deconditioning > Final-support and defect weights for normal states",2,eq:excess-weight-density eq:actualization-excess-complement,standard
+LG,7181,7219,"Phenomenal excess, differentiated appearance, and deconditioning > A finite pair-transfer realization",0,sec:finite-pair-realization,standard
+LG,7911,7931,"Phenomenal excess, differentiated appearance, and deconditioning > No equation of phenomenal defect with non-luminosity",1,eq:excess-not-nonluminosity,standard
+LG,7932,7939,Fredholm index as sectoral imbalance,0,sec:fredholm-index-excess,standard
+LG,8024,8054,Fredholm index as sectoral imbalance > Two-term closed Hilbert complex,4,eq:two-term-complex eq:transition-cohomology eq:index-euler-characteristic,standard
+LG,8080,8092,Fredholm index as sectoral imbalance > Finite and infinite phenomenal defect,1,eq:phenomenal-excess-multiplicity,standard
+LG,8122,8139,Fredholm index as sectoral imbalance > Index and the luminous ground,1,eq:grounds-not-index-zero-modes,standard
+LG,8140,8160,"Current architecture, assumptions, and open problems",1,sec:current-architecture eq:three-level-AV-table,standard
+LG,8161,8214,"Current architecture, assumptions, and open problems > Current architecture",6,,standard
+LG,8215,8260,"Current architecture, assumptions, and open problems > Adopted assumptions and status",1,eq:adopted-asymmetry,standard
+LG,8261,8295,"Current architecture, assumptions, and open problems > Doctrinal synthesis",1,eq:current-doctrinal-map,standard
+LG,8296,8359,"Current architecture, assumptions, and open problems > Open problems and conditional extensions",1,eq:ground-line-bundle-target,standard
+LG,8360,8425,Notation charter,0,app:notation,standard
+LG,8426,8459,Notation charter > Typographical discipline,4,,standard
+LG,8460,8493,Notation charter > Appearance and determination notation,0,,standard
+LG,8494,8518,Notation charter > Dynamics and realization notation,0,,standard
+LG,8519,8553,"Notation charter > Return, defect, and index notation",0,,standard
+LG,8554,8560,Scholarly provenance and source status,0,app:provenance,standard
+LG,8561,8602,Scholarly provenance and source status > Mathematical chassis and standard results,0,,standard
+LG,8603,8618,Scholarly provenance and source status > Interpretive sources,0,,standard
+LG,8619,8642,Scholarly provenance and source status > Status of the present construction,0,,standard
+TAUM,213,244,Introduction and scope,0,sec:introduction,standard
+TAUM,245,278,Introduction and scope > Primitive data and derived structures,3,eq:intro-AV,standard
+TAUM,279,321,Introduction and scope > One closed excursion in three forms,5,eq:intro-curvature eq:intro-self-energy eq:intro-effective eq:intro-response,standard
+TAUM,322,350,Introduction and scope > Reference states and topology,1,eq:intro-reference-image,standard
+TAUM,351,370,Introduction and scope > Logical organization,0,,standard
+TAUM,374,439,Bipartite Krein geometry > Fundamental decomposition,8,eq:J eq:Krein-form eq:fundamental-decomposition eq:sector-projections,named
+TAUM,505,523,Bipartite Krein geometry > Equal-carrier realization,2,,standard
+TAUM,1078,1085,Compact symmetry averaging and invariant compression,0,sec:symmetry-averaging,standard
+TAUM,1188,1196,Reference-state geometry and excitation energy,0,sec:reference-state,standard
+TAUM,1327,1349,Reference-state geometry and excitation energy > Relation to the transition channel,1,eq:cyclic-reference,standard
+TAUM,1350,1356,Polar geometry of the transition channel,0,sec:polar,standard
+TAUM,1653,1660,"Cohomology, spectral pairing, and index",0,sec:cohomology,standard
+TAUM,2008,2015,Moving decompositions and projector curvature,0,sec:projector-geometry,standard
+TAUM,2366,2389,Characteristic classes of the projector bundle,2,sec:characteristic-classes eq:curvature-form eq:curvature-return-components,standard
+TAUM,2509,2518,Schur--Feshbach reduction and effective dynamics,0,sec:effective-dynamics,standard
+TAUM,2845,2857,Boundary response and passive realizations,0,sec:boundary-response,standard
+TAUM,3628,3636,Canonical realizations,0,sec:examples,standard
+TAUM,4025,4048,Canonical realizations > What is universal and what depends on the channel,0,,standard
+TAUM,4049,4055,"Synthesis, realization data, and open extensions",0,sec:scope-open,standard
+TAUM,4103,4151,"Synthesis, realization data, and open extensions > Realization datum",1,eq:realization-datum,standard
+TAUM,4152,4176,"Synthesis, realization data, and open extensions > Claim-status convention",0,,standard
+TAUM,4177,4198,"Synthesis, realization data, and open extensions > Established layers and boundaries",0,,standard
+TAUM,4199,4247,"Synthesis, realization data, and open extensions > Open mathematical extensions",0,,standard
+TAUM,4248,4265,"Synthesis, realization data, and open extensions > Visible limitations",0,,standard
+TAUM,4266,4281,"Synthesis, realization data, and open extensions > Conclusion",0,,standard
+TAUM,4282,4288,Domain bookkeeping,0,app:domains,named
+TAUM,4289,4310,Domain bookkeeping > First-order operators,2,,named
+TAUM,4311,4339,Domain bookkeeping > Ordered products and Laplacian,3,,named
+TAUM,4340,4348,Domain bookkeeping > Reference-state relations,0,,named
+TAUM,4349,4385,Domain bookkeeping > Polar factors,3,,named
+TAUM,4386,4403,Domain bookkeeping > Partner restrictions and cohomology,1,,named
+TAUM,4404,4420,Domain bookkeeping > Moving projections,1,,named
+TAUM,4421,4443,Domain bookkeeping > Schur--Feshbach block generators,3,,named
+TAUM,4444,4471,Domain bookkeeping > Boundary response,3,,named
+TAUM,4472,4497,Domain bookkeeping > Example domains,3,,named
+TAUM,4498,4507,Domain bookkeeping > Reference-state geometry,0,,named
+TAUM,4508,4519,Domain bookkeeping > Characteristic classes,0,,named
+TAUM,4523,4561,Notation index > Fixed-channel algebra,0,,standard
+TAUM,4562,4588,Notation index > Moving projections and effective dynamics,0,,standard
+TAUM,4589,4614,Notation index > Boundary response and realizations,0,,standard
+TAUM,4615,4637,Notation index > Reference-state and topological notation,0,,standard

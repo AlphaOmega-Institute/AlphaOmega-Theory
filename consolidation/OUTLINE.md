@@ -10,7 +10,8 @@ The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens 
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
-- The [migration ledger](inventory/migration.csv) records clause-level coverage against the consolidated introduction and §§1–8 at `af58551`. Each row names the source, its planned home, any actual draft location, and either the evidence or the work still owed. The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains how to read a specialization or an unstated consequence.
+- The [migration ledger](inventory/migration.csv) compares source clauses with the consolidated introduction and §§1–8 at `af58551`. It distinguishes a statement’s source kind from its role in the draft and records passage locators, evidence and outstanding clauses. The all-channel strengthening of R5 is attributed to the consolidated manuscript (`UM`). The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains the fields.
+- Supplements cover the pair and orbital equations used in §§1–3 and §8. The [source reading queue](inventory/heading_queue.csv) identifies further passages without a direct ledger entry. Read the surrounding derivations when migrating a partially tracked section.
 - The inventory now includes all used, declared theorem-like environments: 106 TAUM entries and 175 LG entries,
   including LG's 17 model choices and 29 doctrinal identifications.
 - This outline maps all 50 top-level sections/appendices (16 TAUM, 34 LG), plus three major embedded subsections, in

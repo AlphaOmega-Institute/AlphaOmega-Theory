@@ -82,7 +82,13 @@ permanent identifiers.
 
 [The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–8 of the consolidated TeX at `af58551`. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
 
-Filter by `source` and `source_key` to see a source entry together with all its assessed clauses. A source key is its inventory label, or the inventory's `@line` key for an unlabelled environment in the pinned source. `source_line` is the line where the environment begins. For a supplementary equation the line is the location of its label. `draft_labels` names the actual TeX anchors for migrated material. An equation or proposition label can locate the reasoning in its adjacent paragraph, as specified in `evidence_or_owed`. `planned_homes` gives the outline's eventual part or parts and may be broader than an individual clause.
+Filter by `source` and `source_key` to read all clauses of an entry. For TAUM and LG, the key is the source label or the inventory’s `@line` key for an unlabelled environment. The source line locates the environment or supplementary label. `UM` identifies a claim introduced in the consolidated draft. For example, LG’s R5 assumes a missing direction for one specified map. The draft conjectures that one genuine appearance direction is missed by **every** admissible map. The strengthening has its own UM entry.
+
+Three fields answer different review questions.
+
+- `source_kind` records how the source presents a statement, or marks supplementary source material or a draft extension.
+- `draft_status` records the role the reviewer finds in the draft passage. A clause can serve more than one role, separated by `|`. For example, R1–R5 are axioms in LG and hypotheses for a realization in the draft. An owed clause has status `absent`.
+- `draft_labels` locates the draft passage. An explicit clause with only part, section or subsection labels also carries a short `draft_quote`. Its TeX must occur exactly once after whitespace is normalized, so a reviewer can relocate the passage after a move. `evidence_or_owed` explains what the passage establishes or what work remains. `planned_homes` gives the intended position in the final outline.
 
 | Coverage | How to read the evidence |
 | --- | --- |
@@ -90,7 +96,9 @@ Filter by `source` and `source_key` to see a source entry together with all its 
 | `recoverable` | The reviewer gives a specialization or short inference from named passages. State the consequence or supply an explicit cross-reference before closing the source entry. |
 | `owed` | The draft still needs the indicated statement, proof, construction or interpretation. The destination label is blank until that material is present. |
 
-The rows cover every formal entry in the source inventory. Entries of kind `supplement` track selected constructions or consequences outside those environments. Further reading must still check proofs, examples and intervening prose for additional material. An item can contribute both mathematical and interpretive clauses. Retain its original kind and hypotheses as each clause migrates. A discrepancy that changes a result should be recorded with the corrected scope. Equal labels or shared numerical checks alone cannot establish coverage.
+The ledger includes every formal entry in the source inventory. Supplements track mathematics outside those environments, including the pair Hamiltonian, preparation and readout, and the orbital parent, carrier and response. One source passage can contribute a theorem, a modelling choice and an interpretation with different destinations.
+
+The [heading queue](heading_queue.csv) lists nonempty source heading bodies with no ledger row anchored in them. Each body runs up to the next heading. The screen skips empty or label-only bodies and the bibliography, with no minimum length. Read queued passages to decide whether to add a supplement or point to coverage elsewhere. Recheck partially tracked bodies when migrating the family. A single entry removes a heading from the queue even if nearby derivations or prose still need a home.
 
 ### Worked entry for LG's canonical deconditioning theorem
 
@@ -104,10 +112,11 @@ The rows cover every formal entry in the source inventory. Entries of kind `supp
 | (iv) Quantitative trace-distance estimate | Restore the estimate with constant 2 and its proof. Qualitative convergence is already used. |
 | Generator | Restore the bounded trace-class generator with its derivative at zero. |
 
-Run the following command from the repository root to check source keys, coverage of the formal inventory, clause uniqueness and destination labels.
+From the repository root, validate the ledger and check that the reading queue matches it. After adding source entries, regenerate the queue by running `heading_queue.py` without `--check`.
 
 ```sh
 python consolidation/inventory/check_migration.py
+python consolidation/inventory/heading_queue.py --check
 ```
 
 The checker reports editorial counts. The ledger weights neither the length nor the difficulty of the clauses and makes no percentage-complete estimate.
