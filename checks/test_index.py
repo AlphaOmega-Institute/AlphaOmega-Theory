@@ -6,7 +6,8 @@ from scipy.linalg import expm
 from lib.linalg import rank
 
 LABELS = {
-    "UM": ["eq:index-shift-family", "eq:index-shift-energy", "eq:index-extension-counts"],
+    "UM": ["eq:index-shift-family", "eq:index-shift-energy",
+           "eq:index-channel-coherence", "eq:index-extension-counts"],
     "LG": ["eq:unilateral-shift-example", "eq:shift-index-minus-one"],
 }
 
@@ -54,6 +55,35 @@ def test_excitation_energy_selects_a_common_shift_defect():
         matching_energies = output_energies[:, None] == input_energies[None, :]
         common_defect = np.diag(~matching_energies.any(axis=1))
         assert_allclose(common_defect, expected_defect)
+
+
+def test_covariant_channel_coherence_bound_and_resonance():
+    g0, g1, g2 = np.eye(3)
+    f0, f1 = np.eye(2)
+    h_input = np.diag([0, 1])
+    epsilon = 0.5
+    h_output = np.diag([epsilon, 0, 1])
+    input_coherence = np.outer(f0, f1)
+    for p in (0, 0.3, 0.8, 1):
+        keep = np.column_stack((g1, np.sqrt(1 - p) * g2))
+        jump = np.sqrt(p) * np.outer(g0, f1)
+        assert_allclose(keep.T @ keep + jump.T @ jump, np.eye(2))
+        # Each Kraus operator has a single energy shift, so its phase cancels.
+        assert_allclose(h_output @ keep - keep @ h_input, 0)
+        assert_allclose(h_output @ jump - jump @ h_input, (epsilon - 1) * jump)
+        assert_allclose(keep @ f0, g1)
+        assert_allclose(jump @ f0, 0)
+        output_excitation = sum(np.outer(k @ f1, k @ f1) for k in (keep, jump))
+        assert_allclose(g0 @ output_excitation @ g0, p)
+        coherence = sum(k @ input_coherence @ k.T for k in (keep, jump))
+        assert_allclose(np.linalg.norm(coherence, ord="nuc"), np.sqrt(1 - p))
+
+    # At epsilon=2 a common +1 shift preserves the input frequency. Its
+    # image of the input ground is now excited; the ground bridge fails.
+    resonant = np.column_stack((g2, g0))
+    assert_allclose(resonant.T @ resonant, np.eye(2))
+    assert_allclose(np.diag([2, 0, 1]) @ resonant - resonant @ h_input, resonant)
+    assert_allclose(resonant @ input_coherence @ resonant.T, np.outer(g2, g0))
 
 
 def test_input_extension_counts_independent_new_output_directions():
