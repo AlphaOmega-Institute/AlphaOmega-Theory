@@ -21,11 +21,12 @@ from numpy.polynomial.hermite import hermgauss, hermval
 from scipy.sparse.linalg import eigsh
 
 
-def gaussian_integrals_1d(Nmax, xi):
+def gaussian_integrals_1d(Nmax, xi, *, screen_parity=True):
     """I[a, b, c, d] = int phi_a(x1) phi_b(x2) exp(-(x1 - x2)^2 / (2 xi)) phi_c(x1) phi_d(x2).
 
     Exact Gauss-Hermite quadrature in u = (x1 + x2)/sqrt2 and w = (x1 - x2)/sqrt2, where
-    the integrand is a polynomial times exp(-u^2) exp(-w^2 (1 + 1/xi))."""
+    the integrand is a polynomial times exp(-u^2) exp(-w^2 (1 + 1/xi)). Set screen_parity
+    to False to evaluate the odd integrals as well when testing the selection rule."""
     K = 2 * Nmax + 8
     t, wt = hermgauss(K)
     scale = 1 / np.sqrt(1 + 1 / xi)
@@ -45,7 +46,7 @@ def gaussian_integrals_1d(Nmax, xi):
         for b in range(Nmax + 1):
             for c in range(Nmax + 1):
                 for d in range(Nmax + 1):
-                    if (a + b + c + d) % 2 == 0:
+                    if not screen_parity or (a + b + c + d) % 2 == 0:
                         out[a, b, c, d] = np.sum(weight * P1[a] * P1[c] * P2[b] * P2[d])
     return out
 

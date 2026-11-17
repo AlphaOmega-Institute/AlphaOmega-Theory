@@ -6,7 +6,7 @@ proposal.
 
 ## Source and review scope
 
-The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Its first five sections cover preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. A sixth takes up asymmetric nonduality across two moments. The numbering can change as other result families are integrated.
+The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Its first five sections cover preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. Sections 6–8 treat asymmetric nonduality across two moments, cohomology and the index, and effective dynamics in the pair and orbital models. The numbering can change as other result families are integrated.
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
@@ -108,6 +108,8 @@ systems with covariance/contraction. The semigroup remains a model choice. Retai
 separate subsection with its bounded coupling, self-adjoint diagonal generators, and resolvent assumptions.
 Do not present reference-preserving CPTP maps or a particular contraction as consequences of the bare channel.
 
+The working section `sec:effective-dynamics` uses the Hilbert Schur complement to compute the measured resolvent on the prepared plane. III.3 still needs TAUM’s general signed factorization, including the Krein branch, the oriented return and the opposite dissipative signs. III.4 can then reuse the positivity of the self-energy. Keep `thm:two-return-forms` in III.3, referring back to III.2 for the curvature of a moving projection.
+
 **III.4 Positive response and operational access.** Hilbert-self-adjoint realizations with bounded ports; Herglotz
 and Schur kernels; spectral measures; minimal realizations; finite response-defect count; permanent invisibility;
 symmetry-resolved departure; and heat-smoothed singular ports. Keep the ambient invisible complement distinct
@@ -124,6 +126,8 @@ Preserve the consequential limitations: Singh's minimal symmetric completion rem
 the orbital parent is a continuum model with a selected finite carrier; the readout needs its filter; and full-matrix
 cyclicity does not by itself select a ground. Keep the finite preparation-invariance criterion and the distinction
 between an input Hamiltonian and a compression of the output Hamiltonian.
+
+Section 8 compares the angle dependence of the pair and orbital spectra. Rotating the preparation on LG’s exact filtered carrier gives distinct tests with fixed and co-rotated detectors. For the bare orbital shell, parity gives a two-quantum gap to configurations that can mix with it. The section bounds errors in energies, leakage and amplitudes, then illustrates the singlet-gap correction at second order. The remaining proofs from LG’s orbital source stay allocated to IV and Appendix A.
 
 Retain the translation, oscillator, and quasiperiodic examples for their distinct spectral/domain lessons. Arithmetic
 material remains an explicitly limited example/open direction unless a later editorial decision removes it.

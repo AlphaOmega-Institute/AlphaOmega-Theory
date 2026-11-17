@@ -27,7 +27,7 @@ Working manuscript
 \end{center}
 \begin{abstract}
 \noindent
-We model perception by a linear map from physical states to a space of appearances. The conjecture of asymmetric nonduality says that every physical state has a norm-preserving presentation and that some possible appearance is orthogonal to every admissible physical presentation. The polar part of the map pairs measurements with equal Born probabilities. In a fermion pair, a second preparation setting removes the common defect in the three-dimensional carrier. On a five-site path, site operators generate every vector from the ground, yet site counts give identical statistics on two orthogonal states. For a fixed pairing across two moments, we prove that canonical deconditioning preserves paired states exactly when its target is paired, and determine the unique physical relaxation on the active input space. Whether remembering a first flash uses an unpaired component to judge the brightness of a second remains open.
+We model perception by a linear map from physical states to a space of appearances. The conjecture of asymmetric nonduality says that every physical state has a norm-preserving presentation and that some possible appearance is orthogonal to every admissible physical presentation. The polar part of the map pairs measurements with equal Born probabilities. In a fermion pair, a second preparation setting removes the common defect in the three-dimensional carrier. On a five-site path, site operators generate every vector from the ground, yet site counts give identical statistics on two orthogonal states. For a fixed pairing across two moments, we prove that canonical deconditioning preserves paired states exactly when its target is paired, and determine the unique physical relaxation on the active input space. Whether recollection uses an unpaired component remains open. In a four-fermion trap, rotation preserves the line weights of a filtered excitation, and parity gives explicit bounds on the energy error, leakage and amplitude error of a six-dimensional shell approximation.
 \end{abstract}
 
 \part{Problem, origin, and program}
@@ -764,6 +764,151 @@ Since $x\perp f$, the square root acts on $x$ and $f$ by $\sqrt{1-a}$ and $\sqrt
 
 For the two flashes of Section~\ref{sec:asymmetric-nonduality-moments}, a readout of the line alone can use the probability $p(\rho)$. Conditional on that outcome, the state is always $P_z$. A readout on $z^\perp$ can distinguish earlier seeings when its probabilities differ on the output blocks $Q\mathcal T(\rho)Q$. A cognitive realization must justify the energy restriction on physical presentations. To identify a contribution to remembering, it must also specify which distinction between earlier seeings the observer retains and how that distinction changes the later judgement.
 
+\section{What a preparation reveals about effective dynamics}
+\label{sec:effective-dynamics}
+
+Consider a spectroscopy experiment in which the excitation can be prepared at several angles. In the fermion pair of Section~\ref{subsec:pair-grounds-excitations}, turning the preparation changes the intensities of two spectral lines. In the rotationally invariant trap below, turning a filtered excitation through the same angles preserves both intensities. We first calculate what these restricted preparations measure, then ask how accurately a calculation confined to a few orbitals predicts energies and amplitudes in the full trap.
+
+\subsection{Turning the pair preparation}
+
+Hold the bare Hamiltonian fixed and prepare $b=u_\theta e+v_\theta m$, where $u_\theta=\cos(2\theta)$ and $v_\theta=\sin(2\theta)$. Its spectral weights at energies $j$ and zero are $u_\theta^2$ and $v_\theta^2$. At $10^\circ$ the two weights are $0.883$ and $0.117$, and at $22.5^\circ$ both are $1/2$. Equal intensities at a single setting are thus compatible with a Hamiltonian that breaks the preparation rotation. The zero-energy line illustrates a further limit of the measurement. In the six-dimensional pair space the zero eigenvalue has multiplicity four. One linear combination carries the entire zero-energy weight of $b$. An arbitrary self-adjoint change supported on the other three directions $W$ leaves the response of the prepared plane unchanged.
+
+Now hold $\theta$ fixed and vary the self-coupling $s$ in $H_s$. Write $\delta=j-s>0$. The peak probability of leaving the plane, starting from $b$, is $\sin^2(4\theta)$ for every $0\le s<j$. The first peak occurs at $\pi\hbar/\delta$. At $\theta=\pi/8$ there is complete transfer even for arbitrarily small $\delta$, although on any fixed time interval the leakage tends uniformly to zero as $\delta\to0$. At the endpoint $s=j$ the Hamiltonian is $-2j\ket{g}\bra{g}$ and every plane containing $g$ is invariant.
+
+\subsection{The resolvent measured inside the prepared plane}
+
+Let $P$ be an orthogonal projection in one Hilbert space, and $Q=I-P$. Suppose that $H$ has self-adjoint diagonal blocks $H_P,H_Q$ on their respective spaces, bounded coupling $C=QHP$, and adjoint coupling $C^*$. For $z$ in the resolvent sets of $H_Q$ and $H$, the Schur--Feshbach formula gives \cite{DussonSigalStamm}
+\begin{equation}
+ P(H-z)^{-1}\big|_{P\mathcal H}
+ =\big[H_P-z-C^*(H_Q-z)^{-1}C\big]^{-1}.
+ \label{eq:prepared-schur}
+\end{equation}
+Indeed, in solving $(H-z)(p+q)=h$ for $h\in P\mathcal H$, the $Q$ equation gives $q=-(H_Q-z)^{-1}Cp$. Substitution in the $P$ equation yields the formula. Below the complementary spectrum the self-energy $C^*(H_Q-z)^{-1}C$ is positive semidefinite for real $z$. Only directions coupled through $C$ and propagated by $H_Q$ contribute. For $C=0$ the plane is autonomous. More generally, with $U(t)=e^{-itH/\hbar}$, variation of constants in the $Q$ equation and unitarity give $\|QU(t)P\|\le |t|\,\|C\|/\hbar$.
+
+For the pair take $P=A_\theta A_\theta^*$ on the six-dimensional output. By Eq.~\eqref{eq:pair-invariance-amplitude}, $C=-\delta u_\theta v_\theta\ket{d}\bra{b}$, and $H_Qd=\delta v_\theta^2d$. Thus the short-time leakage bound is attained to leading order for $b$. The measured scalar resolvent is
+\[
+ \langle b,(H_s-z)^{-1}b\rangle
+ =\left(\delta u_\theta^2-z-
+   \frac{\delta^2u_\theta^2v_\theta^2}{\delta v_\theta^2-z}\right)^{-1}
+ =\frac{u_\theta^2}{\delta-z}+\frac{v_\theta^2}{-z}.
+\]
+The coefficients of $(E-z)^{-1}$ give the two observed weights. The absence of $H_s|_W$ from this expression accounts for the undetectable multiplicity.
+
+\subsection{Turning the preparation in a rotationally invariant trap}
+\label{subsec:orbital-apparatus}
+
+Consider four spin-$1/2$ fermions of mass $M$ and charge $q$ in a two-dimensional harmonic trap. A perpendicular magnetic field $\mathcal B$ couples to their orbital angular momentum $L=\sum_i(x_ip_{yi}-y_ip_{xi})$. In the symmetric gauge, expanding minimal coupling on $\bigwedge^4(L^2(\R^2)\otimes\C^2)$ gives
+\begin{align}
+ H_{\lambda,\mathcal B}&=H_{\rm ho}+V-\Omega_{\rm B}L, &
+ H_{\rm ho}&=\sum_{i=1}^4\left(\frac{\mathbf p_i^2}{2M}+\frac{M\omega^2 r_i^2}{2}\right),\nonumber\\
+ V&=-\frac{\lambda}{2\pi a^2}\sum_{i<j}e^{-|\mathbf r_i-\mathbf r_j|^2/(2a^2)}, &
+ \Omega_{\rm B}&=\frac{q\mathcal B}{2M}.
+ \label{eq:compensated-orbital-parent}
+\end{align}
+Here $a,\lambda>0$. As the field varies, set the mechanical trap frequency by $\omega_0^2=\omega^2-\Omega_{\rm B}^2>0$ to keep $\omega$ fixed. The model has spin-independent dynamics and discrete spectrum. Both $H_{\rm ho}$ and $V$ preserve angular momentum. The six pair interactions give $-\nu I\le V\le0$ with $\nu=3\lambda/(\pi a^2)$.
+
+Write $\Delta=\hbar\omega$, $\ell^2=\hbar/(M\omega)$ and $\xi=a^2/\ell^2$. At zero field and coupling the ground shell has energy $E_*=6\Delta$. Two fermions fill the lowest spatial orbital $s$, and two occupy the four spin modes of $p_x,p_y$. Let $P_{\rm sh}$ project onto this six-dimensional shell. Use $g,e,m$ from Section~\ref{subsec:pair-grounds-excitations} with the filled core in place of the vacuum and $p_x,p_y$ as the two valence orbitals. The three singlets $g,(e+im)/\sqrt2,(e-im)/\sqrt2$ have angular momenta $0,+2\hbar,-2\hbar$, respectively. The spin triplet has $L=0$.
+
+One absolute energy and two gaps specify the shell compression. Insert the normalized orbitals $s=e^{-r^2/(2\ell^2)}/(\sqrt\pi\ell)$, $p_x=\sqrt2\,xs/\ell$ and $p_y=\sqrt2\,ys/\ell$ in the direct and exchange integrals of $V$. With $v=-\lambda/(8\pi\ell^2)$, the common core contribution is $4v(5\xi+2)/(1+\xi)^2$. The resulting ordered energies of $P_{\rm sh}(H_{\rm ho}+V)P_{\rm sh}$ on the shell are
+\begin{align}
+ \mu_g&=E_*+\frac{4v(5\xi+2)}{(1+\xi)^2}+\frac{4v(\xi^2+\xi+1)}{(1+\xi)^3},\nonumber\\
+ \mu_{\pm}&=\mu_g+\lambda d_a,\qquad
+ \mu_{\rm triplet}=\mu_g+2\lambda d_a,\qquad
+ d_a=\frac{1}{4\pi\ell^2(1+\xi)^3}.
+ \label{eq:orbital-shell-ritz}
+\end{align}
+The six simultaneous eigenvectors span distinct joint sectors of $L,S^2,S_z$ within the shell. In the full space, each corresponding Schur equation for the shell amplitude is scalar wherever its complementary resolvent exists. Spin symmetry identifies the three triplet equations, and time reversal at zero field identifies the two chiral singlet equations.
+
+The one-particle oscillator quantum number is $2n_r+|m_L|$ for angular momentum $m_L\hbar$. Its parity agrees with that of $m_L$, so adding the four quantum numbers shows that every configuration one quantum above the shell has odd spatial parity. In each of the six joint sectors the next bare energy is at least $E_*+2\Delta$. Min--max puts the lowest interacting level in each such sector at or below $E_*$ and the next at or above $E_*+2\Delta-\nu$. Thus $\nu<2\Delta$ isolates a simple branch in each sector. Comparisons across sectors determine the global ground.
+
+Let $G_\lambda,F_{+,\lambda},F_{-,\lambda}$ be the exact singlet branches continuing $g,(e+im)/\sqrt2,(e-im)/\sqrt2$. Their zero-field energies are $E_0(\lambda),E_2(\lambda),E_2(\lambda)$. At fixed compensated $\omega$ the field leaves the eigenvectors fixed and gives energies $E_0,E_2-2\hbar\Omega_{\rm B},E_2+2\hbar\Omega_{\rm B}$. For fixed $a,\omega$ and $0<|\chi|<1$, take $2\hbar\Omega_{\rm B}=\chi\lambda d_a$. Perturbation theory for the isolated shell \cite{Kato} and Eq.~\eqref{eq:orbital-shell-ritz} give positive chiral gaps $\lambda d_a(1\mp\chi)+O(\lambda^2)$ and triplet gap $2\lambda d_a+O(\lambda^2)$ for sufficiently small $\lambda>0$. For the higher levels the oscillator inequality $|L|\le H_{\rm ho}/\omega-4\hbar I$ gives the seventh eigenvalue a lower bound $7\Delta-3\hbar|\Omega_{\rm B}|-\nu$. In this regime $G_\lambda$ is the unique global ground.
+
+The detector selects the three-dimensional reducing space spanned by these exact singlets. Let $P_{\rm low}$ denote its projection and $Q_x=\sum_i(x_i^2-y_i^2)/(2\ell^2)$ the spatial quadrupole. Its angular components transfer $\pm2\hbar$, so its only matrix elements within this carrier connect the ground to the two chiral states. Zero-field time reversal gives these elements equal magnitudes. The matrix elements are nonzero at zero coupling and persist for sufficiently small $\lambda$ by continuity in the oscillator graph norm ($Q_x$ is $H_{\rm ho}$-bounded). Choose the phases accordingly and write $e_\lambda=(F_{+,\lambda}+F_{-,\lambda})/\sqrt2$. After filtering and normalizing, the quadrupole on this carrier is
+\[
+ Z_0=\frac{P_{\rm low}Q_x P_{\rm low}}{\|P_{\rm low}Q_xG_\lambda\|}
+ =\ket{G_\lambda}\bra{e_\lambda}+\ket{e_\lambda}\bra{G_\lambda}.
+\]
+Its square projects onto the plane spanned by $G_\lambda,e_\lambda$. The measured zero outcome tests for departure from that plane.
+
+The zero-angle preparation and the filtered quadrupole are the orbital realization of \emph{The Luminous Ground} \cite{LGOrbital}. Extend the preparation by a laboratory rotation $R_\theta=e^{-i\theta L/\hbar}$. The prepared excitation is now
+\[
+ e_{\lambda,\theta}=R_\theta e_\lambda
+ =\frac{e^{-2i\theta}F_{+,\lambda}+e^{2i\theta}F_{-,\lambda}}{\sqrt2}.
+\]
+The two lines have equal weights at every angle and an energy separation $4\hbar|\Omega_{\rm B}|$. With the detector at angle $\beta$, its zero outcome tests the complement of $\Span\{G_\lambda,e_{\lambda,\beta}\}$ on this carrier. After a wait $t$, the return amplitude onto $e_{\lambda,\beta}$ is $e^{-iE_2t/\hbar}\cos(2\Omega_{\rm B}t-2\theta+2\beta)$. Thus rotating the detector with the preparation or fixing it in the laboratory gives, respectively,
+\begin{equation}
+ p_0(t;\theta,\theta)=\sin^2(2\Omega_{\rm B}t),\qquad
+ p_0(t;\theta,0)=\sin^2(2\Omega_{\rm B}t-2\theta).
+ \label{eq:rotated-orbital-readout}
+\end{equation}
+At $t=0$ the fixed detector can already register the preparation angle. The co-rotated detector registers complete departure at $t=\pi/(4|\Omega_{\rm B}|)$ for every angle. In the pair model the weights become equal at $\theta=\pi/8$ even for bare transfer. Varying the angle distinguishes that isolated equality from the rotational invariance of the orbital response.
+
+Without the filter, $e_Q=Q_xG_\lambda/\|Q_xG_\lambda\|$ can occupy additional radial levels in the two angular sectors. If $C_0(t)$ is its zero-field return amplitude at fixed $\omega$, time reversal pairs the two spectral measures. The field shifts the paired energies oppositely, giving return amplitude $C_0(t)\cos(2\Omega_{\rm B}t)$. This expression allows complete departure from the preparation plane even when several radial lines contribute. The next calculation estimates the effect of discarding orbitals outside the original six-dimensional shell.
+
+\subsection{Error from restricting the calculation to a bare shell}
+
+A detector selects a preparation and a measurement. A calculation selects a subspace in which to approximate the Hamiltonian. To quantify this second choice, let $P$ now project onto a finite-dimensional ground eigenspace of a self-adjoint $H_0$ at energy $E_*$. Work in an invariant symmetry space if appropriate, and suppose $H_0\ge E_*+\Gamma$ on $Q=I-P$, with $\Gamma>0$. Let $H=H_0+V$ have bounded self-adjoint $V$ of spectral width $\nu$. Write $U(t)=e^{-itH/\hbar}$ and $H_P=PHP|_{P\mathcal H}$.
+
+\begin{proposition}[Energy, leakage and amplitude estimates]
+\label{prop:shell-accuracy}
+Let $\mu_k$ be the ordered eigenvalues of $H_P$, and $E_k$ the corresponding ordered min--max levels of $H$, for $1\le k\le\rank P$. For every real $t$,
+\begin{align}
+ 0\le \mu_k-E_k &\le \nu^2/(4\Gamma), \label{eq:shell-ritz}\\
+ \|QU(t)P\|^2 &\le \min\{1,(\nu/\Gamma)^2\}, \label{eq:shell-leak}\\
+ \big\|PU(t)|_{P\mathcal H}-e^{-itH_P/\hbar}\big\|
+ &\le \nu^2 |t|/(2\hbar\Gamma). \label{eq:shell-drift}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Rayleigh--Ritz gives $E_k\le\mu_k$. For the lower estimate, take a unit form-domain vector $y$ orthogonal to the lowest $k-1$ shell Ritz vectors and put $x=\|Qy\|$. Its normalized shell projection $p$ lies in the remaining shell space. If $Py=0$, choose any unit $p$ there. The unperturbed energy of $y$ exceeds that of $p$ by at least $\Gamma x^2$. Their interaction expectations differ by at most $\nu x$ (the Rayleigh-quotient angle bound \cite{ZhuArgentatiKnyazev}). Indeed the difference of the two ray projections has trace norm $2x$, while centering $V$ at the midpoint of its spectral interval gives norm $\nu/2$. Therefore $\langle H\rangle_y\ge\mu_k+\Gamma x^2-\nu x\ge\mu_k-\nu^2/(4\Gamma)$. The min--max principle gives Eq.~\eqref{eq:shell-ritz}.
+
+Since $H_0P=E_*P$ and $U(t)$ commutes with $H$, we have $(H_0-E_*)U(t)P=[U(t),V]P$. Domain invariance follows from boundedness of $V$ and invariance of $\operatorname{Dom}H$ under $U(t)$. The gap gives $\Gamma\|QU(t)P\|\le\|[U(t),V]\|\le\nu$, again by centering $V$. Finally, $PU(t)|_{P\mathcal H}$ starts at the identity and obeys the Schr\"odinger equation generated by $H_P$ with the additional term $PVQ\,QU(t)|_{P\mathcal H}$. Since $\|PVQ\|\le\nu/2$, integration against the shell propagator gives Eq.~\eqref{eq:shell-drift}.
+\end{proof}
+
+For $0<\nu<\Gamma$ two-level systems attain the energy and leakage constants. Take $H_0=\operatorname{diag}(0,\Gamma)$ and
+\[
+ V_\beta=\frac{\nu}{2}
+ \begin{pmatrix}\beta&\sqrt{1-\beta^2}\\ \sqrt{1-\beta^2}&-\beta\end{pmatrix}.
+\]
+The exact gap is $h_\beta=(\Gamma^2+\nu^2-2\Gamma\nu\beta)^{1/2}$. At $\beta=\nu/(2\Gamma)$ the shell Ritz energy exceeds the lower eigenvalue by $\nu^2/(4\Gamma)$. At $\beta=\nu/\Gamma$ the transition probability at $t=\pi\hbar/h_\beta$ equals $\nu^2(1-\beta^2)/h_\beta^2=(\nu/\Gamma)^2$.
+
+In the trap take $P=P_{\rm sh}$, the bare six-dimensional shell, and work at fixed compensated frequency $\omega$. On its even-parity space $\Gamma=2\Delta$. For the Gaussian attraction $\nu=3\lambda/(\pi a^2)$ is a valid width bound. The six Ritz energy errors have a common upper bound $\eta$. The three estimates become
+\begin{equation}
+ 0\le\mu_k-E_k\le\eta:=\frac{\nu^2}{8\Delta},\qquad
+ \|QU(t)P\|^2\le \left(\frac{\nu}{2\Delta}\right)^2,\qquad
+ \big\|PU(t)|_{P\mathcal H}-e^{-itH_P/\hbar}\big\|
+ \le \frac{\nu^2|t|}{4\hbar\Delta}.
+ \label{eq:orbital-shell-accuracy}
+\end{equation}
+The energy estimate compares ordered even levels at zero field. The two time estimates also hold at compensated field: the full and compressed propagators acquire the same commuting rotation $e^{it\Omega_{\mathrm B}L/\hbar}$, which preserves $P$. Thus a change of field can produce complete departure from the filtered preparation plane in Eq.~\eqref{eq:rotated-orbital-readout} while leaving the bare-shell leakage of each bare-shell input unchanged.
+
+The ground is unique at zero field if the first shell gap $\lambda d_a$ exceeds $\eta$. Each ordered level moves down by an amount in $[0,\eta]$, so the gap can shrink by at most $\eta$. Substitution gives the sufficient condition
+\[
+ \frac{\lambda M}{\hbar^2}<\frac{2\pi\xi^2}{9(1+\xi)^3}.
+\]
+It implies $\nu/\Delta<2\xi/[3(1+\xi)^3]\le8/81$. The odd spectrum therefore stays above $E_*$, since the attraction lowers it by at most $\nu$ and its bare minimum is $E_*+\Delta$. The right-hand side of the coupling condition is largest at $\xi=2$, where it equals $8\pi/243$. At that limiting coupling $\nu/\Delta=4/81$. Equation~\eqref{eq:orbital-shell-accuracy} then bounds leakage by $4/6561$ at every time and guarantees amplitude error below $0.1$ for 26 trap periods $2\pi/\omega$. At half that coupling the same amplitude tolerance holds for 104 periods.
+
+For a numerical comparison, set $\hbar=M=\omega=1$ and $\xi=2$. Write the interaction as $\lambda V_1$. In a joint symmetry sector with normalized shell vector $h$, the second-order coefficient of its energy is
+\begin{equation}
+ c_h=-\sum_{N>2}
+ \frac{\|\Pi_N V_1h\|^2}{(N-2)\Delta},
+ \label{eq:orbital-second-order}
+\end{equation}
+where $\Pi_N$ projects onto total oscillator excitation number $N$ and odd $N$ give zero. The table uses Gaussian matrix elements in antisymmetrized oscillator states, with the displayed cutoff on each single-particle orbital. A target level $k$ quanta above the shell contains $k+2$ quanta in total. The three particles accompanying the highest occupied orbital carry at least one quantum between them by Pauli exclusion. Thus orbital cutoff $k+1$ includes the whole target level. Higher even levels continue to contribute to the sum.
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Second-order coefficient & Cutoff 6 & Cutoff 10\\
+\midrule
+Ground singlet & $-0.00162813$ & $-0.00162846$\\
+Chiral singlets & $-0.00170517$ & $-0.00170561$\\
+Spin triplet & $-0.00177006$ & $-0.00177062$\\
+\bottomrule
+\end{tabular}
+\end{center}
+At cutoff ten the correction to the singlet gap is $-0.00007715\,\lambda^2$ because the two levels move down by nearly equal amounts. At $\lambda=8\pi/243$ this term is about $0.27\%$ of the first-order gap. The rigorous finite-coupling guarantee comes from the one-sided estimate in Eq.~\eqref{eq:shell-ritz}.
+
 \begingroup\small
 \begin{thebibliography}{99}
 \raggedright
@@ -780,6 +925,9 @@ For the two flashes of Section~\ref{sec:asymmetric-nonduality-moments}, a readou
 \bibitem{Kato} T.~Kato, \emph{Perturbation Theory for Linear Operators}, 2nd ed., Springer, 1995.
 \bibitem{Janzing} D.~Janzing, \emph{Decomposition of time-covariant operations on quantum systems with continuous and/or discrete energy spectrum} (2004), Sec.~6. \href{https://arxiv.org/abs/quant-ph/0407144}{arXiv:quant-ph/0407144}.
 \bibitem{MarvianSpekkens} I.~Marvian and R.~W.~Spekkens, Modes of asymmetry: The application of harmonic analysis to symmetric quantum dynamics and quantum reference frames, \emph{Phys. Rev. A} \textbf{90} (2014), 062110. \href{https://doi.org/10.1103/PhysRevA.90.062110}{doi:10.1103/PhysRevA.90.062110}.
+\bibitem{DussonSigalStamm} G.~Dusson, I.~M.~Sigal and B.~Stamm, The Feshbach--Schur map and perturbation theory (2021). \href{https://doi.org/10.4171/ECR/18-1/5}{doi:10.4171/ECR/18-1/5}.
+\bibitem{LGOrbital} A.~Yiannopoulos, \emph{The Luminous Ground: Emptiness, Awareness, and the Algebra of Appearance} (2026), subsection on an orbital source preserving the full ground. \href{https://github.com/AlphaOmega-Institute/AlphaOmega-Theory/blob/8e9fde97cbd81f312706197ea8761b52abb69e79/manuscripts/lg/LG_Master_Unified.tex#L7596}{Manuscript source}.
+\bibitem{ZhuArgentatiKnyazev} P.~Zhu, M.~E.~Argentati and A.~V.~Knyazev, Bounds for the Rayleigh quotient and the spectrum of self-adjoint operators, \emph{SIAM J. Matrix Anal. Appl.} \textbf{34} (2013), 244--256. \href{https://doi.org/10.1137/120884468}{doi:10.1137/120884468}.
 \end{thebibliography}
 \endgroup
 \end{document}
