@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-54 passed, 0 failed, 1 skipped in ...s
+56 passed, 0 failed, 1 skipped in ...s
 ```
 
-and the full run with `55 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `57 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow check).
 
@@ -54,6 +54,10 @@ absolute spectral tolerance.
 ### Deconditioning across two moments
 
 `test_deconditioning.py` checks the relaxation law on the two coarse sites by comparing its action on all four matrix units with deconditioning on the five fine sites. The target passes the coarse ground test with probability 9/10. At half relaxation an orthogonal pure input becomes maximally mixed. The tests also verify the exponential decay of excess weight for a paired target and the maximum leakage of 1/6 for a target with one third of its weight outside the paired space (UM `prop:two-moment-deconditioning`).
+
+### Index and the common defect
+
+`test_index.py` checks the two input columns and three output coordinates that contain the entire change to LG's unilateral shift. Rotations of one microradian and π/2 each preserve the ground and the isometry, change the map by rank one, and leave zero common defect with the original shift. A second check extends a map with a one-dimensional kernel and a two-dimensional defect. It verifies how many kernel and defect dimensions remain when the new input columns cover one or both defect directions (UM `eq:index-shift-family`, `eq:index-extension-counts`).
 
 ### Determination on the five-site path
 
@@ -159,6 +163,7 @@ checks/
   test_linalg.py        nearby eigenvalues must not double-count spectral mass
   test_ground_bridge.py raw and polar transport of ground states
   test_deconditioning.py paired relaxation and leakage on the five-site path
+  test_index.py         rotated shift and dimensions after input enlargement
   test_determination.py cyclic generation and readout on a finite path
   lib/                  Fock-space operators and small linear-algebra helpers
   pair/                 pair model and its checks

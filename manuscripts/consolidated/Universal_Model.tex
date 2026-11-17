@@ -655,8 +655,80 @@ This comparison tests coherence between the two spaces. The population term $\Tr
 
 Section~\ref{sec:determination} gives an excess state and a paired state with identical site counts. The pair model illustrates a different possibility. Prepare $b$ at $\theta=\pi/8$ under bare transfer and wait twice for $t_*/2$, where $t_*=\pi\hbar/j$. Uninterrupted evolution gives zero probability of return to $b$. At the midpoint the probabilities in $D$ and $D^\perp$ are each $1/2$. A projective test of those alternatives, with both outcomes retained and the record ignored, gives a final return probability of $1/2$: each branch contributes $1/4$. The change measures the effect of removing coherence between the alternatives. For the two flashes, the analogous comparison must be specified for the observer. A dependence of the report on the first flash is already compatible with a physical state that retains its history. Whether a genuine phenomenal excess contributes to that report remains open.
 
+\section{What the index counts}
+\label{sec:cohomology-index}
+
+For one preparation $A$, the final defect $D^\perp$ records the directions orthogonal to its entire range. Conjecture~\ref{conj:asymmetric-nonduality} asks whether any such direction is common to all admissible preparations. The index counts an imbalance for one map. Its stability allows a precise test of how much that count says about a family.
+
+\subsection{Cohomology of a single preparation}
+
+Give the input degree zero and the output degree one. In the two-term Hilbert complex $0\to\mathcal H_\Psi\xrightarrow{A}\mathcal H_\Phi\to0$, the differential has its original dense domain $\operatorname{Dom}A$ and is closed. All adjoints below use the original Hilbert inner products. The ordinary cohomology and the reduced degree-one cohomology are \cite{BruningLesch}
+\begin{equation}
+ H^0_A=\ker A,\qquad H^1_A=\mathcal H_\Phi/\Ran A,\qquad
+ \overline H^1_A=\mathcal H_\Phi/D,\qquad D=\overline{\Ran A}.
+ \label{eq:index-cohomology}
+\end{equation}
+Inside the direct sum write $d(x,y)=(0,Ax)$ on $\operatorname{Dom}A\oplus\mathcal H_\Phi$. Its Laplacian is $\Delta=d^*d+dd^*=\operatorname{diag}(A^*A,AA^*)$ on the natural product domain. The returns $A^*A$ and $AA^*$ are positive self-adjoint operators. The physical and appearance Hamiltonians used earlier were specified independently.
+
+\begin{proposition}[Harmonic representatives and spectral pairing]\label{prop:index-harmonic-pairing}
+Each reduced degree-one class $[y]$ has the unique representative $(I-\Pi_D)y$ in $\ker A^*$. Taking this representative preserves the quotient norm. The full harmonic space is $\ker\Delta=\ker A\oplus\ker A^*$ and
+\[
+ \mathcal H_\Psi\oplus\mathcal H_\Phi
+     =\ker\Delta\ \oplus\ \overline{\Ran d^*}\ \oplus\ \overline{\Ran d}.
+\]
+The polar unitary $V:S\to D$, with $S=(\ker A)^\perp$, intertwines the restrictions of $A^*A$ and $AA^*$ to these supports, including their operator domains.
+\end{proposition}
+\begin{proof}
+The identities $(\Ran A)^\perp=\ker A^*$ and $(\Ran A^*)^\perp=\ker A$ give both orthogonal decompositions. The norm of $[y]$ is the distance from $y$ to $D$, namely $\|(I-\Pi_D)y\|$. On the supports, polar decomposition gives $AA^*|_D=V(A^*A|_S)V^*$. Its bounded Borel functional calculus therefore agrees under the same transport. In particular the spectral projections for every Borel subset of $(0,\infty)$ are paired, including continuous spectrum. At an eigenvalue $\lambda>0$ the maps $x\mapsto Ax/\sqrt\lambda$ and $y\mapsto A^*y/\sqrt\lambda$ are inverse isometries of the eigenspaces.
+\end{proof}
+
+The range is closed exactly when there is a $c>0$ with $\|Ax\|\ge c\|x\|$ for all $x\in\operatorname{Dom}A\cap S$. Indeed, for closed range the inverse on $S$ is bounded by the closed graph theorem. Conversely, the bound makes the active preimages of a convergent sequence of images Cauchy, and closedness of $A$ supplies the limiting image. Equivalently, both active returns are bounded below by $c^2$ in the quadratic-form sense. In this case $\Ran A^*$ is closed as well, and the closures in the decomposition may be omitted. When $\Ran A$ is not closed, the ordinary quotient is non-Hausdorff. For example, $Ae_n=e_n/(n+1)$ on $\ell^2(\mathbb N_0)$ has dense proper range. Its reduced degree-one space vanishes although the vector with coordinates $1/(n+1)$ has no preimage in $\ell^2$.
+
+\subsection{Fredholm balance and the heat trace}
+
+A Fredholm channel has closed range and finite $k=\dim\ker A$ and $d_1=\dim\ker A^*$. With $J=\operatorname{diag}(I_\Psi,-I_\Phi)$ on the full sum and $P_{\ker\Delta}$ the harmonic projection, the index is
+\begin{equation}
+ \operatorname{ind} A=k-d_1=\dim H^0_A-\dim H^1_A
+     =\Tr(JP_{\ker\Delta}),\qquad \operatorname{ind}A^*=-\operatorname{ind}A .
+ \label{eq:index-graded}
+\end{equation}
+Indeed, $J$ acts with opposite signs on the two harmonic summands. The odd operators $d+d^*$ and $d^*-d$ on $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$ both have closed range $(\ker\Delta)^\perp$ and kernel $\ker\Delta$, so their ungraded indices are zero. For the heat trace, assume in addition that $e^{-tA^*A}$ and $e^{-tAA^*}$ are trace class at the specified $t>0$. The active contributions cancel by Proposition~\ref{prop:index-harmonic-pairing}. Each harmonic vector contributes one to its sector trace, giving
+\begin{equation}
+ \Tr(J e^{-t\Delta})=\Tr(e^{-tA^*A})-\Tr(e^{-tAA^*})=\operatorname{ind}A .
+ \label{eq:index-heat}
+\end{equation}
+Thus the same integer is obtained at every time for which the traces exist.
+
+In the cognitive reading $k$ counts unpresented physical directions and $d_1$ counts directions with zero polar return for this correspondence. R4 sets $k=0$, so in the Fredholm case R5 is equivalent to a strictly negative index and $d_1=-\operatorname{ind}A$. Without injectivity, index $-q<0$ still forces $d_1=k+q\ge q$. Infinite defect falls outside this Fredholm count. Under R3, $Ax=a y$ with $a>0$ puts the input ground $x$ outside $\ker A$ and the output ground $y$ in $\Ran A$. Neither ground is itself an unpaired zero mode.
+
+For finite input and output dimensions $p$ and $q$, rank--nullity gives $\operatorname{ind}A=p-q$ for every map between those spaces. The pair preparation has $(k,d_1)=(0,1)$ in the three-dimensional carrier. Including the three unused output directions changes the count to $(0,4)$. The two endpoint settings in Eq.~\eqref{eq:pair-two-setting-ranges} each have index $-1$ in the smaller carrier and have different defect lines. Their coherent combination from a four-dimensional input has $(k,d_1)=(1,0)$. The five-site path similarly has index $2-5=-3$. Even the zero map between those same two spaces has index $-3$, with a two-dimensional kernel and a five-dimensional defect. The finite index detects the specified dimension imbalance. Which states can be prepared or detected still depends on the map and the operations.
+
+\subsection{A stable count with a moving defect line}
+
+On fixed Hilbert spaces the Fredholm index is locally constant along norm-continuous paths of bounded Fredholm operators. Every compact perturbation of a bounded Fredholm operator is Fredholm with the same index \cite[Chap.~IV]{Kato}. For a closed, possibly unbounded $A$, the bounded transform $F_A=A(I+A^*A)^{-1/2}$ has the same kernel and range as $A$, since the factor on the right maps onto $\operatorname{Dom}A$ and is the identity on $\ker A$. Thus the same stability statement applies to norm-continuous Fredholm paths of bounded transforms or to compact differences of those transforms.
+
+Take copies of $\ell^2(\mathbb N_0)$ with orthonormal bases $f_n$ and $g_n$ and let $A f_n=g_{n+1}$. The map $f_n\mapsto g_n$ has index zero. The unilateral shift is isometric with defect $\C g_0$ and index $-1$. Fix the ground Hamiltonians $I-\ket{f_0}\bra{f_0}$ and $I-\ket{g_1}\bra{g_1}$ on the two copies. For the full bounded-operator algebras their unique ground rays are cyclic, as required by R1 and R2. Let $U_\alpha$ rotate $g_0,g_2$ by angle $\alpha$ and fix their orthogonal complement, with $U_\alpha g_0=\cos\alpha\,g_0+\sin\alpha\,g_2$. Then
+\begin{equation}
+ A^{(\alpha)}=U_\alpha A,\qquad A^{(\alpha)} f_0=g_1,\qquad
+ \ker (A^{(\alpha)})^*=\C(\cos\alpha\,g_0+\sin\alpha\,g_2).
+ \label{eq:index-shift-family}
+\end{equation}
+Only the image of $f_1$ changes. For $0<|\alpha|<\pi$ the difference has rank one and norm $2|\sin(\alpha/2)|$. Each channel is an isometry with index $-1$, yet $\ker A^*\cap\ker (A^{(\alpha)})^*=\{0\}$ even for arbitrarily small nonzero angles. Thus every channel in this family misses a direction, and no direction is missed by the whole family. Whether these rotations are admissible in any given cognitive realization is a separate physical question. For this shift $A^*A=I$, so its heat operator has infinite trace and Eq.~\eqref{eq:index-heat} does not apply.
+
+\subsection{How many new inputs fill the defect?}
+
+Keep a Fredholm $A$ fixed on its original domain. Add $m$ input dimensions and map them by $L:\C^m\to\mathcal H_\Phi$, so that $\widetilde A(x,z)=Ax+Lz$. Put $r=\rank((I-\Pi_D)L)$. Then
+\begin{equation}
+ \dim\ker\widetilde A=k+m-r,\qquad
+ \dim\ker\widetilde A^*=d_1-r,\qquad
+ \operatorname{ind}\widetilde A=\operatorname{ind}A+m .
+ \label{eq:index-extension-counts}
+\end{equation}
+Indeed, the enlarged range is $D$ plus the $r$ projected directions and is closed. The projection $(x,z)\mapsto z$ maps $\ker\widetilde A$ onto $\ker((I-\Pi_D)L)$ with kernel $\ker A\oplus\{0\}$. Surjectivity therefore costs at least $d_1$ new inputs, and mapping $d_1$ independent inputs onto a basis of $D^\perp$ suffices. Under R4 this minimum is exactly $-\operatorname{ind}A$ and the minimal surjective extension is bijective. With an old kernel, cancelling a negative index can still leave both a kernel and a defect. For instance, a map with $(k,d_1)=(1,2)$ has index $-1$. Filling one missing direction makes the index zero and leaves one missing direction. These are statements about enlarging one specified channel. A physical interpretation must still justify the choice of inputs available to the observer.
+
 \begingroup\small
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
+\raggedright
 \bibitem{Yiannopoulos2020} A.~Yiannopoulos, \emph{The Structure of Dharmak\=irti's Philosophy: A Study of Object-Cognition in the Perception Chapter (pratyak\d{s}apariccheda) of the Pram\=a\d{n}asamuccaya, the Pram\=a\d{n}av\=arttika, and Their Earliest Commentaries}, Ph.D. dissertation, Emory University, 2020. \href{https://etd.library.emory.edu/downloads/p2676w57z}{Emory University repository}.
 \bibitem{StockmanRider2023} A.~Stockman and A.~T. Rider, Formulae for generating standard and individual human cone spectral sensitivities, \emph{Color Research \& Application} \textbf{48} (2023), 818--840. \href{https://doi.org/10.1002/col.22879}{doi:10.1002/col.22879}.
 \bibitem{Kalman1963} R.~E. Kalman, Mathematical description of linear dynamical systems, \emph{J. SIAM Control} \textbf{1} (1963), 152--192. \href{https://doi.org/10.1137/0301010}{doi:10.1137/0301010}.
@@ -666,6 +738,8 @@ Section~\ref{sec:determination} gives an excess state and a paired state with id
 \bibitem{Bognar1974} J.~Bogn\'ar, \emph{Indefinite Inner Product Spaces}, Springer, 1974. \href{https://doi.org/10.1007/978-3-642-65567-8}{doi:10.1007/978-3-642-65567-8}.
 \bibitem{WickWightmanWigner1952} G.~C. Wick, A.~S. Wightman and E.~P. Wigner, The intrinsic parity of elementary particles, \emph{Phys. Rev.} \textbf{88} (1952), 101--105. \href{https://doi.org/10.1103/PhysRev.88.101}{doi:10.1103/PhysRev.88.101}.
 \bibitem{BratteliRobinson} O.~Bratteli and D.~W.~Robinson, \emph{Operator Algebras and Quantum Statistical Mechanics 1}, 2nd ed., Springer, 1987. \href{https://doi.org/10.1007/978-3-662-02520-8}{doi:10.1007/978-3-662-02520-8}.
+\bibitem{BruningLesch} J.~Br\"uning and M.~Lesch, Hilbert complexes, \emph{Journal of Functional Analysis} \textbf{108} (1992), 88--132. \href{https://doi.org/10.1016/0022-1236(92)90147-B}{doi:10.1016/0022-1236(92)90147-B}.
+\bibitem{Kato} T.~Kato, \emph{Perturbation Theory for Linear Operators}, 2nd ed., Springer, 1995.
 \end{thebibliography}
 \endgroup
 \end{document}

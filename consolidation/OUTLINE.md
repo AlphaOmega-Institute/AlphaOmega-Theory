@@ -75,6 +75,15 @@ The working sections on polar supports and neutral graphs now give the supportwi
 cohomology, bounded transforms, Fredholm index, and conditional heat-supertrace statements. State the roles of
 closed range, Fredholmness, and trace-class assumptions where used. Introduce LG's two independent map hypotheses here: R4 is injectivity (`ker A = 0`) and R5 is strict final defect (`ker A* ≠ 0`). Each can be stated before choosing a reference vector or a Hamiltonian. V motivates and interprets their joint adoption in the cognitive realization.
 
+The working section `sec:cohomology-index` now carries TAUM’s two-term complex, reduced harmonic representatives, spectral pairing, closed-range criterion, graded Fredholm and heat identities, and LG’s single-channel index interpretation and shift. A rank-one variation of the shift keeps the ground bridge and moves the missing line. The extension count distinguishes the minimum new input dimension for surjectivity from the input dimension that cancels the index.
+
+| Source result | Location in the working draft |
+| --- | --- |
+| TAUM `def:cohomology`, `thm:Hodge-decomposition`, `cor:harmonic-representatives` | `eq:index-cohomology` and `prop:index-harmonic-pairing` |
+| TAUM `thm:partner-unitary-equivalence`, `cor:spectral-projection-pairing`, `cor:eigenvector-pairing`, `thm:closed-range-criterion` | The proposition, its proof and the closed-range criterion immediately following |
+| TAUM `def:Fredholm-channel`, `thm:index-formulas`, `cor:odd-Fredholm`, `eq:supertrace`, `thm:heat-index`; LG `def:fredholm-awareness`, `thm:index-as-phenomenal-excess`, `id:index-unpaired-count` | `eq:index-graded`, `eq:index-heat` and their single-channel interpretation |
+| LG `eq:bounded-transform-awareness`, `eq:unilateral-shift-example`, `eq:shift-index-minus-one` | §7.3, including the ground-preserving family `eq:index-shift-family`; the extension calculation follows in `eq:index-extension-counts` |
+
 ### III. Additional structures and their consequences
 
 These are optional extensions of the core, not a cumulative list every realization must satisfy.
