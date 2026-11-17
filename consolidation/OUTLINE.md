@@ -139,12 +139,22 @@ algebras; dispositions and generator classes; the operator-stage model; derived 
 rig pa; reflexive terminality; non-alteration, deconditioning, momentariness, and the Third/Fourth Yoga account;
 Volition, actualization, and the proposed interpretation of excess/index.
 
-The working section `sec:asymmetric-nonduality-moments` states the strong claim about phenomenal excess in `conj:asymmetric-nonduality`. The two-setting pair illustrates how a common defect can disappear. With a cyclic ground in the joint span, `prop:cyclic-common-excess` characterizes a surviving common defect by the action of the determination algebra. It takes Ψ to include the observer and retained history, and tests a fixed awareness map across two moments. For canonical deconditioning, `prop:two-moment-deconditioning` identifies exactly when paired states remain paired and which state the corresponding physical dynamics relaxes toward. In the two-flash example it remains open which operation introduces an excess component and whether that component affects the later brightness judgment.
+The working section `sec:asymmetric-nonduality-moments` states the strong claim about phenomenal excess in `conj:asymmetric-nonduality`. The two-setting pair illustrates how a common defect can disappear. With a cyclic ground in the joint span, `prop:cyclic-common-excess` characterizes a surviving common defect by the action of the determination algebra. It includes the observer’s bodily state and physical history in Ψ and tests a fixed awareness map across two moments. For canonical deconditioning, `prop:two-moment-deconditioning` identifies exactly when paired states remain paired and which state the corresponding physical dynamics relaxes toward. In the two-flash example it remains open which operation introduces an excess component and whether that component affects the later brightness judgment.
 
 Refer internally to general theorems instead of repeating them in new notation. Keep elementary mathematics local
 when it belongs to a specifically chosen cognitive model: extracting every lemma into Part II would obscure the
 reason for its assumptions. Operational, causal, and doctrinal identifications remain distinguishable, and none
 becomes an empirical result merely because its mathematical objects have been constructed.
+
+#### Grasper–grasped frame and recollection (planned)
+
+Take up the question left by §6’s two flashes. On the reading adopted here, the immediately following mental perception takes the earlier seeing as its object. Both the flash as it appeared and the experiencing of it belong together to the objective aspect of the new cognition. The new act is itself manifest and can in turn be remembered. Locate the apprehending aspect (*grāhakākāra*) within Φ. Self-manifestness belongs to the whole act. For the distinction between the two occurrences and the possibility of further recollection, return to Jinendrabuddhi on *Pramāṇasamuccaya* I.11ab and the dissertation, p. 550 nn. 96–97.
+
+Use the Monday–Tuesday example to pose the open question. Monday’s and Tuesday’s seeings can have the same ray. What in the history of Wednesday’s recollection makes it a recollection of Tuesday’s seeing? Distinguish this question from what the later brightness judgment can discriminate.
+
+- **Relation between rays and matched effects.** For an illustrative isometry $W$ between phenomenal state spaces, let $B=WW^*$ and $q=\|B\eta\|^2>0$ for the unit later state $\eta$. Require $[B\eta]=[W\phi]$ for the unit earlier state $\phi$. By §2, the conditional probability of $WEW^*$ given $B$ is $\langle\phi,E\phi\rangle$ for each earlier effect $E$. This leaves the rest of the later act unspecified.
+- **Whose vagueness?** If the current act’s vagueness effect $G'$ satisfies $G'W=WG$ for the earlier act’s vagueness effect $G$, then $p_{\rm current}=q\,p_{\rm earlier}+(1-q)r$, with $0\le r\le1$. The range of $W$ reduces $G'$, so the two contributions add. A vivid recollection of a vague seeing can test that identification. A vivid recollection of a vivid seeing still involves two acts.
+- **Supporting note on a sharp aspect.** For a paired unit state $\phi\in D$, an aspect projection $P$ and $w=\|P\phi\|^2$, the squared norm of $(I-\Pi_D)P\phi$ is at most $w(1-w)$. The outside components of $P\phi$ and $(I-P)\phi$ cancel in the whole state. The complement $I-P$ may include more than the other differentiated aspect. A component outside this particular $D$ leaves the common-excess conjecture open.
 
 ### VI. What would complete the physical account
 
