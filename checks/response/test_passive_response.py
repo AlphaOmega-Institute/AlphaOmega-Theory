@@ -1,11 +1,6 @@
-"""Checks for the passive-response fragment (manuscripts/consolidated/fragments/passive_response.tex).
+"""Finite-dimensional checks of reciprocal port responses in TAUM and the consolidated manuscript.
 
-The fragment carries TAUM's section "Boundary response and passive realizations" into the
-notation of the consolidated manuscript.  Its labels are not in Universal_Model.tex yet,
-so this file cites the TAUM labels of the statements it tests.  hbar = 1 throughout.
-
-Each test builds explicit matrices and asserts the displayed identity.  Random numbers
-use fixed seeds.
+The models use units with hbar = 1 and fixed seeds for random matrices.
 """
 import numpy as np
 from scipy.linalg import expm, null_space, orth, sqrtm
@@ -14,6 +9,12 @@ from lib.linalg import spectral_blocks
 from pair.model import PairModel
 
 LABELS = {
+    "UM": ["prop:passive-herglotz", "eq:passive-decay", "prop:passive-kernel", "cor:passive-sources",
+           "eq:passive-signed-witness", "prop:passive-cayley", "prop:passive-schur-kernel",
+           "prop:passive-spectral-temporal", "eq:passive-finite-lines", "prop:passive-two-spans",
+           "prop:passive-minimal-reduction", "prop:passive-uniqueness", "eq:passive-gram",
+           "cor:finite-response-defect", "prop:passive-opposite-sectors",
+           "prop:passive-heat-distributional", "prop:passive-heat-discrete"],
     "TAUM": ["thm:response-Herglotz", "thm:positive-response-kernel", "cor:canonical-transition-response",
              "cor:Hilbert-block-response", "lem:Cayley-denominator", "thm:Schur-contractivity",
              "thm:positive-Schur-kernel", "def:compressed-spectral-measure", "thm:spectral-temporal-response",

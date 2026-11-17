@@ -6,11 +6,11 @@ proposal.
 
 ## Source and review scope
 
-The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Its first five sections cover preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. Sections 6–8 treat asymmetric nonduality across two moments, cohomology and the index, and effective dynamics in the pair and orbital models. The numbering can change as other result families are integrated.
+The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Its first five sections cover preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. Sections 6–8 treat asymmetric nonduality across two moments, cohomology and the index, and effective dynamics in the pair and orbital models. Section 9 develops the passive response of a self-adjoint system observed through the same port that prepares it. The numbering can change as other result families are integrated.
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
-- The [migration ledger](inventory/migration.csv) compares source clauses with the consolidated introduction and §§1–8 at `af58551`. It distinguishes a statement’s source kind from its role in the draft and records passage locators, evidence and outstanding clauses. The all-channel strengthening of R5 is attributed to the consolidated manuscript (`UM`). The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains the fields.
+- The [migration ledger](inventory/migration.csv) compares source clauses with the consolidated introduction and §§1–9. It distinguishes a statement’s source kind from its role in the draft and records passage locators, evidence and outstanding clauses. The all-channel strengthening of R5 is attributed to the consolidated manuscript (`UM`). The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains the fields.
 - Supplements cover the pair and orbital equations used in §§1–3 and §8. The [source reading queue](inventory/heading_queue.csv) identifies further passages without a direct ledger entry. Read the surrounding derivations when migrating a partially tracked section.
 - The inventory now includes all used, declared theorem-like environments: 106 TAUM entries and 175 LG entries,
   including LG's 17 model choices and 29 doctrinal identifications.
@@ -112,10 +112,9 @@ Do not present reference-preserving CPTP maps or a particular contraction as con
 
 The working section `sec:preparation-effective-dynamics` uses the Hilbert Schur complement to compute the measured resolvent on the prepared plane. The TAUM source section `sec:effective-dynamics` remains assigned to III.3 for its general signed factorization, including the Krein branch, the oriented return and the opposite dissipative signs. III.4 can then reuse the positivity of the self-energy. Keep `thm:two-return-forms` in III.3, referring back to III.2 for the curvature of a moving projection.
 
-**III.4 Positive response and operational access.** Hilbert-self-adjoint realizations with bounded ports; Herglotz
-and Schur kernels; spectral measures; minimal realizations; finite response-defect count; permanent invisibility;
-symmetry-resolved departure; and heat-smoothed singular ports. Keep the ambient invisible complement distinct
-from the response-generated final defect. Krein self-adjointness alone does not establish positive response.
+**III.4 Positive response and operational access.** Working §9 (`sec:passive-response`), together with §1, carries the 26 source entries in TAUM’s `sec:boundary-response`. It gives the Herglotz and Schur kernels of a bounded reciprocal port, the spectral and temporal representations, and the unitary uniqueness of the minimal realization. It also treats finite-rank line weights, opposite symmetry sectors and heat-smoothed singular inputs. The two-level example at `eq:passive-signed-witness` gives a negative spectral weight with a real spectrum. The signed-response discussion in III.3 can refer to that example when it distinguishes fixed reciprocal ports from independently calibrated preparation and readout. Section 9 also supplies the Hilbert-space response clause of TAUM’s final architecture theorem (`thm:architecture`). Its general signed reduction remains due in III.3.
+
+TAUM already gives the argument for counting relations among the weight ranges and explains why antiunitary symmetry preserves the matched spectral measures. Working §9 adds the pair example where enlarging the port lowers the indirect dimension and the overlapping-branch example where the chosen analysis direction lies partly outside the reached space. The realization result carried over here is uniqueness on the reached space. A characterization of all realizable functions would require a separate existence theorem.
 
 ### IV. Checked mathematical and physical realizations
 

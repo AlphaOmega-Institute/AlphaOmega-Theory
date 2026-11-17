@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a standalone PDF of a fragment, using the preamble of the consolidated manuscript.
 
-    python manuscripts/consolidated/fragments/build_fragment.py passive_response
+    python manuscripts/consolidated/fragments/build_fragment.py NAME
 
 The wrapper takes every line of Universal_Model.tex before \\begin{document}, so the
 fragment is typeset with the same packages, environments and macros. Labels that live
@@ -13,6 +13,7 @@ from the end of the main file. Nothing is written into Universal_Model.tex.
 The script reports LaTeX warnings, bad boxes and pdfTeX warnings such as links to
 missing destinations.
 """
+import argparse
 import re
 import shutil
 import subprocess
@@ -32,8 +33,15 @@ def run(command, cwd):
 
 
 def main():
-    name = sys.argv[1] if len(sys.argv) > 1 else "passive_response"
-    body = (HERE / f"{name}.tex").read_text(encoding="utf-8")
+    parser = argparse.ArgumentParser(description="Build a PDF for a consolidated-manuscript fragment.")
+    parser.add_argument("name", help="stem of the fragment's .tex file in this directory")
+    name = parser.parse_args().name
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", name):
+        parser.error("supply a fragment name without a path or extension")
+    source = HERE / f"{name}.tex"
+    if not source.is_file():
+        parser.error(f"fragment does not exist: {source.name}")
+    body = source.read_text(encoding="utf-8")
     main_text = MAIN.read_text(encoding="utf-8")
     preamble = main_text.split("\\begin{document}")[0]
     extra_bib = (HERE / f"{name}_bibliography.tex")
@@ -51,14 +59,26 @@ def main():
             run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "main.tex"], tmp)
         # labels of the main file, made available to the wrapper as external references
         aux = (tmp / "main.aux").read_text(encoding="utf-8")
-        # drop each label's link anchor: the number is printed, and no link points outside this PDF
-        labels = "\n".join(re.sub(r"\{[^{}]*\}\{\}\}$", "{}{}}", line)
-                           for line in aux.splitlines() if line.startswith("\\newlabel{"))
+        labels = "\n".join(line for line in aux.splitlines() if line.startswith(r"\newlabel{"))
+        external_keys = re.findall(r"^\\newlabel\{([^{}]+)\}", labels, flags=re.M)
+        markers = "\n".join(r"\expandafter\def\csname fragmentexternal@" + key + r"\endcsname{}"
+                            for key in external_keys)
+        # amsmath's eqref also calls ref. Retain ordinary local links and print
+        # external references using hyperref's explicit, unlinked form.
+        reference_setup = r"""
+\NewCommandCopy{\FragmentOriginalRef}{\ref}
+\RenewDocumentCommand{\ref}{s m}{%
+  \ifcsname fragmentexternal@#2\endcsname
+    \FragmentOriginalRef*{#2}%
+  \else
+    \IfBooleanTF{#1}{\FragmentOriginalRef*{#2}}{\FragmentOriginalRef{#2}}%
+  \fi}
+"""
         main_log = (tmp / "main.log").read_text(encoding="utf-8", errors="replace")
         last_equation = int(re.search(r"LASTEQUATION=(\d+)", main_log).group(1))
         wrapper = (preamble
-                   + "\\makeatletter\n" + labels + "\n\\makeatother\n"
-                   + "\\begin{document}\n"
+                   + "\\makeatletter\n" + labels + "\n" + markers + "\n\\makeatother\n"
+                   + "\\begin{document}\n" + reference_setup
                    + f"\\noindent\\textbf{{Fragment for review.}} Section and equation numbers are provisional. "
                      f"References to Sections 1--{sections} are to the consolidated manuscript.\\par\\medskip\n"
                    + f"\\setcounter{{section}}{{{sections}}}\\setcounter{{equation}}{{{last_equation}}}\n"
@@ -69,9 +89,9 @@ def main():
             run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", f"{name}.tex"], tmp)
         log = (tmp / f"{name}.log").read_text(encoding="utf-8", errors="replace")
         problems = [line for line in log.splitlines()
-                    if re.search(r"LaTeX Warning|Overfull|Underfull|undefined|multiply|pdfTeX warning", line)]
+                    if re.match(r"(?:(?:LaTeX(?: Font)?|Package \S+|Class \S+|pdfTeX) warning|Overfull|Underfull)", line, re.I)]
         shutil.copy(tmp / f"{name}.pdf", HERE / f"{name}.pdf")
-        pages = re.search(r"Output written on .*?\((\d+) pages", log)
+        pages = re.search(r"Output written on .*?\((\d+) pages?\b", log)
         print(f"{name}.pdf: {pages.group(1) if pages else '?'} pages; warnings: {len(problems)}")
         for line in problems[:20]:
             print("   ", line)

@@ -909,6 +909,353 @@ Spin triplet & $-0.00177006$ & $-0.00177062$\\
 \end{center}
 At cutoff ten the correction to the singlet gap is $-0.00007715\,\lambda^2$ because the two levels move down by nearly equal amounts. At $\lambda=8\pi/243$ this term is about $0.27\%$ of the first-order gap. The rigorous finite-coupling guarantee comes from the one-sided estimate in Eq.~\eqref{eq:shell-ritz}.
 
+\section{What the measured response determines}
+\label{sec:passive-response}
+
+Section~\ref{sec:preparation-evolution} introduced the response measured through one port and, when it consists of finitely many lines with weights of finite rank, counted the directions reached only by waiting. Two questions remain. Which positivity conditions must the response of an ordinary quantum system satisfy when the same port prepares and reads out? And how much of the system does the complete response fix? The first is answered by positivity of a two-point kernel of the response, of the corresponding kernel of its Cayley transform, and of its spectral weights. Each condition is necessary. They do not characterize the responses of bounded ports, which must also decay away from the real axis. The answer to the second is that the response fixes the part of the system the port can reach, up to a unique unitary, and nothing else.
+
+Throughout this section $\mathcal X$ is a complex Hilbert space, $H$ is a self-adjoint operator in $\mathcal X$ with spectral measure $E_H$, and $U(t)=\exp(-itH/\hbar)$. The port space $\mathcal E$ is a complex Hilbert space of any dimension, and the port is a bounded operator $\Gamma:\mathcal E\to\mathcal X$. Inner products are linear in the second entry. In Section~\ref{sec:preparation-evolution}, $\mathcal X=\mathcal H_\Phi$ and $\overline{\Ran\Gamma}=D$. Write $R(z)=(H-zI)^{-1}$ for $z\in\C\setminus\R$, and $\C_+$ for the open upper half-plane. The response of the pair $(H,\Gamma)$ is
+\begin{equation}
+ M_\Gamma(z)=\Gamma^*R(z)\Gamma,\qquad z\in\C\setminus\R .
+ \label{eq:passive-response}
+\end{equation}
+The port prepares through $\Gamma$ and reads out through $\Gamma^*$. The definition needs no further structure. It covers a port inside the system, a port of finite rank, and a singular input after the smoothing of Section~\ref{subsec:passive-heat}.
+
+\subsection{Positivity of a reciprocal response}
+\label{subsec:passive-positivity}
+
+For a bounded operator $T$ write $\operatorname{Im}T=(T-T^*)/(2i)$.
+
+\begin{proposition}[Herglotz--Nevanlinna response]
+\label{prop:passive-herglotz}
+The response $M_\Gamma$ is analytic on $\C\setminus\R$ in operator norm and satisfies
+\begin{equation}
+ M_\Gamma(\overline z)=M_\Gamma(z)^*,\qquad \|M_\Gamma(z)\|\le\frac{\|\Gamma\|^2}{|\operatorname{Im}z|} .
+ \label{eq:passive-decay}
+\end{equation}
+For $z\in\C_+$,
+\begin{equation}
+ \operatorname{Im}M_\Gamma(z)=(\operatorname{Im}z)\,\Gamma^*R(z)R(z)^*\Gamma\ \geq\ 0 .
+ \label{eq:passive-imaginary-part}
+\end{equation}
+\end{proposition}
+\begin{proof}
+The resolvent of a self-adjoint operator is norm analytic off the real axis and satisfies $R(\overline z)=R(z)^*$ and $\|R(z)\|\le1/|\operatorname{Im}z|$. These properties pass to $\Gamma^*R(z)\Gamma$. The resolvent identity gives $R(z)-R(\overline z)=(z-\overline z)R(z)R(\overline z)$. Compressing by $\Gamma$ and dividing by $2i$ gives Eq.~\eqref{eq:passive-imaginary-part}, in which $\Gamma^*R(z)R(z)^*\Gamma=(R(z)^*\Gamma)^*(R(z)^*\Gamma)$ is positive.
+\end{proof}
+
+An operator function that is analytic off the real axis, satisfies $M(\overline z)=M(z)^*$ and has positive imaginary part on $\C_+$ is called a Herglotz or Nevanlinna function \cite{Donoghue}. The norm bound in Eq.~\eqref{eq:passive-decay} is a further property of a response and is not part of that definition. The same calculation at two points gives a stronger statement. For $z,w\in\C_+$ define the Nevanlinna kernel
+\begin{equation}
+ K_M(z,w)=\frac{M_\Gamma(z)-M_\Gamma(w)^*}{z-\overline w}.
+ \label{eq:passive-nevanlinna-kernel}
+\end{equation}
+
+\begin{proposition}[Positive response kernel]
+\label{prop:passive-kernel}
+For $z,w\in\C_+$,
+\begin{equation}
+ K_M(z,w)=\Gamma^*R(z)R(w)^*\Gamma .
+ \label{eq:passive-kernel-factor}
+\end{equation}
+Consequently, for every finite choice of points $z_1,\dots,z_N\in\C_+$ and vectors $h_1,\dots,h_N\in\mathcal E$,
+\begin{equation}
+ \sum_{i,j=1}^N\langle h_i,K_M(z_i,z_j)h_j\rangle
+   =\Bigl\|\sum_{j=1}^N R(z_j)^*\Gamma h_j\Bigr\|^2\ \geq\ 0 .
+ \label{eq:passive-kernel-positive}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Since $M_\Gamma(w)^*=\Gamma^*R(\overline w)\Gamma$, the resolvent identity $R(z)-R(\overline w)=(z-\overline w)R(z)R(\overline w)$ and $R(\overline w)=R(w)^*$ give Eq.~\eqref{eq:passive-kernel-factor}. Then $\langle h_i,K_M(z_i,z_j)h_j\rangle=\langle R(z_i)^*\Gamma h_i,R(z_j)^*\Gamma h_j\rangle$, and summing gives the squared norm.
+\end{proof}
+
+Positivity alone leaves the high-frequency behavior undetermined. The function $M(z)=zI$ is analytic, has positive imaginary part on $\C_+$, and has the constant positive kernel $K_M(z,w)=I$. It is not the response of any bounded port, because $\|M(iy)\|=y$ grows with $y$ whereas Eq.~\eqref{eq:passive-decay} requires $\|M_\Gamma(iy)\|\le\|\Gamma\|^2/y$.
+
+Two constructions used earlier supply responses of this kind.
+
+\begin{corollary}[Two sources of positive responses]
+\label{cor:passive-sources}
+\textup{(a)} Let $A$ be the closed map of Section~\ref{sec:preparation-evolution}. Its return $A^*A$ is positive and self-adjoint on $\mathcal H_\Psi$ (Section~\ref{sec:cohomology-index}). Every bounded $\Gamma:\mathcal E\to\mathcal H_\Psi$ therefore defines the canonical response
+\begin{equation}
+ M_{A,\Gamma}(z)=\Gamma^*(A^*A-zI)^{-1}\Gamma ,
+ \label{eq:passive-canonical-response}
+\end{equation}
+which satisfies Propositions~\ref{prop:passive-herglotz} and~\ref{prop:passive-kernel}.
+
+\textup{(b)} In the setting of Eq.~\eqref{eq:prepared-schur}, let the diagonal blocks $H_P,H_Q$ be self-adjoint and the coupling $C=QHP$ bounded, and let $\Gamma_P:\mathcal E\to P\mathcal X$ be a bounded port into the retained space. Then $H$ is self-adjoint on $\operatorname{Dom}H_P\oplus\operatorname{Dom}H_Q$. Regarding $\Gamma_P$ as a port into $\mathcal X$, for $z$ in the resolvent sets of $H_Q$ and $H$,
+\begin{equation}
+ \Gamma_P^*(H-zI)^{-1}\Gamma_P
+   =\Gamma_P^*\bigl[H_P-zI-C^*(H_Q-zI)^{-1}C\bigr]^{-1}\Gamma_P ,
+ \label{eq:passive-block-response}
+\end{equation}
+and the left side satisfies Propositions~\ref{prop:passive-herglotz} and~\ref{prop:passive-kernel}.
+\end{corollary}
+\begin{proof}
+Part (a) applies the two propositions with $\mathcal X=\mathcal H_\Psi$ and $H=A^*A$. In part (b), $H$ is the sum of the self-adjoint operator $H_P\oplus H_Q$ and the bounded symmetric operator $C+C^*$, hence self-adjoint on the same domain \cite{Kato}. The left side of Eq.~\eqref{eq:passive-block-response} is its response through the port $\Gamma_P$, and Eq.~\eqref{eq:prepared-schur} gives the right side because $\Gamma_P$ maps into $P\mathcal X$.
+\end{proof}
+
+Both propositions use self-adjointness of $H$ in the positive Hilbert inner product. A generator that is self-adjoint only for the indefinite form of Section~\ref{sec:neutral-graphs-phase} is in general not Hilbert-self-adjoint, and its compressed resolvent does not inherit Proposition~\ref{prop:passive-herglotz}. On $\C^2$ with the form $[x,y]=\overline{x_1}y_1-\overline{x_2}y_2$, the matrix with rows $(0,\sqrt2)$ and $(-\sqrt2,3)$ is self-adjoint for the form and has the real eigenvalues $1$ and $2$. Its response through the first coordinate is
+\begin{equation}
+ \left[\begin{pmatrix}-z&\sqrt2\\-\sqrt2&3-z\end{pmatrix}^{-1}\right]_{11}
+   =\frac{3-z}{(1-z)(2-z)}=\frac{2}{1-z}-\frac{1}{2-z} .
+ \label{eq:passive-signed-witness}
+\end{equation}
+The weight at the second line is negative, and the imaginary part at $z=2+i/2$ is $-6/5$. Self-adjointness for an indefinite form with real spectrum therefore does not give a positive response. Positivity then needs an additional positive realization or a separate theorem about the metric. No such positivity is assumed here.
+
+\subsection{The contractive form}
+\label{subsec:passive-cayley}
+
+The Cayley transform of the upper half-plane turns a positive imaginary part into a norm bound. For $z\in\C_+$ define the Schur response
+\begin{equation}
+ S_\Gamma(z)=\bigl(M_\Gamma(z)-iI\bigr)\bigl(M_\Gamma(z)+iI\bigr)^{-1}.
+ \label{eq:passive-schur-response}
+\end{equation}
+
+\begin{proposition}[Cayley transform of the response]
+\label{prop:passive-cayley}
+For every $z\in\C_+$ the operator $M_\Gamma(z)+iI$ has a bounded inverse on $\mathcal E$, also when $\mathcal E$ is infinite-dimensional. The function $S_\Gamma$ is analytic on $\C_+$ and
+\begin{equation}
+ I-S_\Gamma(z)^*S_\Gamma(z)
+  =4\bigl(M_\Gamma(z)^*-iI\bigr)^{-1}\,\operatorname{Im}M_\Gamma(z)\,\bigl(M_\Gamma(z)+iI\bigr)^{-1}\ \geq\ 0 .
+ \label{eq:passive-contractive}
+\end{equation}
+In particular $\|S_\Gamma(z)\|\le1$.
+\end{proposition}
+\begin{proof}
+Put $M=M_\Gamma(z)$. For $h\in\mathcal E$,
+\[
+ \|(M+iI)h\|\,\|h\|\ \ge\ \operatorname{Im}\langle h,(M+iI)h\rangle
+   =\langle h,(\operatorname{Im}M)h\rangle+\|h\|^2\ \ge\ \|h\|^2 ,
+\]
+so $M+iI$ is bounded below and has closed range. Its adjoint $M^*-iI$ satisfies $-\operatorname{Im}\langle h,(M^*-iI)h\rangle\ge\|h\|^2$, so it is injective and the range of $M+iI$ is dense. A closed dense range is all of $\mathcal E$, and the inverse is bounded by one. Analyticity of $S_\Gamma$ follows from that of $M_\Gamma$. Multiplying $I-S_\Gamma(z)^*S_\Gamma(z)$ on the left by $M^*-iI$ and on the right by $M+iI$ gives
+\[
+ (M^*-iI)(M+iI)-(M^*+iI)(M-iI)=2i(M^*-M)=4\operatorname{Im}M ,
+\]
+which is Eq.~\eqref{eq:passive-contractive}. Positivity follows from Proposition~\ref{prop:passive-herglotz}.
+\end{proof}
+
+For $z,w\in\C_+$ define the de Branges--Rovnyak kernel
+\begin{equation}
+ K_S(z,w)=\frac{I-S_\Gamma(z)S_\Gamma(w)^*}{-i(z-\overline w)} .
+ \label{eq:passive-dbr-kernel}
+\end{equation}
+
+\begin{proposition}[Positive Schur defect kernel]
+\label{prop:passive-schur-kernel}
+For $z,w\in\C_+$,
+\begin{equation}
+ K_S(z,w)=2\bigl(M_\Gamma(z)+iI\bigr)^{-1}K_M(z,w)\bigl(M_\Gamma(w)^*-iI\bigr)^{-1}.
+ \label{eq:passive-schur-kernel-factor}
+\end{equation}
+The kernel $K_S$ is positive in the sense of Eq.~\eqref{eq:passive-kernel-positive}. It is therefore the reproducing kernel of a Hilbert space of $\mathcal E$-valued analytic functions on $\C_+$, an operator-valued de Branges--Rovnyak space \cite{Aronszajn,deBrangesRovnyak}.
+\end{proposition}
+\begin{proof}
+The operators $M_\Gamma(z)\pm iI$ commute, so $(M_\Gamma(z)+iI)S_\Gamma(z)=M_\Gamma(z)-iI$ and $S_\Gamma(w)^*(M_\Gamma(w)^*-iI)=M_\Gamma(w)^*+iI$. Hence
+\[
+ (M_\Gamma(z)+iI)\bigl(I-S_\Gamma(z)S_\Gamma(w)^*\bigr)(M_\Gamma(w)^*-iI)
+   =-2i\bigl(M_\Gamma(z)-M_\Gamma(w)^*\bigr).
+\]
+Dividing by $-i(z-\overline w)$ gives Eq.~\eqref{eq:passive-schur-kernel-factor}. With $k_j=(M_\Gamma(z_j)^*-iI)^{-1}h_j$, the quadratic sum for $K_S$ and the vectors $h_j$ is twice the sum for $K_M$ and the vectors $k_j$, which is nonnegative by Proposition~\ref{prop:passive-kernel}. A positive kernel is the reproducing kernel of a unique Hilbert space of functions \cite{Aronszajn}.
+\end{proof}
+
+\subsection{Spectral weights and the response in time}
+\label{subsec:passive-spectral}
+
+The compressed spectral measure of $(H,\Gamma)$ assigns to each Borel set $B\subseteq\R$ the positive operator
+\begin{equation}
+ \Sigma_\Gamma(B)=\Gamma^*E_H(B)\Gamma ,\qquad \Sigma_\Gamma(\R)=\Gamma^*\Gamma .
+ \label{eq:passive-spectral-measure}
+\end{equation}
+It is countably additive in the weak operator topology, because $E_H$ is. For $h,k\in\mathcal E$ the set function $B\mapsto\langle h,\Sigma_\Gamma(B)k\rangle$ is a complex measure of total variation at most $\|\Gamma h\|\,\|\Gamma k\|$. Integrals against $\Sigma_\Gamma$ are understood through these scalar measures. When $\Sigma_\Gamma$ consists of finitely many atoms $\lambda_k$, its values are sums of the weights $R_k=\Sigma_\Gamma(\{\lambda_k\})$ of Corollary~\ref{cor:finite-response-defect}, and positivity of the measure is positivity of each weight.
+
+\begin{proposition}[Spectral and temporal representations]
+\label{prop:passive-spectral-temporal}
+For $z\in\C\setminus\R$ and $t\in\R$,
+\begin{equation}
+ M_\Gamma(z)=\int_\R\frac{d\Sigma_\Gamma(\lambda)}{\lambda-z},\qquad
+ C_\Gamma(t):=\Gamma^*U(t)\Gamma=\int_\R e^{-it\lambda/\hbar}\,d\Sigma_\Gamma(\lambda).
+ \label{eq:passive-spectral-temporal}
+\end{equation}
+The function $C_\Gamma$ is positive definite. For all real $t_1,\dots,t_N$ and all $h_1,\dots,h_N\in\mathcal E$,
+\begin{equation}
+ \sum_{i,j=1}^N\langle h_i,C_\Gamma(t_i-t_j)h_j\rangle
+   =\Bigl\|\sum_{j=1}^N U(-t_j)\Gamma h_j\Bigr\|^2\ \ge\ 0 .
+ \label{eq:passive-time-positive}
+\end{equation}
+\end{proposition}
+\begin{proof}
+For $x,y\in\mathcal X$ the spectral theorem gives
+\[
+ \langle x,R(z)y\rangle=\int_\R\frac{d\langle x,E_H(\lambda)y\rangle}{\lambda-z},\qquad
+ \langle x,U(t)y\rangle=\int_\R e^{-it\lambda/\hbar}\,d\langle x,E_H(\lambda)y\rangle .
+\]
+Taking $x=\Gamma h$ and $y=\Gamma k$ gives both formulas. For the last statement, $U(t_i-t_j)=U(-t_i)^*U(-t_j)$, so each term equals $\langle U(-t_i)\Gamma h_i,U(-t_j)\Gamma h_j\rangle$.
+\end{proof}
+
+For finitely many lines the two integrals of Eq.~\eqref{eq:passive-spectral-temporal} are the finite sums
+\begin{equation}
+ M_\Gamma(z)=\sum_k\frac{R_k}{\lambda_k-z},\qquad C_\Gamma(t)=\sum_ke^{-it\lambda_k/\hbar}R_k ,
+ \label{eq:passive-finite-lines}
+\end{equation}
+with weights of any rank.
+
+\subsection{The part of the system the port reaches}
+\label{subsec:passive-minimal}
+
+Section~\ref{sec:preparation-evolution} defined $\Hmin$ as the closed span of the vectors $U(t)v$ with $v\in D$. The resolvent gives the same space.
+
+\begin{proposition}[Two descriptions of the reached space]
+\label{prop:passive-two-spans}
+The closed linear spans
+\[
+ \overline{\Span}\{R(z)\Gamma h:z\in\C\setminus\R,\ h\in\mathcal E\}
+ \quad\text{and}\quad
+ \overline{\Span}\{U(t)\Gamma h:t\in\R,\ h\in\mathcal E\}
+\]
+coincide. Their common value $\Hmin$ contains $\Ran\Gamma$ and reduces $H$.
+\end{proposition}
+\begin{proof}
+Call the two spaces $\mathcal M_{\rm res}$ and $\mathcal M_{\rm time}$. The second is invariant under $U(t)$ for every real $t$, so its orthogonal projection commutes with the unitary group and $\mathcal M_{\rm time}$ reduces $H$. For $\operatorname{Im}z>0$ the spectral theorem gives the strongly convergent integral
+\[
+ R(z)x=\frac{i}{\hbar}\int_0^\infty e^{izt/\hbar}\,U(t)x\,dt ,
+\]
+and for $\operatorname{Im}z<0$ the corresponding integral over negative times. Taking $x=\Gamma h$ shows $\mathcal M_{\rm res}\subseteq\mathcal M_{\rm time}$. Conversely, the resolvent identity $R(\zeta)R(z)=(R(\zeta)-R(z))/(\zeta-z)$ for $\zeta\ne z$, with norm continuity in $\zeta$ at $\zeta=z$, shows that $\mathcal M_{\rm res}$ is invariant under every $R(\zeta)$. Since $R(\zeta)^*=R(\overline\zeta)$, its orthogonal complement is invariant as well. The projection onto $\mathcal M_{\rm res}$ therefore commutes with all resolvents, hence with the spectral projections of $H$ and with $U(t)$. Finally $-iyR(iy)\to I$ strongly as $y\to+\infty$, so $\Ran\Gamma\subseteq\mathcal M_{\rm res}$. Applying $U(t)$ gives $\mathcal M_{\rm time}\subseteq\mathcal M_{\rm res}$.
+\end{proof}
+
+The pair $(H,\Gamma)$ is called \emph{minimal} when $\Hmin=\mathcal X$.
+
+\begin{proposition}[Canonical minimal reduction]
+\label{prop:passive-minimal-reduction}
+The restriction $H_{\min}$ of $H$ to $\operatorname{Dom}H\cap\Hmin$ is self-adjoint in $\Hmin$. Regarding $\Gamma$ as a map into $\Hmin$,
+\begin{equation}
+ \Gamma^*(H-zI)^{-1}\Gamma=\Gamma^*(H_{\min}-zI)^{-1}\Gamma ,\qquad z\in\C\setminus\R ,
+ \label{eq:passive-minimal-invariance}
+\end{equation}
+and the pair $(H_{\min},\Gamma)$ is minimal. Every pair thus has a minimal part with exactly the same response.
+\end{proposition}
+\begin{proof}
+A closed subspace that reduces a self-adjoint operator carries a self-adjoint restriction, whose resolvent is the restriction of $R(z)$. Since $\Gamma h\in\Hmin$, the vectors $R(z)\Gamma h$ computed in $\mathcal X$ and in $\Hmin$ agree. This gives Eq.~\eqref{eq:passive-minimal-invariance} and shows that the resolvent span of $(H_{\min},\Gamma)$ is all of $\Hmin$.
+\end{proof}
+
+By Proposition~\ref{prop:passive-spectral-temporal} the two pairs also share $\Sigma_\Gamma$ and $C_\Gamma$. The next result is the converse: equal responses force equal minimal parts.
+
+\begin{proposition}[Unitary uniqueness of minimal realizations]
+\label{prop:passive-uniqueness}
+Let $(H_1,\Gamma_1)$ on $\mathcal X_1$ and $(H_2,\Gamma_2)$ on $\mathcal X_2$ be minimal pairs over the same port space $\mathcal E$. Suppose
+\begin{equation}
+ \Gamma_1^*(H_1-zI)^{-1}\Gamma_1=\Gamma_2^*(H_2-zI)^{-1}\Gamma_2
+ \qquad\text{for all }z\in\C\setminus\R .
+ \label{eq:passive-equal-responses}
+\end{equation}
+Then there is a unique unitary $\Theta:\mathcal X_1\to\mathcal X_2$ with
+\begin{equation}
+ \Theta\operatorname{Dom}H_1=\operatorname{Dom}H_2,\qquad \Theta H_1=H_2\Theta,\qquad \Theta\Gamma_1=\Gamma_2 .
+ \label{eq:passive-unitary-equivalence}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Write $R_j(z)=(H_j-zI)^{-1}$ and $M_j$ for the two responses. For nonreal $z,w$ with $w\ne\overline z$ and $h,k\in\mathcal E$, the resolvent identity gives
+\begin{equation}
+ \langle R_j(z)\Gamma_jh,R_j(w)\Gamma_jk\rangle
+   =\Bigl\langle h,\frac{M_j(w)-M_j(z)^*}{w-\overline z}\,k\Bigr\rangle .
+ \label{eq:passive-gram}
+\end{equation}
+The left side is norm continuous in $w$, so its value at $w=\overline z$ is the limit of the right side. By Eq.~\eqref{eq:passive-equal-responses} the right side is the same for $j=1,2$. Finite sums $\sum_kR_1(z_k)\Gamma_1h_k$ and $\sum_kR_2(z_k)\Gamma_2h_k$ therefore have equal Gram matrices, and
+\[
+ \Theta_0\Bigl(\sum_kR_1(z_k)\Gamma_1h_k\Bigr)=\sum_kR_2(z_k)\Gamma_2h_k
+\]
+is well defined and isometric: a sum of the first kind that vanishes has norm zero, and so does its image. By minimality $\Theta_0$ has dense domain and dense range, and it extends uniquely to a unitary $\Theta$.
+
+For nonreal $\zeta\ne z$ the resolvent identity gives $R_j(\zeta)R_j(z)\Gamma_jh=(R_j(\zeta)-R_j(z))\Gamma_jh/(\zeta-z)$, so $\Theta R_1(\zeta)$ and $R_2(\zeta)\Theta$ agree on $R_1(z)\Gamma_1h$. Both sides are norm continuous in $\zeta$, which covers $\zeta=z$. Hence $\Theta R_1(\zeta)=R_2(\zeta)\Theta$ on a dense set and, by boundedness, everywhere. Intertwined resolvents give $\Theta\operatorname{Dom}H_1=\operatorname{Dom}H_2$ and $\Theta H_1=H_2\Theta$. Finally $-iyR_j(iy)\Gamma_jh\to\Gamma_jh$ as $y\to+\infty$, and $\Theta$ maps the first family to the second, so $\Theta\Gamma_1=\Gamma_2$. Any unitary with the properties in Eq.~\eqref{eq:passive-unitary-equivalence} intertwines the resolvents and so takes $R_1(z)\Gamma_1h$ to $R_2(z)\Gamma_2h$. It agrees with $\Theta$ on a dense set.
+\end{proof}
+
+Together the last two propositions say what a complete response measured through one port determines. It determines the pair $(H_{\min},\Gamma)$ up to the unitary of Proposition~\ref{prop:passive-uniqueness}. By Proposition~\ref{prop:preparation-split} it carries no information about $\Hmin^\perp$, where $H$ may be changed arbitrarily. The pair model of Section~\ref{sec:preparation-effective-dynamics} shows both halves. For bare transfer at an interior angle the response through the prepared plane has three lines. Their weights fix the three-dimensional space spanned by $g,e,m$, the action of $H$ on it and the position of the plane inside it. The line at zero energy belongs to $m$. The three directions of $W$ also have energy zero and lie in $\Hmin^\perp$, so the response cannot show that the zero level is fourfold.
+
+When the response consists of finitely many lines whose weights $R_k$ have finite rank, Corollary~\ref{cor:finite-response-defect} counts the indirect directions. Finitely many lines are not enough. For $H=0$ and $\Gamma=I$ on an infinite-dimensional space the response has one line of infinite rank, and the difference of ranks in the corollary is not defined. Three remarks complete the count under its hypothesis. First, it belongs to a specified port and its complete response, and an invertible change of coordinates $T$ on $\mathcal E$ preserves it, since each weight becomes $T^*R_kT$ and ranks are unchanged. Second, positivity gives $\Ran(\sum_kR_k)=\sum_k\Ran R_k$, because both are finite-dimensional subspaces of $\mathcal E$ with orthogonal complement $\bigcap_k\ker R_k$. The map $(x_k)\mapsto\sum_kx_k$ from $\bigoplus_k\Ran R_k$ onto $\sum_k\Ran R_k$ therefore has a kernel of dimension $\dim\mathcal D$. The count is the dimension of the space of relations $\sum_kx_k=0$ with $x_k\in\Ran R_k$, and it vanishes exactly when the ranges $\Ran R_k$ form a direct sum in the port space. Third, enlarging the port can change the count. In the pair model a preparation at an interior angle leaves the one-dimensional indirect space $\C d$. Adding the endpoint preparation with range $D_0=\Span\{g,e\}$ of Eq.~\eqref{eq:pair-two-setting-ranges} makes the direct range all of $\Span\{g,e,m\}$, and the count becomes zero. With the full codomain $\mathcal X$ the adjoint kernel of the port is $\mathcal D\oplus\Hmin^\perp$ (Proposition~\ref{prop:preparation-split}). Its second summand is orthogonal to everything the port generates and is not determined by the response. The port itself is injective exactly when $\ker(\sum_kR_k)=\{0\}$, since $\Gamma^*\Gamma=\sum_kR_k$. The choice of the map $A$ and any correspondence of grounds are further data of a realization.
+
+These statements concern one port and all real times. They do not say that a direction of $\mathcal D$ is detectable in every finite time window, nor by every other observable. Proposition~\ref{prop:semibounded-waiting} and the translation example after it treat finite windows.
+
+\subsection{A conserved generator that splits a prepared excitation}
+\label{subsec:passive-sectors}
+
+A conserved quantity can leave a reference state fixed while separating the energies present in a prepared superposition. Its commuting with the Hamiltonian does not make the directly prepared space invariant.
+
+\begin{proposition}[Opposite symmetry sectors]
+\label{prop:passive-opposite-sectors}
+Let $H_0$ and $L$ be strongly commuting self-adjoint operators in $\mathcal X$, and for real $\nu$ define $H_\nu=H_0-\nu L$ by their joint functional calculus. Let $g$ be a unit vector with $H_0g=E_0g$ and $Lg=0$. Let $\ell>0$, and let $q_\pm\in\ker(L\mp\ell I)$ be unit vectors with the same spectral measure for $H_0-E_0$:
+\begin{equation}
+ \langle q_+,E_{H_0-E_0}(B)q_+\rangle=\langle q_-,E_{H_0-E_0}(B)q_-\rangle=:\mu(B)
+ \qquad\text{for every Borel set }B .
+ \label{eq:passive-matched-measures}
+\end{equation}
+Put
+\[
+ e=\frac{q_++q_-}{\sqrt2},\qquad d=\frac{q_+-q_-}{i\sqrt2},\qquad
+ \Gamma(c_0,c_1)=c_0g+c_1e,\qquad
+ C_0(t)=\int_\R e^{-it\lambda/\hbar}\,d\mu(\lambda).
+\]
+Then $g,e,d$ are orthonormal and $\Gamma:\C^2\to\mathcal X$ is an isometry. With $\psi(t)=\exp(-it(H_\nu-E_0)/\hbar)e$,
+\begin{align}
+ \langle e,\psi(t)\rangle&=C_0(t)\cos(\nu\ell t/\hbar),
+ &\langle d,\psi(t)\rangle&=-C_0(t)\sin(\nu\ell t/\hbar),
+ \label{eq:passive-sector-factorization}\\
+ \|P_{\mathcal D}\psi(t)\|^2&=1-|C_0(t)|^2\cos^2(\nu\ell t/\hbar),
+ &\|(I-P_{g,e,d})\psi(t)\|^2&=1-|C_0(t)|^2 .
+ \label{eq:passive-sector-departure}
+\end{align}
+Here $\mathcal D$ is the indirect space of the pair $(H_\nu,\Gamma)$ and $P_{g,e,d}$ projects onto $\Span\{g,e,d\}$. For $\nu\ne0$ the weight on $\mathcal D$ equals one at $t_*=\pi\hbar/(2|\nu|\ell)$.
+\end{proposition}
+\begin{proof}
+Eigenspaces of $L$ for distinct eigenvalues are orthogonal, which gives the orthonormality. Strong commutation gives $\exp(-it(H_\nu-E_0)/\hbar)q_\pm=e^{\pm it\nu\ell/\hbar}\exp(-it(H_0-E_0)/\hbar)q_\pm$, and the evolved vectors stay in the two eigenspaces of $L$. By Eq.~\eqref{eq:passive-matched-measures} both $q_\pm$ have return amplitude $C_0(t)$ under $H_0-E_0$. Taking inner products with $e$ and $d$ gives Eq.~\eqref{eq:passive-sector-factorization}. The vector $\psi(t)$ lies in $\Hmin$ and is orthogonal to the eigenvector $g$. Its projection onto $\Ran\Gamma$ therefore has squared norm $|\langle e,\psi(t)\rangle|^2$, and the remainder of its unit norm lies in $\mathcal D$. Subtracting the squared projections onto $e$ and $d$ from one gives the last identity.
+\end{proof}
+
+Matched measures as in Eq.~\eqref{eq:passive-matched-measures} follow from a unitary reflection, or from an antiunitary symmetry such as time reversal, that commutes with $H_0$, reverses $L$ and exchanges $q_+$ and $q_-$. In the antiunitary case spectral projections are preserved and their expectations are real, so the two measures still agree. The trap of Section~\ref{subsec:orbital-apparatus} is the instance $H_0=H_{\rm ho}+V$, $\nu=\Omega_{\rm B}$, $\ell=2\hbar$, with $q_\pm$ the normalized components of $e_Q$ in the two chiral sectors. With the filter, $q_\pm=F_{\pm,\lambda}$ and $C_0(t)$ is a pure phase.
+
+Three limits of the proposition should be kept. The identity $Lg=0$ shows that $g$ remains an eigenvector of $H_\nu$. It does not show that $g$ remains the state of lowest energy, which needs a separate condition that no level crosses it. Complete departure from the direct range does not ensure complete return: at $\nu\ell t/\hbar\in\pi\mathbb Z$ the return weight is $|C_0(t)|^2$. And the line $\C d$ is a direction chosen for analysis in the ambient space. If the two shifted spectral branches overlap, $d$ need not belong to $\Hmin$, and it must not then be identified with a reachable line of the indirect space. For instance, let each $q_\pm$ have weight one half at the $H_0$ energies $E_0$ and $E_0+2|\nu|\ell$. After the shift the two branches share the line at $E_0+|\nu|\ell$. The response then has three excitation lines where four separate components would need four, and $d\notin\Hmin$. Equation~\eqref{eq:passive-sector-departure} still measures departure into the indirect space, because $\psi(t)\in\Hmin$.
+
+\subsection{Singular inputs after heat smoothing}
+\label{subsec:passive-heat}
+
+A point evaluation or a boundary delta is usually not a vector of $\mathcal X$, so it does not define a bounded port. A Gaussian function of $H$ turns such an input into one.
+
+For $s\ge0$ let $\mathcal X_s=\operatorname{Dom}(I+H^2)^{s/2}$ with the norm $\|(I+H^2)^{s/2}x\|$, and let $\mathcal X_{-s}$ be its anti-dual with pivot space $\mathcal X$. A \emph{distributional trace} is a bounded operator $\gamma:\mathcal X_s\to\mathcal E$. Its adjoint maps $\mathcal E$ into $\mathcal X_{-s}$.
+
+\begin{proposition}[Heat-smoothed distributional port]
+\label{prop:passive-heat-distributional}
+For every $\tau>0$ the operator $\gamma\,e^{-\tau H^2/2}:\mathcal X\to\mathcal E$ is bounded. Its adjoint
+\begin{equation}
+ \Gamma_{\tau,\gamma}=\bigl(\gamma\,e^{-\tau H^2/2}\bigr)^*=e^{-\tau H^2/2}\gamma^*\in\mathcal B(\mathcal E,\mathcal X)
+ \label{eq:passive-heat-port}
+\end{equation}
+is a bounded port. Its response has the positive kernels and spectral representations of Sections~\ref{subsec:passive-positivity}--\ref{subsec:passive-spectral}, with bounded total mass $\Gamma_{\tau,\gamma}^*\Gamma_{\tau,\gamma}$. The response determines the restriction of $H$ and the port on the reached space up to the unitary equivalence of Section~\ref{subsec:passive-minimal}.
+\end{proposition}
+\begin{proof}
+The function $(1+\lambda^2)^{s/2}e^{-\tau\lambda^2/2}$ is bounded on $\R$. By the spectral theorem $e^{-\tau H^2/2}$ therefore maps $\mathcal X$ boundedly into $\mathcal X_s$, and composing with $\gamma$ gives a bounded operator. In the second expression of Eq.~\eqref{eq:passive-heat-port}, $e^{-\tau H^2/2}$ denotes the bounded extension from $\mathcal X_{-s}$ to $\mathcal X$ that is dual to this map. Apply Eq.~\eqref{eq:passive-spectral-measure} to this bounded port and Propositions~\ref{prop:passive-minimal-reduction} and~\ref{prop:passive-uniqueness} to its minimal realization.
+\end{proof}
+
+For a heat-smoothed port, the count of Corollary~\ref{cor:finite-response-defect} still requires finitely many lines with weights of finite rank, and Proposition~\ref{prop:passive-opposite-sectors} still requires its commuting generator and matched measures.
+
+When the spectrum is discrete the port can be specified by coefficients, with no trace operator. Suppose $H$ has a complete orthonormal basis of eigenvectors $e_n$ with real eigenvalues $\lambda_n$, and let vectors $\gamma_n\in\mathcal E$ specify a formal port through its spectral coefficients. Write $\gamma_n\gamma_n^*$ for the rank-one operator $h\mapsto\langle\gamma_n,h\rangle\gamma_n$.
+
+\begin{proposition}[Heat-smoothed port from spectral coefficients]
+\label{prop:passive-heat-discrete}
+Fix $\tau>0$ and suppose $\sum_{n}e^{-\tau\lambda_n^2}\|\gamma_n\|^2<\infty$. Then
+\begin{equation}
+ \Gamma_\tau h=\sum_ne^{-\tau\lambda_n^2/2}\langle\gamma_n,h\rangle\,e_n
+ \label{eq:passive-heat-discrete-port}
+\end{equation}
+defines a Hilbert--Schmidt operator $\Gamma_\tau:\mathcal E\to\mathcal X$ whose squared Hilbert--Schmidt norm is that sum. Its response and total spectral mass are
+\begin{equation}
+ M_\tau(z)=\sum_n\frac{e^{-\tau\lambda_n^2}}{\lambda_n-z}\,\gamma_n\gamma_n^* ,\qquad
+ \Gamma_\tau^*\Gamma_\tau=\sum_ne^{-\tau\lambda_n^2}\,\gamma_n\gamma_n^* .
+ \label{eq:passive-heat-discrete-response}
+\end{equation}
+The first series converges in operator norm, uniformly on compact subsets of $\C\setminus\R$. The second converges in trace norm. The same bounded-port conclusions hold for $(H,\Gamma_\tau)$, including uniqueness on its reached space.
+\end{proposition}
+\begin{proof}
+The adjoint satisfies $\Gamma_\tau^*e_n=e^{-\tau\lambda_n^2/2}\gamma_n$, so $\sum_n\|\Gamma_\tau^*e_n\|^2$ is the assumed sum and $\Gamma_\tau$ is Hilbert--Schmidt. Applying $(H-zI)^{-1}$ termwise and then $\Gamma_\tau^*$ gives the series for $M_\tau$. Each term has operator norm at most $e^{-\tau\lambda_n^2}\|\gamma_n\|^2/|\lambda_n-z|$, and $|\lambda_n-z|^{-1}$ is bounded on a compact set by the reciprocal of its distance from $\R$. The total mass follows in the same way, and the trace norm of each positive rank-one term is $e^{-\tau\lambda_n^2}\|\gamma_n\|^2$.
+\end{proof}
+
+A smoothed port has no preferred scale. For a one-dimensional port space, if $c_\tau=\|\Gamma_\tau1\|^2>0$ then $c_\tau^{-1/2}\Gamma_\tau$ has a compressed spectral measure of total mass one. For a general port space, write the polar decomposition $\Gamma_\tau=V_\tau(\Gamma_\tau^*\Gamma_\tau)^{1/2}$. The partial isometry $V_\tau$, restricted to the support of $\Gamma_\tau^*\Gamma_\tau$, is the port normalized on its support. This remains available when the spectrum of $\Gamma_\tau^*\Gamma_\tau$ accumulates at zero, where no inverse square root is bounded. It is the same normalization as the polar port $u$ of Section~\ref{sec:preparation-evolution}.
+
 \begingroup\small
 \begin{thebibliography}{99}
 \raggedright
@@ -928,6 +1275,9 @@ At cutoff ten the correction to the singlet gap is $-0.00007715\,\lambda^2$ beca
 \bibitem{DussonSigalStamm} G.~Dusson, I.~M.~Sigal and B.~Stamm, The Feshbach--Schur map and perturbation theory, in \emph{Partial Differential Equations, Spectral Theory, and Mathematical Physics: The Ari Laptev Anniversary Volume}, EMS Press (2021), 65--88. \href{https://doi.org/10.4171/ECR/18-1/5}{doi:10.4171/ECR/18-1/5}. \href{https://arxiv.org/abs/2105.02058}{arXiv:2105.02058}.
 \bibitem{LGOrbital} A.~Yiannopoulos, \emph{The Luminous Ground: Emptiness, Awareness, and the Algebra of Appearance} (2026), subsection on an orbital source preserving the full ground. \href{https://github.com/AlphaOmega-Institute/AlphaOmega-Theory/blob/8e9fde97cbd81f312706197ea8761b52abb69e79/manuscripts/lg/LG_Master_Unified.tex#L7596}{Manuscript source}.
 \bibitem{ZhuArgentatiKnyazev} P.~Zhu, M.~E.~Argentati and A.~V.~Knyazev, Bounds for the Rayleigh quotient and the spectrum of self-adjoint operators, \emph{SIAM J. Matrix Anal. Appl.} \textbf{34} (2013), 244--256. \href{https://doi.org/10.1137/120884468}{doi:10.1137/120884468}.
+\bibitem{Donoghue} W.~F. Donoghue, Jr., \emph{Monotone Matrix Functions and Analytic Continuation}, Springer, 1974.
+\bibitem{Aronszajn} N.~Aronszajn, Theory of reproducing kernels, \emph{Transactions of the American Mathematical Society} \textbf{68} (1950), 337--404. \href{https://doi.org/10.1090/S0002-9947-1950-0051437-7}{doi:10.1090/S0002-9947-1950-0051437-7}.
+\bibitem{deBrangesRovnyak} L.~de Branges and J.~Rovnyak, \emph{Square Summable Power Series}, Holt, Rinehart and Winston, 1966.
 \end{thebibliography}
 \endgroup
 \end{document}

@@ -14,20 +14,20 @@ identities that passage displays. A check either passes or fails; nothing is fit
 
 ```bash
 pip install -r checks/requirements.txt      # NumPy and SciPy
-python checks/run_all.py                    # about 45 seconds
-python checks/run_all.py --full             # adds the slow convergence check, about 70 seconds
+python checks/run_all.py                    # standard run
+python checks/run_all.py --full             # includes the orbital convergence and higher-cutoff checks
 python checks/run_all.py -k orbital         # only checks whose name contains "orbital"
 ```
 
 The standard run should end with
 
 ```
-56 passed, 0 failed, 1 skipped in ...s
+104 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `57 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `106 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
-slow check).
+slow checks).
 
 Tested with Python 3.11, NumPy 2.4 and SciPy 1.17.
 Timings vary with hardware and BLAS settings.
@@ -134,6 +134,8 @@ in the manuscript, not this computation.
 | `test_symmetry_resolved_response` | The factorized response, departure and fixed-line weights; overlapping branches | `prop:opposite-sector-response` and its equations |
 | `test_three_state_example` | Weights, minimal space, defect line and transfer formula of the example | `ex:split-excitation-response` and its equations |
 | `test_intertwining_criterion_and_detuning_cap` | Prepared states never leave the range exactly when `(1 - AA^*) H A = 0`; detuning caps the reachable defect weight | not yet tied to a label |
+
+[The passive-response checks](response/test_passive_response.py) exercise the Herglotz and Schur kernels, the large-imaginary-energy bound, and the two-level signed witness. They compare spectral weights with time evolutions, recover the unitary between two minimal realizations, and test spectral grouping with nearby levels and with a genuine degeneracy. The symmetry and heat-smoothing checks work on finite models.
 
 ### Numerical tolerance for spectral grouping
 

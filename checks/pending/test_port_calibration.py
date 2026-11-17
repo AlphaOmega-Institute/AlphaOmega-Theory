@@ -1,7 +1,7 @@
 """Signed line weights and the calibration of the two ports (hbar = 1).
 
-Planned for the section on signed response (outline III.3; working title Section 9).
-Nothing here is in the consolidated manuscript yet, so the file cites no label.
+The consolidated manuscript gives the two-level witness. The general calibration result
+is planned for the signed-response section (outline III.3).
 
 Statements checked:
   1. A scalar response c(t) = sum_E w_E exp(-i E t) with real weights can be written as
@@ -16,6 +16,10 @@ Statements checked:
 """
 import numpy as np
 from scipy.linalg import expm
+
+LABELS = {
+    "UM": ["eq:passive-signed-witness"],
+}
 
 
 def _response(weights, energies, times):
