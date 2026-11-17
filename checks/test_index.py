@@ -6,7 +6,7 @@ from scipy.linalg import expm
 from lib.linalg import rank
 
 LABELS = {
-    "UM": ["eq:index-shift-family", "eq:index-extension-counts"],
+    "UM": ["eq:index-shift-family", "eq:index-shift-energy", "eq:index-extension-counts"],
     "LG": ["eq:unilateral-shift-example", "eq:shift-index-minus-one"],
 }
 
@@ -28,6 +28,32 @@ def test_shift_defect_can_rotate_while_the_ground_stays_fixed():
         # Any common defect must be on the old line g0, which has nonzero
         # overlap with the rotated image of f1 for both choices of angle.
         assert_allclose(g0 @ rotated[:, 1] / np.sin(angle), -1)
+
+
+def test_excitation_energy_selects_a_common_shift_defect():
+    g0, g1, g2 = np.eye(3)
+    shift = np.column_stack((g1, g2))
+    input_energies = np.array([0.0, 1.0])
+    h_input = np.diag(input_energies)
+    angle = 0.37
+    rotated = np.column_stack((g1, np.cos(angle) * g2 - np.sin(angle) * g0))
+    missing_line = np.outer(g0, g0)
+    for energy, expected_defect in (
+        (1.0, np.zeros((3, 3))),
+        (0.5, missing_line),
+        (7.3, missing_line),
+    ):
+        output_energies = np.array([energy, 0.0, 1.0])
+        h_output = np.diag(output_energies)
+        assert_allclose(h_output @ shift, shift @ h_input)
+        residual = h_output @ rotated - rotated @ h_input
+        assert_allclose(np.linalg.norm(residual, 2), abs((energy - 1) * np.sin(angle)))
+
+        # Matrix unit |g_i><f_j| intertwines precisely at equal energies.
+        # Row i is in the common defect when every such entry vanishes.
+        matching_energies = output_energies[:, None] == input_energies[None, :]
+        common_defect = np.diag(~matching_energies.any(axis=1))
+        assert_allclose(common_defect, expected_defect)
 
 
 def test_input_extension_counts_independent_new_output_directions():

@@ -668,13 +668,13 @@ Give the input degree zero and the output degree one. In the two-term Hilbert co
  \overline H^1_A=\mathcal H_\Phi/D,\qquad D=\overline{\Ran A}.
  \label{eq:index-cohomology}
 \end{equation}
-Inside the direct sum write $d(x,y)=(0,Ax)$ on $\operatorname{Dom}A\oplus\mathcal H_\Phi$. Its Laplacian is $\Delta=d^*d+dd^*=\operatorname{diag}(A^*A,AA^*)$ on the natural product domain. The returns $A^*A$ and $AA^*$ are positive self-adjoint operators. The physical and appearance Hamiltonians used earlier were specified independently.
+Inside the direct sum write $d_A(x,y)=(0,Ax)$ on $\operatorname{Dom}A\oplus\mathcal H_\Phi$. Its Laplacian is $\Delta=d_A^*d_A+d_Ad_A^*=\operatorname{diag}(A^*A,AA^*)$ on the natural product domain. The returns $A^*A$ and $AA^*$ are positive self-adjoint operators. The physical and appearance Hamiltonians used earlier were specified independently.
 
 \begin{proposition}[Harmonic representatives and spectral pairing]\label{prop:index-harmonic-pairing}
 Each reduced degree-one class $[y]$ has the unique representative $(I-\Pi_D)y$ in $\ker A^*$. Taking this representative preserves the quotient norm. The full harmonic space is $\ker\Delta=\ker A\oplus\ker A^*$ and
 \[
  \mathcal H_\Psi\oplus\mathcal H_\Phi
-     =\ker\Delta\ \oplus\ \overline{\Ran d^*}\ \oplus\ \overline{\Ran d}.
+     =\ker\Delta\ \oplus\ \overline{\Ran d_A^*}\ \oplus\ \overline{\Ran d_A}.
 \]
 The polar unitary $V:S\to D$, with $S=(\ker A)^\perp$, intertwines the restrictions of $A^*A$ and $AA^*$ to these supports, including their operator domains.
 \end{proposition}
@@ -692,7 +692,7 @@ A Fredholm channel has closed range and finite $k=\dim\ker A$ and $d_1=\dim\ker 
      =\Tr(JP_{\ker\Delta}),\qquad \operatorname{ind}A^*=-\operatorname{ind}A .
  \label{eq:index-graded}
 \end{equation}
-Indeed, $J$ acts with opposite signs on the two harmonic summands. The odd operators $d+d^*$ and $d^*-d$ on $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$ both have closed range $(\ker\Delta)^\perp$ and kernel $\ker\Delta$, so their ungraded indices are zero. For the heat trace, assume in addition that $e^{-tA^*A}$ and $e^{-tAA^*}$ are trace class at the specified $t>0$. The active contributions cancel by Proposition~\ref{prop:index-harmonic-pairing}. Each harmonic vector contributes one to its sector trace, giving
+Indeed, $J$ acts with opposite signs on the two harmonic summands. The odd operators $d_A+d_A^*$ and $d_A^*-d_A$ on $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$ both have closed range $(\ker\Delta)^\perp$ and kernel $\ker\Delta$, so their ungraded indices are zero. For the heat trace, assume in addition that $e^{-tA^*A}$ and $e^{-tAA^*}$ are trace class at the specified $t>0$. The active contributions cancel by Proposition~\ref{prop:index-harmonic-pairing}. Each harmonic vector contributes one to its sector trace, giving
 \begin{equation}
  \Tr(J e^{-t\Delta})=\Tr(e^{-tA^*A})-\Tr(e^{-tAA^*})=\operatorname{ind}A .
  \label{eq:index-heat}
@@ -715,6 +715,18 @@ Take copies of $\ell^2(\mathbb N_0)$ with orthonormal bases $f_n$ and $g_n$ and 
 \end{equation}
 Only the image of $f_1$ changes. For $0<|\alpha|<\pi$ the difference has rank one and norm $2|\sin(\alpha/2)|$. Each channel is an isometry with index $-1$, yet $\ker A^*\cap\ker (A^{(\alpha)})^*=\{0\}$ even for arbitrarily small nonzero angles. Thus every channel in this family misses a direction, and no direction is missed by the whole family. Whether these rotations are admissible in any given cognitive realization is a separate physical question. For this shift $A^*A=I$, so its heat operator has infinite trace and Eq.~\eqref{eq:index-heat} does not apply.
 
+An excitation energy can distinguish the missing line. Measure energies from the respective grounds and suppose every admissible preparation is a bounded map intertwining the two unitary groups. If $E_\Psi$ and $E_\Phi$ are the spectral measures of these ground-shifted Hamiltonians, the spectral theorem gives $E_\Phi(B)A_c=A_cE_\Psi(B)$ for each Borel set $B$. Whenever $E_\Psi(B)=0$, the whole range of $E_\Phi(B)$ lies in the common defect of Eq.~\eqref{eq:joint-presentation-space}.
+
+In the shift example keep $H_\Psi=I-P_{f_0}$ and set $H_\Phi^{(\varepsilon)}=I-P_{g_1}+(\varepsilon-1)P_{g_0}$, where $P_h=\ket{h}\bra{h}$ for a unit vector $h$. The original shift still intertwines and fills $g_0^\perp$. For $\varepsilon>0$ the ground stays fixed, and the rotated shift satisfies
+\begin{equation}
+ \bigl\|H_\Phi^{(\varepsilon)} A^{(\alpha)}-A^{(\alpha)}H_\Psi\bigr\|
+       =|\varepsilon-1|\,|\sin\alpha| .
+ \label{eq:index-shift-energy}
+\end{equation}
+Only the $g_0$ component of $A^{(\alpha)}f_1$ contributes. At $\varepsilon=1$ both rotated directions have the same energy. At $\varepsilon\ne1$ the input has no eigenvector of energy $\varepsilon$, so every intertwiner misses $g_0$. For any such family containing the original shift, the common defect is exactly $\C g_0$.
+
+Intertwining also constrains the ground tests of Proposition~\ref{prop:ground-polar-compatibility}. If $U_\Phi(t)A$ and $AU_\Psi(t)$ agree up to a scalar phase for all $t$, taking the adjoint times the operator cancels that phase. Thus $A^*A$ and $|A|$ commute with $U_\Psi(t)$. For a simple input ground $x$ and a weak bridge $Ax=ay$, $a>0$, positivity gives $|A|x=ax$ and hence $F_x=1$, even when $A$ has a kernel. The argument uses intertwining of $A$ itself. If only the polar partial isometry $u$ intertwines the full sector evolutions up to phase, the same ground conclusion has a different proof. Its unit partner $u^*y$ is then an input energy eigenvector. Its strictly positive overlap with $x$ in Eq.~\eqref{eq:actual-ground-partner} puts it on the simple ground ray and fixes its phase. The unequal-cell path, where $F_x=9/10$, shows what either restriction would exclude.
+
 \subsection{How many new inputs fill the defect?}
 
 Keep a Fredholm $A$ fixed on its original domain. Add $m$ input dimensions and map them by $L:\C^m\to\mathcal H_\Phi$, so that $\widetilde A(x,z)=Ax+Lz$. Put $r=\rank((I-\Pi_D)L)$. Then
@@ -724,7 +736,9 @@ Keep a Fredholm $A$ fixed on its original domain. Add $m$ input dimensions and m
  \operatorname{ind}\widetilde A=\operatorname{ind}A+m .
  \label{eq:index-extension-counts}
 \end{equation}
-Indeed, the enlarged range is $D$ plus the $r$ projected directions and is closed. The projection $(x,z)\mapsto z$ maps $\ker\widetilde A$ onto $\ker((I-\Pi_D)L)$ with kernel $\ker A\oplus\{0\}$. Surjectivity therefore costs at least $d_1$ new inputs, and mapping $d_1$ independent inputs onto a basis of $D^\perp$ suffices. Under R4 this minimum is exactly $-\operatorname{ind}A$ and the minimal surjective extension is bijective. With an old kernel, cancelling a negative index can still leave both a kernel and a defect. For instance, a map with $(k,d_1)=(1,2)$ has index $-1$. Filling one missing direction makes the index zero and leaves one missing direction. These are statements about enlarging one specified channel. A physical interpretation must still justify the choice of inputs available to the observer.
+Indeed, the enlarged range is $D$ plus the $r$ projected directions and is closed. The projection $(x,z)\mapsto z$ maps $\ker\widetilde A$ onto $\ker((I-\Pi_D)L)$ with kernel $\ker A\oplus\{0\}$. Surjectivity therefore costs at least $d_1$ new inputs, and mapping $d_1$ independent inputs onto a basis of $D^\perp$ suffices. Under R4 this minimum is exactly $-\operatorname{ind}A$ and the minimal surjective extension is bijective. With an old kernel, cancelling a negative index can still leave both a kernel and a defect. For instance, a map with $(k,d_1)=(1,2)$ has index $-1$. Filling one missing direction makes the index zero and leaves one missing direction. These are statements about enlarging one specified channel. Under the excitation-energy restriction, filling the shift's missing line also requires a physical input eigenvector at energy $\varepsilon$.
+
+The shift distinguishes a restriction on presentations from a choice of operations on appearances. For example, the full output algebra contains $K=\ket{g_0}\bra{g_1}$, which takes the ground to the missing line and satisfies $[H_\Phi^{(\varepsilon)},K]=\varepsilon K$. The phase that $K$ acquires under time translation cancels in the single-outcome operation $\sigma\mapsto K\sigma K^*$. Such an operation can transfer energy while respecting time translations on density operators \cite{Janzing}. Canonical deconditioning in Eq.~\eqref{eq:moment-deconditioning} transfers population in the reverse direction. A cognitive realization would have to identify a determination that produces this component in the observer and explain why every physical presentation obeys the stronger energy restriction. Whether the component contributes to a later judgement is the separate readout question of Section~\ref{sec:asymmetric-nonduality-moments}.
 
 \begingroup\small
 \begin{thebibliography}{99}
@@ -740,6 +754,7 @@ Indeed, the enlarged range is $D$ plus the $r$ projected directions and is close
 \bibitem{BratteliRobinson} O.~Bratteli and D.~W.~Robinson, \emph{Operator Algebras and Quantum Statistical Mechanics 1}, 2nd ed., Springer, 1987. \href{https://doi.org/10.1007/978-3-662-02520-8}{doi:10.1007/978-3-662-02520-8}.
 \bibitem{BruningLesch} J.~Br\"uning and M.~Lesch, Hilbert complexes, \emph{Journal of Functional Analysis} \textbf{108} (1992), 88--132. \href{https://doi.org/10.1016/0022-1236(92)90147-B}{doi:10.1016/0022-1236(92)90147-B}.
 \bibitem{Kato} T.~Kato, \emph{Perturbation Theory for Linear Operators}, 2nd ed., Springer, 1995.
+\bibitem{Janzing} D.~Janzing, \emph{Decomposition of time-covariant operations on quantum systems with continuous and/or discrete energy spectrum} (2004), Sec.~6. \href{https://arxiv.org/abs/quant-ph/0407144}{arXiv:quant-ph/0407144}.
 \end{thebibliography}
 \endgroup
 \end{document}
