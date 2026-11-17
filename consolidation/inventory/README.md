@@ -77,3 +77,37 @@ Thirteen TAUM remarks have no label. Their temporary annotation keys are `@` fol
 number (for example, `@100`); the CSV retains a blank label and a separate line column. Such keys are not stable across
 source edits. Assign or reconcile stable labels when those entries are migrated, rather than treating line numbers as
 permanent identifiers.
+
+## Migration into the consolidated manuscript
+
+[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–8 of the consolidated TeX at `af58551`. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
+
+Filter by `source` and `source_key` to see a source entry together with all its assessed clauses. A source key is its inventory label, or the inventory's `@line` key for an unlabelled environment in the pinned source. `source_line` is the line where the environment begins. For a supplementary equation the line is the location of its label. `draft_labels` names the actual TeX anchors for migrated material. An equation or proposition label can locate the reasoning in its adjacent paragraph, as specified in `evidence_or_owed`. `planned_homes` gives the outline's eventual part or parts and may be broader than an individual clause.
+
+| Coverage | How to read the evidence |
+| --- | --- |
+| `explicit` | The cited passage states or proves the indicated clause. A narrower case gets its own row when the general source result is still due. |
+| `recoverable` | The reviewer gives a specialization or short inference from named passages. State the consequence or supply an explicit cross-reference before closing the source entry. |
+| `owed` | The draft still needs the indicated statement, proof, construction or interpretation. The destination label is blank until that material is present. |
+
+The rows cover every formal entry in the source inventory. Entries of kind `supplement` track selected constructions or consequences outside those environments. Further reading must still check proofs, examples and intervening prose for additional material. An item can contribute both mathematical and interpretive clauses. Retain its original kind and hypotheses as each clause migrates. A discrepancy that changes a result should be recorded with the corrected scope. Equal labels or shared numerical checks alone cannot establish coverage.
+
+### Worked entry for LG's canonical deconditioning theorem
+
+| Source clause | Finding in §6 |
+| --- | --- |
+| Channel formula, complete positivity and trace preservation, composition | Explicit in and immediately after `eq:moment-deconditioning`. |
+| Strong continuity on the trace class | Supply the continuity argument for the bounded block maps and their time-dependent coefficients. |
+| (i) Target projection fixed | Substitute the target projection into the channel formula. |
+| (ii) Ground-deviation weight decays exactly | Set the paired space equal to the target line in `eq:moment-excess-decay`. |
+| (iii) Unique fixed normal state at any positive time | A fixed state equals every iterate. The convergence argument in `prop:two-moment-deconditioning` identifies its limit with the ground projection. |
+| (iv) Quantitative trace-distance estimate | Restore the estimate with constant 2 and its proof. Qualitative convergence is already used. |
+| Generator | Restore the bounded trace-class generator with its derivative at zero. |
+
+Run the following command from the repository root to check source keys, coverage of the formal inventory, clause uniqueness and destination labels.
+
+```sh
+python consolidation/inventory/check_migration.py
+```
+
+The checker reports editorial counts. The ledger weights neither the length nor the difficulty of the clauses and makes no percentage-complete estimate.

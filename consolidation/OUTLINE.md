@@ -10,6 +10,7 @@ The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens 
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
+- The [migration ledger](inventory/migration.csv) records clause-level coverage against the consolidated introduction and §§1–8 at `af58551`. Each row names the source, its planned home, any actual draft location, and either the evidence or the work still owed. The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains how to read a specialization or an unstated consequence.
 - The inventory now includes all used, declared theorem-like environments: 106 TAUM entries and 175 LG entries,
   including LG's 17 model choices and 29 doctrinal identifications.
 - This outline maps all 50 top-level sections/appendices (16 TAUM, 34 LG), plus three major embedded subsections, in
@@ -143,7 +144,13 @@ algebras; dispositions and generator classes; the operator-stage model; derived 
 rig pa; reflexive terminality; non-alteration, deconditioning, momentariness, and the Third/Fourth Yoga account;
 Volition, actualization, and the proposed interpretation of excess/index.
 
-The working section `sec:asymmetric-nonduality-moments` states the strong claim about phenomenal excess in `conj:asymmetric-nonduality`. The two-setting pair illustrates how a common defect can disappear. With a cyclic ground in the joint span, `prop:cyclic-common-excess` characterizes a surviving common defect by the action of the determination algebra. It includes the observer’s bodily state and physical history in Ψ and tests a fixed awareness map across two moments. For canonical deconditioning, `prop:two-moment-deconditioning` identifies exactly when paired states remain paired and which state the corresponding physical dynamics relaxes toward. In the two-flash example it remains open which operation introduces an excess component and whether that component affects the later brightness judgment.
+The working §6 currently holds three arguments. Give them the following homes during reorganization, preserving the labels and the links from the two-flash discussion.
+
+| Planned home | Material now in §6 |
+| --- | --- |
+| III.1, with the determination algebra | Define the joint presentation space in `eq:joint-presentation-space`. Use `eq:pair-two-setting-ranges` to show how a common defect disappears. Prove `prop:cyclic-common-excess` here and keep the five-site illustration. Its first equivalence needs a cyclic vector. Locating the vector inside the joint span gives the stronger conclusion about an operation leaving that span. |
+| III.3, with dynamics | State `eq:two-moment-correspondence` for specified transitions and pairings. Prove `prop:two-moment-deconditioning` for a fixed pairing, including the unique physical relaxation. The [deconditioning ledger entry](inventory/README.md#worked-entry-for-lgs-canonical-deconditioning-theorem) lists the remaining clauses of LG’s semigroup theorem. |
+| V, with the cognitive argument | Keep `conj:asymmetric-nonduality`, the cost of enlarging the physical sector, the grounds for counting a missing direction as an appearance, and the two flashes together. Cite the algebra and dynamics results when asking which operation first creates an excess component and whether it affects the judgement. In the move, clarify “include the observer” as including the observer’s bodily state and physical history in Ψ. |
 
 Refer internally to general theorems instead of repeating them in new notation. Keep elementary mathematics local
 when it belongs to a specifically chosen cognitive model: extracting every lemma into Part II would obscure the
