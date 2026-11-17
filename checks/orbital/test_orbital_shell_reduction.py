@@ -10,7 +10,7 @@ from orbital.model import build, gaussian_integrals_1d
 
 
 LABELS = {
-    "UM": ["eq:orbital-shell-accuracy", "eq:orbital-second-order"],
+    "UM": ["subsec:orbital-apparatus", "eq:orbital-shell-accuracy", "eq:orbital-second-order"],
     "LG": ["eq:orbital-parent", "eq:orbital-minimal-coupling"],
 }
 
@@ -97,3 +97,69 @@ def test_compensated_field_preserves_bare_shell_leakage():
         gram = evolved[outside].conj().T @ evolved[outside]
         assert np.linalg.norm(gram) > 1e-6
         np.testing.assert_allclose(rotated[outside].conj().T @ rotated[outside], gram, atol=1e-13, rtol=0)
+
+
+def test_three_shell_error_bounds_in_truncated_trap():
+    """Compare the shell predictions with the full cutoff-two trap in S_z=0.
+
+    Every spin multiplet has a representative here. Energies are evaluated at
+    zero field, and the probabilities and amplitude errors use all shell inputs.
+    """
+    xi, lam = 2.0, 0.1034
+    width = 3 * lam / (pi * xi)
+    ops = build(2, xi)
+    shell = np.flatnonzero(np.isclose(ops["Hho"].diagonal(), 6))
+    outside = np.ones(ops["dim"], dtype=bool)
+    outside[shell] = False
+    h = (ops["Hho"] - lam * ops["W"]).toarray()
+    ritz, ritz_vectors = np.linalg.eigh(h[np.ix_(shell, shell)])
+    energies, vectors = np.linalg.eigh(h)
+    errors = ritz - energies[:len(shell)]
+    assert np.all(errors > 1e-8)
+    assert np.all(errors <= width**2 / 8)
+
+    # Compare the two propagators on the entire bare shell, including a long
+    # wait, by evolving each shell basis vector with the full spectral resolution.
+    for t in (0.4, pi / 2, 2.0, 2 * pi, 52 * pi):
+        evolved = vectors @ (np.exp(-1j * energies * t)[:, None] * vectors[shell].conj().T)
+        shell_evolution = (ritz_vectors * np.exp(-1j * ritz * t)) @ ritz_vectors.conj().T
+        leakage = np.linalg.norm(evolved[outside], ord=2)**2
+        drift = np.linalg.norm(evolved[shell] - shell_evolution, ord=2)
+        assert leakage <= (width / 2)**2
+        assert drift <= width**2 * t / 4
+        if t == pi / 2:
+            assert leakage > 1e-8 and drift > 1e-8
+
+
+def test_sector_isolation_and_seventh_level_in_truncated_trap():
+    """Resolve angular momentum and spin and count levels with their spin multiplicities."""
+    xi, lam = 2.0, 0.1034
+    width = 3 * lam / (pi * xi)
+    omega_b = 0.04
+    ops = build(2, xi)
+    h = (ops["Hho"] - lam * ops["W"]).toarray()
+    angular, angular_vectors = np.linalg.eigh(ops["L"].toarray())
+    angular = np.rint(angular).astype(int)
+    shell_sectors = {(0, 0), (0, 1), (-2, 0), (2, 0)}
+    verified = set()
+    biased_spectrum = []
+    for m in np.unique(angular):
+        space = angular_vectors[:, angular == m]
+        spin_squared, spin_vectors = np.linalg.eigh(space.conj().T @ (ops["S2"] @ space))
+        spin_squared = np.rint(spin_squared).astype(int)
+        for s in (0, 1, 2):
+            columns = spin_squared == s * (s + 1)
+            if not columns.any():
+                continue
+            basis = space @ spin_vectors[:, columns]
+            levels = np.linalg.eigvalsh(basis.conj().T @ h @ basis)
+            if (m, s) in shell_sectors:
+                assert levels[0] <= 6
+                assert levels[1] >= 8 - width
+                assert levels[1] - levels[0] >= 2 - width
+                verified.add((m, s))
+            biased_spectrum.extend(np.repeat(levels - omega_b * m, 2 * s + 1))
+    assert verified == shell_sectors
+    sorted_levels = np.sort(biased_spectrum)
+    assert len(sorted_levels) == 495  # four fermions in twelve spin orbitals
+    assert sorted_levels[5] < 7 - 3 * abs(omega_b) - width <= sorted_levels[6]

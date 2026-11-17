@@ -108,7 +108,7 @@ systems with covariance/contraction. The semigroup remains a model choice. Retai
 separate subsection with its bounded coupling, self-adjoint diagonal generators, and resolvent assumptions.
 Do not present reference-preserving CPTP maps or a particular contraction as consequences of the bare channel.
 
-The working section `sec:effective-dynamics` uses the Hilbert Schur complement to compute the measured resolvent on the prepared plane. III.3 still needs TAUM’s general signed factorization, including the Krein branch, the oriented return and the opposite dissipative signs. III.4 can then reuse the positivity of the self-energy. Keep `thm:two-return-forms` in III.3, referring back to III.2 for the curvature of a moving projection.
+The working section `sec:preparation-effective-dynamics` uses the Hilbert Schur complement to compute the measured resolvent on the prepared plane. The TAUM source section `sec:effective-dynamics` remains assigned to III.3 for its general signed factorization, including the Krein branch, the oriented return and the opposite dissipative signs. III.4 can then reuse the positivity of the self-energy. Keep `thm:two-return-forms` in III.3, referring back to III.2 for the curvature of a moving projection.
 
 **III.4 Positive response and operational access.** Hilbert-self-adjoint realizations with bounded ports; Herglotz
 and Schur kernels; spectral measures; minimal realizations; finite response-defect count; permanent invisibility;
