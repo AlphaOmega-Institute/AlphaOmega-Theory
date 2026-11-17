@@ -755,9 +755,14 @@ For a unit excitation $f$, put $p_f=p(P_f)$ and $p_x=p(P_x)$. Regardless of cova
  \le \sqrt{(1-p_f)(1-p_x)} .
  \label{eq:index-channel-coherence}
 \end{equation}
-The first bound uses the trace norm of a rank-one operator, the second Cauchy--Schwarz and trace preservation. Away from resonance the left side equals the full output coherence norm because the off-block terms vanish and the $z,z$ entry has energy difference zero. The same equality holds at $\varepsilon=2$ for a ground-preserving channel. The bound $\sqrt{1-p_f}$ is sharp. For any $0\le p\le1$, take $L_0=A[I-(1-\sqrt{1-p})P_f]$ with $A$ the original shift, and $L_1=\sqrt{p}\ket{z}\bra{f}$. These two operators have definite energy shifts and $\sum_j L_j^*L_j=I$. The channel preserves the ground, has $p_f=p$, and sends $\ket{f}\bra{x}$ to $\sqrt{1-p}\ket{Af}\bra{g_1}$.
+The first bound uses the trace norm of a rank-one operator, the second Cauchy--Schwarz and trace preservation. Away from resonance the left side equals the full output coherence norm because the off-block terms vanish and the $z,z$ entry has energy difference zero. The same equality holds at $\varepsilon=2$ for a ground-preserving channel. The two-factor bound is sharp for every pair of line probabilities. For $a,p\in[0,1]$, use the original isometric shift $A$ and take
+\[
+ L_0=A(I-aP_x-pP_f)^{1/2},\qquad
+ L_x=\sqrt{a}\ket{z}\bra{x},\qquad L_f=\sqrt{p}\ket{z}\bra{f}.
+\]
+Since $x\perp f$, the square root acts on $x$ and $f$ by $\sqrt{1-a}$ and $\sqrt{1-p}$, respectively. The three Kraus operators have energy shifts $0,\varepsilon,\varepsilon-1$ and satisfy $\sum_jL_j^*L_j=I$. They give $p_x=a$ and $p_f=p$. Only $L_0$ contributes to $\mathcal T(\ket{f}\bra{x})$, yielding $\sqrt{(1-a)(1-p)}\ket{Af}\bra{g_1}$ and attaining Eq.~\eqref{eq:index-channel-coherence}. The ground-preserving case is $a=0$.
 
-For the two flashes of Section~\ref{sec:asymmetric-nonduality-moments}, a readout of the line alone can use the probability $p(\rho)$. Conditional on that outcome, the state is always $P_z$. The complementary output can retain other distinctions. A cognitive realization must justify the energy restriction on physical presentations. To identify a contribution to remembering, it must also specify which distinction between earlier seeings the observer retains and how that distinction changes the later judgement.
+For the two flashes of Section~\ref{sec:asymmetric-nonduality-moments}, a readout of the line alone can use the probability $p(\rho)$. Conditional on that outcome, the state is always $P_z$. A readout on $z^\perp$ can distinguish earlier seeings when its probabilities differ on the output blocks $Q\mathcal T(\rho)Q$. A cognitive realization must justify the energy restriction on physical presentations. To identify a contribution to remembering, it must also specify which distinction between earlier seeings the observer retains and how that distinction changes the later judgement.
 
 \begingroup\small
 \begin{thebibliography}{99}

@@ -57,33 +57,60 @@ def test_excitation_energy_selects_a_common_shift_defect():
         assert_allclose(common_defect, expected_defect)
 
 
-def test_covariant_channel_coherence_bound_and_resonance():
+def test_covariant_channel_saturates_two_factor_coherence_bound():
     g0, g1, g2 = np.eye(3)
     f0, f1 = np.eye(2)
     h_input = np.diag([0, 1])
     epsilon = 0.5
     h_output = np.diag([epsilon, 0, 1])
     input_coherence = np.outer(f0, f1)
-    for p in (0, 0.3, 0.8, 1):
-        keep = np.column_stack((g1, np.sqrt(1 - p) * g2))
-        jump = np.sqrt(p) * np.outer(g0, f1)
-        assert_allclose(keep.T @ keep + jump.T @ jump, np.eye(2))
-        # Each Kraus operator has a single energy shift, so its phase cancels.
-        assert_allclose(h_output @ keep - keep @ h_input, 0)
-        assert_allclose(h_output @ jump - jump @ h_input, (epsilon - 1) * jump)
-        assert_allclose(keep @ f0, g1)
-        assert_allclose(jump @ f0, 0)
-        output_excitation = sum(np.outer(k @ f1, k @ f1) for k in (keep, jump))
-        assert_allclose(g0 @ output_excitation @ g0, p)
-        coherence = sum(k @ input_coherence @ k.T for k in (keep, jump))
-        assert_allclose(np.linalg.norm(coherence, ord="nuc"), np.sqrt(1 - p))
+    for a in (0, 0.2, 0.5, 0.9, 1):
+        for p in (0, 0.1, 0.3, 0.8, 1):
+            keep = np.column_stack((np.sqrt(1 - a) * g1, np.sqrt(1 - p) * g2))
+            from_ground = np.sqrt(a) * np.outer(g0, f0)
+            from_excitation = np.sqrt(p) * np.outer(g0, f1)
+            kraus = (keep, from_ground, from_excitation)
+            assert_allclose(sum(k.T @ k for k in kraus), np.eye(2))
+            for k, shift in zip(kraus, (0, epsilon, epsilon - 1)):
+                assert_allclose(h_output @ k - k @ h_input, shift * k)
+            for state, weight in ((f0, a), (f1, p)):
+                assert_allclose(sum(abs(g0 @ k @ state) ** 2 for k in kraus), weight)
+            coherence = sum(k @ input_coherence @ k.T for k in kraus)
+            bound = np.sqrt((1 - a) * (1 - p))
+            assert_allclose(coherence, bound * np.outer(g1, g2))
+            assert_allclose(np.linalg.norm(coherence, ord="nuc"), bound)
 
-    # At epsilon=2 a common +1 shift preserves the input frequency. Its
-    # image of the input ground is now excited; the ground bridge fails.
+
+def test_line_coherence_requires_resonance_and_can_require_moving_the_ground():
+    g0, g1, g2 = np.eye(3)
+    f0, f1 = np.eye(2)
+    input_energies = np.array([0, 1])
+    # Use a positive amplitude for every allowed transition. Terms from
+    # different Kraus operators then cannot cancel on a matrix unit.
+    for epsilon, preserve_ground, expect_line_coherence in (
+        (0.5, False, False), (0.5, True, False),
+        (2, False, True), (2, True, False), (1, True, True),
+    ):
+        ground_prob = [0, 1, 0] if preserve_ground else [0.2, 0.3, 0.5]
+        amplitudes = np.sqrt(np.column_stack((ground_prob, [0.4, 0.2, 0.4])))
+        shifts = np.array([epsilon, 0, 1])[:, None] - input_energies[None, :]
+        kraus = [amplitudes * (shifts == shift) for shift in np.unique(shifts)]
+        assert_allclose(sum(k.T @ k for k in kraus), np.eye(2))
+        line_coherences = []
+        for left in (f0, f1):
+            for right in (f0, f1):
+                out = sum(np.outer(k @ left, k @ right) for k in kraus)
+                line_coherences.extend(out[0, 1:])
+        assert bool(np.any(line_coherences)) == expect_line_coherence
+        ordinary_coherence = sum((g1 @ k @ f0) * (g2 @ k @ f1) for k in kraus)
+        assert ordinary_coherence > 0
+
+    # At epsilon=2 an isometry shifting both energies by +1 transfers all
+    # the original coherence. It takes the input ground to an excitation.
     resonant = np.column_stack((g2, g0))
     assert_allclose(resonant.T @ resonant, np.eye(2))
-    assert_allclose(np.diag([2, 0, 1]) @ resonant - resonant @ h_input, resonant)
-    assert_allclose(resonant @ input_coherence @ resonant.T, np.outer(g2, g0))
+    assert_allclose(np.diag([2, 0, 1]) @ resonant - resonant @ np.diag(input_energies), resonant)
+    assert_allclose(resonant @ np.outer(f0, f1) @ resonant.T, np.outer(g2, g0))
 
 
 def test_input_extension_counts_independent_new_output_directions():
