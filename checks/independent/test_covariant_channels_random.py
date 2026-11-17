@@ -24,8 +24,9 @@ def _covariant_kraus(rng, epsilon, preserve_ground, per_class=3):
     e_in, e_out = _levels(epsilon)
     shift = e_out[:, None] - e_in[None, :]
     operators = []
-    for value in np.unique(np.round(shift, 9)):
-        mask = np.isclose(shift, value)
+    rounded = np.round(shift, 9)
+    for value in np.unique(rounded):
+        mask = rounded == value                                # each entry belongs to exactly one shift class
         if preserve_ground:
             mask[:, 0] &= np.arange(N + 1) == 1                # x may only go to g1
         if mask.any():

@@ -11,8 +11,11 @@ until it is integrated. It is body text only. It uses the preamble of
 
 The first command typesets the fragment with the main file's preamble, real numbers for
 references into Sections 1 to 8, and the main bibliography plus
-`passive_response_bibliography.tex`. It needs `pdflatex`. The built PDF is committed
-for reading.
+`passive_response_bibliography.tex`. Section and equation numbers continue from the end
+of the main file. References into the main file print their numbers without a link,
+since their targets are not in the standalone PDF. The script reports LaTeX warnings,
+bad boxes and pdfTeX warnings. It needs `pdflatex`. The built PDF is committed for
+reading.
 
 ## `passive_response.tex`: TAUM's passive-response family
 
@@ -55,11 +58,12 @@ If the rows are accepted as they stand, the ledger goes from 479 clauses (182 ex
 179 (86, 20, 73). These are proposals. The labels and quotes point into the fragment,
 so the rows cannot enter `migration.csv` until the text has a permanent home.
 
-One row needs a decision. `rem:positivity-boundary` is carried as a statement of scope
-with status `open question`. The fragment asserts that a generator self-adjoint for the
-indefinite form is in general not Hilbert-self-adjoint and gives no witness, as in TAUM.
-`checks/pending/test_port_calibration.py` has one, and the signed-response section is
-the natural place for it.
+`rem:positivity-boundary` is recorded as a proved limitation. The fragment gives a
+witness, `eq:passive-signed-witness`: a two-by-two generator self-adjoint for the
+indefinite form, with real eigenvalues, whose response has imaginary part -6/5 at
+z = 2 + i/2. Which further assumptions restore positivity is a separate question and is
+not part of that clause. The witness may belong in the signed-response section once that
+exists.
 
 ### What the proofs need
 
@@ -119,18 +123,26 @@ between them, which Section 1 supplies.
   gives TAUM's formula and avoids a separate extension of the Gaussian to the negative
   scale.
 
+Two arguments in the prose are TAUM's and are carried, not added: that the count of
+Corollary 1.3 is the dimension of the space of relations among the weight ranges (text
+after `cor:finite-response-defect`), and that an antiunitary symmetry still gives equal
+spectral measures (text after `prop:opposite-sector-response`).
+
 Added mathematics, to be reviewed as new text:
 
 - A full proof that the resolvent span and the time span agree for arbitrary spectra.
 - In the uniqueness proof, the continuity step at equal points of the resolvent
   identity, which TAUM omits, next to the one at conjugate points, which it mentions.
-- A proof that the count of Corollary 1.3 is the dimension of the space of relations
-  among the weight ranges.
+- The decay bound `eq:passive-decay` and the function zI, which has a positive kernel and
+  is not a bounded-port response. The positivity conditions are necessary and not
+  sufficient, and the section claims no converse. The example was raised in review.
+- The example H = 0 with the identity port on an infinite-dimensional space, which shows
+  that the count needs weights of finite rank. Also raised in review.
+- The two-by-two witness for the limit of positivity.
 - A pair-model example in which enlarging the port lowers the count from one to zero.
   The check also has a case where it rises.
 - An explicit overlapping example for the caution that the analysis line need not lie
   in the reached space.
-- The reason an antiunitary symmetry still gives equal measures.
 
 ### Names to settle at integration
 
@@ -148,6 +160,10 @@ Added mathematics, to be reviewed as new text:
 
 ### Checks
 
-`checks/fragments/test_passive_response.py` has nine tests. Each constructs its own
-operators and tests the stated identities on them. Its `LABELS` name TAUM labels only,
-because the fragment's labels are not yet in `Universal_Model.tex`.
+`checks/fragments/test_passive_response.py` has twelve tests. Each constructs its own
+operators and tests the stated identities on them. Spectral lines are grouped with
+`lib.linalg.spectral_blocks`, so each eigenvector belongs to exactly one line. A
+regression test keeps the case H = diag(1, 1.000001) with the identity port, which an
+earlier helper counted twice. The uniqueness test includes each point with its
+conjugate and tests the two limits used in the proof. Its `LABELS` name TAUM labels
+only, because the fragment's labels are not yet in `Universal_Model.tex`.

@@ -10,6 +10,7 @@ use fixed seeds.
 import numpy as np
 from scipy.linalg import expm, null_space, orth, sqrtm
 
+from lib.linalg import spectral_blocks
 from pair.model import PairModel
 
 LABELS = {
@@ -18,7 +19,8 @@ LABELS = {
              "thm:positive-Schur-kernel", "def:compressed-spectral-measure", "thm:spectral-temporal-response",
              "def:response-generated-subspace", "thm:canonical-minimal-reduction", "thm:minimal-uniqueness",
              "cor:finite-response-defect", "prop:permanent-port-invisibility", "prop:opposite-sector-response",
-             "thm:heat-smoothed-distributional-port", "thm:heat-smoothed-channel", "rem:heat-channel-normalization"],
+             "thm:heat-smoothed-distributional-port", "thm:heat-smoothed-channel", "rem:heat-channel-normalization",
+             "rem:positivity-boundary"],
 }
 
 
@@ -70,6 +72,45 @@ def test_herglotz_response_and_positive_kernel():
         vectors = np.hstack([_resolvent(h, zj).conj().T @ port for zj in points])
         np.testing.assert_allclose(gram, vectors.conj().T @ vectors, atol=1e-9)
         assert np.linalg.eigvalsh((gram + gram.conj().T) / 2).min() > -1e-9
+        # decay off the real axis, in both half-planes
+        for point in (z, np.conj(w), 1j * rng.uniform(0.1, 50.0)):
+            assert np.linalg.norm(_response(h, port, point), 2) <= np.linalg.norm(port, 2) ** 2 / abs(point.imag) + 1e-12
+
+
+def test_positivity_does_not_characterize_bounded_port_responses():
+    """M(z) = z I has positive imaginary part and the positive kernel I, yet it grows where a response must decay."""
+    rng = np.random.default_rng(110)
+    identity = np.eye(2)
+    linear = lambda z: z * identity
+    kernel = lambda a, b: (linear(a) - linear(b).conj().T) / (a - np.conj(b))
+    points = [_upper(rng) for _ in range(5)]
+    for a in points:
+        assert np.linalg.eigvalsh(_imag(linear(a))).min() > 0
+        for b in points:
+            np.testing.assert_allclose(kernel(a, b), identity, atol=1e-12)
+    assert np.linalg.eigvalsh(_gram_from_kernel(kernel, points)).min() > -1e-12
+    # y ||M(iy)|| is bounded by ||Gamma||^2 for a response and equals y^2 for z I
+    h, port = _hermitian(rng, 4), _complex(rng, 4, 2)
+    bound = np.linalg.norm(port, 2) ** 2
+    for y in (1.0, 10.0, 1e3, 1e6):
+        assert y * np.linalg.norm(_response(h, port, 1j * y), 2) <= bound + 1e-9
+        assert y * np.linalg.norm(linear(1j * y), 2) == y**2
+    assert 1e6**2 > bound
+
+
+def test_form_selfadjoint_generator_with_a_negative_imaginary_part():
+    """A generator self-adjoint for an indefinite form, with real spectrum, whose response is not Herglotz."""
+    generator = np.array([[0.0, np.sqrt(2)], [-np.sqrt(2), 3.0]])
+    form = np.diag([1.0, -1.0])
+    np.testing.assert_allclose(form @ generator, (form @ generator).T, atol=1e-15)      # self-adjoint for the form
+    assert not np.allclose(generator, generator.T)                                      # not Hilbert-self-adjoint
+    np.testing.assert_allclose(np.sort(np.linalg.eigvals(generator).real), [1.0, 2.0], atol=1e-12)
+    np.testing.assert_allclose(np.linalg.eigvals(generator).imag, 0.0, atol=1e-12)
+    response = lambda z: np.linalg.inv(generator - z * np.eye(2))[0, 0]
+    for z in (0.3 + 0.7j, -1.0 + 0.2j, 2.0 + 0.5j, 5.0 - 1.0j):
+        np.testing.assert_allclose(response(z), 2 / (1 - z) - 1 / (2 - z), atol=1e-12)
+    np.testing.assert_allclose(response(2.0 + 0.5j), -1.6 - 1.2j, atol=1e-12)           # imaginary part -6/5
+    assert response(2.0 + 0.5j).imag < 0 < (2.0 + 0.5j).imag
 
 
 def test_two_sources_of_positive_responses():
@@ -178,7 +219,8 @@ def test_unitary_uniqueness_of_minimal_realizations():
         assert _reached_spaces(h1, port1, rng)[0].shape[1] == n                      # minimal
         hidden, _ = np.linalg.qr(_complex(rng, n, n))
         h2, port2 = hidden @ h1 @ hidden.conj().T, hidden @ port1
-        points = [_upper(rng) * s for s in (1, -1) for _ in range(n)]
+        points = [_upper(rng) for _ in range(n)]
+        points += [np.conj(z) for z in points]                   # every point together with its conjugate
         for z in points:
             np.testing.assert_allclose(_response(h1, port1, z), _response(h2, port2, z), atol=1e-9)
         # the unitary is determined by the responses: it sends R_1(z) Gamma_1 h to R_2(z) Gamma_2 h
@@ -190,11 +232,34 @@ def test_unitary_uniqueness_of_minimal_realizations():
         np.testing.assert_allclose(w @ h1, h2 @ w, atol=1e-6)
         np.testing.assert_allclose(w @ port1, port2, atol=1e-6)
         np.testing.assert_allclose(w, hidden, atol=1e-6)
-        # the Gram formula, including the conjugate pair of points
-        z, v = points[0], points[1]
+        # the Gram formula at every pair of points that is not a conjugate pair
         m1 = lambda a: _response(h1, port1, a)
-        np.testing.assert_allclose((_resolvent(h1, z) @ port1).conj().T @ (_resolvent(h1, v) @ port1),
-                                   (m1(v) - m1(z).conj().T) / (v - np.conj(z)), atol=1e-8)
+        gram = lambda a, b: (_resolvent(h1, a) @ port1).conj().T @ (_resolvent(h1, b) @ port1)
+        for a in points[:3] + points[n:n + 3]:
+            for b in points:
+                if abs(b - np.conj(a)) > 1e-12:
+                    np.testing.assert_allclose(gram(a, b), (m1(b) - m1(a).conj().T) / (b - np.conj(a)), atol=1e-7)
+        # the conjugate pair w = conj(z): the formula is 0/0 there, and the Gram entry is the limit of the
+        # quotient, which is the derivative of the response at conj(z).  Both come from the response alone.
+        z = points[0]
+        assert np.conj(z) in points
+        entry = gram(z, np.conj(z))
+        np.testing.assert_allclose(entry, port1.conj().T @ _resolvent(h1, np.conj(z)) @ _resolvent(h1, np.conj(z)) @ port1, atol=1e-9)
+        errors = []
+        for step in (1e-2, 1e-3, 1e-4):
+            v = np.conj(z) + step * (0.6 - 0.8j)
+            errors.append(np.linalg.norm((m1(v) - m1(z).conj().T) / (v - np.conj(z)) - entry))
+        assert errors[0] > errors[1] > errors[2] and errors[2] < 1e-3 * max(1.0, np.linalg.norm(entry)) / z.imag
+        m2 = lambda a: _response(h2, port2, a)
+        np.testing.assert_allclose((_resolvent(h2, z) @ port2).conj().T @ (_resolvent(h2, np.conj(z)) @ port2), entry, atol=1e-8)
+        # equal points in the intertwining step: R(zeta) R(z) Gamma at zeta = z is the limit of the difference quotient
+        square = _resolvent(h1, z) @ _resolvent(h1, z) @ port1
+        errors = []
+        for step in (1e-2, 1e-3, 1e-4):
+            zeta = z + step * (0.6 + 0.8j) * z.imag
+            errors.append(np.linalg.norm((_resolvent(h1, zeta) - _resolvent(h1, z)) @ port1 / (zeta - z) - square))
+        assert errors[0] > errors[1] > errors[2] and errors[2] < 1e-3 * np.linalg.norm(square) / z.imag
+        np.testing.assert_allclose(w @ square, _resolvent(h2, z) @ _resolvent(h2, z) @ port2, atol=1e-5 * max(1.0, np.linalg.norm(square)))
         # a larger system with the same response has the same minimal part
         extra = rng.integers(1, 4)
         big = np.block([[h1, np.zeros((n, extra))], [np.zeros((extra, n)), _hermitian(rng, extra)]])
@@ -208,14 +273,34 @@ def _count(weights):
 
 
 def _weights(h, port):
-    values, vectors = np.linalg.eigh(h)
+    """Nonzero weights Gamma^* E_k Gamma.  Each eigenvector belongs to exactly one block of spectral_blocks."""
     out = []
-    for level in sorted(set(np.round(values, 8))):
-        block = vectors[:, np.isclose(values, level, atol=1e-7)]
-        weight = port.conj().T @ block @ block.conj().T @ port
+    for _, block in spectral_blocks(h):
+        piece = block.conj().T @ port
+        weight = piece.conj().T @ piece
         if np.linalg.norm(weight) > 1e-10:
             out.append(weight)
     return out
+
+
+def test_nearby_energies_are_counted_once():
+    """Lines closer than a relative tolerance but farther apart than the spectral tolerance stay separate."""
+    port = np.eye(2, dtype=complex)
+    close = np.diag([1.0, 1.000001]).astype(complex)
+    weights = _weights(close, port)
+    assert [np.linalg.matrix_rank(r, tol=1e-9) for r in weights] == [1, 1]
+    np.testing.assert_allclose(sum(weights), np.eye(2), atol=1e-12)                 # the weights sum to Gamma^* Gamma
+    assert _count(weights) == 0 and _reached_by_spectral_projections(close, port).shape[1] == 2
+    # a true degeneracy is one line of rank two, and the count is again zero
+    weights = _weights(np.eye(2, dtype=complex), port)
+    assert [np.linalg.matrix_rank(r, tol=1e-9) for r in weights] == [2] and _count(weights) == 0
+    # one vector spread over three lines, two of them close: three rank-one weights and two indirect directions
+    spread = np.diag([1.0, 1.000001, 2.0]).astype(complex)
+    vector = np.ones((3, 1), dtype=complex) / np.sqrt(3)
+    weights = _weights(spread, vector)
+    assert len(weights) == 3 and _count(weights) == 2
+    assert _reached_by_spectral_projections(spread, vector).shape[1] == 3
+    np.testing.assert_allclose(sum(weights), vector.conj().T @ vector, atol=1e-12)
 
 
 def test_finite_response_relations_and_enlarged_ports():
@@ -254,12 +339,8 @@ def test_finite_response_relations_and_enlarged_ports():
 
 
 def _reached_by_spectral_projections(h, port):
-    """Orthonormal basis of the span of E_k Gamma over the distinct eigenvalues of a Hermitian matrix."""
-    values, vectors = np.linalg.eigh(h)
-    pieces = []
-    for level in sorted(set(np.round(values, 8))):
-        block = vectors[:, np.isclose(values, level, atol=1e-7)]
-        pieces.append(block @ block.conj().T @ port)
+    """Orthonormal basis of the span of E_k Gamma over the spectral blocks of a Hermitian matrix."""
+    pieces = [block @ (block.conj().T @ port) for _, block in spectral_blocks(h)]
     return orth(np.hstack(pieces), rcond=1e-9)
 
 

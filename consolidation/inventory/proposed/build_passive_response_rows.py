@@ -58,8 +58,8 @@ UPDATES = {
         ("proved result", "cor:passive-sources eq:passive-block-response", "",
          "The block operator is self-adjoint as a bounded symmetric perturbation of the direct sum of its diagonal blocks, so its response through the embedded port satisfies both propositions."),
     ("rem:positivity-boundary", "Limit of positivity for the Krein branch"):
-        ("open question", "subsec:passive-positivity", "No such positivity is assumed here.",
-         "Carried as a statement of scope, as in TAUM: the propositions use Hilbert self-adjointness, and a generator self-adjoint only for the indefinite form needs a positive realization or a metric theorem. The fragment gives no witness. checks/pending/test_port_calibration.py holds one for the signed-response section."),
+        ("proved result", "eq:passive-signed-witness subsec:passive-positivity", "No such positivity is assumed here.",
+         "Established by a witness: a two-by-two generator self-adjoint for the indefinite form, with real eigenvalues 1 and 2, whose response through the first coordinate has imaginary part -6/5 at z = 2 + i/2. Which further assumptions restore positivity is a separate question and is not part of this clause."),
     ("def:Schur-response", "Operator Cayley transform of the passive response"):
         ("definition", "eq:passive-schur-response", "", "Defined on the upper half-plane."),
     ("lem:Cayley-denominator", "Bounded invertibility of the Cayley denominator"):
@@ -79,8 +79,8 @@ UPDATES = {
         ("definition", "eq:passive-spectral-measure", "",
          "Defined on all Borel sets with total mass, weak countable additivity, and the scalar complex measures used for integration."),
     ("thm:spectral-temporal-response", "Finite-line resolvent and Fourier sums"):
-        ("proved result", "prop:passive-spectral-temporal cor:finite-response-defect", "",
-         "The finite sums are the case of an atomic measure in the general formulas."),
+        ("proved result", "eq:passive-finite-lines prop:passive-spectral-temporal", "",
+         "Both finite sums are displayed after the proposition, for weights of any rank."),
     ("thm:spectral-temporal-response", "General resolvent and time-domain representations"):
         ("proved result", "prop:passive-spectral-temporal eq:passive-spectral-temporal", "",
          "Both operator-valued integrals are stated for an arbitrary compressed spectral measure, with the factor of Planck's constant used in the draft."),
@@ -100,7 +100,7 @@ UPDATES = {
         ("proved result", "prop:passive-uniqueness eq:passive-unitary-equivalence eq:passive-gram", "",
          "Full proof: equal Gram matrices of resolvent-port vectors, extension by minimality, intertwining of resolvents and hence of generators with their domains, recovery of the ports, and uniqueness. Two continuity steps are written out: the conjugate pair of points in the Gram formula, which TAUM mentions, and equal points in the resolvent identity, which it does not."),
     ("cor:finite-response-defect", "Rank count for the indirect space and decomposition of the full defect"):
-        ("proved result", "cor:finite-response-defect prop:preparation-split", "", "Unchanged. Section 1 states and proves the count and the decomposition of the adjoint kernel."),
+        ("proved result", "cor:finite-response-defect prop:preparation-split", "", "Unchanged. Section 1 states and proves the count and the decomposition of the adjoint kernel. The fragment repeats the hypothesis of finite-rank weights where it uses the count."),
     ("cor:finite-response-defect", "Port-coordinate invariance and the rank condition for injectivity (following discussion)"):
         ("proved result", "subsec:passive-minimal", "an invertible change of coordinates $T$ on $\\mathcal E$ preserves it",
          "The first remark gives invariance under a change of port coordinates. The last sentences give the kernel condition for an injective port."),
@@ -125,7 +125,7 @@ UPDATES = {
          "The scale, its anti-dual with the carrier as pivot, the bounded trace and its adjoint are defined before the proposition."),
     ("thm:heat-smoothed-distributional-port", "Bounded smoothed port, Herglotz response and finite spectral mass"):
         ("proved result", "prop:passive-heat-distributional eq:passive-heat-port", "",
-         "The port is defined as the adjoint of a bounded operator on the carrier, which gives TAUM's formula without separately extending the Gaussian to the negative scale. The response and mass claims follow from the bounded-port results."),
+         "The port is defined as the adjoint of a bounded operator on the carrier, which gives TAUM's formula without separately extending the Gaussian to the negative scale. The statement names the eight propositions that apply to a bounded port. The paragraph after it says that the finite count and the sector proposition keep their own hypotheses."),
     ("ass:discrete-response-spectrum", "Complete eigenbasis and formal port coefficients for heat smoothing"):
         ("hypothesis", "subsec:passive-heat", "Suppose $H$ has a complete orthonormal basis of eigenvectors",
          "The eigenbasis, real eigenvalues and coefficient vectors in the port space are specified with no assumption of finite spectral support."),
