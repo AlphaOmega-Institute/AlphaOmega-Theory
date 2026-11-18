@@ -48,7 +48,7 @@ def main():
             traceback.print_exc()
             failed += 1
             continue
-        for name, fn in vars(module).items():
+        for name, fn in list(vars(module).items()):
             if not (name.startswith("test_") and callable(fn)):
                 continue
             label = f"{rel}::{name}"

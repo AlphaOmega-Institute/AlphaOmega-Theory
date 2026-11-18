@@ -85,7 +85,6 @@ TAUM,1350,1356,Polar geometry of the transition channel,0,sec:polar,standard
 TAUM,1653,1660,"Cohomology, spectral pairing, and index",0,sec:cohomology,standard
 TAUM,2509,2518,Schur--Feshbach reduction and effective dynamics,0,sec:effective-dynamics,standard
 TAUM,2845,2857,Boundary response and passive realizations,0,sec:boundary-response,standard
-TAUM,3628,3636,Canonical realizations,0,sec:examples,standard
 TAUM,4025,4048,Canonical realizations > What is universal and what depends on the channel,0,,standard
 TAUM,4049,4055,"Synthesis, realization data, and open extensions",0,sec:scope-open,standard
 TAUM,4103,4151,"Synthesis, realization data, and open extensions > Realization datum",1,eq:realization-datum,standard

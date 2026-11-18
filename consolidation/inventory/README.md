@@ -80,7 +80,7 @@ permanent identifiers.
 
 ## Migration into the consolidated manuscript
 
-[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–11 of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
+[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–12 of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
 
 Section 9 brought all 26 entries from TAUM’s passive-response section into the draft. Together with §1, it states 40 previously tracked clauses and five from the surrounding discussion. Splitting the Hilbert response in TAUM’s architecture theorem from its signed reduction brought the ledger to 219 explicit, 109 recoverable and 157 owed.
 
@@ -88,7 +88,18 @@ Section 10 carries TAUM’s moving decompositions, projector curvature and chara
 
 Section 11 brings five owed TAUM clauses into the manuscript, including the compact-symmetry clause of its architecture theorem. One new row tracks the distinction between the Haar projection and the other projections in the construction. The discussion of character projections also states LG’s result that a symmetry commuting with a Hamiltonian acts on its simple ground by a character.
 
-The ledger now has 493 rows, with 254 explicit, 108 recoverable and 131 owed. The explicit count includes one conjecture introduced in the consolidated manuscript. The heading queue has 111 passages after removing the introduction to TAUM’s symmetry-averaging section.
+Section 12 gives TAUM’s scalar, translation, oscillator and interval maps, the three-state preparation and the closing comparison table. It makes 16 owed and three recoverable clauses explicit and adds two rows for previously untracked passages. A separate LG row reserves for Part V the qualification that the phase of a unique ground does not explain individual differences.
+
+Section 6 now gives all nine clauses of LG’s canonical deconditioning theorem. The theorem and the surrounding arguments on pure-ground distance, stabilization across moments and conditional return bring 11 owed and ten recoverable LG clauses into the text.
+
+| Source | Explicit | Recoverable | Owed |
+| --- | ---: | ---: | ---: |
+| TAUM | 142 | 17 | 31 |
+| LG | 153 | 78 | 74 |
+| UM | 1 | 0 | 0 |
+| **All 496 clauses** | **296** | **95** | **105** |
+
+The UM row records the conjecture introduced in the consolidated manuscript.
 
 Filter by `source` and `source_key` to read all clauses of an entry. For TAUM and LG, the key is the source label or the inventory’s `@line` key for an unlabelled environment. The source line locates the environment or supplementary label. `UM` identifies a claim introduced in the consolidated draft. For example, LG’s R5 assumes a missing direction for one specified map. The draft conjectures that one genuine appearance direction is missed by **every** admissible map. The strengthening has its own UM entry.
 
@@ -108,17 +119,21 @@ The ledger includes every formal entry in the source inventory. Supplements trac
 
 The [heading queue](heading_queue.csv) lists nonempty source heading bodies with no ledger row anchored in them. Each body runs up to the next heading. The screen skips empty or label-only bodies and the bibliography, with no minimum length. Read queued passages to decide whether to add a supplement or point to coverage elsewhere. Recheck partially tracked bodies when migrating the family. A single entry removes a heading from the queue even if nearby derivations or prose still need a home.
 
+The queue has 110 heading bodies. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
+
 ### Worked entry for LG's canonical deconditioning theorem
 
-| Source clause | Finding in §6 |
+| Source clause | Proof or statement in §6 |
 | --- | --- |
-| Channel formula, complete positivity and trace preservation, composition | Explicit in and immediately after `eq:moment-deconditioning`. |
-| Strong continuity on the trace class | Supply the continuity argument for the bounded block maps and their time-dependent coefficients. |
-| (i) Target projection fixed | Substitute the target projection into the channel formula. |
-| (ii) Ground-deviation weight decays exactly | Set the paired space equal to the target line in `eq:moment-excess-decay`. |
-| (iii) Unique fixed normal state at any positive time | A fixed state equals every iterate. The convergence argument in `prop:two-moment-deconditioning` identifies its limit with the ground projection. |
-| (iv) Quantitative trace-distance estimate | Restore the estimate with constant 2 and its proof. Qualitative convergence is already used. |
-| Generator | Restore the bounded trace-class generator with its derivative at zero. |
+| Channel on trace-class operators | `eq:moment-deconditioning` and its expansion `eq:relaxation-blocks`. |
+| Complete positivity and trace preservation | Reset and trace calculation after `eq:moment-deconditioning`. |
+| Semigroup law | Part (a) of `prop:relaxation-semigroup` composes the block coefficients. |
+| Strong continuity on the trace class | Part (a) bounds the change in the induced operator norm on the trace class. |
+| (i) Target projection fixed | Part (c) identifies the fixed operators at positive time. |
+| (ii) Exact decay of ground-deviation weight | `eq:relaxation-decay` gives the exponential factor for every state. |
+| (iii) Unique fixed normal state at any positive time | Part (c) shows every fixed trace-class operator is a multiple of the target projection. |
+| (iv) Trace-norm estimate with constant 2 | `eq:relaxation-distance` gives the estimate and `eq:relaxation-sharp-distance` proves sharpness of the constant and of the decay rate. |
+| Generator | Part (b) gives the bounded trace-class generator in `eq:relaxation-generator`. |
 
 From the repository root, validate the ledger and check that the reading queue matches it. After adding source entries, regenerate the queue by running `heading_queue.py` without `--check`.
 

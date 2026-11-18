@@ -639,6 +639,200 @@ For $0<s<1$ this is largest at $f=0$, attained whenever $D$ contains a unit vect
 
 The three ground conditions have different consequences. Membership $y\in D$ suffices for a physical partner $p$ and for the channel just proved. The ground bridge $Ax=\|Ax\|y$ identifies that partner as $p=|A|x/\|Ax\|$. Strong polar compatibility identifies $p$ with the physical vacuum $x$. On the unequal-cell path of Section~\ref{sec:ground-correspondence}, relaxation on the fine sites therefore requires relaxation toward $(1,2)/\sqrt5$ on the coarse sites. A test for the physical vacuum on this limiting state succeeds with probability $9/10$. Relaxation toward the coarse vacuum would give probability one. A unitary step on the two coarse sites also fails the test of Eq.~\eqref{eq:two-moment-correspondence}: at $s^2=1/2$ a pure input orthogonal to $p$ becomes the equal mixture of that input and $P_p$. A unitary preserves purity.
 
+\subsection{How fast does the relaxation approach the ground?}
+\label{subsec:relaxation-rate}
+The proof of Proposition~\ref{prop:two-moment-deconditioning} used that every state relaxes to $P_y$. Here we give the rate and the generator. Write $\|X\|_1=\Tr|X|$ for the trace norm, and for an appearance state $\sigma$ let
+\begin{equation}
+ \delta_y(\sigma)=\Tr(Q_y\sigma)=1-\langle y,\sigma y\rangle
+ \label{eq:relaxation-deviation}
+\end{equation}
+be its weight outside the ground. The complementary weight $\langle y,\sigma y\rangle$ is the probability that $\sigma$ passes the ground test $P_y$.
+
+\begin{proposition}[Distance from a pure state]
+\label{prop:relaxation-pure-distance}
+For a density operator $\sigma$ and a unit vector $y$,
+\begin{equation}
+ 2\,\delta_y(\sigma)\;\le\;\|\sigma-P_y\|_1\;\le\;2\sqrt{\delta_y(\sigma)} .
+ \label{eq:relaxation-pure-distance}
+\end{equation}
+The upper bound is an equality when $\sigma$ is pure, and the lower bound when $\sigma$ commutes with $P_y$. In particular $\delta_y(\sigma)=0$ exactly when $\sigma=P_y$.
+\end{proposition}
+\begin{proof}
+The operator $Q_y-P_y$ has norm one, so $\|\sigma-P_y\|_1\ge\Tr\bigl((Q_y-P_y)(\sigma-P_y)\bigr)=2\delta_y(\sigma)$. For a unit vector $\phi$, the operator $P_\phi-P_y$ is self-adjoint with trace zero and rank at most two, and $\Tr(P_\phi-P_y)^2=2-2|\langle y,\phi\rangle|^2$. Its nonzero eigenvalues are therefore $\pm\sqrt{1-|\langle y,\phi\rangle|^2}$, and $\|P_\phi-P_y\|_1=2\sqrt{\delta_y(P_\phi)}$. Now write $\sigma=\sum_k p_kP_{\phi_k}$ with orthonormal eigenvectors $\phi_k$ and $\sum_kp_k=1$. The triangle inequality and the concavity of the square root give
+\[
+ \|\sigma-P_y\|_1\le\sum_kp_k\,2\sqrt{\delta_y(P_{\phi_k})}
+ \le2\sqrt{\textstyle\sum_kp_k\,\delta_y(P_{\phi_k})}=2\sqrt{\delta_y(\sigma)} .
+\]
+If $\sigma$ commutes with $P_y$, then $\sigma-P_y=-\delta_y(\sigma)P_y+Q_y\sigma Q_y$, and the two terms have orthogonal supports and trace norm $\delta_y(\sigma)$ each.
+\end{proof}
+The upper bound is the inequality of Fuchs and van de Graaf for a pure target \cite{FuchsVandeGraaf1999}. For a density operator, passing the ground test with probability one, having no weight outside the ground and being the state $P_y$ are therefore the same condition.
+
+\begin{proposition}[The relaxation as a semigroup]
+\label{prop:relaxation-semigroup}
+Let $\gamma>0$ and $s=e^{-\gamma t/2}$. Extend Eq.~\eqref{eq:moment-deconditioning} to every trace-class operator $X$ by $\mathcal D_t^y(X)=L_yXL_y+(1-s^2)\Tr(Q_yX)P_y$.
+\begin{enumerate}
+\item[(a)] $\mathcal D_{t+r}^y=\mathcal D_t^y\mathcal D_r^y$ for $t,r\ge0$, and $\|\mathcal D_t^y(X)-X\|_1\le4(1-e^{-\gamma t})\|X\|_1$.
+\item[(b)] $\mathcal D_t^y=\exp(t\,\mathcal G_y)$, where
+\begin{equation}
+ \mathcal G_y(X)=\gamma\Bigl(\Tr(Q_yX)\,P_y-\tfrac12\bigl(Q_yX+XQ_y\bigr)\Bigr),
+ \qquad \|\mathcal G_y(X)\|_1\le2\gamma\|X\|_1 .
+ \label{eq:relaxation-generator}
+\end{equation}
+\item[(c)] For $t>0$ the trace-class operators fixed by $\mathcal D_t^y$ are the multiples of $P_y$. Thus $P_y$ is fixed, and it is the only fixed state.
+\item[(d)] For every state $\sigma$,
+\begin{equation}
+ \delta_y\bigl(\mathcal D_t^y(\sigma)\bigr)=e^{-\gamma t}\,\delta_y(\sigma).
+ \label{eq:relaxation-decay}
+\end{equation}
+\item[(e)] For every state $\sigma$,
+\begin{equation}
+ 2e^{-\gamma t}\,\delta_y(\sigma)\;\le\;\bigl\|\mathcal D_t^y(\sigma)-P_y\bigr\|_1\;\le\;2e^{-\gamma t/2}\sqrt{\delta_y(\sigma)} .
+ \label{eq:relaxation-distance}
+\end{equation}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Write $P=P_y$ and $Q=Q_y$. In the four blocks of $X$ relative to $P$ and $Q$ the map reads
+\begin{equation}
+ \mathcal D_t^y(X)=PXP+s\,(PXQ+QXP)+s^2\,QXQ+(1-s^2)\Tr(QX)\,P .
+ \label{eq:relaxation-blocks}
+\end{equation}
+A second step with factor $s'$ multiplies the off-diagonal blocks by $ss'$ and the block $QXQ$ by $s^2s'^2$. The coefficient of $\Tr(QX)P$ becomes $(1-s^2)+s^2(1-s'^2)=1-s^2s'^2$. This is the composition law. Subtracting $X$ from Eq.~\eqref{eq:relaxation-blocks} leaves $(s-1)(PXQ+QXP)+(s^2-1)QXQ+(1-s^2)\Tr(QX)P$. Since $\|PXQ+QXP\|_1\le2\|X\|_1$, $\|QXQ\|_1\le\|X\|_1$, $|\Tr(QX)|\le\|X\|_1$ and $1-s\le1-s^2$, its trace norm is at most $4(1-s^2)\|X\|_1$. This proves (a).
+
+The coefficients $s$ and $s^2$ have derivatives $-\gamma/2$ and $-\gamma$ at $t=0$. The derivative of Eq.~\eqref{eq:relaxation-blocks} there is $-\tfrac{\gamma}{2}(PXQ+QXP)-\gamma\,QXQ+\gamma\Tr(QX)P$, which is $\mathcal G_y(X)$ because $QX+XQ=PXQ+QXP+2QXQ$. The three terms of $\mathcal G_y(X)$ in Eq.~\eqref{eq:relaxation-generator} have trace norms at most $\gamma\|X\|_1$, $\tfrac{\gamma}{2}\|X\|_1$ and $\tfrac{\gamma}{2}\|X\|_1$. The difference quotients of $\mathcal D_t^y$ at $t=0$ converge in the operator norm on the trace class, because only the scalar coefficients of the fixed block maps depend on $t$. With the composition law this gives $\tfrac{d}{dt}\mathcal D_t^y=\mathcal G_y\mathcal D_t^y$ and hence (b).
+
+If $\mathcal D_t^y(X)=X$ with $0<s<1$, comparing blocks in Eq.~\eqref{eq:relaxation-blocks} gives $PXQ=QXP=0$ and $QXQ=0$, so $X=PXP$ is a multiple of $P$. Conversely $\mathcal D_t^y(P)=P$. This is (c). Taking the trace of Eq.~\eqref{eq:relaxation-blocks} against $Q$ gives (d). Applying Proposition~\ref{prop:relaxation-pure-distance} to the state $\mathcal D_t^y(\sigma)$ and inserting (d) gives (e).
+\end{proof}
+
+Part (a) says more than continuity of $t\mapsto\mathcal D_t^y(X)$ for each $X$: the maps converge to the identity uniformly on bounded sets of the trace class, which is why the generator is bounded. In an orthonormal basis $(e_j)$ of $y^\perp$ it has the standard form of a generator of a semigroup of channels \cite{GKS1976,Lindblad1976}, with no Hamiltonian term,
+\begin{equation}
+ \mathcal G_y(X)=\sum_j\Bigl(J_jXJ_j^*-\tfrac12\bigl(J_j^*J_jX+XJ_j^*J_j\bigr)\Bigr),
+ \qquad J_j=\sqrt\gamma\,\ket{y}\!\bra{e_j}.
+ \label{eq:relaxation-jumps}
+\end{equation}
+Indeed $\sum_jJ_jXJ_j^*=\gamma\Tr(Q_yX)P_y$ and $\sum_jJ_j^*J_j=\gamma Q_y$. Each $J_j$ moves the amplitude along $e_j$ to the ground.
+
+By Eq.~\eqref{eq:relaxation-decay} the weight outside the ground obeys $\tfrac{d}{dt}\delta_y=-\gamma\,\delta_y$. It decreases strictly while it is positive, and it is positive at every finite time if it was positive at the start. The relaxation therefore reaches $P_y$ at a finite time only from $P_y$. Reaching it in one step takes a different channel, such as the reset $\sigma\mapsto P_y$. This is the value $s=0$ of Eq.~\eqref{eq:moment-deconditioning}, which no finite time attains.
+
+The lower bound in Eq.~\eqref{eq:relaxation-distance} is attained: if $\sigma$ commutes with $P_y$, so does $\mathcal D_t^y(\sigma)$, and the distance is $2e^{-\gamma t}\delta_y(\sigma)$. The upper bound is an equality for pure states at $t=0$. At a positive time it is strict unless $\sigma=P_y$. To see this, write $\mathcal D_t^y(\sigma)=c\,\tau+(1-c)P_y$, where $c=1-(1-s^2)\delta_y(\sigma)$ and $\tau=L_y\sigma L_y/c$ is a state with $\delta_y(\tau)=s^2\delta_y(\sigma)/c$. Then $\mathcal D_t^y(\sigma)-P_y=c\,(\tau-P_y)$, and Proposition~\ref{prop:relaxation-pure-distance} applied to $\tau$ gives
+\begin{equation}
+ \bigl\|\mathcal D_t^y(\sigma)-P_y\bigr\|_1
+ \le2s\sqrt{\delta_y(\sigma)}\,\sqrt{1-(1-s^2)\,\delta_y(\sigma)},
+ \label{eq:relaxation-sharp-distance}
+\end{equation}
+with equality when $\sigma$ is pure, because $\tau$ is then pure. For $t>0$ and $\delta_y(\sigma)>0$ the last factor is less than one. It tends to one as $\delta_y(\sigma)\to0$, so at any fixed time the distance for pure inputs close to the ground comes arbitrarily close, in ratio, to the upper bound of Eq.~\eqref{eq:relaxation-distance}. The constant $2$ is therefore optimal, although no state off the ground attains that bound at a positive time. The rate $\gamma/2$ is optimal as well, and a single input shows it. For a fixed pure input with $0<\delta_y(\sigma)<1$, the equality in Eq.~\eqref{eq:relaxation-sharp-distance} gives $e^{\gamma t/2}\,\|\mathcal D_t^y(\sigma)-P_y\|_1\to2\sqrt{\delta_y(\sigma)\bigl(1-\delta_y(\sigma)\bigr)}>0$ as $t\to\infty$. The weight outside the ground decays at rate $\gamma$. The coherence between the ground and its complement decays at rate $\gamma/2$, and a state with such coherence approaches the ground at this slower rate.
+
+\subsection{Fixing the ground and attracting to it}
+\label{subsec:relaxation-unitary}
+Two properties of the relaxation can be asked of any family of channels $\mathcal T_t$ on the appearance space. The family \emph{fixes the ground} if $\mathcal T_t(P_y)=P_y$ for every $t$. It is \emph{ground-attractive} on a set $\mathsf B$ of states if it fixes the ground and $\delta_y(\mathcal T_t(\sigma))\to0$ as $t\to\infty$ for every $\sigma$ in $\mathsf B$. By Eq.~\eqref{eq:relaxation-pure-distance} the second condition is the same as $\mathcal T_t(\sigma)\to P_y$ in trace norm. The set $\mathsf B$ is the basin, and it has to be specified. Canonical deconditioning is ground-attractive on the set of all states.
+
+Fixing the ground already constrains every other state. We state this for a channel between two spaces, for use in the next subsection.
+
+\begin{proposition}[A channel that carries the ground]
+\label{prop:relaxation-carried}
+Let $\mathcal T$ be a channel from the trace class of a Hilbert space $\mathcal H$ to that of $\mathcal H'$, and let $y\in\mathcal H$ and $y'\in\mathcal H'$ be unit vectors. Then $\mathcal T(P_y)=P_{y'}$ exactly when
+\begin{equation}
+ \delta_{y'}\bigl(\mathcal T(\sigma)\bigr)\le\delta_y(\sigma)\qquad\text{for every state $\sigma$ on $\mathcal H$.}
+ \label{eq:relaxation-carried}
+\end{equation}
+\end{proposition}
+\begin{proof}
+If Eq.~\eqref{eq:relaxation-carried} holds, the state $\mathcal T(P_y)$ has no weight outside $y'$ and equals $P_{y'}$ by Proposition~\ref{prop:relaxation-pure-distance}. Conversely, let $F$ be the effect on $\mathcal H$ with $\Tr(F\sigma)=\Tr\bigl(Q_{y'}\mathcal T(\sigma)\bigr)$ for every trace-class $\sigma$. It exists because the right side is a positive linear functional of $\sigma$ bounded by the trace. If $\mathcal T(P_y)=P_{y'}$, then $\langle y,Fy\rangle=\Tr(Q_{y'}P_{y'})=0$. Since $F\ge0$, this gives $Fy=0$. Hence $F=Q_yFQ_y\le Q_y$ and $\Tr(F\sigma)\le\Tr(Q_y\sigma)$.
+\end{proof}
+
+A family that fixes the ground therefore never raises the weight outside it above its initial value, and under a semigroup that fixes the ground this weight is nonincreasing in time. The proposition uses that a channel preserves the trace. A conditional step, normalized after a selected outcome, can fix the ground and increase the weight outside it. With $K=\tfrac12P_y+Q_y$, the step $\sigma\mapsto K\sigma K/\Tr(K\sigma K)$ fixes $P_y$ and takes every state with weight $\delta$ outside the ground to one with weight $4\delta/(1+3\delta)$, because $\Tr(K\sigma K)=(1+3\delta)/4$ and $\Tr(Q_yK\sigma K)=\delta$. This is larger than $\delta$ for $0<\delta<1$ and is zero at $\delta=0$.
+
+The step amplifies a weight that is already present. It does not take the ground anywhere, and no outcome of an instrument whose channel fixes the ground can. Let the operations $\mathcal O_k$ of the outcomes sum to a channel $\mathcal T$ with $\mathcal T(P_y)=P_y$. The positive operators $\mathcal O_k(P_y)$ then sum to the rank-one projection $P_y$, so each of them is a multiple of it. Every outcome that occurs with positive probability on the ground leaves the state $P_y$. A determination of Section~\ref{sec:determination} that takes $y$ to a different ray can therefore be an outcome only of an instrument whose channel does not fix the ground.
+
+Fixing the ground does not make that weight decrease. If a unitary evolution fixes the ground, $U_tP_yU_t^*=P_y$, then $U_t^*Q_yU_t=Q_y$ and
+\begin{equation}
+ \delta_y\bigl(U_t\sigma U_t^*\bigr)=\Tr\bigl(U_t^*Q_yU_t\,\sigma\bigr)=\delta_y(\sigma)
+ \label{eq:relaxation-unitary}
+\end{equation}
+for every state. The weight outside the ground never changes, so such an evolution is ground-attractive only on the basin $\{P_y\}$. A unitary can carry one chosen vector to $y$. It cannot do so while leaving $y$ in place. A ground-attractive evolution with a larger basin is therefore not unitary on the appearance space. It can still be the reduced description of a unitary evolution on a larger space.
+
+Canonical deconditioning has such a description at each time. Let the space of an environment be $\mathcal H_{\mathrm e}=\C\oplus y^\perp$, with vectors written $(c,k)$, and define
+\begin{equation}
+ \iota_th=L_yh\otimes(1,0)+\sqrt{1-s^2}\;y\otimes(0,Q_yh),\qquad h\in\mathcal H_\Phi .
+ \label{eq:relaxation-dilation}
+\end{equation}
+The two terms are orthogonal and $\|\iota_th\|^2=\|L_yh\|^2+(1-s^2)\|Q_yh\|^2=\|h\|^2$, so $\iota_t$ is an isometry into $\mathcal H_\Phi\otimes\mathcal H_{\mathrm e}$. The partial trace over the environment removes the cross terms between its two summands and gives
+\begin{equation}
+ \Tr_{\mathrm e}\bigl(\iota_t\sigma\iota_t^*\bigr)=L_y\sigma L_y+(1-s^2)\Tr(Q_y\sigma)P_y=\mathcal D_t^y(\sigma).
+ \label{eq:relaxation-dilation-trace}
+\end{equation}
+Any unitary $U$ on $\mathcal H_\Phi\otimes\mathcal H_{\mathrm e}$ with $U\bigl(h\otimes(1,0)\bigr)=\iota_th$ then gives $\mathcal D_t^y(\sigma)$ as the reduced state of $U\bigl(\sigma\otimes P_{(1,0)}\bigr)U^*$. Such unitaries exist because the orthogonal complements of $\mathcal H_\Phi\otimes(1,0)$ and of $\Ran\iota_t$ have the same dimension. In this description the environment starts in $(1,0)$. The amplitude removed from $y^\perp$ is copied into the second summand of the environment while the system is placed in $y$, and afterwards the environment is found outside $(1,0)$ with probability $(1-s^2)\delta_y(\sigma)$. The construction shows that an environment of this kind is possible. It does not identify one in an observer.
+
+The unitary above depends on $t$. On a finite-dimensional larger space, the weight outside the ground under one unitary group $e^{-itG}$ is a finite sum of terms $c_{ab}e^{-i(g_a-g_b)t}$ over the eigenvalues $g_a$ of $G$. Such a sum returns arbitrarily close to its initial value at arbitrarily late times. It cannot equal $e^{-\gamma t}\delta_y(\sigma)$ for all $t\ge0$ unless $\delta_y(\sigma)=0$. Reproducing the whole semigroup with one unitary group therefore requires an infinite-dimensional larger space, even when the appearance space has finite dimension. We do not construct one.
+
+\subsection{Relaxation across many moments}
+\label{subsec:relaxation-moments}
+The momentary description lets the appearance space and its ground change from one moment to the next. Let $\mathcal H_{\Phi,n}$ be the appearance space at moment $n$, with ground vector $y_n$ and state $\sigma_n$, and let $\mathcal T_n$ be the channel with $\sigma_{n+1}=\mathcal T_n(\sigma_n)$. Put $\delta_n=\delta_{y_n}(\sigma_n)$. The spaces may be identified with one another, but nothing below requires it. Two conditions can be stated without choosing canonical deconditioning. The steps \emph{carry the ground} when
+\begin{equation}
+ \mathcal T_n(P_{y_n})=P_{y_{n+1}}\qquad\text{for every }n,
+ \label{eq:relaxation-ground-carried}
+\end{equation}
+and the given sequence of states \emph{contracts with factors} $q_n\in[0,1]$ when
+\begin{equation}
+ \delta_{n+1}\le q_n\,\delta_n\qquad\text{for every }n .
+ \label{eq:relaxation-contraction}
+\end{equation}
+The first is a property of the channels. The second concerns the particular states $\sigma_n$.
+
+\begin{proposition}[Stabilization across moments]
+\label{prop:relaxation-moments}
+\begin{enumerate}
+\item[(a)] If the steps carry the ground and $\sigma_n=P_{y_n}$ at some moment $n$, then $\sigma_m=P_{y_m}$ at every later moment $m$.
+\item[(b)] If the sequence contracts with factors $q_n$, then
+\begin{equation}
+ \delta_n\le\Bigl(\prod_{k=0}^{n-1}q_k\Bigr)\delta_0,
+ \qquad \|\sigma_n-P_{y_n}\|_1\le2\sqrt{\delta_n}.
+ \label{eq:relaxation-product}
+\end{equation}
+If the products tend to zero, then $\|\sigma_n-P_{y_n}\|_1\to0$.
+\item[(c)] Step $n$ carries the ground exactly when $\delta_{y_{n+1}}(\mathcal T_n(\sigma))\le\delta_{y_n}(\sigma)$ for every state $\sigma$ on $\mathcal H_{\Phi,n}$. Thus, when the steps carry the ground, every sequence of states contracts with the factors $q_n=1$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Part (a) is Eq.~\eqref{eq:relaxation-ground-carried} applied repeatedly. Iterating Eq.~\eqref{eq:relaxation-contraction} gives the first bound of (b), and Proposition~\ref{prop:relaxation-pure-distance} in each space gives the second. Part (c) is Proposition~\ref{prop:relaxation-carried} applied to the step.
+\end{proof}
+
+Part (b) does not use Eq.~\eqref{eq:relaxation-ground-carried}, and it allows steps with $q_n=1$ at which nothing is gained. By (c), carrying the ground is the same as contraction of every state with the factor one. It excludes any increase of the weight outside the ground, and it does not ensure a decrease: a unitary step that carries the ground leaves that weight unchanged for every state, by the computation of Eq.~\eqref{eq:relaxation-unitary}. By (b), factors whose products tend to zero guarantee stabilization. They are not necessary when the factors are bounds that hold for every state. On $\Span\{g,a,b\}$ with ground $g$, let one step be the channel with Kraus operators $P_g+P_b$ and $\ket{g}\!\bra{a}$, which resets $a$ to $g$ and leaves $b$ alone, and let the next step do the same with $a$ and $b$ exchanged. Both carry the ground. Each leaves one excited state unchanged, so neither contracts every state by a factor below one. Together they send every state to the ground. For an example with exact factors, let step $n$ be canonical deconditioning toward $y_n$ at rate $\gamma_n$ for a duration $\tau_n$, followed by an isometry from $\mathcal H_{\Phi,n}$ into $\mathcal H_{\Phi,n+1}$ that takes $y_n$ to $y_{n+1}$. These steps carry the ground, and by Eq.~\eqref{eq:relaxation-decay} every sequence of states satisfies Eq.~\eqref{eq:relaxation-contraction} with equality for $q_n=e^{-\gamma_n\tau_n}$. The products tend to zero exactly when $\sum_n\gamma_n\tau_n$ diverges. Count the steps from one. If the $n$th has $\gamma\tau=1/n$, every state approaches the ground. If it has $\gamma\tau=1/n^2$, the weight outside the ground decreases at every step and tends to $e^{-\pi^2/6}\delta_0$, about $0.19\,\delta_0$.
+
+We say that the sequence \emph{is at the ground} at moment $n$ when $\sigma_n=P_{y_n}$, and that it \emph{stabilizes} when $\|\sigma_n-P_{y_n}\|_1\to0$. By (a), being at the ground persists when the steps carry it. The two notions differ. Under the deconditioning steps just described, a sequence that starts off the ground is not at the ground at any finite moment, and it stabilizes exactly when $\sum_n\gamma_n\tau_n$ diverges. In the cognitive model the first is an event of exact realization and the second is its asymptotic stabilization.
+
+\subsection{What is returned to the physical side after relaxation?}
+\label{subsec:relaxation-return}
+Let $V:S\to\mathcal H_\Phi$ be an isometry with range $D$, as in Proposition~\ref{prop:two-moment-deconditioning}, and write $\Pi_D=VV^*$ and $Q_D=I-\Pi_D$. For an appearance state $\sigma$ the operator $V^*\sigma V$ on $S$ is positive with trace $\Tr(\Pi_D\sigma)=1-p_\perp(\sigma)$, in the notation of Eq.~\eqref{eq:matched-defect-outcome}. When this trace is positive, the \emph{returned state} is
+\begin{equation}
+ \sigma_S=\frac{V^*\sigma V}{\Tr(\Pi_D\sigma)},\qquad
+ V\sigma_SV^*=\frac{\Pi_D\sigma\Pi_D}{\Tr(\Pi_D\sigma)} .
+ \label{eq:relaxation-return}
+\end{equation}
+The second expression is $\sigma$ conditioned on passing the projective test $\Pi_D$, whose complement is the outcome $\perp$ of Section~\ref{sec:polar-matched-observables}. For a pure state $P_\phi$ the returned state is the ray of $V^*\phi$. It is defined exactly when $\phi$ does not lie in $D^\perp$. The map $\sigma\mapsto V^*\sigma V$ is completely positive and does not increase the trace. Any measurement with the effect $\Pi_D$ gives its outcome with probability $\Tr(\Pi_D\sigma)$. The state after that outcome depends on the instrument. It is $\sigma_S$ for an instrument whose operation for this outcome is $\sigma\mapsto V^*\sigma V$. An instrument that prepares a fixed state $\rho_0$ on $S$ after the same outcome has the operation $\sigma\mapsto\Tr(\Pi_D\sigma)\rho_0$. It gives the same probabilities and leaves $\rho_0$. The return is therefore a choice of operation. A later measurement on $S$ distinguishes two such instruments exactly when one of the effects available to it has different expectations in the states they leave.
+
+Suppose $y\in D$, with partner $p=V^*y$. Equation~\eqref{eq:moment-excess-decay} gives, for every appearance state $\sigma$,
+\begin{equation}
+ \Tr\bigl(\Pi_D\,\mathcal D_t^y(\sigma)\bigr)=1-e^{-\gamma t}\,\Tr(Q_D\sigma).
+ \label{eq:relaxation-paired-weight}
+\end{equation}
+This is positive for $t>0$, including for a state that began entirely outside $D$. Since $V^*P_yV=P_p$ and compression by $V$ does not increase the trace norm, Eq.~\eqref{eq:relaxation-distance} bounds the distance of $V^*\mathcal D_t^y(\sigma)V$ from $P_p$. Dividing a positive operator of trace $w\le1$ by $w$ changes it by $1-w$ in trace norm, and Eq.~\eqref{eq:relaxation-paired-weight} gives $w$. Hence
+\begin{equation}
+ \bigl\|\bigl(\mathcal D_t^y(\sigma)\bigr)_S-P_p\bigr\|_1
+ \le2e^{-\gamma t/2}\sqrt{\delta_y(\sigma)}+e^{-\gamma t}\,\Tr(Q_D\sigma).
+ \label{eq:relaxation-return-bound}
+\end{equation}
+The returned state converges to the partner of the ground from every initial appearance state. When $V$ is the polar isometry of $A$ and the weak bridge of Section~\ref{sec:ground-correspondence} holds, that partner is the physical vacuum $x$ exactly under strong polar compatibility.
+
+A second return uses only the two reference lines. With $u_0=\ket{y}\!\bra{x}$ of Eq.~\eqref{eq:restricted-ground-orientation}, the operation $\sigma\mapsto u_0^*\sigma u_0=\langle y,\sigma y\rangle P_x$ has the effect $P_y$ and leaves $P_x$ whenever its outcome occurs. Equation~\eqref{eq:relaxation-decay} gives
+\begin{equation}
+ u_0^*\,\mathcal D_t^y(\sigma)\,u_0=\bigl(1-e^{-\gamma t}\delta_y(\sigma)\bigr)P_x .
+ \label{eq:relaxation-restricted-return}
+\end{equation}
+The coefficient is positive for every $t>0$ and tends to one. After normalization this return is the physical vacuum at every positive time, by construction. The return through $V$ approaches the partner $p$, which is the vacuum only under strong compatibility.
+
+On the unequal-cell path of Section~\ref{sec:ground-correspondence}, start from the fine site $e_2$ considered earlier in this section, for which $\Tr(Q_D\sigma)=3/4$ and $\delta_y(\sigma)=4/5$. At half relaxation, $s^2=1/2$, the state lies in $D$ with probability $5/8$ and passes the fine ground test with probability $3/5$. The state returned through $V$ converges to $(1,2)/\sqrt5$, which passes the coarse ground test with probability $9/10$. The restricted return gives the coarse ground itself.
+
 \subsection{Remembering the first flash}
 Consider the first flash on its own. The visual perception (\emph{indriyapratyak\d{s}a}) is manifest as it occurs. On the reading of Dharmak\=irti adopted here, the immediately following mental perception (\emph{m\=anasapratyak\d{s}a}) directly apprehends the seeing itself \cite[p.~102 n.~47 and Fig.~1 on p.~104]{Yiannopoulos2020}. In ordinary perception of an external object, what that mental perception bears upon in practice is a subsequent moment of the object \cite[pp.~96--97 n.~38 and p.~524 n.~29]{Yiannopoulos2020}. Both cognitions belong to the appearance side. The channel $\mathcal T_n$ describes their succession, but its input and output alone leave open what the second cognition apprehends. Dign\=aga's argument from memory reasons back from later recollection to the original experience. If the observer can recall the flash \emph{as seen}, the seeing itself must already have been experienced when it occurred (\emph{Pram\=a\d{n}asamuccaya} I.11cd--12, \cite[pp.~18--19]{Yiannopoulos2020}).
 
@@ -1662,7 +1856,7 @@ The projection $\Pi_G$ is a different object from the projection onto the input 
 \subsection{Two symmetries of the pair model}
 \label{subsec:symmetry-pair}
 
-On the two-particle space $\mathcal F_2$ of the pair model, let $\sigma$ be the unitary that exchanges the two orbitals, $c_i\leftrightarrow d_i$ for $i=1,2$, and fixes the vacuum. It commutes with $H_s$ for every $s$. It fixes $g$ and $m$, and it reverses $e$ and every vector of $W$. The group $\{I,\sigma\}$ therefore has the invariant projection
+On the two-particle space $\mathcal F_2$ of the pair model, let $\sigma$ be the unitary that exchanges the two orbitals, $c_i\leftrightarrow d_i$ for $i=1,2$, and fixes $\ket{\mathrm{vac}}$. It commutes with $H_s$ for every $s$. It fixes $g$ and $m$, and it reverses $e$ and every vector of $W$. The group $\{I,\sigma\}$ therefore has the invariant projection
 \begin{equation}
  \Pi_\sigma=\tfrac12(I+\sigma)=\ket{g}\bra{g}+\ket{m}\bra{m}=P_{\pi/4},
  \label{eq:symmetry-pair-exchange}
@@ -1681,6 +1875,216 @@ The rotations also show the difference between finite and continuous invariance.
 The exchange is not a rotation, since $\sigma\kappa(\varphi)\sigma=\kappa(-\varphi)$. Together they generate the orthogonal group of the orbital pair, whose invariant projection is $\Pi_\sigma\Pi_{\rm rot}=\ket{g}\bra{g}$. The jointly fixed vectors form the ground line $\C g$. Every ray in $W$ also defines an invariant pure state, because the rotations fix it and the exchange changes only its sign. In the terms of Eq.~\eqref{eq:symmetry-character-projection}, $W$ is the range of $\Pi_\chi$ for the character that is $1$ on rotations and $-1$ on the exchange. These rays and the ground are all the invariant pure states: a ray fixed by the rotations lies in $\C g\oplus W$ or is one of the two lines of $e\pm im$, which the exchange interchanges, and in $\C g\oplus W$ the exchange fixes only the ray of $g$ and the rays of $W$. Requiring a state vector to be fixed and requiring the state to be invariant are thus different requirements, already in this six-dimensional model.
 
 \begingroup\small
+\section{Four maps with one algebra}
+\label{sec:four-maps}
+
+Every densely defined closed map $A$ from an input space to an output space carries the structures of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index}: its polar part and two supports, the differential $d_A$ with the odd operators $d_A+d_A^*$ and $d_A^*-d_A$, the Laplacian $\operatorname{diag}(A^*A,AA^*)$, and the pairing of the nonzero spectra of the two returns. These relations are the same for every map. They do not fix the spectrum of the returns, whether the range is closed, the index, or the response through a port. This section works out four maps that differ in each of these respects: a number, the generator of translations on a line, the creation operator of an oscillator, and a first derivative on an interval with twisted ends. For each it asks what the common relations give, what is special to the map, and what the response through a specified port looks like. A fifth example, already met in Section~\ref{sec:preparation-evolution}, is restated in the form that Section~\ref{subsec:passive-sectors} generalized. Section~\ref{subsec:four-maps-table} collects the comparison.
+
+\subsection{A number}
+\label{subsec:four-maps-scalar}
+
+Let $\mathcal H_\Psi=\mathcal H_\Phi=\C$ and $Ax=bx$ with $b\in\C$. Then
+\begin{equation}
+ d_A+d_A^*=\begin{pmatrix}0&\overline b\\ b&0\end{pmatrix},\qquad
+ d_A^*-d_A=\begin{pmatrix}0&\overline b\\ -b&0\end{pmatrix},\qquad
+ \operatorname{diag}(A^*A,AA^*)=|b|^2I .
+ \label{eq:four-maps-scalar}
+\end{equation}
+For $b\ne0$ both supports are all of $\C$, the polar part is the phase $u=b/|b|$, and $\operatorname{ind}A=0$. For $b=0$ the kernel and the defect are both one-dimensional and the index is again zero. With $H=A^*A=|b|^2$ on $\C$ and the identity port, the response is
+\begin{equation}
+ M(z)=\frac{1}{|b|^2-z},
+ \label{eq:four-maps-scalar-response}
+\end{equation}
+one line of weight one, and the pair is minimal. This is the canonical response of Corollary~\ref{cor:passive-sources} in its smallest case. There is no multiplicity and no question of domain. The example is the local form of a single active amplitude.
+
+\subsection{A ground and a split excitation}
+\label{subsec:four-maps-three-state}
+
+Section~\ref{subsec:pair-grounds-excitations} began with a ground and an equal superposition of two excited eigenvectors, and Proposition~\ref{prop:passive-opposite-sectors} treated the general case. In the parameters of that proposition the three-state example is as follows. Let $g,f_+,f_-$ be an orthonormal basis of $\C^3$ with
+\begin{equation}
+ H_0g=E_0g,\qquad H_0f_\pm=E_2f_\pm,\qquad Lg=0,\qquad Lf_\pm=\pm\ell f_\pm ,
+ \label{eq:four-maps-three-state-data}
+\end{equation}
+where $\ell>0$ and $0<|\nu|\ell<E_2-E_0$. For $H_\nu=H_0-\nu L$ the excitation energies are $E_2\mp\nu\ell$, and the inequality makes $g$ the unique ground. Put $e=(f_++f_-)/\sqrt2$, $d=(f_+-f_-)/(i\sqrt2)$ and $\Gamma(c_0,c_1)=c_0g+c_1e$. The complete response is
+\begin{equation}
+ M_\Gamma(z)=\begin{pmatrix}(E_0-z)^{-1}&0\\[2pt]
+   0&\dfrac{1}{2(E_2-\nu\ell-z)}+\dfrac{1}{2(E_2+\nu\ell-z)}\end{pmatrix},
+ \label{eq:four-maps-three-state-response}
+\end{equation}
+with the three weights
+\begin{equation}
+ R_0=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad R_+=R_-=\frac12\begin{pmatrix}0&0\\0&1\end{pmatrix}.
+ \label{eq:four-maps-three-state-weights}
+\end{equation}
+The weights sum to the identity, Corollary~\ref{cor:finite-response-defect} gives $\dim\mathcal D=3-2=1$ with $\mathcal D=\C d$, and
+\begin{equation}
+ e^{-it(H_\nu-E_0)/\hbar}e=e^{-it(E_2-E_0)/\hbar}\bigl[\cos(\nu\ell t/\hbar)\,e-\sin(\nu\ell t/\hbar)\,d\bigr].
+ \label{eq:four-maps-three-state-transfer}
+\end{equation}
+The weight on $d$ is $\sin^2(\nu\ell t/\hbar)$. For $\nu\ne0$ it first equals one at $t_*=\pi\hbar/(2|\nu|\ell)$, and its largest value over a window $0\le t\le T$ is $\sin^2(\min\{|\nu|\ell T/\hbar,\pi/2\})\le(|\nu|\ell T/\hbar)^2$. At $\nu=0$ the two excited lines coincide and must be merged. The reached space is then $\Span\{g,e\}$ and the indirect space vanishes. The port $\Gamma$ is the same at every bias, and so is the direction it misses, $\ker\Gamma^*=\C d$. What the bias changes is whether the evolution carries the prepared excitation into that direction. For $\nu\ne0$ the line $\C d$ is the indirect space. At $\nu=0$ the relative phase of the two excited components no longer evolves, and $\C d$ is orthogonal to the reached space, hence permanently invisible in the sense of Proposition~\ref{prop:preparation-split}. The dimension of the reached space thus jumps from two to three as soon as the bias is nonzero, while the weight that can be found on $d$ within a fixed window tends to zero with the bias. Sections~\ref{sec:preparation-evolution} and~\ref{sec:preparation-effective-dynamics} record the same contrast for the pair model.
+
+The port can also be read as a preparation. With $\mathcal H_\Psi=\C^2$, $\mathcal H_\Phi=\C^3$ and $A=\Gamma$, the return $A^*A$ is the identity, $\ker A=\{0\}$ and $\ker A^*=\C d$. The input vector $(1,0)$ maps to $g$. If the input Hamiltonian is the compression $\Gamma^*H_\nu\Gamma=\operatorname{diag}(E_0,E_2)$, the input and output grounds correspond. The Hamiltonian $H_\nu$ that produces the response is further data of the realization. It is neither $A^*A$ nor $AA^*$. For $\nu\ne0$ the prepared plane is not invariant under the evolution, although $H_\nu$ commutes with $L$.
+
+\subsection{The generator of translations}
+\label{subsec:four-maps-translation}
+
+Let $\mathcal H_\Psi=\mathcal H_\Phi=L^2(\R)$ and
+\begin{equation}
+ A=D_x=-i\frac{d}{dx},\qquad \operatorname{Dom}D_x=H^1(\R).
+ \label{eq:four-maps-translation}
+\end{equation}
+This operator is self-adjoint, so the two returns coincide,
+\begin{equation}
+ A^*A=AA^*=D_x^2=-\frac{d^2}{dx^2},\qquad \operatorname{Dom}D_x^2=H^2(\R).
+ \label{eq:four-maps-translation-returns}
+\end{equation}
+The Fourier transform turns $D_x$ into multiplication by $k$ and $D_x^2$ into multiplication by $k^2$. The spectrum of the returns is $[0,\infty)$. It is absolutely continuous, and there are no eigenvectors. Section~\ref{sec:preparation-evolution} used $\hbar D_x$ as a Hamiltonian, the generator of translations, whose spectrum is all of $\R$. Here $D_x$ is the map.
+
+The kernels of $A$ and $A^*$ are zero, so the reduced cohomology of Section~\ref{sec:cohomology-index} vanishes in both degrees. The support nevertheless has no gap. Choose unit vectors $\phi_n$ whose Fourier transforms are supported in $[-1/n,1/n]$. Then
+\begin{equation}
+ \|D_x\phi_n\|\le\frac1n,\qquad\|\phi_n\|=1 ,
+ \label{eq:four-maps-translation-no-gap}
+\end{equation}
+so no bound $\|Ax\|\ge c\|x\|$ with $c>0$ holds on $(\ker A)^\perp=L^2(\R)$. By the criterion stated after Proposition~\ref{prop:index-harmonic-pairing}, the range of $D_x$ is not closed. It is dense, and the map is not Fredholm.
+
+For a unit vector $\eta\in L^2(\R)$ take the port $\Gamma_\eta c=c\eta$ and $H=D_x^2$. With $\widehat\eta$ the unitary Fourier transform of $\eta$, the response is
+\begin{equation}
+ M_\eta(z)=\int_\R\frac{|\widehat\eta(k)|^2}{k^2-z}\,dk
+   =\int_0^\infty\frac{|\widehat\eta(\sqrt\lambda)|^2+|\widehat\eta(-\sqrt\lambda)|^2}{2\sqrt\lambda}\,\frac{d\lambda}{\lambda-z}
+ \label{eq:four-maps-translation-response}
+\end{equation}
+for $z\in\C\setminus[0,\infty)$.
+Its spectral measure is absolutely continuous. The second form shows what the response retains. It contains the weights of the two directions of motion only through their sum. The return $D_x^2$ has multiplicity two and the port has rank one, so the pair $(D_x^2,\Gamma_\eta)$ is never minimal: the function with Fourier transform $\operatorname{sgn}(k)\,\overline{\widehat\eta(-k)}$ is orthogonal to the reached space. By Section~\ref{subsec:passive-minimal} the response determines only the minimal part, which is multiplication by $\lambda$ on the square-integrable functions for the measure in Eq.~\eqref{eq:four-maps-translation-response}, with the constant function one as its port vector. An absolutely continuous response and the absence of a gap are thus compatible with the same relations as the discrete examples.
+
+\subsection{The creation operator of an oscillator}
+\label{subsec:four-maps-oscillator}
+
+Let $\mathfrak h=\ell^2(\mathbb N_0)$ with orthonormal basis $(e_n)_{n\ge0}$, and define
+\begin{equation}
+ ae_0=0,\qquad ae_n=\sqrt n\,e_{n-1}\quad(n\ge1),\qquad a^*e_n=\sqrt{n+1}\,e_{n+1},
+ \label{eq:four-maps-ladder}
+\end{equation}
+on the common domain of the sequences $x=(x_n)$ with $\sum_nn|x_n|^2<\infty$. Both operators are closed and each is the adjoint of the other. Let $N=a^*a$ be the number operator, $Ne_n=ne_n$.
+
+\begin{proposition}[The oscillator map]
+\label{prop:four-maps-oscillator}
+Let $\mathcal H_\Psi=\mathcal H_\Phi=\mathfrak h$ and $A=a^*$. Then
+\begin{equation}
+ A^*A=aa^*=N+I,\qquad AA^*=a^*a=N .
+ \label{eq:four-maps-oscillator-returns}
+\end{equation}
+The range of $A$ is closed, and
+\begin{equation}
+ \ker A=\{0\},\qquad\ker A^*=\C e_0,\qquad\operatorname{ind}A=-1 .
+ \label{eq:four-maps-oscillator-index}
+\end{equation}
+The return $A^*A$ has the spectrum $\{1,2,3,\dots\}$ and $AA^*$ has the same spectrum with one further eigenvalue zero. The polar decomposition is $A=\mathsf S\,(N+I)^{1/2}$, where $\mathsf S e_n=e_{n+1}$ is the unilateral shift of Section~\ref{sec:cohomology-index}. For every $t>0$,
+\begin{equation}
+ \Tr\bigl(e^{-t(N+I)}\bigr)-\Tr\bigl(e^{-tN}\bigr)=-1=\operatorname{ind}A ,\qquad
+ \Tr\bigl(e^{-\pi t(N+I)^2}\bigr)-\Tr\bigl(e^{-\pi tN^2}\bigr)=-1 .
+ \label{eq:four-maps-oscillator-heat}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Equation~\eqref{eq:four-maps-oscillator-returns} holds on the basis vectors, and both sides are diagonal with the domain of sequences satisfying $\sum_nn^2|x_n|^2<\infty$. Since
+\[
+ \|a^*x\|^2=\sum_{n\ge0}(n+1)|x_n|^2\ge\|x\|^2 ,
+\]
+the map is bounded below, so it is injective with closed range. The kernel of $A^*=a$ is spanned by $e_0$, and the index is $0-1$. The spectra are those of the diagonal operators $N+I$ and $N$. The operator $(N+I)^{1/2}$ is positive with trivial kernel and $\mathsf S(N+I)^{1/2}e_n=\sqrt{n+1}\,e_{n+1}$, which is the polar decomposition. For any function $f$ on the non-negative integers with summable values, $\Tr f(N+I)-\Tr f(N)=\sum_{n\ge1}f(n)-\sum_{n\ge0}f(n)=-f(0)$. The two cases $f(x)=e^{-tx}$ and $f(x)=e^{-\pi tx^2}$ give Eq.~\eqref{eq:four-maps-oscillator-heat}.
+\end{proof}
+
+The first identity in Eq.~\eqref{eq:four-maps-oscillator-heat} is the heat-trace formula of Eq.~\eqref{eq:index-heat}. That formula did not apply to the shift itself, whose return is the identity. The oscillator map has the same polar isometry, and its returns have trace-class heat operators.
+
+\begin{proposition}[Mellin transform of the heat trace]
+\label{prop:four-maps-mellin}
+For the oscillator map and $\operatorname{Re}s>1$,
+\begin{equation}
+ \int_0^\infty t^{s/2-1}\,\Tr\bigl(e^{-\pi t(A^*A)^2}\bigr)\,dt
+   =\int_0^\infty t^{s/2-1}\sum_{n=1}^\infty e^{-\pi n^2t}\,dt
+   =\pi^{-s/2}\,\Gamma\!\Bigl(\frac s2\Bigr)\zeta(s),
+ \label{eq:four-maps-mellin}
+\end{equation}
+where $\Gamma(s/2)$ is Euler's gamma function and $\zeta$ is the Riemann zeta function.
+\end{proposition}
+\begin{proof}
+The substitution $u=\pi n^2t$ gives $\int_0^\infty t^{s/2-1}e^{-\pi n^2t}\,dt=\pi^{-s/2}n^{-s}\,\Gamma(s/2)$ for $\operatorname{Re}s>0$. Let $\sigma=\operatorname{Re}s>1$. The integrals of the absolute values $t^{\sigma/2-1}e^{-\pi n^2t}$ sum to $\pi^{-\sigma/2}\,\Gamma(\sigma/2)\zeta(\sigma)<\infty$, which permits integration term by term, and the sum of $n^{-s}$ is $\zeta(s)$.
+\end{proof}
+
+The right side of Eq.~\eqref{eq:four-maps-mellin} is the zeta function completed by its gamma factor. It is not the entire function $\xi(s)$, which carries the additional factor $\frac12s(s-1)$, and it has a simple pole at $s=1$. The proposition uses only the fact that each positive integer is an eigenvalue of $A^*A$ of multiplicity one. The set of eigenvalues alone would not give it: two copies of the oscillator have the same set, and their heat trace and its Mellin transform are twice as large. It makes no statement about the zeros of the zeta function.
+
+The oscillator also has a simple minimal response. For $0<r<1$ let
+\begin{equation}
+ \eta_r=\sqrt{1-r^2}\,\sum_{n=0}^\infty r^ne_n,\qquad\Gamma_rc=c\eta_r ,
+ \label{eq:four-maps-oscillator-port}
+\end{equation}
+so that $\|\eta_r\|=1$. For $H=N+I$ the response is
+\begin{equation}
+ M_r(z)=(1-r^2)\sum_{n=0}^\infty\frac{r^{2n}}{n+1-z}.
+ \label{eq:four-maps-oscillator-response}
+\end{equation}
+The spectrum of $N+I$ is simple and every coefficient of $\eta_r$ is nonzero. The reached space reduces $H$ by Proposition~\ref{prop:passive-two-spans}, so it contains each spectral projection of $\eta_r$ and hence every $e_n$. The pair is minimal, and by Proposition~\ref{prop:passive-uniqueness} the response determines it up to a unique unitary.
+
+\subsection{A derivative on an interval with twisted ends}
+\label{subsec:four-maps-interval}
+
+Let $\Lambda>0$, $\vartheta\in[0,2\pi)$ and $\mathfrak h_\Lambda=L^2(-\Lambda,\Lambda)$. Define
+\begin{equation}
+ D_{\Lambda,\vartheta}=-i\frac{d}{dx},\qquad
+ \operatorname{Dom}D_{\Lambda,\vartheta}=\bigl\{f\in H^1(-\Lambda,\Lambda):f(\Lambda)=e^{i\vartheta}f(-\Lambda)\bigr\}.
+ \label{eq:four-maps-interval-operator}
+\end{equation}
+This operator is self-adjoint, with eigenvalues and normalized eigenfunctions
+\begin{equation}
+ \lambda_n=\frac{2\pi n+\vartheta}{2\Lambda},\qquad
+ e_n(x)=\frac{1}{\sqrt{2\Lambda}}\exp\bigl(i\lambda_n(x+\Lambda)\bigr),\qquad n\in\mathbb Z ,
+ \label{eq:four-maps-interval-spectrum}
+\end{equation}
+which form an orthonormal basis. Taking $A=D_{\Lambda,\vartheta}$ between two copies of $\mathfrak h_\Lambda$ gives $A^*A=AA^*=D_{\Lambda,\vartheta}^2$. The spectrum is discrete and the index is zero. For $\vartheta=0$ the constant function is a zero mode, and on its orthogonal complement the smallest value of $|\lambda_n|$ is $\pi/\Lambda$. For $\vartheta\ne0$ there is no zero mode and the smallest value is $\operatorname{dist}(\vartheta,2\pi\mathbb Z)/(2\Lambda)$. In both cases the support of $A$ has a positive gap, and the returns have the square of that gap.
+
+Evaluation at a point $x_0\in(-\Lambda,\Lambda)$ is not given by a vector of $\mathfrak h_\Lambda$. In the terms of Section~\ref{subsec:passive-heat} with $H=D_{\Lambda,\vartheta}$, it is a distributional trace $\gamma f=f(x_0)$ on the scale $\mathcal X_s$ for $s>1/2$, with spectral coefficients $\gamma_n=e_n(x_0)$. These have
+\begin{equation}
+ |e_n(x_0)|^2=\frac{1}{2\Lambda}\quad\text{for every }n,\qquad\sum_{n\in\mathbb Z}|e_n(x_0)|^2=\infty ,
+ \label{eq:four-maps-interval-point}
+\end{equation}
+so the total spectral mass of the unsmoothed input diverges. For $\tau>0$, Propositions~\ref{prop:passive-heat-distributional} and~\ref{prop:passive-heat-discrete} give the smoothed port $\Gamma_\tau c=cb_\tau$ with
+\begin{equation}
+ b_\tau=\sum_{n\in\mathbb Z}e^{-\tau\lambda_n^2/2}\,\overline{e_n(x_0)}\,e_n ,
+ \label{eq:four-maps-interval-port}
+\end{equation}
+whose squared norm is
+\begin{equation}
+ Z_\tau=\|b_\tau\|^2=\frac{1}{2\Lambda}\sum_{n\in\mathbb Z}e^{-\tau\lambda_n^2}
+   =\frac{1}{\sqrt{4\pi\tau}}\sum_{m\in\mathbb Z}e^{-m^2\Lambda^2/\tau}\cos(m\vartheta).
+ \label{eq:four-maps-interval-mass}
+\end{equation}
+The mass $Z_\tau$ is finite and does not depend on $x_0$. Its second form follows from the Poisson summation formula. It shows how the mass diverges as the smoothing is removed: the leading term $(4\pi\tau)^{-1/2}$ is that of the whole line, and the twist enters only through terms that are exponentially small in $\Lambda^2/\tau$. The response through the smoothed port is
+\begin{equation}
+ M_\tau(z)=\frac{1}{2\Lambda}\sum_{n\in\mathbb Z}\frac{e^{-\tau\lambda_n^2}}{\lambda_n-z}.
+ \label{eq:four-maps-interval-response}
+\end{equation}
+The energies in it are the eigenvalues of the first-order operator, of both signs. Replacing $b_\tau$ by $Z_\tau^{-1/2}b_\tau$ gives a spectral measure of total mass one and leaves the positions $\lambda_n$ of the lines unchanged. The spectrum is simple and every coefficient of $b_\tau$ is nonzero, so the pair is minimal by the argument used for the oscillator. The response therefore determines $\Lambda$ and $\vartheta$: the spacing of its poles gives the length, and their offset from zero gives the twist modulo $2\pi$. The mass sees less. By Eq.~\eqref{eq:four-maps-interval-mass} it depends on the twist only through $\cos(m\vartheta)$, so the twists $\vartheta$ and $2\pi-\vartheta$ have the same mass at every $\tau$, while their responses differ unless $\vartheta$ is $0$ or $\pi$. Neither the mass nor the response depends on the point $x_0$.
+
+\subsection{What is common and what depends on the map}
+\label{subsec:four-maps-table}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.17\linewidth}p{0.14\linewidth}p{0.19\linewidth}p{0.40\linewidth}@{}}
+\toprule
+Map $A$ & Return $A^*A$ & Spectrum of the return & Distinguishing feature \\
+\midrule
+\raggedright $b$ on $\C$ & $|b|^2$ & \raggedright one point & Full support for $b\ne0$. Index zero. \\[2pt]
+\raggedright $-i\,d/dx$ on $L^2(\R)$ & $-d^2/dx^2$ & \raggedright $[0,\infty)$, absolutely continuous & Range dense and not closed. No gap. Not Fredholm. \\[2pt]
+\raggedright $a^*$ on $\ell^2(\mathbb N_0)$ & $N+I$ & \raggedright positive integers & Closed range, index $-1$. Heat trace differs from that of $AA^*$ by $-1$. \\[2pt]
+\raggedright $D_{\Lambda,\vartheta}$ on $L^2(-\Lambda,\Lambda)$ & $D_{\Lambda,\vartheta}^2$ & \raggedright discrete & Index zero, positive gap. A point input has infinite mass until it is smoothed. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The oscillator and the line show what the multiplicity of the spectrum does to a port. Both examples use a port of rank one. The oscillator port reaches every level, because the spectrum is simple and the port vector has a nonzero component at each level. On the line a port vector whose Fourier transform vanishes nowhere still misses part of the space. At each energy $\lambda>0$ the return has two directions, with momenta $\sqrt\lambda$ and $-\sqrt\lambda$, and one port supplies one combination of them.
+
+The relations among $d_A$, its adjoint, the two odd operators and the Laplacian are the same in all four cases. Whether the spectrum is discrete or continuous, whether a zero mode is unpaired, whether the support has a gap, and what the response measure is are properties of the map and of the port. They do not follow from those relations.
+
 \begin{thebibliography}{99}
 \raggedright
 \bibitem{Yiannopoulos2020} A.~Yiannopoulos, \emph{The Structure of Dharmak\=irti's Philosophy: A Study of Object-Cognition in the Perception Chapter (pratyak\d{s}apariccheda) of the Pram\=a\d{n}asamuccaya, the Pram\=a\d{n}av\=arttika, and Their Earliest Commentaries}, Ph.D. dissertation, Emory University, 2020. \href{https://etd.library.emory.edu/downloads/p2676w57z}{Emory University repository}.
@@ -1706,6 +2110,9 @@ The exchange is not a rotation, since $\sigma\kappa(\varphi)\sigma=\kappa(-\varp
 \bibitem{Husemoller} D.~Husemoller, \emph{Fibre Bundles}, 3rd ed., Springer, 1994.
 \bibitem{ProvostVallee1980} J.~P. Provost and G.~Vallee, Riemannian structure on manifolds of quantum states, \emph{Communications in Mathematical Physics} \textbf{76} (1980), 289--301.
 \bibitem{AharonovAnandan1987} Y.~Aharonov and J.~Anandan, Phase change during a cyclic quantum evolution, \emph{Physical Review Letters} \textbf{58} (1987), 1593--1596.
+\bibitem{FuchsVandeGraaf1999} C.~A. Fuchs and J.~van de Graaf, Cryptographic distinguishability measures for quantum-mechanical states, \emph{IEEE Transactions on Information Theory} \textbf{45} (1999), 1216--1227.
+\bibitem{GKS1976} V.~Gorini, A.~Kossakowski and E.~C.~G. Sudarshan, Completely positive dynamical semigroups of $N$-level systems, \emph{Journal of Mathematical Physics} \textbf{17} (1976), 821--825.
+\bibitem{Lindblad1976} G.~Lindblad, On the generators of quantum dynamical semigroups, \emph{Communications in Mathematical Physics} \textbf{48} (1976), 119--130.
 \end{thebibliography}
 \endgroup
 \end{document}

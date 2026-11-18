@@ -1,6 +1,6 @@
 # Verification checks
 
-Reproducible numerical checks of the pair, orbital, response, curvature and symmetry calculations in the
+Reproducible numerical checks of the mathematical results and worked examples in the
 working manuscripts and the consolidated draft:
 
 - **LG** — `manuscripts/lg/LG_Master_Unified.tex`
@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-129 passed, 0 failed, 2 skipped in ...s
+134 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `131 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `136 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
@@ -55,6 +55,12 @@ of positive Hermitian matrices with real and complex floating-point inputs.
 ### Deconditioning across two moments
 
 `test_deconditioning.py` checks the relaxation law on the two coarse sites by comparing its action on all four matrix units with deconditioning on the five fine sites. The target passes the coarse ground test with probability 9/10. At half relaxation an orthogonal pure input becomes maximally mixed. The tests also verify the exponential decay of excess weight for a paired target and the maximum leakage of 1/6 for a target with one third of its weight outside the paired space (UM `prop:two-moment-deconditioning`).
+
+Eight checks for the general relaxation law compare its generator with the channel at finite times,
+verify the sharp trace-norm bound on pure inputs, and exercise ground-carrying channels and
+conditional outcomes. They also test a one-step unitary dilation, successive steps with varying
+ground spaces, and return instruments on the unequal-cell path.
+[Relaxation checks](test_relaxation.py)
 
 ### Index and the common defect
 
@@ -158,6 +164,13 @@ coupling. The character-weighted average recovers the three-dimensional space wh
 rays are invariant and whose vectors change sign under orbital exchange.
 [Symmetry-averaging checks](geometry/test_symmetry_average.py)
 
+### Four maps with one algebra
+
+Eight checks exercise the scalar, translation, oscillator and twisted-interval maps of §12.
+They include the three-state transfer and its finite-window bound, the multiplicity in the
+oscillator heat trace and Mellin transform, and the response and smoothed mass for opposite twists.
+[Four-map checks](response/test_four_maps.py)
+
 ### Numerical tolerance for spectral grouping
 
 The response checks group eigenvalues into levels with an absolute tolerance of `1e-9` (`SPECTRAL_TOLERANCE` in `lib/linalg.py`). Groups are disjoint and exhaustive, and no group spans more than the tolerance. Each group starts at its lowest member and contains only energies within that tolerance; nearby neighbours may fall in different groups when joining them would exceed the group's total-span limit. The group's mean represents its energy. Merging genuinely distinct energies approximates the exact response, which needs a separate direction for each distinct energy the port couples to. The reported response-generated space then belongs to this grouped Hamiltonian and need not reduce the original one. The `tol` argument of `minimal_space` controls the separate SVD rank cutoff. `test_linalg.py` covers the boundary cases.
@@ -186,11 +199,12 @@ checks/
   test_linalg.py        nearby eigenvalues must not double-count spectral mass
   test_ground_bridge.py raw and polar transport of ground states
   test_deconditioning.py paired relaxation and leakage on the five-site path
+  test_relaxation.py    relaxation semigroup, successive moments and return instruments
   test_index.py         rotated shift and dimensions after input enlargement
   test_determination.py cyclic generation and readout on a finite path
   lib/                  Fock-space operators and small linear-algebra helpers
   pair/                 pair model and its checks
   orbital/              orbital model and its checks
-  response/             finite-dimensional response checks
+  response/             port responses and worked examples in §12
   geometry/             moving subspaces, characteristic forms and compact symmetry averaging
 ```

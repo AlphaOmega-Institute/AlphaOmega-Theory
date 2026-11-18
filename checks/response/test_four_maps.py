@@ -1,9 +1,4 @@
-"""Checks for the fragment on four maps (manuscripts/consolidated/fragments/four_maps.tex).
-
-The fragment carries TAUM's section "Canonical realizations" into the consolidated
-manuscript.  Its own labels are not in Universal_Model.tex yet, so this file cites the TAUM
-labels of the statements it tests and the labels of the consolidated manuscript that the
-fragment uses.  Random numbers use fixed seeds.
+"""Checks for §12, "Four maps with one algebra", in Universal_Model.tex.
 
 Operators on infinite-dimensional spaces are tested through exact finite pieces (the
 oscillator map between the first M and the first M + 1 levels), through their Fourier
@@ -21,7 +16,16 @@ LABELS = {
              "eq:free-response", "thm:oscillator-channel", "cor:oscillator-heat-index", "thm:oscillator-zeta",
              "eq:oscillator-response", "ex:quasiperiodic-channel", "eq:unsmoothed-point-mass", "eq:theta-mass",
              "eq:quasiperiodic-smoothed-response", "eq:normalized-smoothed-point"],
-    "UM": ["eq:index-heat", "prop:index-harmonic-pairing", "cor:passive-sources", "prop:passive-opposite-sectors",
+    "UM": ["sec:four-maps", "eq:four-maps-scalar", "eq:four-maps-scalar-response",
+           "eq:four-maps-three-state-data", "eq:four-maps-three-state-response", "eq:four-maps-three-state-weights",
+           "eq:four-maps-three-state-transfer", "eq:four-maps-translation", "eq:four-maps-translation-returns",
+           "eq:four-maps-translation-no-gap", "eq:four-maps-translation-response", "eq:four-maps-ladder",
+           "prop:four-maps-oscillator", "eq:four-maps-oscillator-returns", "eq:four-maps-oscillator-index",
+           "eq:four-maps-oscillator-heat", "prop:four-maps-mellin", "eq:four-maps-mellin",
+           "eq:four-maps-oscillator-port", "eq:four-maps-oscillator-response", "eq:four-maps-interval-operator",
+           "eq:four-maps-interval-spectrum", "eq:four-maps-interval-point", "eq:four-maps-interval-port",
+           "eq:four-maps-interval-mass", "eq:four-maps-interval-response",
+           "eq:index-heat", "prop:index-harmonic-pairing", "cor:passive-sources", "prop:passive-opposite-sectors",
            "prop:passive-two-spans", "prop:passive-uniqueness", "prop:passive-heat-discrete", "cor:finite-response-defect"],
 }
 
