@@ -73,24 +73,40 @@ Indeed $\sum_jJ_jXJ_j^*=\gamma\Tr(Q_yX)P_y$ and $\sum_jJ_j^*J_j=\gamma Q_y$. Eac
 
 By Eq.~\eqref{eq:relaxation-decay} the weight outside the ground obeys $\tfrac{d}{dt}\delta_y=-\gamma\,\delta_y$. It decreases strictly while it is positive, and it is positive at every finite time if it was positive at the start. The relaxation therefore reaches $P_y$ at a finite time only from $P_y$. Reaching it in one step takes a different channel, such as the reset $\sigma\mapsto P_y$. This is the value $s=0$ of Eq.~\eqref{eq:moment-deconditioning}, which no finite time attains.
 
-Both bounds in Eq.~\eqref{eq:relaxation-distance} are attained. If $\sigma$ commutes with $P_y$, so does $\mathcal D_t^y(\sigma)$, and the distance is $2e^{-\gamma t}\delta_y(\sigma)$. For a pure input $\phi=\cos\theta\,y+\sin\theta\,e$, with $e$ a unit vector orthogonal to $y$, the operator $\mathcal D_t^y(P_\phi)-P_y$ acts on $\Span\{y,e\}$ with trace zero and determinant $-s^2\sin^2\theta\,\bigl(1-(1-s^2)\sin^2\theta\bigr)$. Hence
+The lower bound in Eq.~\eqref{eq:relaxation-distance} is attained: if $\sigma$ commutes with $P_y$, so does $\mathcal D_t^y(\sigma)$, and the distance is $2e^{-\gamma t}\delta_y(\sigma)$. The upper bound is an equality for pure states at $t=0$. At a positive time it is strict unless $\sigma=P_y$. To see this, write $\mathcal D_t^y(\sigma)=c\,\tau+(1-c)P_y$, where $c=1-(1-s^2)\delta_y(\sigma)$ and $\tau=L_y\sigma L_y/c$ is a state with $\delta_y(\tau)=s^2\delta_y(\sigma)/c$. Then $\mathcal D_t^y(\sigma)-P_y=c\,(\tau-P_y)$, and Proposition~\ref{prop:relaxation-pure-distance} applied to $\tau$ gives
 \begin{equation}
- \bigl\|\mathcal D_t^y(P_\phi)-P_y\bigr\|_1
- =2s\sin\theta\,\sqrt{1-(1-s^2)\sin^2\theta},
- \label{eq:relaxation-pure-input}
+ \bigl\|\mathcal D_t^y(\sigma)-P_y\bigr\|_1
+ \le2s\sqrt{\delta_y(\sigma)}\,\sqrt{1-(1-s^2)\,\delta_y(\sigma)},
+ \label{eq:relaxation-sharp-distance}
 \end{equation}
-while the upper bound is $2s\sin\theta$. The ratio is one at $t=0$ and tends to one as $\theta\to0$ at any fixed time. Neither the constant $2$ nor the rate $\gamma/2$ can be improved. The weight outside the ground decays at rate $\gamma$. The coherence between the ground and its complement decays at rate $\gamma/2$, and a state with such coherence approaches the ground at this slower rate.
+with equality when $\sigma$ is pure, because $\tau$ is then pure. For $t>0$ and $\delta_y(\sigma)>0$ the last factor is less than one. It tends to one as $\delta_y(\sigma)\to0$, so at any fixed time the distance for pure inputs close to the ground comes arbitrarily close, in ratio, to the upper bound of Eq.~\eqref{eq:relaxation-distance}. The constant $2$ and the rate $\gamma/2$ are therefore optimal, although that bound is not attained at a positive time. The weight outside the ground decays at rate $\gamma$. The coherence between the ground and its complement decays at rate $\gamma/2$, and a state with such coherence approaches the ground at this slower rate.
 
 \subsection{Fixing the ground and attracting to it}
 \label{subsec:relaxation-unitary}
-Two properties of the relaxation can be asked of any family of channels $\mathcal T_t$ on the appearance space. The family \emph{fixes the ground} if $\mathcal T_t(P_y)=P_y$ for every $t$. It \emph{attracts} a set $\mathsf B$ of states to the ground if $\delta_y(\mathcal T_t(\sigma))\to0$ as $t\to\infty$ for every $\sigma$ in $\mathsf B$. By Eq.~\eqref{eq:relaxation-pure-distance} this is the same as $\mathcal T_t(\sigma)\to P_y$ in trace norm. The set $\mathsf B$ is the basin, and it has to be specified. Canonical deconditioning fixes the ground and attracts every state.
+Two properties of the relaxation can be asked of any family of channels $\mathcal T_t$ on the appearance space. The family \emph{fixes the ground} if $\mathcal T_t(P_y)=P_y$ for every $t$. It is \emph{ground-attractive} on a set $\mathsf B$ of states if it fixes the ground and $\delta_y(\mathcal T_t(\sigma))\to0$ as $t\to\infty$ for every $\sigma$ in $\mathsf B$. By Eq.~\eqref{eq:relaxation-pure-distance} the second condition is the same as $\mathcal T_t(\sigma)\to P_y$ in trace norm. The set $\mathsf B$ is the basin, and it has to be specified. Canonical deconditioning is ground-attractive on the set of all states.
 
-A unitary evolution can have the first property, and then it lacks the second. If $U_tP_yU_t^*=P_y$, then $U_t^*Q_yU_t=Q_y$ and
+Fixing the ground already constrains every other state. We state this for a channel between two spaces, for use in the next subsection.
+
+\begin{proposition}[A channel that carries the ground]
+\label{prop:relaxation-carried}
+Let $\mathcal T$ be a channel from the trace class of a Hilbert space $\mathcal H$ to that of $\mathcal H'$, and let $y\in\mathcal H$ and $y'\in\mathcal H'$ be unit vectors. Then $\mathcal T(P_y)=P_{y'}$ exactly when
+\begin{equation}
+ \delta_{y'}\bigl(\mathcal T(\sigma)\bigr)\le\delta_y(\sigma)\qquad\text{for every state $\sigma$ on $\mathcal H$.}
+ \label{eq:relaxation-carried}
+\end{equation}
+\end{proposition}
+\begin{proof}
+If Eq.~\eqref{eq:relaxation-carried} holds, the state $\mathcal T(P_y)$ has no weight outside $y'$ and equals $P_{y'}$ by Proposition~\ref{prop:relaxation-pure-distance}. Conversely, let $F$ be the effect on $\mathcal H$ with $\Tr(F\sigma)=\Tr\bigl(Q_{y'}\mathcal T(\sigma)\bigr)$ for every trace-class $\sigma$. It exists because the right side is a positive linear functional of $\sigma$ bounded by the trace. If $\mathcal T(P_y)=P_{y'}$, then $\langle y,Fy\rangle=\Tr(Q_{y'}P_{y'})=0$. Since $F\ge0$, this gives $Fy=0$. Hence $F=Q_yFQ_y\le Q_y$ and $\Tr(F\sigma)\le\Tr(Q_y\sigma)$.
+\end{proof}
+
+A family that fixes the ground therefore never raises the weight outside it above its initial value, and under a semigroup that fixes the ground this weight is nonincreasing in time. The proposition uses that a channel preserves the trace. A conditional step, normalized after a selected outcome, can fix the ground and increase the weight outside it. With $K=\tfrac12P_y+Q_y$, the step $\sigma\mapsto K\sigma K/\Tr(K\sigma K)$ fixes $P_y$ and takes a pure state with weight $\delta$ outside the ground to one with weight $4\delta/(1+3\delta)$.
+
+Fixing the ground does not make that weight decrease. If a unitary evolution fixes the ground, $U_tP_yU_t^*=P_y$, then $U_t^*Q_yU_t=Q_y$ and
 \begin{equation}
  \delta_y\bigl(U_t\sigma U_t^*\bigr)=\Tr\bigl(U_t^*Q_yU_t\,\sigma\bigr)=\delta_y(\sigma)
  \label{eq:relaxation-unitary}
 \end{equation}
-for every state. The weight outside the ground never changes, so the only state attracted is $P_y$ itself. A unitary can carry one chosen vector to $y$. It cannot do so while leaving $y$ in place. An evolution that fixes the ground and attracts other states is therefore not unitary on the appearance space. It can still be the reduced description of a unitary evolution on a larger space.
+for every state. The weight outside the ground never changes, so such an evolution is ground-attractive only on the basin $\{P_y\}$. A unitary can carry one chosen vector to $y$. It cannot do so while leaving $y$ in place. A ground-attractive evolution with a larger basin is therefore not unitary on the appearance space. It can still be the reduced description of a unitary evolution on a larger space.
 
 Canonical deconditioning has such a description at each time. Let the space of an environment be $\mathcal H_{\mathrm e}=\C\oplus y^\perp$, with vectors written $(c,k)$, and define
 \begin{equation}
@@ -131,14 +147,14 @@ The first is a property of the channels. The second concerns the particular stat
  \label{eq:relaxation-product}
 \end{equation}
 If the products tend to zero, then $\|\sigma_n-P_{y_n}\|_1\to0$.
-\item[(c)] If one step satisfies $\delta_{y_{n+1}}(\mathcal T_n(\sigma))\le q\,\delta_{y_n}(\sigma)$ for every state $\sigma$ on $\mathcal H_{\Phi,n}$, with a finite constant $q$, then $\mathcal T_n(P_{y_n})=P_{y_{n+1}}$.
+\item[(c)] Step $n$ carries the ground exactly when $\delta_{y_{n+1}}(\mathcal T_n(\sigma))\le\delta_{y_n}(\sigma)$ for every state $\sigma$ on $\mathcal H_{\Phi,n}$. Thus, when the steps carry the ground, every sequence of states contracts with the factors $q_n=1$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-Part (a) is Eq.~\eqref{eq:relaxation-ground-carried} applied repeatedly. Iterating Eq.~\eqref{eq:relaxation-contraction} gives the first bound of (b), and Proposition~\ref{prop:relaxation-pure-distance} in each space gives the second. For (c), the state $P_{y_n}$ has no weight outside its ground, so its image has no weight outside $y_{n+1}$ and equals $P_{y_{n+1}}$ by Proposition~\ref{prop:relaxation-pure-distance}.
+Part (a) is Eq.~\eqref{eq:relaxation-ground-carried} applied repeatedly. Iterating Eq.~\eqref{eq:relaxation-contraction} gives the first bound of (b), and Proposition~\ref{prop:relaxation-pure-distance} in each space gives the second. Part (c) is Proposition~\ref{prop:relaxation-carried} applied to the step.
 \end{proof}
 
-Part (b) does not use Eq.~\eqref{eq:relaxation-ground-carried}, and it allows steps with $q_n=1$ at which nothing is gained. Part (c) gives the relation between the two conditions: a step that contracts every state carries the ground. The converse fails: a unitary step that carries the ground leaves the weight outside it unchanged for every state, by the computation of Eq.~\eqref{eq:relaxation-unitary}. For an example of both conditions, let step $n$ be canonical deconditioning toward $y_n$ at rate $\gamma_n$ for a duration $\tau_n$, followed by an isometry from $\mathcal H_{\Phi,n}$ into $\mathcal H_{\Phi,n+1}$ that takes $y_n$ to $y_{n+1}$. These steps carry the ground, and by Eq.~\eqref{eq:relaxation-decay} every sequence of states satisfies Eq.~\eqref{eq:relaxation-contraction} with equality for $q_n=e^{-\gamma_n\tau_n}$. The products tend to zero exactly when $\sum_n\gamma_n\tau_n$ diverges. Count the steps from one. If the $n$th has $\gamma\tau=1/n$, every state approaches the ground. If it has $\gamma\tau=1/n^2$, the weight outside the ground decreases at every step and tends to $e^{-\pi^2/6}\delta_0$, about $0.19\,\delta_0$.
+Part (b) does not use Eq.~\eqref{eq:relaxation-ground-carried}, and it allows steps with $q_n=1$ at which nothing is gained. By (c), carrying the ground is the same as contraction of every state with the factor one. It excludes any increase of the weight outside the ground, and it does not ensure a decrease: a unitary step that carries the ground leaves that weight unchanged for every state, by the computation of Eq.~\eqref{eq:relaxation-unitary}. Stabilization needs factors whose products tend to zero. For an example, let step $n$ be canonical deconditioning toward $y_n$ at rate $\gamma_n$ for a duration $\tau_n$, followed by an isometry from $\mathcal H_{\Phi,n}$ into $\mathcal H_{\Phi,n+1}$ that takes $y_n$ to $y_{n+1}$. These steps carry the ground, and by Eq.~\eqref{eq:relaxation-decay} every sequence of states satisfies Eq.~\eqref{eq:relaxation-contraction} with equality for $q_n=e^{-\gamma_n\tau_n}$. The products tend to zero exactly when $\sum_n\gamma_n\tau_n$ diverges. Count the steps from one. If the $n$th has $\gamma\tau=1/n$, every state approaches the ground. If it has $\gamma\tau=1/n^2$, the weight outside the ground decreases at every step and tends to $e^{-\pi^2/6}\delta_0$, about $0.19\,\delta_0$.
 
 We say that the sequence \emph{is at the ground} at moment $n$ when $\sigma_n=P_{y_n}$, and that it \emph{stabilizes} when $\|\sigma_n-P_{y_n}\|_1\to0$. By (a), being at the ground persists when the steps carry it. The two notions differ. Under the deconditioning steps just described, a sequence that starts off the ground is not at the ground at any finite moment, and it stabilizes when $\sum_n\gamma_n\tau_n$ diverges. In the cognitive model the first is an event of exact realization and the second is its asymptotic stabilization.
 
@@ -150,7 +166,7 @@ Let $V:S\to\mathcal H_\Phi$ be an isometry with range $D$, as in Proposition~\re
  V\sigma_SV^*=\frac{\Pi_D\sigma\Pi_D}{\Tr(\Pi_D\sigma)} .
  \label{eq:relaxation-return}
 \end{equation}
-The second expression is $\sigma$ conditioned on passing the projective test $\Pi_D$, whose complement is the outcome $\perp$ of Section~\ref{sec:polar-matched-observables}. For a pure state $P_\phi$ the returned state is the ray of $V^*\phi$. It is defined exactly when $\phi$ does not lie in $D^\perp$. The map $\sigma\mapsto V^*\sigma V$ is completely positive and does not increase the trace. Its trace is the probability of a branch only once a measurement with the effect $\Pi_D$ has been realized.
+The second expression is $\sigma$ conditioned on passing the projective test $\Pi_D$, whose complement is the outcome $\perp$ of Section~\ref{sec:polar-matched-observables}. For a pure state $P_\phi$ the returned state is the ray of $V^*\phi$. It is defined exactly when $\phi$ does not lie in $D^\perp$. The map $\sigma\mapsto V^*\sigma V$ is completely positive and does not increase the trace. Any measurement with the effect $\Pi_D$ gives its outcome with probability $\Tr(\Pi_D\sigma)$. The state after that outcome depends on the instrument. It is $\sigma_S$ for an instrument whose operation for this outcome is $\sigma\mapsto V^*\sigma V$. An instrument that prepares a fixed state $\rho_0$ on $S$ after the same outcome has the operation $\sigma\mapsto\Tr(\Pi_D\sigma)\rho_0$. It gives the same probabilities and leaves $\rho_0$. The return is therefore a choice of operation, and what a later step can register depends on that choice as well as on the effect.
 
 Suppose $y\in D$, with partner $p=V^*y$. Equation~\eqref{eq:moment-excess-decay} gives, for every appearance state $\sigma$,
 \begin{equation}
@@ -165,7 +181,7 @@ This is positive for $t>0$, including for a state that began entirely outside $D
 \end{equation}
 The returned state converges to the partner of the ground from every initial appearance state. When $V$ is the polar isometry of $A$ and the weak bridge of Section~\ref{sec:ground-correspondence} holds, that partner is the physical vacuum $x$ exactly under strong polar compatibility.
 
-A second return uses only the two reference lines. With $u_0=\ket{y}\!\bra{x}$ of Eq.~\eqref{eq:restricted-ground-orientation}, $u_0^*\sigma u_0=\langle y,\sigma y\rangle P_x$ for every state, and Eq.~\eqref{eq:relaxation-decay} gives
+A second return uses only the two reference lines. With $u_0=\ket{y}\!\bra{x}$ of Eq.~\eqref{eq:restricted-ground-orientation}, the operation $\sigma\mapsto u_0^*\sigma u_0=\langle y,\sigma y\rangle P_x$ has the effect $P_y$ and leaves $P_x$ whenever its outcome occurs. Equation~\eqref{eq:relaxation-decay} gives
 \begin{equation}
  u_0^*\,\mathcal D_t^y(\sigma)\,u_0=\bigl(1-e^{-\gamma t}\delta_y(\sigma)\bigr)P_x .
  \label{eq:relaxation-restricted-return}

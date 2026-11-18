@@ -163,6 +163,15 @@ def test_distance_to_the_ground_under_relaxation():
         distance = _trace_norm(_relax(sigma, y, s) - _projection(y))
         assert 2 * s**2 * deviation - 1e-12 <= distance <= 2 * s * np.sqrt(deviation) + 1e-12
         closest = max(closest, distance / (2 * s * np.sqrt(deviation)))
+        # the sharper bound, an equality for pure inputs; it makes the bound above strict at positive times
+        sharper = 2 * s * np.sqrt(deviation) * np.sqrt(1 - (1 - s**2) * deviation)
+        assert distance <= sharper + 1e-12
+        if t > 0.05:
+            assert sharper < 2 * s * np.sqrt(deviation)
+        phi = _unit(rng, n)
+        weight = _deviation(_projection(phi), y)
+        assert_allclose(_trace_norm(_relax(_projection(phi), y, s) - _projection(y)),
+                        2 * s * np.sqrt(weight) * np.sqrt(1 - (1 - s**2) * weight), atol=1e-12)
         # without coherence with the ground the distance decays at the full rate
         P = _projection(y)
         Q = np.eye(n) - P
@@ -183,6 +192,55 @@ def test_distance_to_the_ground_under_relaxation():
         assert np.all(np.diff(ratios) > -1e-12) and ratios[-1] > 1 - 1e-5
         if s == 1.0:
             assert_allclose(ratios, 1.0)                       # equality at time zero
+
+
+def _carrying_channel(rng, y, y_next, env):
+    """A random channel with T(P_y) = P_y': an isometry W into (next space) x (environment)
+    with W y = y' (x) k. Every channel that carries the ground has this form."""
+    n, m = len(y), len(y_next)
+    first = np.kron(y_next, _unit(rng, env))
+    rest = rng.normal(size=(m * env, n - 1)) + 1j * rng.normal(size=(m * env, n - 1))
+    rest = rest - np.outer(first, first.conj() @ rest)
+    rest, _ = np.linalg.qr(rest)
+    W = np.column_stack([first, rest]) @ np.column_stack([y, null_space(y.conj()[None, :])]).conj().T
+    assert_allclose(W.conj().T @ W, np.eye(n), atol=1e-10)
+    return lambda sigma: np.einsum("iaja->ij", (W @ sigma @ W.conj().T).reshape(m, env, m, env))
+
+
+def test_a_channel_carries_the_ground_exactly_when_no_weight_outside_it_grows():
+    rng = np.random.default_rng(38)
+    largest_gain, some_strict_loss = -1.0, False
+    for _ in range(600):
+        n, m = int(rng.integers(2, 5)), int(rng.integers(2, 5))
+        env = int(rng.integers(-(-n // m), 5))
+        y, y_next = _unit(rng, n), _unit(rng, m)
+        channel = _carrying_channel(rng, y, y_next, env)
+        assert_allclose(channel(_projection(y)), _projection(y_next), atol=1e-10)
+        for _ in range(4):
+            sigma = _state(rng, n, rank=int(rng.integers(1, n + 1)))
+            out = channel(sigma)
+            assert_allclose(np.trace(out).real, 1.0, atol=1e-10)
+            gain = _deviation(out, y_next) - _deviation(sigma, y)
+            largest_gain = max(largest_gain, gain)
+            some_strict_loss = some_strict_loss or gain < -1e-3
+    assert largest_gain < 1e-10 and some_strict_loss
+    # a channel that does not carry the ground raises the weight outside it for the ground itself
+    y, other = _unit(rng, 4), _unit(rng, 4)
+    assert _deviation(_relax(_projection(y), other, 0.5), y) > 0
+    # a conditional step can fix the ground and raise the weight outside it
+    y = np.array([1, 0, 0], dtype=complex)
+    e = np.array([0, 0.6, 0.8j])
+    K = _projection(y) / 2 + (np.eye(3) - _projection(y))
+    assert np.linalg.eigvalsh(np.eye(3) - K.conj().T @ K).min() > -1e-12        # one outcome of an instrument
+    fixed = K @ _projection(y) @ K
+    assert_allclose(fixed / np.trace(fixed), _projection(y), atol=1e-12)
+    for theta in (0.1, 0.7, 1.3):
+        phi = np.cos(theta) * y + np.sin(theta) * e
+        out = K @ _projection(phi) @ K
+        out = out / np.trace(out)
+        weight = np.sin(theta)**2
+        assert_allclose(_deviation(out, y), 4 * weight / (1 + 3 * weight), atol=1e-12)
+        assert _deviation(out, y) > weight
 
 
 def test_no_unitary_substitute_and_a_one_step_dilation():
@@ -246,10 +304,8 @@ def test_relaxation_in_successive_moments():
         assert_allclose(ground_state, _projection(grounds[n + 1]), atol=1e-12)        # once at the ground, always
         assert _trace_norm(sigma - _projection(grounds[n + 1])) <= 2 * np.sqrt(deviations[-1]) + 1e-12
     assert_allclose(deviations[-1], np.prod(factors) * deviations[0], atol=1e-12)
-    # a step that moves the ground cannot shrink the weight outside it for every state
-    moved = _unit(rng, 4)
-    target = _unit(rng, 4)
-    assert _deviation(_relax(_projection(target), moved, 0.5), target) > 0
+    # steps that carry the ground never let that weight grow, whatever the state
+    assert np.all(np.diff(deviations) <= 1e-12)
     # exponents 1/n have a divergent sum and exponents 1/n^2 a convergent one
     n = np.arange(1, 200001)
     assert np.exp(-np.sum(1 / n)) < 1e-5
@@ -273,6 +329,11 @@ def test_return_after_relaxation():
         back = V.conj().T @ phi
         returned = V.conj().T @ _projection(phi) @ V / np.trace(P_D @ _projection(phi)).real
         assert_allclose(returned, _projection(back / np.linalg.norm(back)), atol=1e-12)
+        # an instrument that prepares a fixed state after the same outcome: same probability, another state
+        prepared = _state(rng, m)
+        assert_allclose(np.trace(np.trace(P_D @ sigma) * prepared), np.trace(V.conj().T @ sigma @ V), atol=1e-12)
+        if m > 1:
+            assert not np.allclose(prepared, V.conj().T @ sigma @ V / np.trace(P_D @ sigma).real, atol=1e-6)
         gamma, t = rng.uniform(0.2, 2), rng.uniform(0.01, 5)
         s = np.exp(-gamma * t / 2)
         relaxed = _relax(sigma, y, s)
