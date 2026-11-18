@@ -1,0 +1,210 @@
+% Fragment for the consolidated manuscript: TAUM's canonical realizations
+% (TAUM lines 3628-4048).
+% Body only. Build with fragments/build_fragment.py four_maps.
+\section{Four maps with one algebra}
+\label{sec:four-maps}
+
+Every closed map $A$ from an input space to an output space carries the structures of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index}: its polar part and two supports, the differential $d_A$ with the odd operators $d_A+d_A^*$ and $d_A^*-d_A$, the Laplacian $\operatorname{diag}(A^*A,AA^*)$, and the pairing of the nonzero spectra of the two returns. These relations are the same for every map. They do not fix the spectrum of the returns, whether the range is closed, the index, or the response through a port. This section works out four maps that differ in each of these respects: a number, the generator of translations on a line, the creation operator of an oscillator, and a first derivative on an interval with twisted ends. For each it asks what the common relations give, what is special to the map, and what the response through a specified port looks like. A fifth example, already met in Section~\ref{sec:preparation-evolution}, is restated in the form that Section~\ref{subsec:passive-sectors} generalized. Section~\ref{subsec:four-maps-table} collects the comparison.
+
+\subsection{A number}
+\label{subsec:four-maps-scalar}
+
+Let $\mathcal H_\Psi=\mathcal H_\Phi=\C$ and $Ax=bx$ with $b\in\C$. Then
+\begin{equation}
+ d_A+d_A^*=\begin{pmatrix}0&\overline b\\ b&0\end{pmatrix},\qquad
+ d_A^*-d_A=\begin{pmatrix}0&\overline b\\ -b&0\end{pmatrix},\qquad
+ \operatorname{diag}(A^*A,AA^*)=|b|^2I .
+ \label{eq:four-maps-scalar}
+\end{equation}
+For $b\ne0$ both supports are all of $\C$, the polar part is the phase $u=b/|b|$, and $\operatorname{ind}A=0$. For $b=0$ the kernel and the defect are both one-dimensional and the index is again zero. With $H=A^*A=|b|^2$ on $\C$ and the identity port, the response is
+\begin{equation}
+ M(z)=\frac{1}{|b|^2-z},
+ \label{eq:four-maps-scalar-response}
+\end{equation}
+one line of weight one, and the pair is minimal. This is the canonical response of Corollary~\ref{cor:passive-sources} in its smallest case. There is no multiplicity and no question of domain. The example is the local form of a single active amplitude.
+
+\subsection{A ground and a split excitation}
+\label{subsec:four-maps-three-state}
+
+Section~\ref{subsec:pair-grounds-excitations} began with a ground and an equal superposition of two excited eigenvectors, and Proposition~\ref{prop:passive-opposite-sectors} treated the general case. In the parameters of that proposition the three-state example is as follows. Let $g,f_+,f_-$ be an orthonormal basis of $\C^3$ with
+\begin{equation}
+ H_0g=E_0g,\qquad H_0f_\pm=E_2f_\pm,\qquad Lg=0,\qquad Lf_\pm=\pm\ell f_\pm ,
+ \label{eq:four-maps-three-state-data}
+\end{equation}
+where $\ell>0$ and $0<|\nu|\ell<E_2-E_0$. For $H_\nu=H_0-\nu L$ the excitation energies are $E_2\mp\nu\ell$, and the inequality makes $g$ the unique ground. Put $e=(f_++f_-)/\sqrt2$, $d=(f_+-f_-)/(i\sqrt2)$ and $\Gamma(c_0,c_1)=c_0g+c_1e$. The complete response is
+\begin{equation}
+ M_\Gamma(z)=\begin{pmatrix}(E_0-z)^{-1}&0\\[2pt]
+   0&\dfrac{1}{2(E_2-\nu\ell-z)}+\dfrac{1}{2(E_2+\nu\ell-z)}\end{pmatrix},
+ \label{eq:four-maps-three-state-response}
+\end{equation}
+with the three weights
+\begin{equation}
+ R_0=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad R_+=R_-=\frac12\begin{pmatrix}0&0\\0&1\end{pmatrix}.
+ \label{eq:four-maps-three-state-weights}
+\end{equation}
+The weights sum to the identity, Corollary~\ref{cor:finite-response-defect} gives $\dim\mathcal D=3-2=1$ with $\mathcal D=\C d$, and
+\begin{equation}
+ e^{-it(H_\nu-E_0)/\hbar}e=e^{-it(E_2-E_0)/\hbar}\bigl[\cos(\nu\ell t/\hbar)\,e-\sin(\nu\ell t/\hbar)\,d\bigr].
+ \label{eq:four-maps-three-state-transfer}
+\end{equation}
+The weight on $d$ is $\sin^2(\nu\ell t/\hbar)$. At $\nu=0$ the two excited lines coincide and must be merged. The reached space is then $\Span\{g,e\}$ and the indirect space vanishes.
+
+The port can also be read as a preparation. With $\mathcal H_\Psi=\C^2$, $\mathcal H_\Phi=\C^3$ and $A=\Gamma$, the return $A^*A$ is the identity, $\ker A=\{0\}$ and $\ker A^*=\C d$. The input vector $(1,0)$ maps to $g$. If the input Hamiltonian is the compression $\Gamma^*H_\nu\Gamma=\operatorname{diag}(E_0,E_2)$, the input and output grounds correspond. The Hamiltonian $H_\nu$ that produces the response is further data of the realization. It is neither $A^*A$ nor $AA^*$. For $\nu\ne0$ the prepared plane is not invariant under the evolution, although $H_\nu$ commutes with $L$.
+
+\subsection{The generator of translations}
+\label{subsec:four-maps-translation}
+
+Let $\mathcal H_\Psi=\mathcal H_\Phi=L^2(\R)$ and
+\begin{equation}
+ A=D_x=-i\frac{d}{dx},\qquad \operatorname{Dom}D_x=H^1(\R).
+ \label{eq:four-maps-translation}
+\end{equation}
+This operator is self-adjoint, so the two returns coincide,
+\begin{equation}
+ A^*A=AA^*=D_x^2=-\frac{d^2}{dx^2},\qquad \operatorname{Dom}D_x^2=H^2(\R).
+ \label{eq:four-maps-translation-returns}
+\end{equation}
+The Fourier transform turns $D_x$ into multiplication by $k$ and $D_x^2$ into multiplication by $k^2$. The spectrum of the returns is $[0,\infty)$. It is absolutely continuous, and there are no eigenvectors. Section~\ref{sec:preparation-evolution} used $\hbar D_x$ as a Hamiltonian, the generator of translations, whose spectrum is all of $\R$. Here $D_x$ is the map.
+
+The kernels of $A$ and $A^*$ are zero, so the reduced cohomology of Section~\ref{sec:cohomology-index} vanishes in both degrees. The support nevertheless has no gap. Choose unit vectors $\phi_n$ whose Fourier transforms are supported in $[-1/n,1/n]$. Then
+\begin{equation}
+ \|D_x\phi_n\|\le\frac1n,\qquad\|\phi_n\|=1 ,
+ \label{eq:four-maps-translation-no-gap}
+\end{equation}
+so no bound $\|Ax\|\ge c\|x\|$ with $c>0$ holds on $(\ker A)^\perp=L^2(\R)$. By the criterion stated after Proposition~\ref{prop:index-harmonic-pairing}, the range of $D_x$ is not closed. It is dense, and the map is not Fredholm.
+
+For a unit vector $\eta\in L^2(\R)$ take the port $\Gamma_\eta c=c\eta$ and $H=D_x^2$. With $\widehat\eta$ the unitary Fourier transform of $\eta$, the response is
+\begin{equation}
+ M_\eta(z)=\int_\R\frac{|\widehat\eta(k)|^2}{k^2-z}\,dk
+   =\int_0^\infty\frac{|\widehat\eta(\sqrt\lambda)|^2+|\widehat\eta(-\sqrt\lambda)|^2}{2\sqrt\lambda}\,\frac{d\lambda}{\lambda-z}
+ \label{eq:four-maps-translation-response}
+\end{equation}
+for $z\in\C\setminus[0,\infty)$.
+Its spectral measure is absolutely continuous. The second form shows what the response retains. It contains the weights of the two directions of motion only through their sum. The return $D_x^2$ has multiplicity two and the port has rank one, so the pair $(D_x^2,\Gamma_\eta)$ is never minimal: the function with Fourier transform $\operatorname{sgn}(k)\,\overline{\widehat\eta(-k)}$ is orthogonal to the reached space. By Section~\ref{subsec:passive-minimal} the response determines only the minimal part, which is multiplication by $\lambda$ on the square-integrable functions for the measure in Eq.~\eqref{eq:four-maps-translation-response}, with the constant function one as its port vector. An absolutely continuous response and the absence of a gap are thus compatible with the same relations as the discrete examples.
+
+\subsection{The creation operator of an oscillator}
+\label{subsec:four-maps-oscillator}
+
+Let $\mathfrak h=\ell^2(\mathbb N_0)$ with orthonormal basis $(e_n)_{n\ge0}$, and define
+\begin{equation}
+ ae_0=0,\qquad ae_n=\sqrt n\,e_{n-1}\quad(n\ge1),\qquad a^*e_n=\sqrt{n+1}\,e_{n+1},
+ \label{eq:four-maps-ladder}
+\end{equation}
+on the common domain of the sequences $x=(x_n)$ with $\sum_nn|x_n|^2<\infty$. Both operators are closed and each is the adjoint of the other. Let $N=a^*a$ be the number operator, $Ne_n=ne_n$.
+
+\begin{proposition}[The oscillator map]
+\label{prop:four-maps-oscillator}
+Let $\mathcal H_\Psi=\mathcal H_\Phi=\mathfrak h$ and $A=a^*$. Then
+\begin{equation}
+ A^*A=aa^*=N+I,\qquad AA^*=a^*a=N .
+ \label{eq:four-maps-oscillator-returns}
+\end{equation}
+The range of $A$ is closed, and
+\begin{equation}
+ \ker A=\{0\},\qquad\ker A^*=\C e_0,\qquad\operatorname{ind}A=-1 .
+ \label{eq:four-maps-oscillator-index}
+\end{equation}
+The return $A^*A$ has the spectrum $\{1,2,3,\dots\}$ and $AA^*$ has the same spectrum with one further eigenvalue zero. The polar decomposition is $A=\mathsf S\,(N+I)^{1/2}$, where $\mathsf S e_n=e_{n+1}$ is the unilateral shift of Section~\ref{sec:cohomology-index}. For every $t>0$,
+\begin{equation}
+ \Tr\bigl(e^{-t(N+I)}\bigr)-\Tr\bigl(e^{-tN}\bigr)=-1=\operatorname{ind}A ,\qquad
+ \Tr\bigl(e^{-\pi t(N+I)^2}\bigr)-\Tr\bigl(e^{-\pi tN^2}\bigr)=-1 .
+ \label{eq:four-maps-oscillator-heat}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Equation~\eqref{eq:four-maps-oscillator-returns} holds on the basis vectors, and both sides are diagonal with the domain of sequences satisfying $\sum_nn^2|x_n|^2<\infty$. Since
+\[
+ \|a^*x\|^2=\sum_{n\ge0}(n+1)|x_n|^2\ge\|x\|^2 ,
+\]
+the map is bounded below, so it is injective with closed range. The kernel of $A^*=a$ is spanned by $e_0$, and the index is $0-1$. The spectra are those of the diagonal operators $N+I$ and $N$. The operator $(N+I)^{1/2}$ is positive with trivial kernel and $\mathsf S(N+I)^{1/2}e_n=\sqrt{n+1}\,e_{n+1}$, which is the polar decomposition. For any function $f$ on the non-negative integers with summable values, $\Tr f(N+I)-\Tr f(N)=\sum_{n\ge1}f(n)-\sum_{n\ge0}f(n)=-f(0)$. The two cases $f(x)=e^{-tx}$ and $f(x)=e^{-\pi tx^2}$ give Eq.~\eqref{eq:four-maps-oscillator-heat}.
+\end{proof}
+
+The first identity in Eq.~\eqref{eq:four-maps-oscillator-heat} is the heat-trace formula of Eq.~\eqref{eq:index-heat}. That formula did not apply to the shift itself, whose return is the identity. The oscillator map has the same polar isometry, and its returns have trace-class heat operators.
+
+\begin{proposition}[Mellin transform of the heat trace]
+\label{prop:four-maps-mellin}
+For the oscillator map and $\operatorname{Re}s>1$,
+\begin{equation}
+ \int_0^\infty t^{s/2-1}\,\Tr\bigl(e^{-\pi t(A^*A)^2}\bigr)\,dt
+   =\int_0^\infty t^{s/2-1}\sum_{n=1}^\infty e^{-\pi n^2t}\,dt
+   =\pi^{-s/2}\,\Gamma\!\Bigl(\frac s2\Bigr)\zeta(s),
+ \label{eq:four-maps-mellin}
+\end{equation}
+where $\Gamma(s/2)$ is Euler's gamma function and $\zeta$ is the Riemann zeta function.
+\end{proposition}
+\begin{proof}
+The substitution $u=\pi n^2t$ gives $\int_0^\infty t^{s/2-1}e^{-\pi n^2t}\,dt=\pi^{-s/2}n^{-s}\,\Gamma(s/2)$ for $\operatorname{Re}s>0$. For $\operatorname{Re}s>1$ the sum over $n$ of the absolute values of these integrals converges, which permits integration term by term, and the sum of $n^{-s}$ is $\zeta(s)$.
+\end{proof}
+
+The right side of Eq.~\eqref{eq:four-maps-mellin} is the zeta function completed by its gamma factor. It is not the entire function $\xi(s)$, which carries the additional factor $\frac12s(s-1)$, and it has a simple pole at $s=1$. The proposition uses only the fact that the spectrum of $A^*A$ is the set of positive integers. It makes no statement about the zeros of the zeta function.
+
+The oscillator also has a simple minimal response. For $0<r<1$ let
+\begin{equation}
+ \eta_r=\sqrt{1-r^2}\,\sum_{n=0}^\infty r^ne_n,\qquad\Gamma_rc=c\eta_r ,
+ \label{eq:four-maps-oscillator-port}
+\end{equation}
+so that $\|\eta_r\|=1$. For $H=N+I$ the response is
+\begin{equation}
+ M_r(z)=(1-r^2)\sum_{n=0}^\infty\frac{r^{2n}}{n+1-z}.
+ \label{eq:four-maps-oscillator-response}
+\end{equation}
+The spectrum of $N+I$ is simple and every coefficient of $\eta_r$ is nonzero. The reached space reduces $H$ by Proposition~\ref{prop:passive-two-spans}, so it contains each spectral projection of $\eta_r$ and hence every $e_n$. The pair is minimal, and by Proposition~\ref{prop:passive-uniqueness} the response determines it up to a unique unitary.
+
+\subsection{A derivative on an interval with twisted ends}
+\label{subsec:four-maps-interval}
+
+Let $\Lambda>0$, $\vartheta\in[0,2\pi)$ and $\mathfrak h_\Lambda=L^2(-\Lambda,\Lambda)$. Define
+\begin{equation}
+ D_{\Lambda,\vartheta}=-i\frac{d}{dx},\qquad
+ \operatorname{Dom}D_{\Lambda,\vartheta}=\bigl\{f\in H^1(-\Lambda,\Lambda):f(\Lambda)=e^{i\vartheta}f(-\Lambda)\bigr\}.
+ \label{eq:four-maps-interval-operator}
+\end{equation}
+This operator is self-adjoint, with eigenvalues and normalized eigenfunctions
+\begin{equation}
+ \lambda_n=\frac{2\pi n+\vartheta}{2\Lambda},\qquad
+ e_n(x)=\frac{1}{\sqrt{2\Lambda}}\exp\bigl(i\lambda_n(x+\Lambda)\bigr),\qquad n\in\mathbb Z ,
+ \label{eq:four-maps-interval-spectrum}
+\end{equation}
+which form an orthonormal basis. Taking $A=D_{\Lambda,\vartheta}$ between two copies of $\mathfrak h_\Lambda$ gives $A^*A=AA^*=D_{\Lambda,\vartheta}^2$. The spectrum is discrete and the index is zero. For $\vartheta=0$ the constant function is a zero mode, and on its orthogonal complement the smallest value of $|\lambda_n|$ is $\pi/\Lambda$. For $\vartheta\ne0$ there is no zero mode and the smallest value is $\operatorname{dist}(\vartheta,2\pi\mathbb Z)/(2\Lambda)$. In both cases the support of $A$ has a positive gap, and the returns have the square of that gap.
+
+Evaluation at a point $x_0\in(-\Lambda,\Lambda)$ is not given by a vector of $\mathfrak h_\Lambda$. In the terms of Section~\ref{subsec:passive-heat} with $H=D_{\Lambda,\vartheta}$, it is a distributional trace $\gamma f=f(x_0)$ on the scale $\mathcal X_s$ for $s>1/2$, with spectral coefficients $\gamma_n=e_n(x_0)$. These have
+\begin{equation}
+ |e_n(x_0)|^2=\frac{1}{2\Lambda}\quad\text{for every }n,\qquad\sum_{n\in\mathbb Z}|e_n(x_0)|^2=\infty ,
+ \label{eq:four-maps-interval-point}
+\end{equation}
+so the total spectral mass of the unsmoothed input diverges. For $\tau>0$, Propositions~\ref{prop:passive-heat-distributional} and~\ref{prop:passive-heat-discrete} give the smoothed port $\Gamma_\tau c=cb_\tau$ with
+\begin{equation}
+ b_\tau=\sum_{n\in\mathbb Z}e^{-\tau\lambda_n^2/2}\,\overline{e_n(x_0)}\,e_n ,
+ \label{eq:four-maps-interval-port}
+\end{equation}
+whose squared norm is
+\begin{equation}
+ Z_\tau=\|b_\tau\|^2=\frac{1}{2\Lambda}\sum_{n\in\mathbb Z}e^{-\tau\lambda_n^2}
+   =\frac{1}{\sqrt{4\pi\tau}}\sum_{m\in\mathbb Z}e^{-m^2\Lambda^2/\tau}\cos(m\vartheta).
+ \label{eq:four-maps-interval-mass}
+\end{equation}
+The mass $Z_\tau$ is finite and does not depend on $x_0$. Its second form follows from the Poisson summation formula. It shows how the mass diverges as the smoothing is removed: the leading term $(4\pi\tau)^{-1/2}$ is that of the whole line, and the twist enters only through terms that are exponentially small in $\Lambda^2/\tau$. The response through the smoothed port is
+\begin{equation}
+ M_\tau(z)=\frac{1}{2\Lambda}\sum_{n\in\mathbb Z}\frac{e^{-\tau\lambda_n^2}}{\lambda_n-z}.
+ \label{eq:four-maps-interval-response}
+\end{equation}
+The energies in it are the eigenvalues of the first-order operator, of both signs. Replacing $b_\tau$ by $Z_\tau^{-1/2}b_\tau$ gives a spectral measure of total mass one and leaves the positions $\lambda_n$ of the lines unchanged. The spectrum is simple and every coefficient of $b_\tau$ is nonzero, so the pair is minimal by the argument used for the oscillator. The response therefore determines $\Lambda$ and $\vartheta$, which can be read from the positions of its poles.
+
+\subsection{What is common and what depends on the map}
+\label{subsec:four-maps-table}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.17\linewidth}p{0.14\linewidth}p{0.19\linewidth}p{0.40\linewidth}@{}}
+\toprule
+Map $A$ & Return $A^*A$ & Spectrum of the return & Distinguishing feature \\
+\midrule
+\raggedright $b$ on $\C$ & $|b|^2$ & \raggedright one point & Full support for $b\ne0$. Index zero. \\[2pt]
+\raggedright $-i\,d/dx$ on $L^2(\R)$ & $-d^2/dx^2$ & \raggedright $[0,\infty)$, absolutely continuous & Range dense and not closed. No gap. Not Fredholm. \\[2pt]
+\raggedright $a^*$ on $\ell^2(\mathbb N_0)$ & $N+I$ & \raggedright positive integers & Closed range, index $-1$. Heat trace differs from that of $AA^*$ by $-1$. \\[2pt]
+\raggedright $D_{\Lambda,\vartheta}$ on $L^2(-\Lambda,\Lambda)$ & $D_{\Lambda,\vartheta}^2$ & \raggedright discrete & Index zero, positive gap. A point input has infinite mass until it is smoothed. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The relations among $d_A$, its adjoint, the two odd operators and the Laplacian are the same in all four cases. Whether the spectrum is discrete or continuous, whether a zero mode is unpaired, whether the support has a gap, and what the response measure is are properties of the map and of the port. They do not follow from those relations.
