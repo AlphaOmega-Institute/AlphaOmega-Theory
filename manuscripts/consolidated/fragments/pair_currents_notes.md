@@ -36,6 +36,42 @@ Nothing here changes `Universal_Model.tex` or the shared ledger.
 | `eq:orbital-low-response`: ground correlation | `eq:pair-currents-orbital-correlation` |
 | `eq:orbital-unfiltered-response`: departure probability | `eq:pair-currents-unfiltered` |
 
+## Revision after review of `0c59c49`
+
+The review kept the block as one Section 13 and asked for three changes. All three are
+made, with the smaller points from the same review.
+
+1. **The zero outcome identifies the missed line only on the three-dimensional space.**
+   The text now says so where the reading is introduced: on the two-particle space the
+   zero outcome is `Π_d + Π_W`, and a state on `d` and a state in `W` both give zero
+   with certainty. The reviewer's example is in the text as `eq:pair-currents-leaving`:
+   the matrix `K = diag(i, -i)` has the form that keeps the ground, its mixer is the
+   current `X` with opposite signs on the two labels, and its pulse of length `π/2`
+   takes `e` entirely into `W`. I added that among the mixers that keep the ground only
+   real multiples of the aligned one map `span{g, e, m}` into itself. LG's observation
+   about cyclicity, which the first version left out, is now in
+   `subsec:pair-currents-algebras`: from the ground the currents and `H_s` generate
+   exactly `span{g, e, m}`, so the ground is not cyclic for their algebra on a larger
+   output.
+2. **Two counts were run together.** The excitation alone reaches two dimensions, and
+   these reproduce the two-line function. Three dimensions are needed by a realization
+   that contains the stationary ground, and they are the minimal output of the
+   preparation, which also prepares the ground. Both the pair paragraph and the trap
+   paragraph now name the preparation, and so do their two rows.
+3. **The spin gap is signed.** It is displayed as `eq:pair-currents-spin-gap`. The
+   triplet component lies above the ground for `|g_s χ| < 4` and below it for
+   `|g_s χ| > 4`, and the first order does not decide at equality. A new test checks the
+   formula and both signs on the first-order shell and against the truncated trap. The
+   representation on `g`, `e`, `m` is now called orbital spin one, and the text says
+   that these vectors are singlets of the physical spin while `W` is its triplet.
+
+Also: the restriction is to the original pair plane and the compression to the rotated
+plane, and the text gives their difference `(j - s) sin²(2θ)`.
+
+What I concede: the first version let "the zero outcome is the projection onto the line
+that the preparation misses" stand next to mixers that leave the space on which that is
+true, and its sentence "the minimal output of this port" did not say which port.
+
 ## Change in the clause count
 
 Before writing rows I searched the whole ledger for clauses that name the mixers, the
@@ -81,12 +117,15 @@ Offered for review as additions.
 6. The origin of the quaternion form: the one-body unitaries that keep the ground ray
    are the phases times the unitary symplectic group of the form `ε ⊕ ε`, with a
    ten-dimensional Lie algebra. This is new.
-7. The first-order position of the lowest triplet component with a spin moment. LG says
-   only that a spin Zeeman term must be included in the test.
+7. The signed first-order gap of the lowest triplet component with a spin moment,
+   `eq:pair-currents-spin-gap`. LG says only that a spin Zeeman term must be included in
+   the test.
 8. The coupling out of the prepared plane in the trap, `-2iħΩ_B m_λ`, and the contrast
    between the two models: the pair input generator is a restriction that differs from
    the compression, and the trap input Hamiltonian is a compression that is not a
    restriction.
+9. The mixer of `eq:pair-currents-leaving` and the statement about which ground-keeping
+   mixers preserve the three-dimensional space. The example is the reviewer's.
 
 ## Sentences that interpret
 
@@ -104,13 +143,6 @@ These are the ones to read as proposals.
   choice in addition to the prepared plane and the output dynamics." The consolidated
   manuscript already names LG in this way in Section 8.
 
-## Not carried
-
-LG's last paragraph of the pair section says that adding `W` to the output while keeping
-only the current algebra would destroy cyclicity of `g`. It has no ledger row. The
-fragment states that the currents annihilate `W`, from which this follows, and does not
-draw the conclusion.
-
 ## Names
 
 `T`, `X`, `Y`, `Z` for the currents and `T_K`, `Y_K` for a general mixer, as in LG.
@@ -122,10 +154,10 @@ factor and projection.
 
 ## Left for integration
 
-- `checks/fragments/test_pair_currents.py` has nine tests. The statements of LG in this
-  block were already checked in `checks/pair/` and `checks/orbital/`; the new file checks
-  the additions and the forms in which the text states the results. On this branch the
-  suite gives 143 passed and 2 skipped, and 145 with `--full`.
+- `checks/fragments/test_pair_currents.py` has eleven tests. The statements of LG in
+  this block were already checked in `checks/pair/` and `checks/orbital/`; the new file
+  checks the additions and the forms in which the text states the results. On this
+  branch the suite gives 145 passed and 2 skipped, and 147 with `--full`.
 - The check cites existing `UM` labels only. The fragment's labels can be added to its
   `LABELS`, and to those of the existing pair and orbital checks, once they are in the
   manuscript.

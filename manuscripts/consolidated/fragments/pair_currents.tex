@@ -1,7 +1,7 @@
 \section{Which operations prepare and read the pair?}
 \label{sec:pair-currents}
 
-Sections~\ref{sec:preparation-evolution} and~\ref{sec:preparation-effective-dynamics} specified the pair preparation by an orbital rotation and its detector by an occupation imbalance. Both are built from three one-body operators. This section identifies them, shows that $\Span\{g,e,m\}$ is their spin-one representation, and asks which drives and mixers leave the ground in place. The answer separates what the pair Hamiltonian supplies from what the apparatus has to add. In the trap of Section~\ref{subsec:orbital-apparatus} the same three operators are the angular momentum and the two quadrupoles.
+Sections~\ref{sec:preparation-evolution} and~\ref{sec:preparation-effective-dynamics} specified the pair preparation by an orbital rotation and its detector by an occupation imbalance. Both are built from three one-body operators. This section identifies them, shows that $\Span\{g,e,m\}$ is their representation of spin one in the orbital index, and asks which drives and mixers leave the ground in place. The answer separates what the pair Hamiltonian supplies from what the apparatus has to add. In the trap of Section~\ref{subsec:orbital-apparatus} the same three operators are the angular momentum and the two quadrupoles.
 
 \subsection{Three currents and the space they act on}
 \label{subsec:pair-currents-triplet}
@@ -25,7 +25,7 @@ Indeed the terms of $T^2$ with equal labels vanish because $c_i^*c_i^*=0$, and e
  \end{aligned}
  \label{eq:pair-currents-action}
 \end{equation}
-and all three currents annihilate $W$. Thus $\Span\{g,e,m\}$ carries the spin-one representation of the currents, with $X^2+Y^2+Z^2=2$ there, and $W$ consists of three invariant vectors. Each of $g$, $e$ and $m$ is the vector annihilated by one current, namely $Y$, $X$ and $Z$. Since $P_c^*P_c+P_d^*P_d$ and $Z^2$ agree on $\mathcal F_2$, the symmetric family of Section~\ref{subsec:pair-grounds-excitations} is
+and all three currents annihilate $W$. Thus $\Span\{g,e,m\}$ carries the representation of spin one of the currents, with $X^2+Y^2+Z^2=2$ there, and $W$ consists of three invariant vectors. We call this spin \emph{orbital}, because the currents act on the orbital index $c,d$ and leave the internal label alone. Each of $g$, $e$ and $m$ is the vector annihilated by one current, namely $Y$, $X$ and $Z$. Since $P_c^*P_c+P_d^*P_d$ and $Z^2$ agree on $\mathcal F_2$, the symmetric family of Section~\ref{subsec:pair-grounds-excitations} is
 \begin{equation}
  H_s=-sZ^2-j\,(X^2-Y^2)\quad\text{on }\mathcal F_2,\qquad
  [Y,H_s]=i\,(j-s)\,(XZ+ZX).
@@ -49,7 +49,7 @@ On $\Span\{g,e,m\}$ this gives $Z_\theta^2=A_\theta A_\theta^*$ and $I-Z_\theta^
  \Tr(\rho\,\Pi_d)=\Pr\nolimits_\rho(Z_\theta=0)=1-\Tr(\rho Z_\theta^2).
  \label{eq:pair-currents-zero}
 \end{equation}
-On $\mathcal F_2$ the currents annihilate $W$, which adds the term $\Pi_W$ of Eq.~\eqref{eq:pair-ambient-zero}. The frequency of the outcome zero, or equivalently the second moment of the imbalance, determines the weight on $d$. The first moment does not. It vanishes for the state $\Pi_d$ and also for the equal mixture of the two eigenstates with outcomes $\pm1$. Their probabilities of zero are one and zero.
+This identification is confined to $\Span\{g,e,m\}$. On $\mathcal F_2$ the currents annihilate $W$, so the zero outcome has the projection $\Pi_d+\Pi_W$ of Eq.~\eqref{eq:pair-ambient-zero}. A state on $d$ and a state in $W$ both give zero with certainty. On $\Span\{g,e,m\}$ the frequency of the outcome zero, or equivalently the second moment of the imbalance, determines the weight on $d$. The first moment does not. It vanishes for the state $\Pi_d$ and also for the equal mixture of the two eigenstates with outcomes $\pm1$. Their probabilities of zero are one and zero.
 
 \subsection{Which drives keep the ground in place?}
 \label{subsec:pair-currents-drives}
@@ -64,12 +64,12 @@ The drives that keep the ground are the multiples of $Y$, and by Eq.~\eqref{eq:p
 
 The pair component cannot replace the drive. Let $\Pi_c=(-1)^{N_c}$. The Hamiltonian $H_s$, the two Hermitian quadratures of $P_c^*P_d$, the imbalance $Z$ and the self-channels $P_c^*P_c$, $P_d^*P_d$ commute with $\Pi_c$ and map the pair plane $\Span\{C,D_p\}$ into itself. On that plane $\Pi_c=1$, while $\Pi_cm=-m$. No sequence of these controls takes a vector of the pair plane to one with a component on $m$. The currents $X$ and $Y$ change $N_c$ by one and anticommute with $\Pi_c$. A one-body mixer is therefore an operation in addition to the pair component. This is a restriction on the stated family of controls. It does not exclude a larger system with further sources.
 
-The input generator of Section~\ref{subsec:pair-grounds-excitations} is the restriction of $H_s$ to the pair plane, $\operatorname{diag}(-(s+j),\,j-s)$ in the basis $g_\Psi,e_\Psi$. The compression through the rotated preparation is different,
+The input generator of Section~\ref{subsec:pair-grounds-excitations} is the restriction of $H_s$ to the original pair plane $\Span\{C,D_p\}$, which is $\operatorname{diag}(-(s+j),\,j-s)$ in the basis $g_\Psi,e_\Psi$. The compression to the rotated plane $\Span\{g,b\}$ is different,
 \begin{equation}
  A_\theta^*H_sA_\theta=\operatorname{diag}\bigl(-(s+j),\,(j-s)\,u_\theta^2\bigr),
  \label{eq:pair-currents-compression}
 \end{equation}
-because $\langle b,H_sb\rangle=(j-s)u_\theta^2$. For $0<\theta<\pi/4$ and $s\ne j$ two things therefore fail. The prepared plane is not invariant, by Eq.~\eqref{eq:pair-invariance-amplitude}, so $A_\theta$ intertwines no input generator with $H_s$. And the specified input generator differs from the compression.
+because $\langle b,H_sb\rangle=(j-s)u_\theta^2$. The two excited entries differ by $(j-s)v_\theta^2$. For $0<\theta<\pi/4$ and $s\ne j$ two things therefore fail. The prepared plane is not invariant, by Eq.~\eqref{eq:pair-invariance-amplitude}, so $A_\theta$ intertwines no input generator with $H_s$. And the specified input generator differs from the compression.
 
 \subsection{A general mixer and an internal symmetry}
 \label{subsec:pair-currents-mixers}
@@ -121,10 +121,17 @@ The form of Eq.~\eqref{eq:pair-currents-quaternion} has a simple origin. Over th
 \]
 A one-body unitary acts on $\Omega$ by a congruence $\Omega\mapsto\mathsf R\,\Omega\,\mathsf R^T$ with a unitary $4\times4$ matrix $\mathsf R$. It keeps the ray of $g$ exactly when $\mathsf R\,\Omega\,\mathsf R^T$ is a multiple of $\Omega$, that is, when $\mathsf R$ is a phase times an element of the unitary symplectic group of $\Omega$. The Hermitian generators are the multiples of the identity together with a real Lie algebra of dimension ten: three internal rotations on each orbital and the four-parameter family of Eq.~\eqref{eq:pair-currents-quaternion}. Among the common-label drives, $Y$ belongs to it and $X$, $Z$ do not.
 
+Keeping the ground does not keep the space on which the zero outcome identifies $d$. Take $K=\operatorname{diag}(i,-i)$, which has the form of Eq.~\eqref{eq:pair-currents-quaternion}. Its mixer is the current $X$ taken with opposite signs on the two labels, $Y_K=\tfrac12(c_1^*d_1+d_1^*c_1)-\tfrac12(c_2^*d_2+d_2^*c_2)$. With the vector $w_0\in W$ of Section~\ref{sec:preparation-evolution},
+\begin{equation}
+ Y_Kg=0,\qquad Y_Ke=-w_0,\qquad Y_Kw_0=-e,\qquad e^{-itY_K}e=\cos t\;e+i\sin t\;w_0 .
+ \label{eq:pair-currents-leaving}
+\end{equation}
+The pulse with $t=\pi/2$ fixes the ground and takes $e$ entirely into $W$. The imbalance then reads zero with certainty although the state has no component on $d$. A mixer admitted by Eq.~\eqref{eq:pair-currents-quaternion} can thus invalidate the reading of Eq.~\eqref{eq:pair-currents-zero}, and the bound on the weight in $W$ used with Eq.~\eqref{eq:pair-ambient-zero} has to be established separately for it. Among the matrices of Eq.~\eqref{eq:pair-currents-quaternion}, only the real multiples of the identity give mixers that map $\Span\{g,e,m\}$ into itself.
+
 \subsection{What the readout and the Hamiltonian generate}
 \label{subsec:pair-currents-algebras}
 
-On the input, the generator is $\operatorname{diag}(-(s+j),\,j-s)$ and the input imbalance $A_\theta^*Z_\theta A_\theta$ exchanges $g_\Psi$ and $e_\Psi$. Together they generate all $2\times2$ matrices. On $\Span\{g,e,m\}$, for $0<\theta<\pi/4$ and $s\ne j$, the Hamiltonian $H_s$ has the three distinct eigenvalues $-(s+j)$, $j-s$ and $0$, and $Z_\theta g=u_\theta e+v_\theta m$ has both components nonzero. The spectral projections and these two matrix elements give every matrix unit, so $H_s$ and $Z_\theta$ generate all $3\times3$ matrices. Each ground is cyclic for its algebra, as R2 asks. So is every other nonzero vector. Cyclicity does not select the grounds. The Hamiltonians do.
+On the input, the generator is $\operatorname{diag}(-(s+j),\,j-s)$ and the input imbalance $A_\theta^*Z_\theta A_\theta$ exchanges $g_\Psi$ and $e_\Psi$. Together they generate all $2\times2$ matrices. On $\Span\{g,e,m\}$, for $0<\theta<\pi/4$ and $s\ne j$, the Hamiltonian $H_s$ has the three distinct eigenvalues $-(s+j)$, $j-s$ and $0$, and $Z_\theta g=u_\theta e+v_\theta m$ has both components nonzero. The spectral projections and these two matrix elements give every matrix unit, so $H_s$ and $Z_\theta$ generate all $3\times3$ matrices. Each ground is cyclic for its algebra, as R2 asks. So is every other nonzero vector. Cyclicity does not select the grounds. The Hamiltonians do. The output space matters here. The three currents and $H_s$ map $\Span\{g,e,m\}$ into itself, and from $g$ they generate exactly this space. If the output is enlarged to include part of $W$, the ground is no longer cyclic for the algebra that $H_s$ and the currents generate.
 
 The ground correlation of the readout shows the two excited lines. Let $Z_\theta(t)=e^{itH_s/\hbar}Z_\theta e^{-itH_s/\hbar}$ be the readout after a wait $t$. Then
 \begin{equation}
@@ -132,7 +139,7 @@ The ground correlation of the readout shows the two excited lines. Let $Z_\theta
  =u_\theta^2\,e^{-2ijt/\hbar}+v_\theta^2\,e^{-i(s+j)t/\hbar},
  \label{eq:pair-currents-correlation}
 \end{equation}
-because $Z_\theta g=b$ and the energies of $e$ and $m$ above the ground are $2j$ and $s+j$. Two lines of positive weight at distinct frequencies require two orthogonal eigenvectors orthogonal to a stationary ground. A realization of this correlation by a self-adjoint Hamiltonian therefore has dimension at least three, which $\Span\{g,e,m\}$ attains. At $\theta=0$ the weight $v_\theta^2$ vanishes, and at $\theta=\pi/4$ the weight $u_\theta^2$ does. The prepared plane is then $\Span\{g,e\}$ or $\Span\{g,m\}$. It reduces $H_s$, the preparation maps onto this two-dimensional minimal output, and there is no defect. At $s=j$ the two frequencies coincide for every angle.
+because $Z_\theta g=b$ and the energies of $e$ and $m$ above the ground are $2j$ and $s+j$. As a function of $t$ this is the transform of a measure with two atoms, and the two dimensions $\Span\{e,m\}$ that the excitation $b$ reaches reproduce it. A realization that also contains the stationary ground whose correlation is measured needs a third dimension: two orthogonal eigenvectors for the two lines, both orthogonal to the ground. The preparation $A_\theta$ prepares $g$ as well as $b$, and its minimal output $\Span\{g,e,m\}$ attains this bound. At $\theta=0$ the weight $v_\theta^2$ vanishes, and at $\theta=\pi/4$ the weight $u_\theta^2$ does. The prepared plane is then $\Span\{g,e\}$ or $\Span\{g,m\}$. It reduces $H_s$, the preparation maps onto this two-dimensional minimal output, and there is no defect. At $s=j$ the two frequencies coincide for every angle.
 
 \subsection{The same currents in the trap}
 \label{subsec:pair-currents-orbital}
@@ -143,9 +150,14 @@ In the trap of Section~\ref{subsec:orbital-apparatus} the vector potential is th
  =\frac{\mathbf p^2}{2M}+\frac{M(\omega_0^2+\Omega_{\rm B}^2)\,r^2}{2}-\Omega_{\rm B}\,(xp_y-yp_x),
  \label{eq:pair-currents-minimal-coupling}
 \end{equation}
-since $\mathbf p\cdot\mathbf A+\mathbf A\cdot\mathbf p=\mathcal B\,(xp_y-yp_x)$ and $q^2\mathbf A^2=M^2\Omega_{\rm B}^2r^2$. This is Eq.~\eqref{eq:compensated-orbital-parent} with $\omega^2=\omega_0^2+\Omega_{\rm B}^2$. Only the orbital coupling is included. A spin magnetic moment with $g$-factor $g_s$ would add $-g_s\Omega_{\rm B}S_z$. This term commutes with the Hamiltonian and leaves the three singlets where they are. It shifts a level with spin projection $M_S$ by $-g_s\hbar\Omega_{\rm B}M_S$, so the comparison of the ground with the levels of nonzero spin has to be made again. To first order in $\lambda$ the lowest component of the shell triplet then lies $\lambda d_a\,(2-|g_s\chi|/2)$ above $G_\lambda$, and the higher levels with spin need the same test.
+since $\mathbf p\cdot\mathbf A+\mathbf A\cdot\mathbf p=\mathcal B\,(xp_y-yp_x)$ and $q^2\mathbf A^2=M^2\Omega_{\rm B}^2r^2$. This is Eq.~\eqref{eq:compensated-orbital-parent} with $\omega^2=\omega_0^2+\Omega_{\rm B}^2$. Only the orbital coupling is included. A spin magnetic moment with $g$-factor $g_s$ would add $-g_s\Omega_{\rm B}S_z$. This term commutes with the Hamiltonian and leaves the three singlets where they are. It shifts a level with spin projection $M_S$ by $-g_s\hbar\Omega_{\rm B}M_S$, so the comparison of the ground with the levels of nonzero spin has to be made again. For fixed $a$, $\omega$, $\chi$ and $g_s$, the energy of the lowest component of the shell triplet minus that of $G_\lambda$ is then
+\begin{equation}
+ \lambda d_a\Bigl(2-\frac{|g_s\chi|}{2}\Bigr)+O(\lambda^2).
+ \label{eq:pair-currents-spin-gap}
+\end{equation}
+For small $\lambda$ the triplet component lies above $G_\lambda$ when $|g_s\chi|<4$ and below it when $|g_s\chi|>4$, and then $G_\lambda$ is not the ground. At $|g_s\chi|=4$ the first order does not decide. The higher levels with spin need the same test.
 
-On the bare shell the currents are familiar observables. Let $c_i$ and $d_i$ be the valence modes of $p_x$ and $p_y$ with spin $i$. The one-particle angular momentum satisfies $Lp_x=i\hbar p_y$, $Lp_y=-i\hbar p_x$ and $Ls=0$, so on the shell $L=i\hbar\sum_i(d_i^*c_i-c_i^*d_i)=2\hbar Y$. By Eq.~\eqref{eq:pair-currents-action},
+On the bare shell the currents are familiar observables, and the two kinds of spin separate. The vectors $g,e,m$ have orbital spin one and are singlets of the physical spin. The space $W$ is the physical triplet, and the currents annihilate it. Let $c_i$ and $d_i$ be the valence modes of $p_x$ and $p_y$ with spin $i$. The one-particle angular momentum satisfies $Lp_x=i\hbar p_y$, $Lp_y=-i\hbar p_x$ and $Ls=0$, so on the shell $L=i\hbar\sum_i(d_i^*c_i-c_i^*d_i)=2\hbar Y$. By Eq.~\eqref{eq:pair-currents-action},
 \begin{equation}
  Lg=0,\qquad Le=2i\hbar\,m,\qquad Lm=-2i\hbar\,e,
  \label{eq:pair-currents-angular-momentum}
@@ -182,7 +194,7 @@ With $Z_0=\ket{G_\lambda}\bra{e_\lambda}+\ket{e_\lambda}\bra{G_\lambda}$ the sta
  \langle G_\lambda,Z_0(t)Z_0G_\lambda\rangle=e^{-i(E_2-E_0)t/\hbar}\cos(2\Omega_{\rm B}t),
  \label{eq:pair-currents-orbital-correlation}
 \end{equation}
-with two lines of weight $1/2$ at the frequencies $(E_2-E_0)/\hbar\mp2\Omega_{\rm B}$. Their distinct frequencies put both excited directions in the minimal output of this port, which is therefore the whole three-dimensional space.
+with two lines of weight $1/2$ at the frequencies $(E_2-E_0)/\hbar\mp2\Omega_{\rm B}$. The excitation $e_\lambda=Z_0G_\lambda$ alone reaches the two-dimensional space $\Span\{F_{+,\lambda},F_{-,\lambda}\}$, which reproduces this function of $t$. The preparation $A$ also prepares $G_\lambda$. Its minimal output is therefore the whole three-dimensional space.
 
 Without the filter the prepared excitation is $e_Q$ of Section~\ref{subsec:orbital-apparatus}. Its evolving state stays orthogonal to the stationary ground, so the weight outside the prepared plane $\Span\{G_\lambda,e_Q\}$ is one minus the squared return amplitude,
 \begin{equation}
