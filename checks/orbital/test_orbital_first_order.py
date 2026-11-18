@@ -10,6 +10,7 @@ from lib.fock import modes, dag, vacuum, number
 from orbital.model import first_order
 
 LABELS = {
+    "UM": ["eq:pair-currents-angular-momentum", "eq:pair-currents-quadrupoles", "eq:pair-currents-shell"],
     "LG": [
         "sec:orbital-ground-source", "eq:orbital-three-orbitals", "eq:orbital-derived-current",
         "eq:orbital-projected-energies", "eq:orbital-quadrupoles",

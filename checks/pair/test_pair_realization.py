@@ -12,7 +12,7 @@ from pair.model import PairModel
 
 LABELS = {
     "UM": ["eq:pair-matched-probabilities", "eq:pair-detector-pullback", "eq:pair-transfer-povm",
-           "eq:pair-two-setting-ranges"],
+           "eq:pair-two-setting-ranges", "eq:pair-currents-zero", "eq:pair-currents-correlation"],
     "LG": [
         "sec:finite-pair-realization", "eq:pair-parent", "eq:pair-energy-vectors",
         "eq:pair-orbital-rotation", "eq:pair-preparation-map", "eq:pair-imbalance",

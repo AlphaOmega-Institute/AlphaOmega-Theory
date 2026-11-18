@@ -1,4 +1,4 @@
-"""The one-body currents of the pair model: the carrier as their spin-one representation,
+"""The one-body currents of the pair model: the carrier as their orbital spin-one representation,
 the drives and mixers that keep the ground, the readout as a rotated current, and the same
 currents in the orbital trap (angular momentum and the two quadrupoles).
 
@@ -23,9 +23,20 @@ LABELS = {
            "eq:orbital-minimal-coupling", "eq:orbital-derived-current", "eq:orbital-quadrupoles",
            "eq:orbital-low-carrier", "eq:orbital-typed-preparation", "eq:orbital-filtered-readout",
            "eq:orbital-low-response", "eq:orbital-unfiltered-response"],
-    "UM": ["subsec:pair-grounds-excitations", "eq:pair-ambient-zero", "eq:pair-invariance-amplitude",
-           "eq:pair-detector-pullback", "subsec:symmetry-pair", "eq:symmetry-pair-rotation",
-           "subsec:orbital-apparatus", "eq:compensated-orbital-parent", "eq:rotated-orbital-readout"],
+    "UM": [
+        "subsec:pair-grounds-excitations", "eq:pair-ambient-zero", "eq:pair-invariance-amplitude",
+        "eq:pair-detector-pullback", "subsec:symmetry-pair", "eq:symmetry-pair-rotation",
+        "subsec:orbital-apparatus", "eq:compensated-orbital-parent", "eq:rotated-orbital-readout",
+        "eq:pair-currents-square", "eq:pair-currents-action", "eq:pair-currents-hamiltonian",
+        "eq:pair-currents-rotation", "eq:pair-currents-readout", "eq:pair-currents-zero",
+        "eq:pair-currents-drive", "eq:pair-currents-compression", "eq:pair-currents-mixer-image",
+        "eq:pair-currents-leakage", "eq:pair-currents-quaternion", "eq:pair-currents-leaving",
+        "eq:pair-currents-carrier-leakage",
+        "eq:pair-currents-correlation", "eq:pair-currents-minimal-coupling", "eq:pair-currents-spin-gap",
+        "eq:pair-currents-angular-momentum", "eq:pair-currents-orbital-preparation",
+        "eq:pair-currents-orbital-compression", "eq:pair-currents-orbital-correlation",
+        "eq:pair-currents-unfiltered",
+    ],
 }
 
 M = PairModel(theta=0.3, j=1.0)
@@ -62,7 +73,7 @@ def test_currents_act_as_spin_one_on_the_carrier():
         assert_allclose(op @ g, on_g, atol=1e-12)
         assert_allclose(op @ e, on_e, atol=1e-12)
         assert_allclose(op @ m, on_m, atol=1e-12)
-        assert_allclose(op @ M.W, 0, atol=1e-12)                       # three singlets
+        assert_allclose(op @ M.W, 0, atol=1e-12)                       # three orbital singlets
     casimir = X @ X + Y @ Y + Z @ Z
     assert_allclose(casimir @ M.Phi, 2 * M.Phi, atol=1e-12)            # spin one: 1 (1 + 1)
     assert_allclose(casimir @ M.W, 0, atol=1e-12)
@@ -198,6 +209,14 @@ def test_a_mixer_can_keep_the_ground_and_leave_the_detector_space():
         assert_allclose(np.linalg.norm(dag(model.W) @ out), 1.0, atol=1e-12)
         assert_allclose(np.vdot(model.dvec, out), 0, atol=1e-12)
         assert_allclose(1 - np.vdot(out, model.Ztheta @ model.Ztheta @ out).real, 1.0, atol=1e-12)   # zero with certainty
+    # At a single pulse length the carrier can return even if the generator leaks.
+    returned = expm(-1j * np.pi * YK) @ M.Phi
+    assert_allclose(dag(M.W) @ returned, 0, atol=1e-12)
+    # The squared W component of Y_K e resolves the three non-aligned real parameters.
+    z, w = 0.4 - 0.7j, 0.3 + 0.5j
+    mixed = np.array([[z, w], [-np.conj(w), np.conj(z)]])
+    leaked = dag(M.W) @ _mixer(mixed) @ M.e
+    assert_allclose(np.vdot(leaked, leaked).real, z.imag**2 + abs(w)**2, atol=1e-12)
     # among the mixers that annihilate the ground, only real multiples of the aligned one keep span{g, e, m}
     family = [np.eye(2, dtype=complex), 1j * np.array([[0, 1], [1, 0]]),
               np.array([[0, 1], [-1, 0]], dtype=complex), 1j * np.diag([1.0, -1.0])]
@@ -231,16 +250,17 @@ def test_mixer_expansion_in_the_four_cross_states():
         assert_allclose(_mixer(K) @ M.g, expected / (2j * np.sqrt(2)), atol=1e-12)
         leakage = (abs(K[0, 0] - np.conj(K[1, 1]))**2 + abs(K[0, 1] + np.conj(K[1, 0]))**2) / 4
         assert_allclose(np.linalg.norm(_mixer(K) @ M.g)**2, leakage, atol=1e-12)
-    # invariance of the mixer under c -> R_c c, d -> R_d d is R_c K = K R_d
+    # Rotating the annihilation operators transforms K to Rc* K Rd in the mixer.
     for _ in range(20):
         Rc, _ = np.linalg.qr(rng.normal(size=(2, 2)) + 1j * rng.normal(size=(2, 2)))
         Rd, _ = np.linalg.qr(rng.normal(size=(2, 2)) + 1j * rng.normal(size=(2, 2)))
         K = rng.normal(size=(2, 2)) + 1j * rng.normal(size=(2, 2))
         transformed = Rc.conj().T @ K @ Rd
-        assert np.allclose(transformed, K) == np.allclose(Rc @ K, K @ Rd)
-        # the pair term picks up conj(det R_c) det R_d
         new_c = [sum(Rc[i, k] * M.c[k] for k in range(2)) for i in range(2)]
         new_d = [sum(Rd[i, k] * M.d[k] for k in range(2)) for i in range(2)]
+        rotated_transfer = sum(K[i, k] * dag(new_c[i]) @ new_d[k] for i in range(2) for k in range(2))
+        assert_allclose((rotated_transfer - dag(rotated_transfer)) / 2j, _mixer(transformed), atol=1e-12)
+        # The pair term picks up conj(det Rc) det Rd.
         assert_allclose(dag(new_c[1] @ new_c[0]) @ (new_d[1] @ new_d[0]),
                         np.conj(np.linalg.det(Rc)) * np.linalg.det(Rd) * dag(M.Pc) @ M.Pd, atol=1e-12)
 
@@ -386,12 +406,14 @@ def test_triplet_gap_with_a_spin_moment_has_either_sign():
     for chi, g_s in ((0.5, 2.0), (0.9, 2.0), (0.75, 8.0), (0.5, -10.0), (0.8, 5.0)):
         Omega = chi * scale / 2
         shell = scale * excited + 2 * scale * triplet - Omega * (2 * M.Y + g_s * spin)
-        energies, vectors = np.linalg.eigh(dag(M.F2) @ shell @ M.F2)
-        states = M.F2 @ vectors
-        spins = np.array([np.vdot(v, spin @ v).real for v in states.T])
+        energies = np.linalg.eigvalsh(dag(M.F2) @ shell @ M.F2)
+        # At a crossing an eigensolver can mix singlets and triplets of the same energy.
+        # W is the physical spin-triplet space, and it reduces the shell Hamiltonian.
+        triplet_hamiltonian = dag(M.W) @ shell @ M.W
+        assert_allclose(shell @ M.W, M.W @ triplet_hamiltonian, atol=1e-14)
         ground_energy = np.vdot(M.g, shell @ M.g).real
         assert_allclose(shell @ M.g, ground_energy * M.g, atol=1e-14)             # g stays an eigenvector
-        lowest_triplet = energies[np.abs(spins) > 0.5].min()
+        lowest_triplet = np.linalg.eigvalsh(triplet_hamiltonian)[0]
         gap = lowest_triplet - ground_energy
         assert_allclose(gap, scale * (2 - abs(g_s * chi) / 2), atol=1e-14)
         if np.isclose(abs(g_s * chi), 4):

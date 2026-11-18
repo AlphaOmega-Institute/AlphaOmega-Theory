@@ -80,7 +80,7 @@ permanent identifiers.
 
 ## Migration into the consolidated manuscript
 
-[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–12 of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
+[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–13 of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
 
 Section 9 brought all 26 entries from TAUM’s passive-response section into the draft. Together with §1, it states 40 previously tracked clauses and five from the surrounding discussion. Splitting the Hilbert response in TAUM’s architecture theorem from its signed reduction brought the ledger to 219 explicit, 109 recoverable and 157 owed.
 
@@ -92,12 +92,14 @@ Section 12 gives TAUM’s scalar, translation, oscillator and interval maps, the
 
 Section 6 now gives all nine clauses of LG’s canonical deconditioning theorem. The theorem and the surrounding arguments on pure-ground distance, stabilization across moments and conditional return bring 11 owed and ten recoverable LG clauses into the text.
 
+Section 13 makes 11 owed and 17 recoverable clauses explicit. All 30 tracked clauses in LG’s finite pair-transfer subsection and all 27 in its orbital-source subsection now have explicit counterparts.
+
 | Source | Explicit | Recoverable | Owed |
 | --- | ---: | ---: | ---: |
 | TAUM | 142 | 17 | 31 |
-| LG | 153 | 78 | 74 |
+| LG | 181 | 61 | 63 |
 | UM | 1 | 0 | 0 |
-| **All 496 clauses** | **296** | **95** | **105** |
+| **All 496 clauses** | **324** | **78** | **94** |
 
 The UM row records the conjecture introduced in the consolidated manuscript.
 

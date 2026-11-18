@@ -103,6 +103,12 @@ built on the 16-dimensional Fock space (`pair/model.py`).
 | `test_unused_space_is_not_protected_by_number_conservation` | A number-conserving operator couples `W` to `m` | `eq:pair-ambient-zero` |
 | `test_leakage_during_wait_changes_zero_readout` | Starting with zero weight in `W`, evolves the perturbed Hamiltonian and measures the imbalance. At the ideal transfer time its zero-count excess equals the acquired `W` weight. The line, leakage and detector probabilities agree with the exact solution at perturbations of 0, 0.03 and 0.10 times `j`. | `eq:pair-ambient-zero`, `eq:pair-defect-evolution`, UM `eq:pair-leakage-readout` |
 
+The eleven §13 checks verify the orbital currents, the ground-preserving mixers and
+the imbalance readout on the three-state carrier and on the full two-particle space.
+They also check the signed triplet gap and compare the two-dimensional cyclic space
+of the trap excitation with the three-dimensional space reached by the preparation.
+[Pair-current checks](pair/test_pair_currents.py)
+
 | Check (`pair/test_phase_graphs.py`) | Establishes | Consolidated labels |
 | --- | --- | --- |
 | `test_phase_graph_projectors_and_sector_population` | Graph projections, Hilbert normalization, Krein neutrality, the sine and cosine readouts, and paired effects across sector populations for fixed content | `eq:polar-graph-projector`, `prop:phase-readout` |
@@ -203,7 +209,7 @@ checks/
   test_index.py         rotated shift and dimensions after input enlargement
   test_determination.py cyclic generation and readout on a finite path
   lib/                  Fock-space operators and small linear-algebra helpers
-  pair/                 pair model and its checks
+  pair/                 pair model, controls, §13 currents and readout
   orbital/              orbital model and its checks
   response/             port responses and worked examples in §12
   geometry/             moving subspaces, characteristic forms and compact symmetry averaging

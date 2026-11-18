@@ -8,7 +8,8 @@ from lib.linalg import rank, response_weights, in_span
 from pair.model import PairModel
 
 LABELS = {
-    "UM": ["subsec:pair-grounds-excitations", "eq:pair-invariance-amplitude", "eq:pair-leakage-readout"],
+    "UM": ["subsec:pair-grounds-excitations", "eq:pair-invariance-amplitude", "eq:pair-leakage-readout",
+           "eq:pair-currents-compression", "eq:pair-currents-leakage", "prop:pair-currents-invariant-mixer"],
     "LG": [
         "eq:pair-completed-hamiltonian", "eq:pair-completed-spectrum",
         "eq:pair-completed-response", "eq:pair-general-mixer",
