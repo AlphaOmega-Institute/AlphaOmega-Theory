@@ -94,6 +94,17 @@ def test_three_state_port_as_a_preparation():
         weights = [w for _, w in response_weights(h, port) if np.linalg.norm(w) > 1e-12]
         count = sum(np.linalg.matrix_rank(w) for w in weights) - np.linalg.matrix_rank(sum(weights))
         assert count == (1 if nu else 0) and minimal_space(h, port).shape[1] == (3 if nu else 2)
+        if nu:
+            # complete transfer first at t_* = pi hbar / (2 |nu| ell); within a window the weight is bounded by (|nu| ell T / hbar)^2
+            weight = lambda t: abs(np.vdot(d, expm(-1j * t * h / hbar) @ e)) ** 2
+            t_star = np.pi * hbar / (2 * abs(nu) * ell)
+            np.testing.assert_allclose(weight(t_star), 1.0, atol=1e-12)
+            assert max(weight(t) for t in np.linspace(0, 0.98 * t_star, 400)) < 1 - 1e-4
+            for window in (0.05, 0.4, 3.0):
+                largest = max(weight(t) for t in np.linspace(0, window, 2001))
+                rate = abs(nu) * ell * window / hbar
+                np.testing.assert_allclose(largest, np.sin(min(rate, np.pi / 2)) ** 2, atol=1e-6)
+                assert largest <= rate**2 + 1e-12
         reached = minimal_space(h, port)
         np.testing.assert_allclose(np.linalg.norm(reached.conj().T @ d) ** 2, 1.0 if nu else 0.0, atol=1e-10)
         # the port read as a preparation A = Gamma from C^2 to C^3

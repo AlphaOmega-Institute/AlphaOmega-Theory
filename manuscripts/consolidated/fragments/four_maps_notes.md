@@ -111,7 +111,11 @@ Three comparisons were drawn out in review of `b301a28` and are now in the text:
 - Three-state example. The port and the direction it misses are the same at every bias.
   The bias decides whether the evolution carries the prepared excitation into that
   direction: it is the indirect space when the lines are split and permanently invisible
-  when they coincide.
+  when they coincide. A commit after the review adds the timing: complete transfer first
+  at pi hbar / (2 |nu| ell), and within a window of length T a weight of at most
+  (|nu| ell T / hbar)^2. The reached space jumps in dimension when the bias leaves zero,
+  while the weight found in a fixed window goes to zero with the bias. The formulas were
+  stated in the review that accepted `ea79289`.
 - Oscillator and line. Both use a port of rank one. The oscillator port reaches every
   level. On the line a port whose Fourier transform vanishes nowhere still misses part
   of the space, because each energy has two momentum directions.
