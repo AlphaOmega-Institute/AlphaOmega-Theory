@@ -3,9 +3,9 @@
 The models use units with hbar = 1 and fixed seeds for random matrices.
 """
 import numpy as np
-from scipy.linalg import expm, null_space, orth, sqrtm
+from scipy.linalg import expm, null_space, orth
 
-from lib.linalg import spectral_blocks
+from lib.linalg import hermitian_power, spectral_blocks
 from pair.model import PairModel
 
 LABELS = {
@@ -435,7 +435,7 @@ def test_heat_smoothed_ports():
     unit = scalar / np.linalg.norm(scalar)
     assert np.isclose((unit.conj().T @ unit)[0, 0].real, 1.0)
     weak = port @ np.diag([1.0, 1e-6])                           # one direction of very small weight
-    modulus = sqrtm(weak.conj().T @ weak)
-    polar = weak @ np.linalg.inv(modulus)
+    modulus = hermitian_power(weak.conj().T @ weak, 0.5)
+    polar = weak @ hermitian_power(weak.conj().T @ weak, -0.5)
     np.testing.assert_allclose(polar.conj().T @ polar, np.eye(p), atol=1e-6)
     np.testing.assert_allclose(polar @ modulus, weak, atol=1e-10 * np.linalg.norm(weak))

@@ -1,7 +1,7 @@
 """Regression checks for numerical spectral grouping, independent of a manuscript label."""
 import numpy as np
 
-from lib.linalg import eigenspace, minimal_space, rank, response_weights, spectral_blocks
+from lib.linalg import eigenspace, hermitian_power, minimal_space, rank, response_weights, spectral_blocks
 
 
 def test_nearby_spectral_blocks_are_disjoint():
@@ -88,3 +88,22 @@ def test_merging_distinct_energies_is_an_approximation_by_design():
     Gamma = np.array([[1.0], [1.0]]) / np.sqrt(2)
     assert minimal_space(H, Gamma).shape[1] == 1
     assert [E.shape[1] for _, E in spectral_blocks(H, tol=1e-10)] == [1, 1]
+
+
+def test_hermitian_power_stays_in_double_precision():
+    """Square roots and inverse square roots that numpy.linalg accepts on every supported SciPy version."""
+    rng = np.random.default_rng(7)
+    for n in (2, 5):
+        raw = rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n))
+        M = raw @ raw.conj().T + 0.1 * np.eye(n)
+        root, inverse_root = hermitian_power(M, 0.5), hermitian_power(M, -0.5)
+        assert root.dtype == np.complex128 and inverse_root.dtype == np.complex128
+        np.testing.assert_allclose(root @ root, M, atol=1e-10)
+        np.testing.assert_allclose(inverse_root @ M @ inverse_root, np.eye(n), atol=1e-10)
+        np.testing.assert_allclose(np.linalg.inv(root), inverse_root, atol=1e-9)
+    try:
+        hermitian_power(-np.eye(2), 0.5)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("a matrix that is not positive definite was accepted")

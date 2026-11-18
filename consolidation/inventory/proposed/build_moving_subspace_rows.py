@@ -56,7 +56,7 @@ UPDATES = {
          "The curvature is displayed as the difference of the two mixed returns, with their order, in the differential notation of Section 7."),
     ("@2238", "Directional mixed returns and nonzero curvature"):
         ("proved result", "subsec:moving-connection", "Curvature is thus not the return of one map.",
-         "The contrast between one positive return and the antisymmetric exchange of two directions is stated, with the consequence that a one-parameter family has no curvature."),
+         "The contrast between one positive return and the antisymmetric exchange of two directions is stated, with the consequence that a one-parameter family has no curvature. The worked example shows two tangent maps into the same complex line whose imaginary ratio makes the mixed return anti-Hermitian."),
     ("def:local-gauge-data", "Frame connection, adjoint sign and curvature matrix"):
         ("definition", "eq:moving-frame eq:moving-connection-matrix eq:moving-frame-curvature prop:moving-frame", "",
          "Frames, the connection matrix and its curvature are defined. Part (a) of the proposition gives the anti-Hermitian sign. Local existence of frames is shown by a formula."),
@@ -82,8 +82,8 @@ UPDATES = {
         ("proved result", "cor:moving-flux eq:moving-flux", "",
          "Proved for every finite rank by a triangulation and the determinants of edge transports. TAUM's statement is the case of rank one. The sentence after the proof covers smooth singular cycles. The identification of the integer with the Chern pairing is cited."),
     ("@2477", "Holonomy and characteristic number"):
-        ("proved result", "subsec:moving-characteristic", "The holonomy of a loop is not quantized.",
-         "For rank one the holonomy of a loop bounding a disc is the exponential of minus the flux through it, which need not be trivial for a contractible loop. The integer belongs to a closed surface."),
+        ("proved result", "eq:moving-holonomy-flux subsec:moving-characteristic", "The holonomy of a loop is not quantized.",
+         "The determinant of the holonomy of a loop bounding a disc is the exponential of minus the flux of the trace through it, which need not be trivial for a contractible loop. The integer belongs to a closed surface. The paragraph also separates curvature at a point from holonomy of a loop."),
     ("eq:ch2-return", "Second Chern character and interpretation of characteristic numbers"):
         ("proved result", "eq:moving-second-chern subsec:moving-characteristic", "Identifying a characteristic number with a physical charge requires additional data",
          "The degree-four form is displayed. The caution about physical charge is carried."),

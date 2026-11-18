@@ -43,6 +43,18 @@ def spectral_blocks(H, tol=SPECTRAL_TOLERANCE):
     return blocks
 
 
+def hermitian_power(M, exponent):
+    """M**exponent for a positive definite Hermitian matrix, from its eigendecomposition.
+
+    scipy.linalg.sqrtm can return an extended-precision array on some platforms and SciPy
+    versions, which numpy.linalg then refuses.  This routine stays in double precision.
+    """
+    w, V = np.linalg.eigh((M + M.conj().T) / 2)
+    if w.min() <= 0:
+        raise ValueError("matrix is not positive definite")
+    return (V * w**exponent) @ V.conj().T
+
+
 def response_weights(H, Gamma):
     """Port weights R_lam = Gamma^* E_lam Gamma for the grouped spectrum.
 

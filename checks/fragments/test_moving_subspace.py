@@ -15,8 +15,9 @@ import itertools
 
 import numpy as np
 from scipy.integrate import solve_ivp
-from scipy.linalg import expm, expm_frechet, sqrtm
+from scipy.linalg import expm, expm_frechet
 
+from lib.linalg import hermitian_power
 from pair.model import PairModel
 
 LABELS = {
@@ -109,7 +110,7 @@ def test_direct_rotation_of_nearby_projections():
         raw = q @ p + (eye - q) @ (eye - p)
         np.testing.assert_allclose(raw.conj().T @ raw, eye - defect, atol=1e-12)
         np.testing.assert_allclose(raw @ raw.conj().T, eye - defect, atol=1e-12)
-        rotation = raw @ np.linalg.inv(sqrtm(eye - defect))
+        rotation = raw @ hermitian_power(eye - defect, -0.5)
         np.testing.assert_allclose(rotation.conj().T @ rotation, eye, atol=1e-10)
         np.testing.assert_allclose(rotation @ p @ rotation.conj().T, q, atol=1e-10)
     # projections of different rank are never closer than one
@@ -220,6 +221,22 @@ def test_curvature_is_the_antisymmetrized_mixed_return():
         assert np.linalg.eigvalsh(tensor).min() > -1e-12
         for a, b in itertools.combinations(range(p), 2):
             np.testing.assert_allclose(tensor[a, b] - tensor[b, a], np.vdot(psi, family.curvature(x, a, b) @ psi), atol=1e-12)
+        # for any finite rank the scalar form Re Tr(B_a^* B_b) = Tr(d_a Pi d_b Pi) / 2 is symmetric and positive semidefinite
+        form = np.array([[np.trace(tangent[a].conj().T @ tangent[b]).real for b in range(p)] for a in range(p)])
+        np.testing.assert_allclose(form, [[np.trace(dpi[a] @ dpi[b]).real / 2 for b in range(p)] for a in range(p)], atol=1e-12)
+        np.testing.assert_allclose(form, form.T, atol=1e-12)
+        assert np.linalg.eigvalsh(form).min() > -1e-12
+    # the form vanishes along a parameter that leaves the subspace fixed, and so does every curvature with it
+    family = Family(rng, 5, 2, 3)
+    start = family.proj(np.zeros(3))
+    family.linear[2] = start @ family.linear[2] @ start + (np.eye(5) - start) @ family.linear[2] @ (np.eye(5) - start)
+    pi, dpi = family.dproj(np.zeros(3))
+    np.testing.assert_allclose(dpi[2], 0, atol=1e-12)
+    form = np.array([[np.trace(dpi[a] @ dpi[b]).real / 2 for b in range(3)] for a in range(3)])
+    np.testing.assert_allclose(form[2], 0, atol=1e-12)
+    assert np.linalg.eigvalsh(form[:2, :2]).min() > 1e-6
+    for a in range(2):
+        np.testing.assert_allclose(family.curvature(np.zeros(3), a, 2), 0, atol=1e-12)
 
 
 def test_frames_and_change_of_frame():
@@ -272,7 +289,7 @@ def test_frames_and_change_of_frame():
             pi_y = family.proj(y)
             gram = xi_base.conj().T @ pi_y @ xi_base
             assert np.linalg.eigvalsh(gram).min() > 1e-3
-            local = pi_y @ xi_base @ np.linalg.inv(sqrtm(gram))
+            local = pi_y @ xi_base @ hermitian_power(gram, -0.5)
             np.testing.assert_allclose(local.conj().T @ local, np.eye(r), atol=1e-10)
             np.testing.assert_allclose(local @ local.conj().T, pi_y, atol=1e-10)
 
@@ -345,6 +362,18 @@ def test_transport_and_holonomy():
     flux = sum(wa * wb * np.trace(family.curvature([a, b], 0, 1)) for a, wa in zip(nodes, weights) for b, wb in zip(nodes, weights))
     np.testing.assert_allclose(phase, np.exp(-flux), atol=1e-8)
     assert abs(flux.real) < 1e-10 and 1e-3 < abs(flux.imag) < 1.0
+    # any finite rank: the determinant of the holonomy is exp(-integral of the trace of the curvature)
+    family = Family(rng, 5, 2, 2)
+    total = np.eye(5, dtype=complex)
+    for start, end in zip(corners[:-1], corners[1:]):
+        path = lambda t, start=start, end=end: start + t * (end - start)
+        velocity = lambda t, start=start, end=end: end - start
+        total = _transport(family, path, velocity) @ total
+    xi0, _ = family.frame(corners[0])
+    holonomy = xi0.conj().T @ total @ xi0
+    flux = sum(wa * wb * np.trace(family.curvature([a, b], 0, 1)) for a, wa in zip(nodes, weights) for b, wb in zip(nodes, weights))
+    np.testing.assert_allclose(np.linalg.det(holonomy), np.exp(-flux), atol=1e-8)
+    assert np.linalg.norm(holonomy - np.linalg.det(holonomy) ** 0.5 * np.eye(2)) > 1e-3      # not a multiple of the identity
 
 
 def _wedge_trace(dpi, pi, indices):
@@ -514,6 +543,13 @@ def _pair_plane(theta, s=0.4):
     return h, plane @ plane.conj().T, vectors, pair.j - s, pair.u, pair.v
 
 
+def _pair_trace_curvature(theta, step=1e-5):
+    """Trace of the curvature of the prepared plane in the directions of the setting and of the waiting time, at time zero."""
+    h, p, *_ = _pair_plane(theta)
+    d_theta = (_pair_plane(theta + step)[1] - _pair_plane(theta - step)[1]) / (2 * step)
+    return np.trace(p @ _comm(d_theta, -1j * _comm(h, p)) @ p)
+
+
 def test_turning_and_waiting_in_the_pair_model():
     rng = np.random.default_rng(209)
     eye = np.eye(6)
@@ -530,6 +566,10 @@ def test_turning_and_waiting_in_the_pair_model():
         coupling = (eye - p) @ h @ p                                 # C of the Schur formula
         np.testing.assert_allclose(coupling, -delta * u * v * np.outer(d, b.conj()), atol=1e-12)
         np.testing.assert_allclose(waiting, -1j * coupling, atol=1e-12)
+        # same complex line, imaginary ratio: orthogonal as real tangent directions, anti-Hermitian mixed return
+        np.testing.assert_allclose(waiting, 0.5j * delta * u * v * turning, atol=1e-8)
+        assert abs(np.trace(turning.conj().T @ waiting).real) < 1e-8
+        np.testing.assert_allclose(turning.conj().T @ waiting, 2j * delta * u * v * np.outer(b, b.conj()), atol=1e-7)
         curvature = turning.conj().T @ waiting - waiting.conj().T @ turning
         np.testing.assert_allclose(curvature, 4j * delta * u * v * np.outer(b, b.conj()), atol=1e-7)
         np.testing.assert_allclose(p @ _comm(d_theta, d_time) @ p, curvature, atol=1e-7)
@@ -552,6 +592,14 @@ def test_turning_and_waiting_in_the_pair_model():
                               rtol=1e-11, atol=1e-13).y[:, -1].reshape(6, 6)
         np.testing.assert_allclose(transport @ b, np.exp(2j * np.pi * u**2) * b, atol=1e-8)
         np.testing.assert_allclose(transport @ vec["g"], vec["g"], atol=1e-8)
+        plane = np.column_stack([vec["g"], b])
+        np.testing.assert_allclose(plane.conj().T @ transport @ plane, np.diag([1.0, np.exp(2j * np.pi * u**2)]), atol=1e-8)
+        # the waiting circle is a one-parameter family, with no curvature of its own; the phase is the flux
+        # of the two-parameter family through the cap between the setting 0 and this setting
+        cap_nodes, cap_weights = np.polynomial.legendre.leggauss(12)
+        cap = sum(theta * w / 2 * period * _pair_trace_curvature(theta * (x + 1) / 2) for x, w in zip(cap_nodes, cap_weights))
+        np.testing.assert_allclose(cap, 2j * np.pi * v**2, atol=1e-6)
+        np.testing.assert_allclose(np.linalg.det(plane.conj().T @ transport @ plane), np.exp(-cap), atol=1e-6)
         mean_energy = np.vdot(b, h @ b).real
         np.testing.assert_allclose(mean_energy, delta * u**2, atol=1e-12)
         np.testing.assert_allclose(np.exp(-1j * mean_energy * period) * np.exp(2j * np.pi * u**2), 1.0, atol=1e-10)
@@ -562,13 +610,13 @@ def test_turning_and_waiting_in_the_pair_model():
     period = 2 * np.pi / delta
     nodes, weights = np.polynomial.legendre.leggauss(12)
     thetas, weights = np.pi / 4 * (nodes + 1) / 2, np.pi / 4 * weights / 2
-    flux = 0.0
-    for theta, weight in zip(thetas, weights):
-        h, p, vec, delta, u, v = _pair_plane(theta)
-        step = 1e-5
-        d_theta = (_pair_plane(theta + step)[1] - _pair_plane(theta - step)[1]) / (2 * step)
-        flux += weight * period * np.trace(p @ _comm(d_theta, -1j * _comm(h, p)) @ p)
+    flux = sum(weight * period * _pair_trace_curvature(theta) for theta, weight in zip(thetas, weights))
     np.testing.assert_allclose(1j * flux / (2 * np.pi), -1.0, atol=1e-7)
+    # the plane has period pi/2 in the setting; the second half carries the opposite flux and the torus has none
+    np.testing.assert_allclose(_pair_plane(0.3 + np.pi / 2)[1], _pair_plane(0.3)[1], atol=1e-12)
+    second = sum(weight * period * _pair_trace_curvature(theta + np.pi / 4) for theta, weight in zip(thetas, weights))
+    np.testing.assert_allclose(1j * second / (2 * np.pi), 1.0, atol=1e-7)
+    np.testing.assert_allclose(flux + second, 0.0, atol=1e-6)
     n_theta, n_time = 24, 48
     frames = []
     for i in range(n_theta + 1):

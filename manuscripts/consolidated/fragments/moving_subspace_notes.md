@@ -34,11 +34,10 @@ that had no row, two of which are entries of the reading queue (TAUM 2008 to 201
 (219 explicit, 109 recoverable, 157 owed) to 491 (244, 109, 138), and TAUM from 180
 (87, 20, 73) to 186 (112, 20, 54). These are proposals.
 
-One row needs a ruling. `thm:tangent-realization` asks for "both oriented sums". The
-fragment gives them as `d + d*` and `d* - d` in the notation of Section 7. TAUM's own
-letters for the oriented pair are not in the manuscript. I marked the clause explicit. If
-the names are wanted, it is one cross-reference once the block that introduces them
-lands.
+Review of `5e937be` accepted all 27 rows, and a trial integration validated at these
+counts. `thm:tangent-realization` is explicit: the fragment gives the two oriented sums
+as `d + d*` and `d* - d` in the notation of Section 7, and substituting TAUM's own
+definitions of its oriented pair gives the same two sums.
 
 ## What the proofs need
 
@@ -97,23 +96,32 @@ the domain results that are being ported separately.
 - The proof that the characteristic forms are closed, from the fact that an odd number
   of derivatives of the projection has no trace.
 - The proof of integer flux by a triangulation and determinants of edge transports.
-- The formula for the holonomy of a loop bounding a disc, in rank one.
-- All of `subsec:moving-pair`: the two tangent maps in the pair model, the curvature, the
-  flux of minus one over all settings and one period, the holonomy, and the statement
+- `eq:moving-holonomy-flux`: the determinant of the holonomy of a loop bounding a disc,
+  for every finite rank, and the paragraph that separates curvature at a point from
+  holonomy of a loop.
+- `eq:moving-scalar-form`: the scalar form of the mixed return in finite rank, where it
+  vanishes, and the hypothesis it needs in infinite rank.
+- All of `subsec:moving-pair`. The moving subspace there is the prepared plane inside the
+  output space, and the splitting into the two sectors stays fixed. The example gives the
+  two tangent maps and their imaginary ratio, the curvature, the Chern number of minus
+  one for the sphere of distinct prepared planes (settings from 0 to pi/4, waiting times
+  modulo one period, each end circle collapsed to a point), the vanishing integral over
+  the plane's full period pi/2, the holonomy of one waiting period, and the statement
   that the tangent map of waiting is the coupling of the Schur formula times -i/hbar.
 - The scope statement in the opening that the connection is not a dynamical field. The
   outline asks for this distinction.
 
-Two sentences attribute known results and need a ruling on whether they belong: the
-name "quantum geometric tensor" for the mixed return, and "geometric phase of a cyclic
-evolution" for the holonomy in the example.
+Two attributions were kept in review, each with a restriction. The mixed return is
+called the quantum geometric tensor of Provost and Vallee only for a family of rays. The
+geometric phase of a cyclic evolution, after Aharonov and Anandan, is the phase on the
+excitation in the example, not the holonomy of the plane as a whole.
 
 ## References
 
 Kobayashi and Nomizu, and Husemoller, are copied from TAUM's bibliography. Provost and
-Vallee (1980) and Aharonov and Anandan (1987) are new. I could not check either online
-from this environment, so journal, volume and pages are from memory and need
-verification. The same holds for the section numbers given for Kato's book.
+Vallee (1980) and Aharonov and Anandan (1987) are new. They could not be checked online
+from the environment in which the fragment was written. The review of `5e937be` checked
+both, and the references to Kato's book for nearby projections and for transport.
 
 ## Names to settle at integration
 
@@ -134,7 +142,11 @@ section on the Haar projection). That section is not ported here.
 ## Checks
 
 `checks/fragments/test_moving_subspace.py` has nine tests. Families of projections are
-built with exact first derivatives. Three tests go beyond the displayed identities:
+built with exact first derivatives. Inverse square roots of positive matrices use
+`lib.linalg.hermitian_power`, which stays in double precision. With SciPy 1.14.1,
+`scipy.linalg.sqrtm` returned an extended-precision array that `numpy.linalg` refused, in
+two tests here and in one of the response checks. The suite passes with SciPy 1.14.1 and
+with the current release. Three tests go beyond the displayed identities:
 
 - Transport is compared in three ways: the equation without a frame, the equation in a
   frame, and the limit of successive projections along the path.
