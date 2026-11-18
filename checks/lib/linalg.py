@@ -49,6 +49,7 @@ def hermitian_power(M, exponent):
     scipy.linalg.sqrtm can return an extended-precision array on some platforms and SciPy
     versions, which numpy.linalg then refuses.  This routine stays in double precision.
     """
+    M = np.asarray(M, dtype=np.complex128 if np.iscomplexobj(M) else np.float64)
     w, V = np.linalg.eigh((M + M.conj().T) / 2)
     if w.min() <= 0:
         raise ValueError("matrix is not positive definite")

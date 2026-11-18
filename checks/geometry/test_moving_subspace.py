@@ -1,10 +1,6 @@
-"""Checks for the fragment on moving subspaces (manuscripts/consolidated/fragments/moving_subspace.tex).
+"""Checks for §10, "When the selected subspace moves", in Universal_Model.tex.
 
-The fragment carries TAUM's sections "Moving decompositions and projector curvature" and
-"Characteristic classes of the projector bundle" into the consolidated manuscript.  Its
-own labels are not in Universal_Model.tex yet, so this file cites the TAUM labels of the
-statements it tests and the labels of the consolidated manuscript that the worked example
-uses.  hbar = 1 and random numbers use fixed seeds.
+The examples use units with hbar = 1 and fixed random seeds.
 
 A family of projections is built as Pi(x) = U(x) P U(x)^* with U(x) the exponential of a
 polynomial in the parameters.  Its first derivatives are exact (Frechet derivative of the
@@ -25,7 +21,12 @@ LABELS = {
              "def:Grassmann-connection", "thm:projector-curvature", "def:mixed-return", "cor:curvature-AV",
              "def:local-gauge-data", "thm:frame-covariance", "def:holonomy", "eq:fiberwise-Laplacian",
              "thm:chern-character", "eq:higher-chern-character", "cor:line-flux", "eq:ch2-return"],
-    "UM": ["eq:prepared-schur", "eq:pair-invariance-amplitude", "eq:index-graded"],
+    "UM": ["prop:moving-unitary", "prop:moving-tangent", "eq:moving-two-odd", "eq:moving-squares",
+           "prop:moving-curvature", "eq:moving-mixed-return", "eq:moving-scalar-form", "prop:moving-frame",
+           "eq:moving-transport", "eq:moving-frame-transport", "prop:moving-chern", "eq:moving-second-chern",
+           "cor:moving-flux", "eq:moving-holonomy-flux", "eq:moving-pair-tangents", "eq:moving-pair-curvature",
+           "eq:moving-pair-flux", "eq:moving-pair-holonomy", "eq:prepared-schur",
+           "eq:pair-invariance-amplitude", "eq:index-graded"],
 }
 
 STEP = 1e-5
@@ -373,7 +374,11 @@ def test_transport_and_holonomy():
     holonomy = xi0.conj().T @ total @ xi0
     flux = sum(wa * wb * np.trace(family.curvature([a, b], 0, 1)) for a, wa in zip(nodes, weights) for b, wb in zip(nodes, weights))
     np.testing.assert_allclose(np.linalg.det(holonomy), np.exp(-flux), atol=1e-8)
-    assert np.linalg.norm(holonomy - np.linalg.det(holonomy) ** 0.5 * np.eye(2)) > 1e-3      # not a multiple of the identity
+    def scalar_part(matrix):
+        return np.trace(matrix) * np.eye(2) / 2
+
+    np.testing.assert_allclose(scalar_part(-np.eye(2)), -np.eye(2))
+    assert np.linalg.norm(holonomy - scalar_part(holonomy)) > 1e-3
 
 
 def _wedge_trace(dpi, pi, indices):

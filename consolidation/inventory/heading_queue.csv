@@ -84,8 +84,6 @@ TAUM,1188,1196,Reference-state geometry and excitation energy,0,sec:reference-st
 TAUM,1327,1349,Reference-state geometry and excitation energy > Relation to the transition channel,1,eq:cyclic-reference,standard
 TAUM,1350,1356,Polar geometry of the transition channel,0,sec:polar,standard
 TAUM,1653,1660,"Cohomology, spectral pairing, and index",0,sec:cohomology,standard
-TAUM,2008,2015,Moving decompositions and projector curvature,0,sec:projector-geometry,standard
-TAUM,2366,2389,Characteristic classes of the projector bundle,2,sec:characteristic-classes eq:curvature-form eq:curvature-return-components,standard
 TAUM,2509,2518,Schur--Feshbach reduction and effective dynamics,0,sec:effective-dynamics,standard
 TAUM,2845,2857,Boundary response and passive realizations,0,sec:boundary-response,standard
 TAUM,3628,3636,Canonical realizations,0,sec:examples,standard

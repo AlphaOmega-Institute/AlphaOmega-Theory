@@ -101,6 +101,13 @@ def test_hermitian_power_stays_in_double_precision():
         np.testing.assert_allclose(root @ root, M, atol=1e-10)
         np.testing.assert_allclose(inverse_root @ M @ inverse_root, np.eye(n), atol=1e-10)
         np.testing.assert_allclose(np.linalg.inv(root), inverse_root, atol=1e-9)
+    for dtype in (np.float32, np.longdouble, np.complex64, np.clongdouble):
+        complex_input = np.issubdtype(dtype, np.complexfloating)
+        entry = 1j if complex_input else 1
+        matrix = np.array([[3, entry], [np.conj(entry), 3]], dtype=dtype)
+        root = hermitian_power(matrix, 0.5)
+        assert root.dtype == (np.complex128 if complex_input else np.float64)
+        np.testing.assert_allclose(root @ root, matrix, rtol=0, atol=1e-12)
     try:
         hermitian_power(-np.eye(2), 0.5)
     except ValueError:

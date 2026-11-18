@@ -1,6 +1,6 @@
 # Verification checks
 
-Reproducible numerical checks of the pair, orbital and response calculations in the
+Reproducible numerical checks of the pair, orbital, response and curvature calculations in the
 working manuscripts and the consolidated draft:
 
 - **LG** — `manuscripts/lg/LG_Master_Unified.tex`
@@ -29,7 +29,7 @@ and the full run with `116 passed, 0 failed, 0 skipped`. The exit status is nonz
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
-Tested with Python 3.11, NumPy 2.4 and SciPy 1.17.
+Tested with Python 3.11, NumPy 2.4 and SciPy 1.17, and with Python 3.12, NumPy 2.2.6 and SciPy 1.14.1.
 Timings vary with hardware and BLAS settings.
 
 ## What the checks establish
@@ -41,7 +41,8 @@ changes to the mathematics under an unchanged label still require review.
 `test_linalg.py` checks that nearby resolved eigenvalues belong to disjoint spectral
 blocks, so their port weights sum to the total spectral mass without double-counting.
 It also checks that numerically coincident eigenvalues are merged at the declared
-absolute spectral tolerance.
+absolute spectral tolerance. A regression covers square roots and inverse square roots
+of positive Hermitian matrices with real and complex floating-point inputs.
 
 ### Ground correspondence
 
@@ -137,6 +138,16 @@ in the manuscript, not this computation.
 
 [The passive-response checks](response/test_passive_response.py) exercise the Herglotz and Schur kernels, the large-imaginary-energy bound, and the two-level signed witness. They compare spectral weights with time evolutions, recover the unitary between two minimal realizations, and test spectral grouping with nearby levels and with a genuine degeneracy. The symmetry and heat-smoothing checks work on finite models.
 
+### Moving subspaces and curvature
+
+The nine checks for §10 compute projector derivatives, curvature, changes of frame and
+parallel transport on finite-dimensional families. A rank-two loop compares the
+determinant of its transport with the integrated trace of its curvature. Surface and
+four-sphere examples test the characteristic forms. In the pair model the checks recover
+the phase from the measured line weight, integrate the flux over the sphere of excited
+lines, and verify its cancellation over a full period of the apparatus setting.
+[Moving-subspace checks](geometry/test_moving_subspace.py)
+
 ### Numerical tolerance for spectral grouping
 
 The response checks group eigenvalues into levels with an absolute tolerance of `1e-9` (`SPECTRAL_TOLERANCE` in `lib/linalg.py`). Groups are disjoint and exhaustive, and no group spans more than the tolerance. Each group starts at its lowest member and contains only energies within that tolerance; nearby neighbours may fall in different groups when joining them would exceed the group's total-span limit. The group's mean represents its energy. Merging genuinely distinct energies approximates the exact response, which needs a separate direction for each distinct energy the port couples to. The reported response-generated space then belongs to this grouped Hamiltonian and need not reduce the original one. The `tol` argument of `minimal_space` controls the separate SVD rank cutoff. `test_linalg.py` covers the boundary cases.
@@ -171,4 +182,5 @@ checks/
   pair/                 pair model and its checks
   orbital/              orbital model and its checks
   response/             finite-dimensional response checks
+  geometry/             moving subspaces, characteristic forms and the pair-model phase
 ```
