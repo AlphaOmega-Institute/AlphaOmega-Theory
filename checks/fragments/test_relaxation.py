@@ -9,6 +9,8 @@ import numpy as np
 from numpy.testing import assert_allclose
 from scipy.linalg import expm, null_space, polar
 
+from lib.linalg import hermitian_power
+
 LABELS = {
     "LG": ["thm:exact-rigpa-density", "def:ground-nonaltering-channel", "thm:no-unitary-deconditioning",
            "def:ground-attractive-family", "thm:canonical-deconditioning-semigroup",
@@ -192,6 +194,12 @@ def test_distance_to_the_ground_under_relaxation():
         assert np.all(np.diff(ratios) > -1e-12) and ratios[-1] > 1 - 1e-5
         if s == 1.0:
             assert_allclose(ratios, 1.0)                       # equality at time zero
+    # one fixed pure input already shows the rate gamma/2: distance / s tends to 2 sqrt(d (1 - d))
+    for theta in (0.3, 0.9, 1.4):
+        phi = np.cos(theta) * y + np.sin(theta) * e
+        weight = np.sin(theta)**2
+        late = _trace_norm(_relax(_projection(phi), y, 1e-5) - _projection(y)) / 1e-5
+        assert_allclose(late, 2 * np.sqrt(weight * (1 - weight)), rtol=1e-6)
 
 
 def _carrying_channel(rng, y, y_next, env):
@@ -204,7 +212,8 @@ def _carrying_channel(rng, y, y_next, env):
     rest, _ = np.linalg.qr(rest)
     W = np.column_stack([first, rest]) @ np.column_stack([y, null_space(y.conj()[None, :])]).conj().T
     assert_allclose(W.conj().T @ W, np.eye(n), atol=1e-10)
-    return lambda sigma: np.einsum("iaja->ij", (W @ sigma @ W.conj().T).reshape(m, env, m, env))
+    branches = [W.reshape(m, env, n)[:, a, :] for a in range(env)]             # one Kraus operator for each record
+    return (lambda sigma: np.einsum("iaja->ij", (W @ sigma @ W.conj().T).reshape(m, env, m, env))), branches
 
 
 def test_a_channel_carries_the_ground_exactly_when_no_weight_outside_it_grows():
@@ -214,8 +223,13 @@ def test_a_channel_carries_the_ground_exactly_when_no_weight_outside_it_grows():
         n, m = int(rng.integers(2, 5)), int(rng.integers(2, 5))
         env = int(rng.integers(-(-n // m), 5))
         y, y_next = _unit(rng, n), _unit(rng, m)
-        channel = _carrying_channel(rng, y, y_next, env)
+        channel, branches = _carrying_channel(rng, y, y_next, env)
         assert_allclose(channel(_projection(y)), _projection(y_next), atol=1e-10)
+        # every outcome of an instrument with this channel leaves the ground on the next ground
+        assert_allclose(sum(K.conj().T @ K for K in branches), np.eye(n), atol=1e-10)
+        for K in branches:
+            image = K @ y
+            assert_allclose(image, np.vdot(y_next, image) * y_next, atol=1e-10)
         for _ in range(4):
             sigma = _state(rng, n, rank=int(rng.integers(1, n + 1)))
             out = channel(sigma)
@@ -241,6 +255,18 @@ def test_a_channel_carries_the_ground_exactly_when_no_weight_outside_it_grows():
         weight = np.sin(theta)**2
         assert_allclose(_deviation(out, y), 4 * weight / (1 + 3 * weight), atol=1e-12)
         assert _deviation(out, y) > weight
+    for _ in range(50):                                        # the same formula for mixed states
+        sigma = _state(rng, 3, rank=int(rng.integers(1, 4)))
+        weight = _deviation(sigma, y)
+        out = K @ sigma @ K
+        assert_allclose(np.trace(out).real, (1 + 3 * weight) / 4, atol=1e-12)
+        assert_allclose(_deviation(out / np.trace(out), y), 4 * weight / (1 + 3 * weight), atol=1e-12)
+    # an outcome that takes the ground to another ray belongs to an instrument whose channel moves the ground
+    X = 0.6 * (_projection(y) + np.outer(e, y.conj()))                         # X y is not a multiple of y
+    rest = hermitian_power(np.eye(3) - X.conj().T @ X + 1e-12 * np.eye(3), 0.5)
+    total = X @ _projection(y) @ X.conj().T + rest @ _projection(y) @ rest.conj().T
+    assert_allclose(np.trace(total).real, 1.0, atol=1e-9)
+    assert _deviation(total, y) > 0.1
 
 
 def test_no_unitary_substitute_and_a_one_step_dilation():
@@ -306,6 +332,17 @@ def test_relaxation_in_successive_moments():
     assert_allclose(deviations[-1], np.prod(factors) * deviations[0], atol=1e-12)
     # steps that carry the ground never let that weight grow, whatever the state
     assert np.all(np.diff(deviations) <= 1e-12)
+    # two steps that carry the ground, each leaving one excited state alone, together reach the ground
+    g, a, b = np.eye(3)
+    first = [_projection(g) + _projection(b), np.outer(g, a)]
+    second = [_projection(g) + _projection(a), np.outer(g, b)]
+    apply = lambda kraus, state: sum(K @ state @ K.conj().T for K in kraus)
+    for kraus, untouched in ((first, b), (second, a)):
+        assert_allclose(sum(K.conj().T @ K for K in kraus), np.eye(3), atol=1e-14)
+        assert_allclose(apply(kraus, _projection(g)), _projection(g), atol=1e-14)
+        assert_allclose(apply(kraus, _projection(untouched)), _projection(untouched), atol=1e-14)
+    for _ in range(20):
+        assert_allclose(apply(second, apply(first, _state(rng, 3))), _projection(g), atol=1e-12)
     # exponents 1/n have a divergent sum and exponents 1/n^2 a convergent one
     n = np.arange(1, 200001)
     assert np.exp(-np.sum(1 / n)) < 1e-5
@@ -333,7 +370,12 @@ def test_return_after_relaxation():
         prepared = _state(rng, m)
         assert_allclose(np.trace(np.trace(P_D @ sigma) * prepared), np.trace(V.conj().T @ sigma @ V), atol=1e-12)
         if m > 1:
-            assert not np.allclose(prepared, V.conj().T @ sigma @ V / np.trace(P_D @ sigma).real, atol=1e-6)
+            returned_state = V.conj().T @ sigma @ V / np.trace(P_D @ sigma).real
+            assert not np.allclose(prepared, returned_state, atol=1e-6)
+            values, vectors = np.linalg.eigh(prepared - returned_state)
+            telling = _projection(vectors[:, -1])                  # an effect with different expectations
+            assert abs(np.trace(telling @ (prepared - returned_state))) > 1e-6
+            assert_allclose(np.trace(np.eye(m) @ (prepared - returned_state)), 0, atol=1e-12)    # the trivial effect tells nothing
         gamma, t = rng.uniform(0.2, 2), rng.uniform(0.01, 5)
         s = np.exp(-gamma * t / 2)
         relaxed = _relax(sigma, y, s)

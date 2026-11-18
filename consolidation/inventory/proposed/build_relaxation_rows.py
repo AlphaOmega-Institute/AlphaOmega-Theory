@@ -38,7 +38,7 @@ UPDATES = {
          "The proposition ends with zero weight outside the ground exactly for the ground projection, and the sentence after its proof lists the three equivalent conditions. Here the equivalence follows from the upper bound on the trace distance."),
     ("def:ground-nonaltering-channel", "Ground-fixing CPTP channel"):
         ("definition", "subsec:relaxation-unitary prop:relaxation-carried", "The family \\emph{fixes the ground} if",
-         "Stated for any family of channels on the appearance space. A single channel is the case of a family with one member. The proposition that follows shows that a channel fixing the ground cannot increase the weight outside it for any state."),
+         "Stated for any family of channels on the appearance space. A single channel is the case of a family with one member. The proposition that follows shows that a channel fixing the ground cannot increase the weight outside it for any state, and the text adds that every outcome of an instrument with such a channel leaves the ground on the ground."),
     ("thm:no-unitary-deconditioning", "Ground fidelity and deviation under every unitary preserving the ground ray"):
         ("proved result", "eq:relaxation-unitary", "",
          "The weight outside the ground is invariant under every unitary that fixes the ground projection, for every state. The text draws the consequence that such an evolution is ground-attractive only on the basin consisting of the ground, and that a unitary can move a chosen vector to the ground only by moving the ground."),
@@ -59,7 +59,7 @@ UPDATES = {
          "Part (c): at a positive time the fixed trace-class operators are the multiples of the ground projection, so it is the only fixed state."),
     (THEOREM, "(iv) Trace-norm estimate with constant 2"):
         ("proved result", "eq:relaxation-distance eq:relaxation-pure-distance eq:relaxation-sharp-distance", "",
-         "Part (e), from the bound for a pure target proved in the preceding proposition. The text adds a lower bound, which is attained, and a sharper upper bound that is an equality for pure inputs. It follows that the source's bound is strict at positive times and that its constant 2 and rate γ/2 are optimal."),
+         "Part (e), from the bound for a pure target proved in the preceding proposition. The text adds a lower bound, which is attained, and a sharper upper bound that is an equality for pure inputs. It follows that the source's bound is strict at positive times and that its constant 2 is optimal. A fixed pure input shows that the rate γ/2 is optimal."),
     (THEOREM, "Trace-class generator at zero"):
         ("proved result", "eq:relaxation-generator eq:relaxation-jumps", "",
          "Part (b) gives the generator as a bounded operator on the trace class, with the relaxation as its exponential. The form with one jump operator for each direction orthogonal to the ground is displayed."),
@@ -77,7 +77,7 @@ UPDATES = {
          "Part (a)."),
     ("thm:momentary-ground-stabilization", "Variable contraction product and asymptotic stabilization"):
         ("proved result", "prop:relaxation-moments eq:relaxation-product", "",
-         "Part (b): the product bound, the trace-norm bound in each space, and convergence when the products tend to zero. The text notes that the bound does not use the first condition. Part (c) states that the first condition already gives the factors one, so stabilization needs factors whose products tend to zero."),
+         "Part (b): the product bound, the trace-norm bound in each space, and convergence when the products tend to zero. The text notes that the bound does not use the first condition. Part (c) states that the first condition already gives the factors one. Products tending to zero are shown to be sufficient and, by an example with two resets, not necessary for bounds that hold for every state."),
     ("def:realization-event-stabilization", "Exact event and asymptotic stabilization"):
         ("definition", "subsec:relaxation-moments", "We say that the sequence \\emph{is at the ground} at moment $n$ when",
          "Both notions are defined and distinguished by the deconditioning steps, under which a sequence off the ground is never at the ground and stabilizes when the rates times durations have a divergent sum. The cognitive names are given in one sentence."),
@@ -86,7 +86,7 @@ UPDATES = {
          "The returned state is defined for density operators. For a pure state it is the ray of V*φ, defined exactly when φ is not in the orthogonal complement of D."),
     ("prop:return-operation-trace", "Trace of the return operation, trace nonincrease and normalized successful branch"):
         ("proved result", "eq:relaxation-return", "",
-         "The compression has trace equal to the weight in D, the map is completely positive and does not increase the trace, and the normalized state is displayed with its pairing. The text separates the probability, which any measurement with this effect gives, from the state afterwards, which requires an instrument with this operation."),
+         "The compression has trace equal to the weight in D, the map is completely positive and does not increase the trace, and the normalized state is displayed with its pairing. The text separates the probability, which any measurement with this effect gives, from the state afterwards, which requires an instrument with this operation, and says when a later measurement distinguishes two instruments."),
     ("thm:deconditioning-contracts-excess", "Complementary probability of physical presentation"):
         ("proved result", "eq:relaxation-paired-weight", "",
          "Displayed for every appearance state when the target lies in D."),

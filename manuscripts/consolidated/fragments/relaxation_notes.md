@@ -67,6 +67,32 @@ made, and the rest of the fragment is unchanged.
    instrument. The fragment says so and gives a second instrument with the same effect
    that leaves a different state.
 
+## Second revision, after review of `5a63d36`
+
+The review accepted `5a63d36` for integration and asked for one sentence to be tightened.
+I made that change and wrote in three statements the review formulated. Each is checked.
+Integration can take `5a63d36` and apply these by hand, or take this revision.
+
+1. **Sentence corrected.** "Stabilization needs factors whose products tend to zero" was
+   wrong. Vanishing products are sufficient. They are not necessary for factors that
+   bound every state: the reviewer's two resets on a ground and two excited directions
+   each leave one excited state alone and together reach the ground from every state.
+   The text now says this and gives the example. For canonical steps with their exact
+   factors, a sequence off the ground stabilizes exactly when the exponents have a
+   divergent sum, and the text now says "exactly".
+2. **Rate.** One fixed pure input with weight δ strictly between 0 and 1 shows the rate
+   γ/2: the distance times exp(γt/2) tends to 2√(δ(1−δ)). The constant 2 is still shown
+   optimal by inputs approaching the ground.
+3. **Conditional steps.** The formula 4δ/(1+3δ) holds for every state, and it is zero at
+   δ = 0. The text now distinguishes amplifying a weight that is present from moving the
+   ground: every outcome of an instrument whose channel fixes the ground leaves the
+   ground on the ground. So a determination of Section 5 that takes the ground to
+   another ray can be an outcome only of an instrument whose channel does not fix the
+   ground. The argument is the reviewer's.
+4. **Later registration.** A later measurement distinguishes two return instruments
+   exactly when one of the effects available to it has different expectations in the
+   states they leave.
+
 ## Change in the clause count
 
 The block I proposed was the theorem's nine clauses. Before writing rows I searched the
@@ -168,13 +194,14 @@ the ones to read as proposals:
   its asymptotic stabilization." LG's names are "realization event" and "asymptotically
   stabilized in realization". The fragment's own terms are "at the ground" and
   "stabilizes".
-- "The return is therefore a choice of operation, and what a later step can register
-  depends on that choice as well as on the effect." LG says the weight becomes a success
-  probability only when the return is a branch of a separately supplied instrument.
+- "The return is therefore a choice of operation." LG says the weight becomes a success
+  probability only when the return is a branch of a separately supplied instrument. The
+  sentence after it, on when a later measurement distinguishes two instruments, follows
+  the reviewer's wording.
 - "A conditional step, normalized after a selected outcome, can fix the ground and
-  increase the weight outside it." The example is mine. The determinations of Section 5
-  act on amplitudes in this conditional way, which is why I thought the limit of the
-  proposition worth marking. I have not drawn that connection in the text.
+  increase the weight outside it." The example is mine. The connection to the
+  determinations of Section 5 is now drawn in the text with the reviewer's argument
+  about the outcomes of an instrument.
 
 ## Names
 
