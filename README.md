@@ -2,9 +2,20 @@
 
 Public work in progress for the AlphaOmega Institute's theoretical research.
 
-This repository is the shared working source for **LG** and **TAUM**. The files on `main` are the current shared drafts. They can be edited as the research develops; selected versions may later be released and archived with DOIs.
+The files on `main` are the current shared drafts. They can be edited as the research develops; selected versions may later be released and archived with DOIs.
 
-## Manuscripts
+## Current working manuscript
+
+**Toward a Universal Model: Perception as a correspondence between state spaces**
+
+- [Read the PDF](manuscripts/consolidated/Universal_Model.pdf)
+- [Self-contained TeX source](manuscripts/consolidated/Universal_Model.tex)
+
+This is the working consolidation of LG and TAUM into one paper, and it is not yet complete.
+
+## Source manuscripts
+
+LG and TAUM are the two manuscripts being consolidated. They remain the reference for every argument the working manuscript has not yet carried over, and the consolidation does not edit them. The [migration ledger](consolidation/inventory/migration.csv) records what has been carried over and what is still owed. Its [guide](consolidation/inventory/README.md#migration-into-the-consolidated-manuscript) explains how to read it, and the [outline](consolidation/OUTLINE.md) gives the planned structure.
 
 | Manuscript | Self-contained TeX source |
 | --- | --- |
@@ -33,14 +44,23 @@ From `manuscripts/taum/`:
 latexmk -pdf -interaction=nonstopmode -halt-on-error Toward_a_Universal_Model_Self_Contained.tex
 ```
 
+From `manuscripts/consolidated/`:
+
+```bash
+latexmk -pdf -interaction=nonstopmode -halt-on-error Universal_Model.tex
+```
+
+Three runs of `pdflatex` on the same file give the same result. The committed PDF is built from the committed TeX.
+
 ## Verification checks
 
-`checks/` contains reproducible numerical checks of the pair, orbital and response calculations in the two manuscripts. Run `python checks/run_all.py` (NumPy and SciPy required). See [checks/README.md](checks/README.md) for what each check establishes and what it leaves open.
+`checks/` contains reproducible numerical checks of calculations in the working manuscript and in the two sources. Run `python checks/run_all.py` (NumPy and SciPy required). See [checks/README.md](checks/README.md) for what each check establishes and what it leaves open.
 
 ## Shared editing
 
 - Fetch the latest `main` before editing and inspect any intervening changes.
 - Use a separate branch for simultaneous or overlapping edits, then reconcile the changes before merging.
+- Merge a branch into `main` once its changes have been reviewed, then delete it. `main` holds the current state of every manuscript.
 - Make focused commits with messages describing the changes. Preserve other contributors' work and avoid force-pushing shared history.
 - Keep each manuscript self-contained, including its bibliography. Do not replace sections with dependencies on external companion notes or source files.
 - Synchronize Overleaf and Library copies deliberately with a known repository commit. Do not overwrite newer repository content with an older export.
