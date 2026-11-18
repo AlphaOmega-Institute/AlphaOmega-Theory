@@ -1,6 +1,6 @@
 # Verification checks
 
-Reproducible numerical checks of the pair, orbital, response and curvature calculations in the
+Reproducible numerical checks of the pair, orbital, response, curvature and symmetry calculations in the
 working manuscripts and the consolidated draft:
 
 - **LG** — `manuscripts/lg/LG_Master_Unified.tex`
@@ -148,6 +148,16 @@ the phase from the measured line weight, integrate the flux over the sphere of e
 lines, and verify its cancellation over a full period of the apparatus setting.
 [Moving-subspace checks](geometry/test_moving_subspace.py)
 
+### Compact symmetry averaging
+
+The seven checks for §11 compute invariant projections for permutations, circles and
+spin representations of SU(2). They compare the cube and full rotation groups on
+quartics, and test symmetry-compatible maps and compressed port responses. In the
+fermion pair, quarter turns give the full circle's fixed-vector projection at every
+coupling. The character-weighted average recovers the three-dimensional space whose
+rays are invariant and whose vectors change sign under orbital exchange.
+[Symmetry-averaging checks](geometry/test_symmetry_average.py)
+
 ### Numerical tolerance for spectral grouping
 
 The response checks group eigenvalues into levels with an absolute tolerance of `1e-9` (`SPECTRAL_TOLERANCE` in `lib/linalg.py`). Groups are disjoint and exhaustive, and no group spans more than the tolerance. Each group starts at its lowest member and contains only energies within that tolerance; nearby neighbours may fall in different groups when joining them would exceed the group's total-span limit. The group's mean represents its energy. Merging genuinely distinct energies approximates the exact response, which needs a separate direction for each distinct energy the port couples to. The reported response-generated space then belongs to this grouped Hamiltonian and need not reduce the original one. The `tol` argument of `minimal_space` controls the separate SVD rank cutoff. `test_linalg.py` covers the boundary cases.
@@ -182,5 +192,5 @@ checks/
   pair/                 pair model and its checks
   orbital/              orbital model and its checks
   response/             finite-dimensional response checks
-  geometry/             moving subspaces, characteristic forms and the pair-model phase
+  geometry/             moving subspaces, characteristic forms and compact symmetry averaging
 ```

@@ -79,7 +79,6 @@ TAUM,322,350,Introduction and scope > Reference states and topology,1,eq:intro-r
 TAUM,351,370,Introduction and scope > Logical organization,0,,standard
 TAUM,374,439,Bipartite Krein geometry > Fundamental decomposition,8,eq:J eq:Krein-form eq:fundamental-decomposition eq:sector-projections,named
 TAUM,505,523,Bipartite Krein geometry > Equal-carrier realization,2,,standard
-TAUM,1078,1085,Compact symmetry averaging and invariant compression,0,sec:symmetry-averaging,standard
 TAUM,1188,1196,Reference-state geometry and excitation energy,0,sec:reference-state,standard
 TAUM,1327,1349,Reference-state geometry and excitation energy > Relation to the transition channel,1,eq:cyclic-reference,standard
 TAUM,1350,1356,Polar geometry of the transition channel,0,sec:polar,standard

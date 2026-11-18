@@ -1,12 +1,7 @@
-"""Checks for the fragment on symmetry averaging (manuscripts/consolidated/fragments/symmetry_average.tex).
+"""Checks for §11, "Averaging over a supplied symmetry", in Universal_Model.tex.
 
-The fragment carries TAUM's section "Compact symmetry averaging and invariant compression"
-into the consolidated manuscript.  Its own labels are not in Universal_Model.tex yet, so
-this file cites the TAUM labels of the statements it tests and the labels of the
-consolidated manuscript that the fragment uses.  hbar = 1 and random numbers use fixed seeds.
-
-Averages over a circle group and over SU(2) are computed by quadrature rules that are exact
-for the matrix elements that occur.
+The examples use units with hbar = 1 and fixed random seeds. Circle-group and SU(2)
+quadratures are exact for the matrix elements tested.
 """
 import itertools
 
@@ -20,7 +15,11 @@ from pair.model import PairModel
 LABELS = {
     "TAUM": ["thm:Haar-projector", "cor:finite-group-average", "eq:Haar-projector", "eq:Haar-properties",
              "eq:J-compatible-representation", "eq:Haar-J-commute", "eq:finite-group-projector"],
-    "UM": ["prop:preparation-split", "prop:passive-two-spans", "prop:passive-opposite-sectors",
+    "UM": ["prop:symmetry-projection", "eq:symmetry-average", "eq:symmetry-invariant-space",
+           "eq:symmetry-absorption", "eq:symmetry-finite-average", "eq:symmetry-character-projection",
+           "prop:symmetry-compatibility", "eq:symmetry-sector-sum", "eq:symmetry-covariant-map",
+           "eq:symmetry-compressed-response", "eq:symmetry-pair-exchange", "eq:symmetry-pair-rotation",
+           "prop:preparation-split", "prop:passive-two-spans", "prop:passive-opposite-sectors",
            "prop:shell-accuracy", "eq:pair-two-setting-ranges", "subsec:moving-pair"],
 }
 

@@ -80,13 +80,15 @@ permanent identifiers.
 
 ## Migration into the consolidated manuscript
 
-[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–10 of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
+[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction and §§1–11 of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
 
 Section 9 brought all 26 entries from TAUM’s passive-response section into the draft. Together with §1, it states 40 previously tracked clauses and five from the surrounding discussion. Splitting the Hilbert response in TAUM’s architecture theorem from its signed reduction brought the ledger to 219 explicit, 109 recoverable and 157 owed.
 
-Section 10 carries TAUM’s moving decompositions, projector curvature and characteristic classes. Of 21 previously tracked clauses in those two sections, 19 moved from owed to explicit and two were already explicit. Six new rows cover source passages that lacked anchors. Three clauses elsewhere in TAUM now have explicit counterparts. The polar-geometry remark distinguishes its algebraic sign from holonomy, the two-return-forms theorem compares tangent returns with the Schur self-energy, and the architecture theorem collects the curvature and Chern-character results. The architecture theorem’s compact-symmetry clause remains owed.
+Section 10 carries TAUM’s moving decompositions, projector curvature and characteristic classes. Of 21 previously tracked clauses in those two sections, 19 moved from owed to explicit and two were already explicit. Six new rows cover source passages that lacked anchors. Three clauses elsewhere in TAUM now have explicit counterparts. The polar-geometry remark distinguishes its algebraic sign from holonomy, the two-return-forms theorem compares tangent returns with the Schur self-energy, and the architecture theorem collects the curvature and Chern-character results.
 
-The ledger now has 492 rows, with 247 explicit, 109 recoverable and 136 owed. The explicit count includes one conjecture introduced in the consolidated manuscript. The heading queue has 112 passages after removing the introductions to the two newly covered TAUM sections.
+Section 11 brings five owed TAUM clauses into the manuscript, including the compact-symmetry clause of its architecture theorem. One new row tracks the distinction between the Haar projection and the other projections in the construction. The discussion of character projections also states LG’s result that a symmetry commuting with a Hamiltonian acts on its simple ground by a character.
+
+The ledger now has 493 rows, with 254 explicit, 108 recoverable and 131 owed. The explicit count includes one conjecture introduced in the consolidated manuscript. The heading queue has 111 passages after removing the introduction to TAUM’s symmetry-averaging section.
 
 Filter by `source` and `source_key` to read all clauses of an entry. For TAUM and LG, the key is the source label or the inventory’s `@line` key for an unlabelled environment. The source line locates the environment or supplementary label. `UM` identifies a claim introduced in the consolidated draft. For example, LG’s R5 assumes a missing direction for one specified map. The draft conjectures that one genuine appearance direction is missed by **every** admissible map. The strengthening has its own UM entry.
 
