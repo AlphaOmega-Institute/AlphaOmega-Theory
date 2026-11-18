@@ -31,7 +31,7 @@ FIELDS = ["source", "source_line", "source_kind", "source_key", "clause", "cover
 UPDATES = {
     ("thm:Haar-projector", "Haar average and its invariant range"):
         ("proved result", "prop:symmetry-projection eq:symmetry-average eq:symmetry-absorption", "",
-         "The average is defined by its matrix elements, which gives the operator of TAUM's vector integral. Boundedness, idempotence, self-adjointness, the invariant range and absorption of the representation on both sides are proved."),
+         "The average is defined by its matrix elements, and one sentence identifies it with TAUM's vector integral. Boundedness, idempotence, self-adjointness, the invariant range and absorption of the representation on both sides are proved."),
     ("thm:Haar-projector", "Compatibility with the grading"):
         ("proved result", "prop:symmetry-compatibility eq:symmetry-sector-sum", "",
          "Part (a): when the representation commutes with the sector symmetry, the invariant projection commutes with it, is the direct sum of the invariant projections of the two sectors, and equals its adjoint for the indefinite form."),
@@ -41,7 +41,7 @@ UPDATES = {
     ("@1177", "Distinguishing the four projections and the two symmetry groups"):
         ("proved result|worked example", "subsec:symmetry-compatibility subsec:symmetry-pair eq:symmetry-pair-exchange",
          "Its construction does not identify it with any of them.",
-         "The invariant projection is separated from the sector projection, the support projections and a prepared or moving projection. In the pair model it equals the prepared projection at one setting, commutes with it at another and does neither in between. The difference between a finite and a continuous group is shown by the cube rotations on quartic polynomials and by the cyclic subgroups of the orbital rotations."),
+         "The invariant projection is separated from the sector projection, the support projections and a prepared or moving projection. In the pair model it equals the prepared projection at one setting, commutes with it at another and does neither in between. The difference between a finite and a continuous group is shown by the cube rotations on homogeneous quartic polynomials and by the cyclic subgroups of the orbital rotations, where the quarter turns stay a symmetry at every coupling and have the same invariant projection as the circle."),
     ("thm:architecture", "Conditional compact symmetry and the reducing Haar projection"):
         ("proved result", "prop:symmetry-projection prop:symmetry-compatibility", "",
          "For a compact group acting by unitaries that commute with the sector symmetry, the average is the projection onto the invariant vectors and it commutes with that symmetry."),

@@ -142,6 +142,35 @@ def test_average_is_the_projection_onto_invariant_vectors():
     np.testing.assert_allclose(_su2_average(2, 3), np.outer(singlet, singlet), atol=1e-10)
 
 
+def test_characters_and_invariant_states():
+    """A pure state is invariant exactly when the group multiplies its vector by a character."""
+    rng = np.random.default_rng(305)
+    charges = [0, 0, 1, -2, 3, 3, -5]
+    mix = _unitary(rng, len(charges))
+    generator, kappa, angles = _circle(charges, mix)
+    projections = {}
+    for charge in sorted(set(charges)):
+        # the character of an eigenvector of the generator is exp(-i charge phi); the average uses its conjugate
+        projections[charge] = _average([np.exp(1j * charge * phi) * kappa(phi) for phi in angles])
+        _is_projection(projections[charge])
+        assert round(np.trace(projections[charge]).real) == charges.count(charge)
+    np.testing.assert_allclose(sum(projections.values()), np.eye(len(charges)), atol=1e-10)
+    for first, second in itertools.combinations(projections, 2):
+        np.testing.assert_allclose(projections[first] @ projections[second], 0, atol=1e-10)
+    density = lambda v: np.outer(v, v.conj())
+    invariant = lambda v: all(np.allclose(kappa(phi) @ density(v) @ kappa(phi).conj().T, density(v), atol=1e-9)
+                              for phi in (0.3, 1.1, 2.9))
+    for charge, projection in projections.items():
+        vector = projection @ _complex(rng, len(charges))
+        vector /= np.linalg.norm(vector)
+        assert invariant(vector)
+        np.testing.assert_allclose(kappa(0.7) @ vector, np.exp(-0.7j * charge) * vector, atol=1e-10)
+        if charge:
+            np.testing.assert_allclose(projections[0] @ vector, 0, atol=1e-10)      # invariant state, not a fixed vector
+    mixed = projections[1] @ _complex(rng, len(charges)) + projections[3] @ _complex(rng, len(charges))
+    assert not invariant(mixed / np.linalg.norm(mixed))
+
+
 def test_subgroups_and_refinement():
     rng = np.random.default_rng(302)
     charges = list(range(-6, 7)) + [0, 4, 8, -8]
@@ -413,10 +442,35 @@ def test_two_symmetries_of_the_pair_model():
     np.testing.assert_allclose(pi_rotation, line(vec["g"]) + silent @ silent.conj().T, atol=1e-12)
     assert round(np.trace(pi_rotation).real) == 4
     np.testing.assert_allclose(pi_rotation @ plane(theta), line(vec["g"]), atol=1e-12)
+    quarter = kappa(np.pi / 2)
     for s, commutes in ((0.0, False), (0.4, False), (1.0, True)):
+        # the whole circle commutes with H_s only at s = j
         assert np.allclose(kappa(0.3) @ hamiltonian(s), hamiltonian(s) @ kappa(0.3)) == commutes
+        # the quarter turn and the invariant projection of the circle commute with H_s at every coupling
+        np.testing.assert_allclose(quarter @ hamiltonian(s), hamiltonian(s) @ quarter, atol=1e-12)
+        np.testing.assert_allclose(pi_rotation @ hamiltonian(s), hamiltonian(s) @ pi_rotation, atol=1e-12)
     np.testing.assert_allclose(hamiltonian(1.0), -2 * line(vec["g"]), atol=1e-12)
+    for name, sign in (("g", 1), ("e", -1), ("m", -1)):
+        np.testing.assert_allclose(quarter @ vec[name], sign * vec[name], atol=1e-12)
+    np.testing.assert_allclose(quarter @ silent, silent, atol=1e-12)
+    np.testing.assert_allclose(_average([kappa(np.pi / 2 * k) for k in range(4)]), pi_rotation, atol=1e-12)
+    # a port into C g + W has the compressed response although the circle is not a symmetry at s = 0.4
+    rng = np.random.default_rng(306)
+    basis = np.column_stack([vec["g"], silent])
+    port = basis @ _complex(rng, 4, 2)
+    h = hamiltonian(0.4)
+    reached = minimal_space(h, port)
+    np.testing.assert_allclose(pi_rotation @ reached, reached, atol=1e-9)
+    for z in (0.3 + 0.4j, -1.3 - 0.2j):
+        compressed = (basis.conj().T @ port).conj().T @ np.linalg.inv(basis.conj().T @ h @ basis - z * np.eye(4)) @ (basis.conj().T @ port)
+        np.testing.assert_allclose(port.conj().T @ np.linalg.inv(h - z * eye) @ port, compressed, atol=1e-10)
+    # the preparation is not such a port: it also prepares b, which is orthogonal to the invariant space
+    prepared = shell.conj().T @ pair.A
+    np.testing.assert_allclose(pi_rotation @ vec["b"], 0, atol=1e-12)
+    assert np.linalg.norm(pi_rotation @ prepared - prepared) > 0.5
     # finite subgroups of the rotations
+    # n is the order of the subgroup acting on the orbitals; the half turn is -1 on the modes and 1 on two-particle vectors
+    np.testing.assert_allclose(_orbital_rotation(np.pi), -np.eye(4), atol=1e-12)
     np.testing.assert_allclose(kappa(np.pi), eye, atol=1e-12)
     np.testing.assert_allclose(cyclic(2), eye, atol=1e-12)
     for n in (3, 4, 5, 7):
@@ -430,3 +484,19 @@ def test_two_symmetries_of_the_pair_model():
     orthogonal = [kappa(2 * np.pi * k / 16) for k in range(16)] + [exchange @ kappa(2 * np.pi * k / 16) for k in range(16)]
     np.testing.assert_allclose(_average(orthogonal), line(vec["g"]), atol=1e-12)
     np.testing.assert_allclose(pi_exchange @ pi_rotation, line(vec["g"]), atol=1e-12)
+    # every ray of W is an invariant pure state although the average annihilates its vector
+    signs = [1.0] * 16 + [-1.0] * 16                           # the character: 1 on rotations, -1 on reflections
+    np.testing.assert_allclose(_average([sign * op for sign, op in zip(signs, orthogonal)]), silent @ silent.conj().T, atol=1e-12)
+    w = silent @ _complex(rng, 3)
+    w /= np.linalg.norm(w)
+    np.testing.assert_allclose(_average(orthogonal) @ w, 0, atol=1e-12)
+    for op, sign in zip(orthogonal, signs):
+        np.testing.assert_allclose(op @ w, sign * w, atol=1e-12)
+        np.testing.assert_allclose(op @ line(w) @ op.conj().T, line(w), atol=1e-12)
+    # the remaining rays fixed by the rotations are those of e + i m and e - i m, and the exchange interchanges them
+    plus, minus = (vec["e"] + 1j * vec["m"]) / np.sqrt(2), (vec["e"] - 1j * vec["m"]) / np.sqrt(2)
+    for vector in (plus, minus):
+        np.testing.assert_allclose(abs(np.vdot(vector, kappa(0.4) @ vector)), 1.0, atol=1e-12)
+    np.testing.assert_allclose(abs(np.vdot(minus, exchange @ plus)), 1.0, atol=1e-12)
+    mixture = (vec["g"] + w) / np.sqrt(2)                      # fixed by the rotations, not an eigenvector of the exchange
+    assert np.linalg.norm(exchange @ line(mixture) @ exchange.conj().T - line(mixture)) > 0.5
