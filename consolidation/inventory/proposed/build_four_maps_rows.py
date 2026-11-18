@@ -9,7 +9,8 @@ part of Universal_Model.tex, so they cannot enter migration.csv until the text h
 permanent home. The script starts from the current rows for TAUM lines 3628-4048, applies
 the updates below, keeps the row that is already explicit, appends rows for two source
 passages that had none, and applies the validator's rules with the fragment as the draft
-passage.
+passage. It also writes one owed row agreed in review for a sentence of LG that the
+ledger did not track.
 """
 import csv
 import re
@@ -63,10 +64,10 @@ UPDATES = {
          "Both differences are displayed and proved from one identity for summable functions of the number operator. The first is identified with the heat-trace formula of Section 7."),
     ("thm:oscillator-zeta", "Mellin integral of the positive integer heat trace"):
         ("proved result", "prop:four-maps-mellin eq:four-maps-mellin", "",
-         "Stated for real part of s greater than one and proved by integrating term by term."),
+         "Stated for real part of s greater than one and proved by integrating term by term, which the convergent sum of the integrals of the absolute values permits."),
     ("@3901", "Scope of the completed zeta factor"):
         ("proved result", "subsec:four-maps-oscillator", "It makes no statement about the zeros of the zeta function.",
-         "The factor is distinguished from the entire xi function, its pole at one is noted, and the limits of what the oscillator shows are stated."),
+         "The factor is distinguished from the entire xi function and its pole at one is noted. The calculation uses the positive integers as eigenvalues of multiplicity one, and it says nothing about the zeros."),
     ("eq:oscillator-response", "Cyclic geometric oscillator port and its minimal response"):
         ("proved result|worked example", "eq:four-maps-oscillator-port eq:four-maps-oscillator-response", "",
          "The unit vector with geometric coefficients, its response with poles at the positive integers, minimality from the simple spectrum, and uniqueness by the proposition of Section 9."),
@@ -89,6 +90,12 @@ UPDATES = {
         ("proved result", "subsec:four-maps-interval", "the smallest value of $|\\lambda_n|$ is $\\pi/\\Lambda$",
          "Both cases of the twist are given, with the square of the gap for the returns."),
 }
+
+# An owed clause agreed in review of the previous block: (source, source_key, clause, planned_homes, owed text)
+OWED = [
+    ("LG", "eq:vacuum-symmetry-phase", "The phase freedom of a unique ground ray is not a model of individual differences among sentient beings",
+     "V", "State that the phase a symmetry gives a unique ground is the freedom of its ray and explains no difference between sentient beings. LG says so in the sentence after the equation, and Section 11 carries only the mathematics."),
+]
 
 # Source passages that had no row: (source_key, source_line, clause, draft_status, draft_labels, draft_quote, evidence)
 ADDITIONS = [
@@ -143,6 +150,13 @@ def main():
         rows.append({"source": "TAUM", "source_line": str(line), "source_kind": "supplement", "source_key": key,
                      "clause": clause, "coverage": "explicit", "draft_status": status, "draft_labels": targets,
                      "draft_quote": quote, "planned_homes": "IV", "evidence_or_owed": evidence, "_new": True})
+    owed_rows = []
+    for source, key, clause, homes, text in OWED:
+        anchor = [r for r in ledger if r["source"] == source and r["source_key"] == key]
+        assert anchor and all(r["clause"] != clause for r in anchor), key
+        owed_rows.append({"source": source, "source_line": anchor[0]["source_line"], "source_kind": anchor[0]["source_kind"],
+                          "source_key": key, "clause": clause, "coverage": "owed", "draft_status": "absent", "draft_labels": "",
+                          "draft_quote": "", "planned_homes": homes, "evidence_or_owed": text})
     rows.sort(key=lambda r: int(r["source_line"]))
     seen = set()
     for row in rows:
@@ -163,14 +177,15 @@ def main():
     with (HERE / f"{NAME}_rows.csv").open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=FIELDS, lineterminator="\n")
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(rows + owed_rows)
     before = {c: sum(r["coverage"] == c for r in current) for c in ("explicit", "recoverable", "owed")}
     total = {c: sum(r["coverage"] == c for r in ledger) for c in ("explicit", "recoverable", "owed")}
     after = {"explicit": total["explicit"] + before["recoverable"] + before["owed"] + len(ADDITIONS),
-             "recoverable": total["recoverable"] - before["recoverable"], "owed": total["owed"] - before["owed"]}
-    print(f"{len(rows)} proposed rows: {len(UPDATES)} updated, {unchanged} unchanged, {len(ADDITIONS)} for passages without a row")
+             "recoverable": total["recoverable"] - before["recoverable"], "owed": total["owed"] - before["owed"] + len(OWED)}
+    print(f"{len(rows) + len(owed_rows)} proposed rows: {len(UPDATES)} updated, {unchanged} unchanged, "
+          f"{len(ADDITIONS)} for passages without a row, {len(OWED)} newly recorded as owed")
     print(f"clauses of this section before: {before}; proposed: all explicit")
-    print(f"ledger now: {len(ledger)} rows {total}; if accepted: {len(ledger) + len(ADDITIONS)} rows {after}")
+    print(f"ledger now: {len(ledger)} rows {total}; if accepted: {len(ledger) + len(ADDITIONS) + len(OWED)} rows {after}")
     print(f"fragment labels: {len(fragment_labels)}, none shared with the manuscript, LG or TAUM")
 
 

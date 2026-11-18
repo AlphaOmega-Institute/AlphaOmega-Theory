@@ -33,8 +33,14 @@ were not explicit are explicit and the other is unchanged. Two further rows cove
 passages that had none: the opening of the section, which is an entry of the reading
 queue, and the paragraph after the three-state example. If the rows are accepted as they
 stand, the ledger goes from 493 rows (254 explicit, 108 recoverable, 131 owed) to 495
-(275, 105, 115), and TAUM from 188 (121, 20, 47) to 190 (142, 17, 31). These are
-proposals.
+(275, 105, 115), and TAUM from 188 (121, 20, 47) to 190 (142, 17, 31). Review of
+`b301a28` accepted the block in substance.
+
+The rows file also holds one owed row agreed in that review, for LG. After
+`eq:vacuum-symmetry-phase` LG says that the phase freedom of a unique ground ray is not a
+model of individual differences among sentient beings. Section 11 carries the
+mathematics of that equation and not this sentence, so the sentence is recorded as owed,
+planned for Part V. With it the ledger would stand at 496 rows (275, 105, 116).
 
 TAUM's closing table (lines 4025 to 4048) is carried in `subsec:four-maps-table`. That
 passage has no source label, so no row can be keyed to it. Its entry in the reading queue
@@ -100,6 +106,33 @@ port. All five are explicit in the manuscript.
 - The sentence in the three-state example that the inequality on the bias makes the
   ground unique.
 
+Three comparisons were drawn out in review of `b301a28` and are now in the text:
+
+- Three-state example. The port and the direction it misses are the same at every bias.
+  The bias decides whether the evolution carries the prepared excitation into that
+  direction: it is the indirect space when the lines are split and permanently invisible
+  when they coincide.
+- Oscillator and line. Both use a port of rank one. The oscillator port reaches every
+  level. On the line a port whose Fourier transform vanishes nowhere still misses part
+  of the space, because each energy has two momentum directions.
+- Interval. The smoothed mass is the same for opposite twists at every smoothing scale.
+  The first-order response tells them apart, unless the twist is 0 or pi. Neither
+  depends on the point.
+
+Two corrections from that review, both in the Mellin passage:
+
+- The calculation uses the positive integers as eigenvalues of multiplicity one. An
+  earlier version said it used only the set of eigenvalues. Two copies of the oscillator
+  have the same set and twice the trace.
+- Integration term by term is justified by the sum of the integrals of the absolute
+  values. An earlier version summed the absolute values of the integrals.
+
+The opening sentence now says densely defined closed map, since it uses the adjoint.
+
+One edit agreed in review belongs to the manuscript and is left for integration: in
+Section 11 the exchange of the two orbitals "fixes the vacuum", which should name the
+empty Fock state, because the same section uses vacuum for the ground of a Hamiltonian.
+
 ## Names to settle at integration
 
 - `a`, `a^*` and `N` are the ladder operators and the number operator. `N` also counts
@@ -124,7 +157,9 @@ port. All five are explicit in the manuscript.
   Gaussian against a closed form, the two forms of the response against each other, and
   the vector orthogonal to the reached space.
 - The Mellin transform is integrated numerically for real and complex s and compared
-  with the completed zeta factor. Its pole at one is checked.
+  with the completed zeta factor. Its pole at one is checked, the doubled trace of two
+  copies is checked, and the sum of the integrals of the absolute values is compared
+  with its closed form.
 - The twisted interval is tested through its eigenfunctions and through a Hermitian
   difference operator with the same condition at the ends. The two forms of the mass
   agree to eleven digits.

@@ -4,7 +4,7 @@
 \section{Four maps with one algebra}
 \label{sec:four-maps}
 
-Every closed map $A$ from an input space to an output space carries the structures of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index}: its polar part and two supports, the differential $d_A$ with the odd operators $d_A+d_A^*$ and $d_A^*-d_A$, the Laplacian $\operatorname{diag}(A^*A,AA^*)$, and the pairing of the nonzero spectra of the two returns. These relations are the same for every map. They do not fix the spectrum of the returns, whether the range is closed, the index, or the response through a port. This section works out four maps that differ in each of these respects: a number, the generator of translations on a line, the creation operator of an oscillator, and a first derivative on an interval with twisted ends. For each it asks what the common relations give, what is special to the map, and what the response through a specified port looks like. A fifth example, already met in Section~\ref{sec:preparation-evolution}, is restated in the form that Section~\ref{subsec:passive-sectors} generalized. Section~\ref{subsec:four-maps-table} collects the comparison.
+Every densely defined closed map $A$ from an input space to an output space carries the structures of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index}: its polar part and two supports, the differential $d_A$ with the odd operators $d_A+d_A^*$ and $d_A^*-d_A$, the Laplacian $\operatorname{diag}(A^*A,AA^*)$, and the pairing of the nonzero spectra of the two returns. These relations are the same for every map. They do not fix the spectrum of the returns, whether the range is closed, the index, or the response through a port. This section works out four maps that differ in each of these respects: a number, the generator of translations on a line, the creation operator of an oscillator, and a first derivative on an interval with twisted ends. For each it asks what the common relations give, what is special to the map, and what the response through a specified port looks like. A fifth example, already met in Section~\ref{sec:preparation-evolution}, is restated in the form that Section~\ref{subsec:passive-sectors} generalized. Section~\ref{subsec:four-maps-table} collects the comparison.
 
 \subsection{A number}
 \label{subsec:four-maps-scalar}
@@ -47,7 +47,7 @@ The weights sum to the identity, Corollary~\ref{cor:finite-response-defect} give
  e^{-it(H_\nu-E_0)/\hbar}e=e^{-it(E_2-E_0)/\hbar}\bigl[\cos(\nu\ell t/\hbar)\,e-\sin(\nu\ell t/\hbar)\,d\bigr].
  \label{eq:four-maps-three-state-transfer}
 \end{equation}
-The weight on $d$ is $\sin^2(\nu\ell t/\hbar)$. At $\nu=0$ the two excited lines coincide and must be merged. The reached space is then $\Span\{g,e\}$ and the indirect space vanishes.
+The weight on $d$ is $\sin^2(\nu\ell t/\hbar)$. At $\nu=0$ the two excited lines coincide and must be merged. The reached space is then $\Span\{g,e\}$ and the indirect space vanishes. The port $\Gamma$ is the same at every bias, and so is the direction it misses, $\ker\Gamma^*=\C d$. What the bias changes is whether the evolution carries the prepared excitation into that direction. For $\nu\ne0$ the line $\C d$ is the indirect space. At $\nu=0$ the relative phase of the two excited components no longer evolves, and $\C d$ is orthogonal to the reached space, hence permanently invisible in the sense of Proposition~\ref{prop:preparation-split}.
 
 The port can also be read as a preparation. With $\mathcal H_\Psi=\C^2$, $\mathcal H_\Phi=\C^3$ and $A=\Gamma$, the return $A^*A$ is the identity, $\ker A=\{0\}$ and $\ker A^*=\C d$. The input vector $(1,0)$ maps to $g$. If the input Hamiltonian is the compression $\Gamma^*H_\nu\Gamma=\operatorname{diag}(E_0,E_2)$, the input and output grounds correspond. The Hamiltonian $H_\nu$ that produces the response is further data of the realization. It is neither $A^*A$ nor $AA^*$. For $\nu\ne0$ the prepared plane is not invariant under the evolution, although $H_\nu$ commutes with $L$.
 
@@ -133,10 +133,10 @@ For the oscillator map and $\operatorname{Re}s>1$,
 where $\Gamma(s/2)$ is Euler's gamma function and $\zeta$ is the Riemann zeta function.
 \end{proposition}
 \begin{proof}
-The substitution $u=\pi n^2t$ gives $\int_0^\infty t^{s/2-1}e^{-\pi n^2t}\,dt=\pi^{-s/2}n^{-s}\,\Gamma(s/2)$ for $\operatorname{Re}s>0$. For $\operatorname{Re}s>1$ the sum over $n$ of the absolute values of these integrals converges, which permits integration term by term, and the sum of $n^{-s}$ is $\zeta(s)$.
+The substitution $u=\pi n^2t$ gives $\int_0^\infty t^{s/2-1}e^{-\pi n^2t}\,dt=\pi^{-s/2}n^{-s}\,\Gamma(s/2)$ for $\operatorname{Re}s>0$. Let $\sigma=\operatorname{Re}s>1$. The integrals of the absolute values $t^{\sigma/2-1}e^{-\pi n^2t}$ sum to $\pi^{-\sigma/2}\,\Gamma(\sigma/2)\zeta(\sigma)<\infty$, which permits integration term by term, and the sum of $n^{-s}$ is $\zeta(s)$.
 \end{proof}
 
-The right side of Eq.~\eqref{eq:four-maps-mellin} is the zeta function completed by its gamma factor. It is not the entire function $\xi(s)$, which carries the additional factor $\frac12s(s-1)$, and it has a simple pole at $s=1$. The proposition uses only the fact that the spectrum of $A^*A$ is the set of positive integers. It makes no statement about the zeros of the zeta function.
+The right side of Eq.~\eqref{eq:four-maps-mellin} is the zeta function completed by its gamma factor. It is not the entire function $\xi(s)$, which carries the additional factor $\frac12s(s-1)$, and it has a simple pole at $s=1$. The proposition uses only the fact that each positive integer is an eigenvalue of $A^*A$ of multiplicity one. The set of eigenvalues alone would not give it: two copies of the oscillator have the same set, and their heat trace and its Mellin transform are twice as large. It makes no statement about the zeros of the zeta function.
 
 The oscillator also has a simple minimal response. For $0<r<1$ let
 \begin{equation}
@@ -188,7 +188,7 @@ The mass $Z_\tau$ is finite and does not depend on $x_0$. Its second form follow
  M_\tau(z)=\frac{1}{2\Lambda}\sum_{n\in\mathbb Z}\frac{e^{-\tau\lambda_n^2}}{\lambda_n-z}.
  \label{eq:four-maps-interval-response}
 \end{equation}
-The energies in it are the eigenvalues of the first-order operator, of both signs. Replacing $b_\tau$ by $Z_\tau^{-1/2}b_\tau$ gives a spectral measure of total mass one and leaves the positions $\lambda_n$ of the lines unchanged. The spectrum is simple and every coefficient of $b_\tau$ is nonzero, so the pair is minimal by the argument used for the oscillator. The response therefore determines $\Lambda$ and $\vartheta$, which can be read from the positions of its poles.
+The energies in it are the eigenvalues of the first-order operator, of both signs. Replacing $b_\tau$ by $Z_\tau^{-1/2}b_\tau$ gives a spectral measure of total mass one and leaves the positions $\lambda_n$ of the lines unchanged. The spectrum is simple and every coefficient of $b_\tau$ is nonzero, so the pair is minimal by the argument used for the oscillator. The response therefore determines $\Lambda$ and $\vartheta$: the spacing of its poles gives the length, and their offset from zero gives the twist modulo $2\pi$. The mass sees less. By Eq.~\eqref{eq:four-maps-interval-mass} it depends on the twist only through $\cos(m\vartheta)$, so the twists $\vartheta$ and $2\pi-\vartheta$ have the same mass at every $\tau$, while their responses differ unless $\vartheta$ is $0$ or $\pi$. Neither the mass nor the response depends on the point $x_0$.
 
 \subsection{What is common and what depends on the map}
 \label{subsec:four-maps-table}
@@ -206,5 +206,7 @@ Map $A$ & Return $A^*A$ & Spectrum of the return & Distinguishing feature \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+The oscillator and the line show what the multiplicity of the spectrum does to a port. Both examples use a port of rank one. The oscillator port reaches every level, because the spectrum is simple and the port vector has a nonzero component at each level. On the line a port vector whose Fourier transform vanishes nowhere still misses part of the space. At each energy $\lambda>0$ the return has two directions, with momenta $\sqrt\lambda$ and $-\sqrt\lambda$, and one port supplies one combination of them.
 
 The relations among $d_A$, its adjoint, the two odd operators and the Laplacian are the same in all four cases. Whether the spectrum is discrete or continuous, whether a zero mode is unpaired, whether the support has a gap, and what the response measure is are properties of the map and of the port. They do not follow from those relations.

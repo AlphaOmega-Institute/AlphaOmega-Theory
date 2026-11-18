@@ -94,6 +94,8 @@ def test_three_state_port_as_a_preparation():
         weights = [w for _, w in response_weights(h, port) if np.linalg.norm(w) > 1e-12]
         count = sum(np.linalg.matrix_rank(w) for w in weights) - np.linalg.matrix_rank(sum(weights))
         assert count == (1 if nu else 0) and minimal_space(h, port).shape[1] == (3 if nu else 2)
+        reached = minimal_space(h, port)
+        np.testing.assert_allclose(np.linalg.norm(reached.conj().T @ d) ** 2, 1.0 if nu else 0.0, atol=1e-10)
         # the port read as a preparation A = Gamma from C^2 to C^3
         np.testing.assert_allclose(port.conj().T @ port, np.eye(2), atol=1e-15)
         defect = null_space(port.conj().T)
@@ -236,6 +238,17 @@ def test_mellin_transform_of_the_heat_trace():
         np.testing.assert_allclose(total, completed, rtol=2e-7)
         if np.isreal(s) and s >= 2:                                 # and by direct integration where the endpoint is mild
             np.testing.assert_allclose(_mellin(_theta_sum, s), completed, rtol=2e-6)
+    # two copies of the oscillator have the same set of eigenvalues and twice the trace and twice the transform
+    s = 3.0
+    doubled = lambda t: 2 * _theta_sum(t)
+    np.testing.assert_allclose(_mellin(doubled, s), 2 * np.pi ** (-s / 2) * gamma(s / 2) * _zeta(s), rtol=2e-6)
+    # the interchange for complex s rests on the integrals of the absolute values, which depend only on Re s
+    for s in (2.5 + 1.3j, 1.4 - 0.7j):
+        sigma = s.real
+        bound = sum(_mellin(lambda t, n=n: np.exp(-np.pi * n**2 * t), sigma).real for n in range(1, 400))
+        tail = np.pi ** (-sigma / 2) * gamma(sigma / 2) * (_zeta(sigma) - np.sum(np.arange(1, 400) ** -sigma)).real
+        np.testing.assert_allclose(bound + tail, (np.pi ** (-sigma / 2) * gamma(sigma / 2) * _zeta(sigma)).real, rtol=1e-6)
+        assert abs(np.pi ** (-s / 2) * gamma(s / 2) * _zeta(s)) < bound + tail
     # the completed factor has a simple pole at s = 1 with residue one, so it is not entire
     s = 1 + 1e-6
     np.testing.assert_allclose((s - 1) * np.pi ** (-s / 2) * gamma(s / 2) * _zeta(s), 1.0, atol=1e-5)
@@ -324,6 +337,20 @@ def test_interval_with_twisted_ends():
             np.testing.assert_allclose(abs(coefficients[3998:4003]) ** 2,
                                        np.exp(-tau * lam[3998:4003] ** 2) / (2 * half_length), rtol=1e-12)
             assert np.all(abs(coefficients[3998:4003]) > 0)
+    # opposite twists have the same smoothed mass at every scale; the first-order response tells them apart
+    n = np.arange(-4000, 4001)
+    for twist in (1.1, 2.5):
+        first, second = _eigenvalue(n, 0.7, twist), _eigenvalue(n, 0.7, 2 * np.pi - twist)
+        for tau in (0.02, 0.3, 2.0):
+            np.testing.assert_allclose(np.sum(np.exp(-tau * first**2)), np.sum(np.exp(-tau * second**2)), rtol=1e-13)
+        response = lambda lam, z: np.sum(np.exp(-0.3 * lam**2) / (lam - z)) / 1.4
+        z = 0.4 + 0.5j
+        assert abs(response(first, z) - response(second, z)) > 0.1
+        np.testing.assert_allclose(response(second, z), -response(first, -z), rtol=1e-11)        # the poles are reflected
+    for twist, same in ((0.0, True), (np.pi, True), (1.1, False)):
+        poles = np.sort(_eigenvalue(np.arange(-20, 21), 0.7, twist))
+        reflected = np.sort(-_eigenvalue(np.arange(-21, 20), 0.7, twist) if twist else -poles)
+        assert np.allclose(poles, reflected) == same
     # evaluation at a point is bounded on the scale exactly for s > 1/2
     lam = _eigenvalue(np.arange(-10**6, 10**6 + 1), 1.0, 0.4)
     partial = lambda s, cut: np.sum((1 + lam[10**6 - cut:10**6 + cut + 1] ** 2) ** (-s)) / 2.0
