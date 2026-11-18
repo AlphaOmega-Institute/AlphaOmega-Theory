@@ -1,0 +1,175 @@
+\subsection{How fast does the relaxation approach the ground?}
+\label{subsec:relaxation-rate}
+The proof of Proposition~\ref{prop:two-moment-deconditioning} used that every state relaxes to $P_y$. Here we give the rate and the generator. Write $\|X\|_1=\Tr|X|$ for the trace norm, and for an appearance state $\sigma$ let
+\begin{equation}
+ \delta_y(\sigma)=\Tr(Q_y\sigma)=1-\langle y,\sigma y\rangle
+ \label{eq:relaxation-deviation}
+\end{equation}
+be its weight outside the ground. The complementary weight $\langle y,\sigma y\rangle$ is the probability that $\sigma$ passes the ground test $P_y$.
+
+\begin{proposition}[Distance from a pure state]
+\label{prop:relaxation-pure-distance}
+For a density operator $\sigma$ and a unit vector $y$,
+\begin{equation}
+ 2\,\delta_y(\sigma)\;\le\;\|\sigma-P_y\|_1\;\le\;2\sqrt{\delta_y(\sigma)} .
+ \label{eq:relaxation-pure-distance}
+\end{equation}
+The upper bound is an equality when $\sigma$ is pure, and the lower bound when $\sigma$ commutes with $P_y$. In particular $\delta_y(\sigma)=0$ exactly when $\sigma=P_y$.
+\end{proposition}
+\begin{proof}
+The operator $Q_y-P_y$ has norm one, so $\|\sigma-P_y\|_1\ge\Tr\bigl((Q_y-P_y)(\sigma-P_y)\bigr)=2\delta_y(\sigma)$. For a unit vector $\phi$, the operator $P_\phi-P_y$ is self-adjoint with trace zero and rank at most two, and $\Tr(P_\phi-P_y)^2=2-2|\langle y,\phi\rangle|^2$. Its nonzero eigenvalues are therefore $\pm\sqrt{1-|\langle y,\phi\rangle|^2}$, and $\|P_\phi-P_y\|_1=2\sqrt{\delta_y(P_\phi)}$. Now write $\sigma=\sum_k p_kP_{\phi_k}$ with orthonormal eigenvectors $\phi_k$ and $\sum_kp_k=1$. The triangle inequality and the concavity of the square root give
+\[
+ \|\sigma-P_y\|_1\le\sum_kp_k\,2\sqrt{\delta_y(P_{\phi_k})}
+ \le2\sqrt{\textstyle\sum_kp_k\,\delta_y(P_{\phi_k})}=2\sqrt{\delta_y(\sigma)} .
+\]
+If $\sigma$ commutes with $P_y$, then $\sigma-P_y=-\delta_y(\sigma)P_y+Q_y\sigma Q_y$, and the two terms have orthogonal supports and trace norm $\delta_y(\sigma)$ each.
+\end{proof}
+The upper bound is the inequality of Fuchs and van de Graaf for a pure target \cite{FuchsVandeGraaf1999}. For a density operator, passing the ground test with probability one, having no weight outside the ground and being the state $P_y$ are therefore the same condition.
+
+\begin{proposition}[The relaxation as a semigroup]
+\label{prop:relaxation-semigroup}
+Let $\gamma>0$ and $s=e^{-\gamma t/2}$. Extend Eq.~\eqref{eq:moment-deconditioning} to every trace-class operator $X$ by $\mathcal D_t^y(X)=L_yXL_y+(1-s^2)\Tr(Q_yX)P_y$.
+\begin{enumerate}
+\item[(a)] $\mathcal D_{t+r}^y=\mathcal D_t^y\mathcal D_r^y$ for $t,r\ge0$, and $\|\mathcal D_t^y(X)-X\|_1\le4(1-e^{-\gamma t})\|X\|_1$.
+\item[(b)] $\mathcal D_t^y=\exp(t\,\mathcal G_y)$, where
+\begin{equation}
+ \mathcal G_y(X)=\gamma\Bigl(\Tr(Q_yX)\,P_y-\tfrac12\bigl(Q_yX+XQ_y\bigr)\Bigr),
+ \qquad \|\mathcal G_y(X)\|_1\le2\gamma\|X\|_1 .
+ \label{eq:relaxation-generator}
+\end{equation}
+\item[(c)] For $t>0$ the trace-class operators fixed by $\mathcal D_t^y$ are the multiples of $P_y$. Thus $P_y$ is fixed, and it is the only fixed state.
+\item[(d)] For every state $\sigma$,
+\begin{equation}
+ \delta_y\bigl(\mathcal D_t^y(\sigma)\bigr)=e^{-\gamma t}\,\delta_y(\sigma).
+ \label{eq:relaxation-decay}
+\end{equation}
+\item[(e)] For every state $\sigma$,
+\begin{equation}
+ 2e^{-\gamma t}\,\delta_y(\sigma)\;\le\;\bigl\|\mathcal D_t^y(\sigma)-P_y\bigr\|_1\;\le\;2e^{-\gamma t/2}\sqrt{\delta_y(\sigma)} .
+ \label{eq:relaxation-distance}
+\end{equation}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Write $P=P_y$ and $Q=Q_y$. In the four blocks of $X$ relative to $P$ and $Q$ the map reads
+\begin{equation}
+ \mathcal D_t^y(X)=PXP+s\,(PXQ+QXP)+s^2\,QXQ+(1-s^2)\Tr(QX)\,P .
+ \label{eq:relaxation-blocks}
+\end{equation}
+A second step with factor $s'$ multiplies the off-diagonal blocks by $ss'$ and the block $QXQ$ by $s^2s'^2$. The coefficient of $\Tr(QX)P$ becomes $(1-s^2)+s^2(1-s'^2)=1-s^2s'^2$. This is the composition law. Subtracting $X$ from Eq.~\eqref{eq:relaxation-blocks} leaves $(s-1)(PXQ+QXP)+(s^2-1)QXQ+(1-s^2)\Tr(QX)P$. Since $\|PXQ+QXP\|_1\le2\|X\|_1$, $\|QXQ\|_1\le\|X\|_1$, $|\Tr(QX)|\le\|X\|_1$ and $1-s\le1-s^2$, its trace norm is at most $4(1-s^2)\|X\|_1$. This proves (a).
+
+The coefficients $s$ and $s^2$ have derivatives $-\gamma/2$ and $-\gamma$ at $t=0$. The derivative of Eq.~\eqref{eq:relaxation-blocks} there is $-\tfrac{\gamma}{2}(PXQ+QXP)-\gamma\,QXQ+\gamma\Tr(QX)P$, which is $\mathcal G_y(X)$ because $QX+XQ=PXQ+QXP+2QXQ$. The three terms of $\mathcal G_y(X)$ in Eq.~\eqref{eq:relaxation-generator} have trace norms at most $\gamma\|X\|_1$, $\tfrac{\gamma}{2}\|X\|_1$ and $\tfrac{\gamma}{2}\|X\|_1$. The difference quotients of $\mathcal D_t^y$ at $t=0$ converge in the operator norm on the trace class, because only the scalar coefficients of the fixed block maps depend on $t$. With the composition law this gives $\tfrac{d}{dt}\mathcal D_t^y=\mathcal G_y\mathcal D_t^y$ and hence (b).
+
+If $\mathcal D_t^y(X)=X$ with $0<s<1$, comparing blocks in Eq.~\eqref{eq:relaxation-blocks} gives $PXQ=QXP=0$ and $QXQ=0$, so $X=PXP$ is a multiple of $P$. Conversely $\mathcal D_t^y(P)=P$. This is (c). Taking the trace of Eq.~\eqref{eq:relaxation-blocks} against $Q$ gives (d). Applying Proposition~\ref{prop:relaxation-pure-distance} to the state $\mathcal D_t^y(\sigma)$ and inserting (d) gives (e).
+\end{proof}
+
+Part (a) says more than continuity of $t\mapsto\mathcal D_t^y(X)$ for each $X$: the maps converge to the identity uniformly on bounded sets of the trace class, which is why the generator is bounded. In an orthonormal basis $(e_j)$ of $y^\perp$ it has the standard form of a generator of a semigroup of channels \cite{GKS1976,Lindblad1976}, with no Hamiltonian term,
+\begin{equation}
+ \mathcal G_y(X)=\sum_j\Bigl(J_jXJ_j^*-\tfrac12\bigl(J_j^*J_jX+XJ_j^*J_j\bigr)\Bigr),
+ \qquad J_j=\sqrt\gamma\,\ket{y}\!\bra{e_j}.
+ \label{eq:relaxation-jumps}
+\end{equation}
+Indeed $\sum_jJ_jXJ_j^*=\gamma\Tr(Q_yX)P_y$ and $\sum_jJ_j^*J_j=\gamma Q_y$. Each $J_j$ moves the amplitude along $e_j$ to the ground.
+
+By Eq.~\eqref{eq:relaxation-decay} the weight outside the ground obeys $\tfrac{d}{dt}\delta_y=-\gamma\,\delta_y$. It decreases strictly while it is positive, and it is positive at every finite time if it was positive at the start. The relaxation therefore reaches $P_y$ at a finite time only from $P_y$. Reaching it in one step takes a different channel, such as the reset $\sigma\mapsto P_y$. This is the value $s=0$ of Eq.~\eqref{eq:moment-deconditioning}, which no finite time attains.
+
+Both bounds in Eq.~\eqref{eq:relaxation-distance} are attained. If $\sigma$ commutes with $P_y$, so does $\mathcal D_t^y(\sigma)$, and the distance is $2e^{-\gamma t}\delta_y(\sigma)$. For a pure input $\phi=\cos\theta\,y+\sin\theta\,e$, with $e$ a unit vector orthogonal to $y$, the operator $\mathcal D_t^y(P_\phi)-P_y$ acts on $\Span\{y,e\}$ with trace zero and determinant $-s^2\sin^2\theta\,\bigl(1-(1-s^2)\sin^2\theta\bigr)$. Hence
+\begin{equation}
+ \bigl\|\mathcal D_t^y(P_\phi)-P_y\bigr\|_1
+ =2s\sin\theta\,\sqrt{1-(1-s^2)\sin^2\theta},
+ \label{eq:relaxation-pure-input}
+\end{equation}
+while the upper bound is $2s\sin\theta$. The ratio is one at $t=0$ and tends to one as $\theta\to0$ at any fixed time. Neither the constant $2$ nor the rate $\gamma/2$ can be improved. The weight outside the ground decays at rate $\gamma$. The coherence between the ground and its complement decays at rate $\gamma/2$, and a state with such coherence approaches the ground at this slower rate.
+
+\subsection{Fixing the ground and attracting to it}
+\label{subsec:relaxation-unitary}
+Two properties of the relaxation can be asked of any family of channels $\mathcal T_t$ on the appearance space. The family \emph{fixes the ground} if $\mathcal T_t(P_y)=P_y$ for every $t$. It \emph{attracts} a set $\mathsf B$ of states to the ground if $\delta_y(\mathcal T_t(\sigma))\to0$ as $t\to\infty$ for every $\sigma$ in $\mathsf B$. By Eq.~\eqref{eq:relaxation-pure-distance} this is the same as $\mathcal T_t(\sigma)\to P_y$ in trace norm. The set $\mathsf B$ is the basin, and it has to be specified. Canonical deconditioning fixes the ground and attracts every state.
+
+A unitary evolution can have the first property, and then it lacks the second. If $U_tP_yU_t^*=P_y$, then $U_t^*Q_yU_t=Q_y$ and
+\begin{equation}
+ \delta_y\bigl(U_t\sigma U_t^*\bigr)=\Tr\bigl(U_t^*Q_yU_t\,\sigma\bigr)=\delta_y(\sigma)
+ \label{eq:relaxation-unitary}
+\end{equation}
+for every state. The weight outside the ground never changes, so the only state attracted is $P_y$ itself. A unitary can carry one chosen vector to $y$. It cannot do so while leaving $y$ in place. An evolution that fixes the ground and attracts other states is therefore not unitary on the appearance space. It can still be the reduced description of a unitary evolution on a larger space.
+
+Canonical deconditioning has such a description at each time. Let the space of an environment be $\mathcal H_{\mathrm e}=\C\oplus y^\perp$, with vectors written $(c,k)$, and define
+\begin{equation}
+ \iota_th=L_yh\otimes(1,0)+\sqrt{1-s^2}\;y\otimes(0,Q_yh),\qquad h\in\mathcal H_\Phi .
+ \label{eq:relaxation-dilation}
+\end{equation}
+The two terms are orthogonal and $\|\iota_th\|^2=\|L_yh\|^2+(1-s^2)\|Q_yh\|^2=\|h\|^2$, so $\iota_t$ is an isometry into $\mathcal H_\Phi\otimes\mathcal H_{\mathrm e}$. The partial trace over the environment removes the cross terms between its two summands and gives
+\begin{equation}
+ \Tr_{\mathrm e}\bigl(\iota_t\sigma\iota_t^*\bigr)=L_y\sigma L_y+(1-s^2)\Tr(Q_y\sigma)P_y=\mathcal D_t^y(\sigma).
+ \label{eq:relaxation-dilation-trace}
+\end{equation}
+Any unitary $U$ on $\mathcal H_\Phi\otimes\mathcal H_{\mathrm e}$ with $U\bigl(h\otimes(1,0)\bigr)=\iota_th$ then gives $\mathcal D_t^y(\sigma)$ as the reduced state of $U\bigl(\sigma\otimes P_{(1,0)}\bigr)U^*$. Such unitaries exist because the orthogonal complements of $\mathcal H_\Phi\otimes(1,0)$ and of $\Ran\iota_t$ have the same dimension. In this description the environment starts in $(1,0)$. The amplitude removed from $y^\perp$ is copied into the second summand of the environment while the system is placed in $y$, and afterwards the environment is found outside $(1,0)$ with probability $(1-s^2)\delta_y(\sigma)$. The construction shows that an environment of this kind is possible. It does not identify one in an observer.
+
+The unitary above depends on $t$. On a finite-dimensional larger space, the weight outside the ground under one unitary group $e^{-itG}$ is a finite sum of terms $c_{ab}e^{-i(g_a-g_b)t}$ over the eigenvalues $g_a$ of $G$. Such a sum returns arbitrarily close to its initial value at arbitrarily late times. It cannot equal $e^{-\gamma t}\delta_y(\sigma)$ for all $t\ge0$ unless $\delta_y(\sigma)=0$. Reproducing the whole semigroup with one unitary group therefore requires an infinite-dimensional larger space, even when the appearance space has finite dimension. We do not construct one.
+
+\subsection{Relaxation across many moments}
+\label{subsec:relaxation-moments}
+The momentary description lets the appearance space and its ground change from one moment to the next. Let $\mathcal H_{\Phi,n}$ be the appearance space at moment $n$, with ground vector $y_n$ and state $\sigma_n$, and let $\mathcal T_n$ be the channel with $\sigma_{n+1}=\mathcal T_n(\sigma_n)$. Put $\delta_n=\delta_{y_n}(\sigma_n)$. The spaces may be identified with one another, but nothing below requires it. Two conditions can be stated without choosing canonical deconditioning. The steps \emph{carry the ground} when
+\begin{equation}
+ \mathcal T_n(P_{y_n})=P_{y_{n+1}}\qquad\text{for every }n,
+ \label{eq:relaxation-ground-carried}
+\end{equation}
+and the given sequence of states \emph{contracts with factors} $q_n\in[0,1]$ when
+\begin{equation}
+ \delta_{n+1}\le q_n\,\delta_n\qquad\text{for every }n .
+ \label{eq:relaxation-contraction}
+\end{equation}
+The first is a property of the channels. The second concerns the particular states $\sigma_n$.
+
+\begin{proposition}[Stabilization across moments]
+\label{prop:relaxation-moments}
+\begin{enumerate}
+\item[(a)] If the steps carry the ground and $\sigma_n=P_{y_n}$ at some moment $n$, then $\sigma_m=P_{y_m}$ at every later moment $m$.
+\item[(b)] If the sequence contracts with factors $q_n$, then
+\begin{equation}
+ \delta_n\le\Bigl(\prod_{k=0}^{n-1}q_k\Bigr)\delta_0,
+ \qquad \|\sigma_n-P_{y_n}\|_1\le2\sqrt{\delta_n}.
+ \label{eq:relaxation-product}
+\end{equation}
+If the products tend to zero, then $\|\sigma_n-P_{y_n}\|_1\to0$.
+\item[(c)] If one step satisfies $\delta_{y_{n+1}}(\mathcal T_n(\sigma))\le q\,\delta_{y_n}(\sigma)$ for every state $\sigma$ on $\mathcal H_{\Phi,n}$, with a finite constant $q$, then $\mathcal T_n(P_{y_n})=P_{y_{n+1}}$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Part (a) is Eq.~\eqref{eq:relaxation-ground-carried} applied repeatedly. Iterating Eq.~\eqref{eq:relaxation-contraction} gives the first bound of (b), and Proposition~\ref{prop:relaxation-pure-distance} in each space gives the second. For (c), the state $P_{y_n}$ has no weight outside its ground, so its image has no weight outside $y_{n+1}$ and equals $P_{y_{n+1}}$ by Proposition~\ref{prop:relaxation-pure-distance}.
+\end{proof}
+
+Part (b) does not use Eq.~\eqref{eq:relaxation-ground-carried}, and it allows steps with $q_n=1$ at which nothing is gained. Part (c) gives the relation between the two conditions: a step that contracts every state carries the ground. The converse fails: a unitary step that carries the ground leaves the weight outside it unchanged for every state, by the computation of Eq.~\eqref{eq:relaxation-unitary}. For an example of both conditions, let step $n$ be canonical deconditioning toward $y_n$ at rate $\gamma_n$ for a duration $\tau_n$, followed by an isometry from $\mathcal H_{\Phi,n}$ into $\mathcal H_{\Phi,n+1}$ that takes $y_n$ to $y_{n+1}$. These steps carry the ground, and by Eq.~\eqref{eq:relaxation-decay} every sequence of states satisfies Eq.~\eqref{eq:relaxation-contraction} with equality for $q_n=e^{-\gamma_n\tau_n}$. The products tend to zero exactly when $\sum_n\gamma_n\tau_n$ diverges. Count the steps from one. If the $n$th has $\gamma\tau=1/n$, every state approaches the ground. If it has $\gamma\tau=1/n^2$, the weight outside the ground decreases at every step and tends to $e^{-\pi^2/6}\delta_0$, about $0.19\,\delta_0$.
+
+We say that the sequence \emph{is at the ground} at moment $n$ when $\sigma_n=P_{y_n}$, and that it \emph{stabilizes} when $\|\sigma_n-P_{y_n}\|_1\to0$. By (a), being at the ground persists when the steps carry it. The two notions differ. Under the deconditioning steps just described, a sequence that starts off the ground is not at the ground at any finite moment, and it stabilizes when $\sum_n\gamma_n\tau_n$ diverges. In the cognitive model the first is an event of exact realization and the second is its asymptotic stabilization.
+
+\subsection{What is returned to the physical side after relaxation?}
+\label{subsec:relaxation-return}
+Let $V:S\to\mathcal H_\Phi$ be an isometry with range $D$, as in Proposition~\ref{prop:two-moment-deconditioning}, and write $\Pi_D=VV^*$ and $Q_D=I-\Pi_D$. For an appearance state $\sigma$ the operator $V^*\sigma V$ on $S$ is positive with trace $\Tr(\Pi_D\sigma)=1-p_\perp(\sigma)$, in the notation of Eq.~\eqref{eq:matched-defect-outcome}. When this trace is positive, the \emph{returned state} is
+\begin{equation}
+ \sigma_S=\frac{V^*\sigma V}{\Tr(\Pi_D\sigma)},\qquad
+ V\sigma_SV^*=\frac{\Pi_D\sigma\Pi_D}{\Tr(\Pi_D\sigma)} .
+ \label{eq:relaxation-return}
+\end{equation}
+The second expression is $\sigma$ conditioned on passing the projective test $\Pi_D$, whose complement is the outcome $\perp$ of Section~\ref{sec:polar-matched-observables}. For a pure state $P_\phi$ the returned state is the ray of $V^*\phi$. It is defined exactly when $\phi$ does not lie in $D^\perp$. The map $\sigma\mapsto V^*\sigma V$ is completely positive and does not increase the trace. Its trace is the probability of a branch only once a measurement with the effect $\Pi_D$ has been realized.
+
+Suppose $y\in D$, with partner $p=V^*y$. Equation~\eqref{eq:moment-excess-decay} gives, for every appearance state $\sigma$,
+\begin{equation}
+ \Tr\bigl(\Pi_D\,\mathcal D_t^y(\sigma)\bigr)=1-e^{-\gamma t}\,\Tr(Q_D\sigma).
+ \label{eq:relaxation-paired-weight}
+\end{equation}
+This is positive for $t>0$, including for a state that began entirely outside $D$. Since $V^*P_yV=P_p$ and compression by $V$ does not increase the trace norm, Eq.~\eqref{eq:relaxation-distance} bounds the distance of $V^*\mathcal D_t^y(\sigma)V$ from $P_p$. Dividing a positive operator of trace $w\le1$ by $w$ changes it by $1-w$ in trace norm, and Eq.~\eqref{eq:relaxation-paired-weight} gives $w$. Hence
+\begin{equation}
+ \bigl\|\bigl(\mathcal D_t^y(\sigma)\bigr)_S-P_p\bigr\|_1
+ \le2e^{-\gamma t/2}\sqrt{\delta_y(\sigma)}+e^{-\gamma t}\,\Tr(Q_D\sigma).
+ \label{eq:relaxation-return-bound}
+\end{equation}
+The returned state converges to the partner of the ground from every initial appearance state. When $V$ is the polar isometry of $A$ and the weak bridge of Section~\ref{sec:ground-correspondence} holds, that partner is the physical vacuum $x$ exactly under strong polar compatibility.
+
+A second return uses only the two reference lines. With $u_0=\ket{y}\!\bra{x}$ of Eq.~\eqref{eq:restricted-ground-orientation}, $u_0^*\sigma u_0=\langle y,\sigma y\rangle P_x$ for every state, and Eq.~\eqref{eq:relaxation-decay} gives
+\begin{equation}
+ u_0^*\,\mathcal D_t^y(\sigma)\,u_0=\bigl(1-e^{-\gamma t}\delta_y(\sigma)\bigr)P_x .
+ \label{eq:relaxation-restricted-return}
+\end{equation}
+The coefficient is positive for every $t>0$ and tends to one. After normalization this return is the physical vacuum at every positive time, by construction. The return through $V$ approaches the partner $p$, which is the vacuum only under strong compatibility.
+
+On the unequal-cell path of Section~\ref{sec:ground-correspondence}, start from the fine site $e_2$ considered earlier in this section, for which $\Tr(Q_D\sigma)=3/4$ and $\delta_y(\sigma)=4/5$. At half relaxation, $s^2=1/2$, the state lies in $D$ with probability $5/8$ and passes the fine ground test with probability $3/5$. The state returned through $V$ converges to $(1,2)/\sqrt5$, which passes the coarse ground test with probability $9/10$. The restricted return gives the coarse ground itself.
