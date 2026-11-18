@@ -1874,16 +1874,15 @@ The rotations also show the difference between finite and continuous invariance.
 
 The exchange is not a rotation, since $\sigma\kappa(\varphi)\sigma=\kappa(-\varphi)$. Together they generate the orthogonal group of the orbital pair, whose invariant projection is $\Pi_\sigma\Pi_{\rm rot}=\ket{g}\bra{g}$. The jointly fixed vectors form the ground line $\C g$. Every ray in $W$ also defines an invariant pure state, because the rotations fix it and the exchange changes only its sign. In the terms of Eq.~\eqref{eq:symmetry-character-projection}, $W$ is the range of $\Pi_\chi$ for the character that is $1$ on rotations and $-1$ on the exchange. These rays and the ground are all the invariant pure states: a ray fixed by the rotations lies in $\C g\oplus W$ or is one of the two lines of $e\pm im$, which the exchange interchanges, and in $\C g\oplus W$ the exchange fixes only the ray of $g$ and the rays of $W$. Requiring a state vector to be fixed and requiring the state to be invariant are thus different requirements, already in this six-dimensional model.
 
-\begingroup\small
 \section{Four maps with one algebra}
 \label{sec:four-maps}
 
-Every densely defined closed map $A$ from an input space to an output space carries the structures of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index}: its polar part and two supports, the differential $d_A$ with the odd operators $d_A+d_A^*$ and $d_A^*-d_A$, the Laplacian $\operatorname{diag}(A^*A,AA^*)$, and the pairing of the nonzero spectra of the two returns. These relations are the same for every map. They do not fix the spectrum of the returns, whether the range is closed, the index, or the response through a port. This section works out four maps that differ in each of these respects: a number, the generator of translations on a line, the creation operator of an oscillator, and a first derivative on an interval with twisted ends. For each it asks what the common relations give, what is special to the map, and what the response through a specified port looks like. A fifth example, already met in Section~\ref{sec:preparation-evolution}, is restated in the form that Section~\ref{subsec:passive-sectors} generalized. Section~\ref{subsec:four-maps-table} collects the comparison.
+Every densely defined closed map $A$ from an input space to an output space carries the structures of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index}: its polar part and two supports, the differential $d_A$ with the odd operators $d_A+d_A^*$ and $d_A^*-d_A$, the Laplacian $\operatorname{diag}(A^*A,AA^*)$, and the pairing of the nonzero spectra of the two returns. These relations are the same for every map. They do not fix the spectrum of the returns, whether the range is closed, the index, or the response through a port. This section works out four maps that differ in each of these respects: a number, the generator of translations on a line, the creation operator of an oscillator, and a first derivative on an interval with twisted ends. In each of the four, the input and output are separate summands, each a copy of the same Hilbert space. We use the same coordinates on both copies. The map determines which input and output directions remain unpaired. For each example we ask what the common relations give, what is special to the map, and what the response through a specified port looks like. A fifth example, already met in Section~\ref{sec:preparation-evolution}, is restated in the form that Section~\ref{subsec:passive-sectors} generalized. Section~\ref{subsec:four-maps-table} collects the comparison.
 
 \subsection{A number}
 \label{subsec:four-maps-scalar}
 
-Let $\mathcal H_\Psi=\mathcal H_\Phi=\C$ and $Ax=bx$ with $b\in\C$. Then
+Let $\mathcal H_\Psi$ and $\mathcal H_\Phi$ each be a copy of $\C$, and let $Ax=bx$ with $b\in\C$. Then
 \begin{equation}
  d_A+d_A^*=\begin{pmatrix}0&\overline b\\ b&0\end{pmatrix},\qquad
  d_A^*-d_A=\begin{pmatrix}0&\overline b\\ -b&0\end{pmatrix},\qquad
@@ -1928,12 +1927,12 @@ The port can also be read as a preparation. With $\mathcal H_\Psi=\C^2$, $\mathc
 \subsection{The generator of translations}
 \label{subsec:four-maps-translation}
 
-Let $\mathcal H_\Psi=\mathcal H_\Phi=L^2(\R)$ and
+Let $\mathcal H_\Psi$ and $\mathcal H_\Phi$ each be a copy of $L^2(\R)$ and take
 \begin{equation}
  A=D_x=-i\frac{d}{dx},\qquad \operatorname{Dom}D_x=H^1(\R).
  \label{eq:four-maps-translation}
 \end{equation}
-This operator is self-adjoint, so the two returns coincide,
+The operator $D_x$ is self-adjoint on $L^2(\R)$, so the two returns have the same expression on their respective copies,
 \begin{equation}
  A^*A=AA^*=D_x^2=-\frac{d^2}{dx^2},\qquad \operatorname{Dom}D_x^2=H^2(\R).
  \label{eq:four-maps-translation-returns}
@@ -1968,7 +1967,7 @@ on the common domain of the sequences $x=(x_n)$ with $\sum_nn|x_n|^2<\infty$. Bo
 
 \begin{proposition}[The oscillator map]
 \label{prop:four-maps-oscillator}
-Let $\mathcal H_\Psi=\mathcal H_\Phi=\mathfrak h$ and $A=a^*$. Then
+Let $\mathcal H_\Psi$ and $\mathcal H_\Phi$ each be a copy of $\mathfrak h$, and take $A=a^*$. Then
 \begin{equation}
  A^*A=aa^*=N+I,\qquad AA^*=a^*a=N .
  \label{eq:four-maps-oscillator-returns}
@@ -2085,6 +2084,7 @@ The oscillator and the line show what the multiplicity of the spectrum does to a
 
 The relations among $d_A$, its adjoint, the two odd operators and the Laplacian are the same in all four cases. Whether the spectrum is discrete or continuous, whether a zero mode is unpaired, whether the support has a gap, and what the response measure is are properties of the map and of the port. They do not follow from those relations.
 
+\begingroup\small
 \begin{thebibliography}{99}
 \raggedright
 \bibitem{Yiannopoulos2020} A.~Yiannopoulos, \emph{The Structure of Dharmak\=irti's Philosophy: A Study of Object-Cognition in the Perception Chapter (pratyak\d{s}apariccheda) of the Pram\=a\d{n}asamuccaya, the Pram\=a\d{n}av\=arttika, and Their Earliest Commentaries}, Ph.D. dissertation, Emory University, 2020. \href{https://etd.library.emory.edu/downloads/p2676w57z}{Emory University repository}.
