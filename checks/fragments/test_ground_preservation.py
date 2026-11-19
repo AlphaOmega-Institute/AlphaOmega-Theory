@@ -81,6 +81,34 @@ def test_zero_modes_of_the_returns_and_the_returns_as_hamiltonians():
     assert_allclose(dag(defect) @ shifted_out @ defect, -a ** 2 * np.eye(3), atol=1e-10)
     assert_allclose(np.vdot(y, R_out @ y).real, a ** 2, atol=1e-12)
 
+    # LG's shifted return acts on the active input S. A = diag(0, 1, 2), x = y = e_1, a = 1:
+    # strongly compatible; on the whole input the kernel lies below x, on S x is the ground
+    D3 = np.diag([0.0, 1.0, 2.0])
+    e1 = np.eye(3)[1]
+    assert_allclose(D3 @ e1, e1, atol=1e-12)
+    assert_allclose(D3.T @ D3 @ e1, e1, atol=1e-12)
+    assert_allclose(np.linalg.eigvalsh(D3.T @ D3 - np.eye(3)), [-1, 0, 3], atol=1e-12)
+    S_basis = np.eye(3)[:, 1:]                                 # (ker A)^perp
+    values, vectors = np.linalg.eigh(S_basis.T @ (D3.T @ D3 - np.eye(3)) @ S_basis)
+    assert_allclose(values, [0, 3], atol=1e-12)
+    assert_allclose(abs(vectors[:, 0] @ (S_basis.T @ e1)), 1, atol=1e-12)
+    # without strong compatibility x is not an eigenvector of A*A (unequal-cell path)
+    Cmap = np.array([[1, 0], [0, 1], [0, 1], [0, 1], [0, 1]]) / 2
+    xc = np.ones(2) / np.sqrt(2)
+    image = Cmap.T @ Cmap @ xc
+    assert np.linalg.norm(image - np.vdot(xc, image) * xc) > 0.1
+    # Output side with R3 and R5 only (weak bridge, defect): y is orthogonal to the whole
+    # ground eigenspace ker A* of AA*.
+    Bw = random_complex(5, 3)
+    xw = unit(random_complex(3))
+    yw = unit(Bw @ xw)
+    vals, vecs = np.linalg.eigh(Bw @ dag(Bw))
+    ground_space = vecs[:, vals < 1e-10]
+    assert ground_space.shape[1] == 2
+    assert_allclose(dag(ground_space) @ yw, 0, atol=1e-10)
+    out = Bw @ dag(Bw) @ yw
+    assert np.linalg.norm(out - np.vdot(yw, out) * yw) > 1e-3   # not even an eigenvector here
+
     # an injective map with a at the bottom of A*A: x is a ground of A*A - a^2
     left2 = np.linalg.qr(random_complex(5, 5))[0]
     right2 = np.linalg.qr(random_complex(3, 3))[0]
@@ -204,12 +232,21 @@ def test_unitary_groups_that_keep_the_ground():
     # if y is not an eigenvector, the projection moves at some times
     moved = [np.linalg.norm(expm(-1j * t * H) @ P @ expm(1j * t * H) - P) for t in (0.1, 0.5)]
     assert max(moved) > 1e-3
-    # at isolated times the projection can return: G = diag(0, 1), y = (1, 1)/sqrt 2
+    # return times are those with |<y, U_t y>| = 1; for G = diag(0, 1), y = (1, 1)/sqrt 2
+    # they are the multiples of 2 pi, a closed subgroup that is not all of R
     G2 = np.diag([0.0, 1.0])
     y2 = np.ones(2) / np.sqrt(2)
     P2 = projection(y2)
-    assert_allclose(expm(-2j * np.pi * G2) @ P2 @ expm(2j * np.pi * G2), P2, atol=1e-12)
-    assert np.linalg.norm(expm(-1j * G2) @ P2 @ expm(1j * G2) - P2) > 0.1
+    returns = lambda G, v, t: abs(np.vdot(v, expm(-1j * t * G) @ v))
+    for t in (2 * np.pi, 4 * np.pi, -6 * np.pi):
+        assert_allclose(expm(-1j * t * G2) @ P2 @ expm(1j * t * G2), P2, atol=1e-12)
+        assert_allclose(returns(G2, y2, t), 1, atol=1e-12)
+    for t in (1.0, np.pi, 2 * np.pi * np.sqrt(2)):
+        assert returns(G2, y2, t) < 1 - 1e-3
+    # with frequencies 1 and sqrt 2 the time 2 pi is no longer a return
+    G3 = np.diag([0.0, 1.0, np.sqrt(2)])
+    y3 = np.ones(3) / np.sqrt(3)
+    assert returns(G3, y3, 2 * np.pi) < 1 - 1e-3
     # the phase is a character: chi(s + t) = chi(s) chi(t), recovered from the derivative
     chi = lambda t: np.vdot(y, expm(-1j * t * G) @ y)
     assert_allclose(chi(0.4 + 1.1), chi(0.4) * chi(1.1), atol=1e-12)
@@ -218,13 +255,15 @@ def test_unitary_groups_that_keep_the_ground():
 
 
 def test_each_moment_has_a_rank_one_ground_projection():
-    # a degenerate bottom does not select a projection of rank one
-    H = np.diag([0.0, 0.0, 1.0])
-    values, vectors = np.linalg.eigh(H)
-    bottom = vectors[:, np.abs(values - values[0]) < 1e-12]
-    assert rank(bottom @ dag(bottom)) == 2
-    # a unique bottom does
-    H = np.diag([0.0, 0.5, 1.0])
-    values, vectors = np.linalg.eigh(H)
-    bottom = vectors[:, np.abs(values - values[0]) < 1e-12]
-    assert rank(bottom @ dag(bottom)) == 1
+    # A vector chosen in a degenerate ground space has a rank-one projection, which is not
+    # the spectral projection at the bottom; for a unique bottom the two coincide.
+    for diagonal, degenerate in (([0.0, 0.0, 1.0], True), ([0.0, 0.5, 1.0], False)):
+        H = np.diag(diagonal)
+        values, vectors = np.linalg.eigh(H)
+        bottom = vectors[:, np.abs(values - values[0]) < 1e-12]
+        spectral = bottom @ dag(bottom)
+        chosen = unit(bottom @ np.ones(bottom.shape[1]))
+        assert_allclose(H @ chosen, values[0] * chosen, atol=1e-12)
+        assert rank(projection(chosen)) == 1
+        assert rank(spectral) == (2 if degenerate else 1)
+        assert np.allclose(projection(chosen), spectral) == (not degenerate)

@@ -22,6 +22,36 @@ Nothing here changes `Universal_Model.tex` or the shared ledger. The preview pri
 five parts one after another with their markers. No new subsection, no new bibliography
 entry.
 
+## Revision after review of `0c11cb5`
+
+The review kept the block and asked for one correction and four smaller changes. All are
+made.
+
+1. **The shifted return acts on the active input.** LG proposes `A*A − a²I` as an
+   active-support model, and I had checked it on the whole input space, where a kernel
+   lies below `x`. On `S` the answer can differ. For `A = diag(0, 1, 2)` and
+   `x = y = e_1`, with `a = 1`, the grounds are strongly compatible. The whole-space
+   operator has eigenvalues −1, 0, 3, while on `S` they are 0 and 3 and `x` is the unique
+   ground. The text now states the condition on `S`, that `a²` is the bottom of the
+   spectrum of `A*A` there, and gives the example. The check computes both. The row for
+   `eq:shifted-physical-return-model` is revised. I also added that without strong
+   compatibility `x` is not an eigenvector of `A*A` at all, since an eigenvalue would equal
+   `a²`, which is condition (i).
+2. **The output side needs only R3 and R5.** R5 makes `ker A*` the ground eigenspace of
+   `AA*`, at the eigenvalue zero, and R3 puts `y` in the range of `A`, orthogonal to that
+   whole eigenspace. Strong compatibility only adds the eigenvalue `a²`. The text and a new
+   check with a weak bridge and a two-dimensional defect say so.
+3. **Bounded operators in Section 5.1.** LG's hypothesis that `X` is bounded is restored.
+4. **Return times in Section 6.5.** The sentence that condition (i) is needed at every
+   time is replaced. The return times are those with `|⟨y, U_t y⟩| = 1`, a closed subgroup
+   of the real line, so one return is not enough and two returns with irrational ratio
+   are. The check tests the 2π example and a three-level case in which 2π is no longer a
+   return.
+5. **Rank one in Section 6.6.** A projection onto a chosen vector has rank one even in a
+   degenerate ground space. What LG requires is that it be the whole spectral projection
+   at the bottom, which is the uniqueness part of R2. The text, the check and the row now
+   say this.
+
 ## Source results a reader can now find
 
 | Source (LG) | Fragment |
@@ -30,7 +60,7 @@ entry.
 | `def:ground-line-preserving-operator` | B, `eq:ground-line-kept` and the sentence after it |
 | `prop:ground-preservation-reduction` | B, from "The condition is one-sided." to the end |
 | `thm:unitary-ground-preservation` | C, `eq:relaxation-unitary-group` and its proof |
-| `def:momentary-phenomenal-system`, the rank-one ground projections | D |
+| `def:momentary-phenomenal-system`, each moment's ground projection as the whole spectral projection | D |
 | `prop:no-iterated-awareness-tower`, the mathematical clause | E, `eq:index-no-second-step` and the four sentences after it |
 | `id:rangrig-terminal-law`, the consequence that no second act is needed | E, "The opening section takes ..." and the next sentence |
 | `rem:annihilation-not-destruction` | E, second paragraph, first three sentences |
@@ -95,12 +125,15 @@ Offered for review as additions.
 1. Part B: the ground line is kept exactly when the variance vanishes, and the ray exactly
    when in addition the mean is nonzero; the operator `|y⟩⟨w|` as a one-sided example; a
    unitary keeps the line when its adjoint does.
-2. Part C: the example `G = diag(0, 1)` showing that preservation at isolated times is not
-   enough.
+2. Part C: the example `G = diag(0, 1)` showing that a single return is not enough.
 3. Part E: the returns on the unequal-cell path and in the pair preparation select other
-   states than the grounds; under R5 and strong compatibility the shifted output return is
-   `−a²` on the defect; the channels attaining `eq:index-channel-coherence` as the example
-   of one preparation with ground-carrying and ground-moving channels.
+   states than the grounds; under strong compatibility the shifted output return is `−a²`
+   on the defect; the channels attaining `eq:index-channel-coherence` as the example of one
+   preparation with ground-carrying and ground-moving channels.
+4. Part E, from the review: the example `A = diag(0, 1, 2)` separating the shifted return on
+   the active input from the one on the whole input, and the exclusion of `AA*` from R3 and
+   R5 alone.
+5. Part C, from the review: the return times as a closed subgroup of the real line.
 
 ## Sentences that interpret
 

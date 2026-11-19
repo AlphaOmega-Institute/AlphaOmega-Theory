@@ -41,7 +41,7 @@ UPDATES = {
     ("LG", "eq:shifted-physical-return-model", "Constraints on taking structural returns as proposed ground generators"):
         ("proved result|worked example", "eq:return-kernels eq:ground-output-return",
          r"It constrains any attempt to take the returns as the sector Hamiltonians.",
-         "The unshifted input return cannot have the ground at energy zero under the bridge. The shifted return has the ground at its bottom only under strong compatibility and without a kernel. Under R5 and strong compatibility the output ground is not a ground of the output return. On the unequal-cell path and in the pair preparation the returns select other states."),
+         "The unshifted input return cannot have the ground at energy zero under the bridge, and the ground is an eigenvector of the return only under strong compatibility. LG's shifted return on the active input has the ground at its bottom exactly when the bridge coefficient squared is the bottom of the return there; an example with a kernel shows that on the whole input space the kernel lies below. R3 and R5 alone exclude the output return as a Hamiltonian selecting the output ground, which is orthogonal to its whole ground eigenspace. On the unequal-cell path and in the pair preparation the returns select other states."),
     ("LG", "prop:no-iterated-awareness-tower", "Forward image, vanishing square, and annihilation of every output vector"):
         ("proved result", "eq:index-no-second-step", "",
          "Displayed for the differential on its whole domain, with the same statement for its negative and the remark that the model generates no iterated sequence."),
@@ -51,14 +51,14 @@ UPDATES = {
          "The consequence of the opening's reading, that a cognition is manifest in its occurrence, is stated next to the vanishing of the differential on the output summand. Whether that vanishing expresses reflexivity is left as a further identification."),
     ("LG", "def:ground-line-preserving-operator", "Preservation of the ground line and projective survival"):
         ("definition|proved result", "eq:ground-line-kept", "",
-         "The block condition, the vector condition and the vanishing of the variance are equated. Keeping the ground ray requires a nonzero mean, and an annihilating operator keeps the line without keeping the ray."),
+         "For a bounded operator the block condition, the vector condition and the vanishing of the variance are equated. Keeping the ground ray requires a nonzero mean, and an annihilating operator keeps the line without keeping the ray."),
     ("LG", "prop:ground-preservation-reduction", "One-sided preservation and two-sided reduction"):
         ("proved result", "eq:ground-line-kept",
          r"Both $X$ and $X^*$ map the line into itself exactly when $X$ commutes with $P_y$",
          "One-sided preservation is shown not to imply the two-sided condition, by an explicit operator. The two-sided condition is commutation with the ground projection and makes the line reducing. For a unitary one side gives the other, and for a self-adjoint operator the condition is an eigenvector."),
     ("LG", "thm:unitary-ground-preservation", "Unitary preservation, scalar character and generator eigenvector for all real times"):
         ("proved result", "eq:relaxation-unitary-group", "",
-         "The three conditions are displayed and proved through the character of the group and the spectral theorem, including the domain of the generator. An example shows that preservation at isolated times is not enough."),
+         "The three conditions are displayed and proved through the character of the group and the spectral theorem, including the domain of the generator. The return times form a closed subgroup of the real line, so a single return is not enough, as an example shows, and two returns with irrational ratio are."),
     ("LG", "prop:terminality-nonalteration-distinct", "Typed terminality places no restriction on independent ground dynamics"):
         ("proved result|worked example", "eq:index-no-second-step eq:index-channel-coherence",
          r"It places no condition on how a channel treats the grounds.",
@@ -68,9 +68,9 @@ UPDATES = {
          r"It does not describe an evolution that removes $y$. It records that the map is not applied to output vectors.",
          "The zero on the output summand is attributed to the typing of the map and separated from any evolution of the ground, which the next sentences show can keep or move it."),
     ("LG", "def:momentary-phenomenal-system", "Rank-one requirement on each moment's ground projection"):
-        ("definition|hypothesis", "subsec:relaxation-moments",
-         r"Each ground projection $P_{y_n}$ has rank one.",
-         "Stated for each moment, with uniqueness of each moment's ground ray as R2 imposed at that moment."),
+        ("definition|hypothesis", "subsec:relaxation-moments eq:ground-spectral-projection",
+         r"This is the uniqueness part of R2 imposed at that moment.",
+         "Each moment's ground projection is required to be the whole spectral projection of that moment's Hamiltonian at the bottom of its spectrum, which is the uniqueness part of R2. A projection onto a chosen vector has rank one in any case."),
 }
 
 # (source, source_key, line, clause, planned_homes, draft_status, draft_labels, draft_quote, evidence)
