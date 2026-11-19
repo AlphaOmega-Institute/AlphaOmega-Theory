@@ -1,0 +1,32 @@
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[A new subsection at the end of Section~\ref{sec:determination}, after ``Families of generators and the words they form''.]}\par\smallskip
+
+\subsection{A frame on the differentiated part of a state}
+\label{subsec:duality-frame}
+
+LG organizes the differentiated part of an appearance by two projections. A sharp frame is a pair of orthogonal projections $P_+$ and $P_-$ on $\mathcal H_\Phi$ with
+\begin{equation}
+ P_+P_-=0,\qquad P_{\rm d}=P_++P_-,\qquad P_{\rm d}\leq I-P_y .
+ \label{eq:duality-frame}
+\end{equation}
+The sum $P_{\rm d}$ is then a projection, and $\Gamma=P_+-P_-$ satisfies $\Gamma^*=\Gamma$ and $\Gamma^2=P_{\rm d}$. This grading acts within $\mathcal H_\Phi$ and is unrelated to the sector symmetry $J$ of Section~\ref{sec:neutral-graphs-phase}. LG reads $P_+$ and $P_-$ as the grasper and grasped aspects of differentiated content, and lets the frame depend on the disposition profile and on the state. That reading and that dependence belong to the cognitive model. Below the frame is fixed.
+
+\begin{proposition}[A frame and the ground]
+\label{prop:duality-frame-ground}
+For every sharp frame, $P_+y=P_-y=P_{\rm d}y=0$. For a unit vector $\phi$ with differentiated part $\eta_\phi=(I-P_y)\phi$,
+\begin{equation}
+ P_\pm\phi=P_\pm\eta_\phi,\qquad
+ \|\eta_\phi\|^2=\|P_+\phi\|^2+\|P_-\phi\|^2+\bigl\|(I-P_y-P_{\rm d})\phi\bigr\|^2 .
+ \label{eq:duality-frame-norms}
+\end{equation}
+If $E_+,E_-\geq0$ are effects with $E_++E_-\leq I-P_y$, then $E_+y=E_-y=0$.
+\end{proposition}
+\begin{proof}
+For projections, $P_{\rm d}\leq I-P_y$ means $P_{\rm d}=P_{\rm d}(I-P_y)$, and $P_\pm=P_\pm P_{\rm d}$ because $P_+P_-=0$. Hence $P_\pm=P_\pm(I-P_y)$, which annihilates $y$ and gives the first identity. The operator $I-P_y-P_{\rm d}$ is a projection orthogonal to $P_+$ and $P_-$, so $\eta_\phi$ splits into three orthogonal parts. For the effects, $0\leq\langle y,E_\pm y\rangle\leq\langle y,(I-P_y)y\rangle=0$, so $\|E_\pm^{1/2}y\|=0$.
+\end{proof}
+
+The support bound places the whole frame inside the differentiated part, and it allows the frame to miss part of a differentiated state. The last term of Eq.~\eqref{eq:duality-frame-norms} is the weight of $\phi$ outside the frame and orthogonal to the ground. It vanishes for every $\phi$ only when $P_{\rm d}=I-P_y$. For example, on $\C^3$ with $y=e_0$, the frame $P_+=P_{e_1}$, $P_-=0$ leaves half the weight of $(e_1+e_2)/\sqrt2$ outside. The ground is not a balanced combination of the two aspects. A unit vector $(a+b)/\sqrt2$ with $a$ in the range of $P_+$ and $b$ in the range of $P_-$ has $\langle\Gamma\rangle=0$ and all of its weight in the frame. The ground also has $\langle\Gamma\rangle=0$, but it has no weight in the frame. The vanishing does not depend on the sharpness of the frame, since the last statement of the proposition covers effects.
+
+One way to obtain a frame is spectral. Let $\Upsilon$ be a bounded self-adjoint operator with $\Upsilon y=0$. Its spectral projections $P_+$ for $(0,\infty)$ and $P_-$ for $(-\infty,0)$ are orthogonal. Their sum projects onto $(\ker\Upsilon)^\perp$, which lies in $y^\perp$ because $y\in\ker\Upsilon$, and $\Gamma$ is the sign of $\Upsilon$. Every sharp frame arises in this way, from $\Upsilon=\Gamma$. LG lets a realization assign such an operator to each profile.
+
+Given $\phi$ and the frame, a nonzero $P_+\phi$ normalizes to the unit vector $P_+\phi/\|P_+\phi\|$. It is the state left by the outcome $+$ of the measurement $\{P_+,P_-,I-P_{\rm d}\}$ with L\"uders operations, and $\|P_+\phi\|^2$ is the probability of that outcome. The vector changes with $\phi$ and with the frame, and at the ground there is none. What would count as an independently existing subject is a question for the cognitive model. Whether a realization should use sharp projections, unsharp effects, a state-dependent tensor factorization or a more general operator-valued decomposition is open.

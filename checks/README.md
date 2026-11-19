@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-176 passed, 0 failed, 2 skipped in ...s
+181 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `178 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `183 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
