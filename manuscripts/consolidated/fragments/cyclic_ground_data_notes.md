@@ -119,7 +119,7 @@ Offered for review as additions.
 `(𝔐, π, ℋ, y)` for the pointed representation, `ω_y` for its vector state, and `𝔇 = π(𝔐)`
 as in Section 5. `(π_ω, ℋ_ω, Ω_ω)` for GNS data and `U` for the intertwiner. `P_0` for the
 spectral projection at the bottom of the spectrum. Section 4 uses `Π_0` for the aligned
-graph projection, so `P_0` does not collide, but GPT may prefer another letter. The shift
+graph projection, so `P_0` does not collide, but another letter may read better. The shift
 in (c) has no letter, because `S` is the initial support. "Dark complement" is LG's name.
 
 ## Left for integration
