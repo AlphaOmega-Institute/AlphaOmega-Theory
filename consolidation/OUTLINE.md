@@ -102,6 +102,8 @@ Section 5 constructs the cyclic representation of the ground state, relates vari
 
 Section 5.1 uses the variance to decide when a bounded operator preserves the ground line. Section 6.5 gives the corresponding criterion for an entire unitary group, including what can be inferred from two return times. Section 6.6 states when a moment’s chosen ground projector is the whole bottom spectral projection.
 
+Section 5.4 gives the mathematics of a selected generator family. It distinguishes word outputs, their conditional rays and the effects available to distinguish them. It also proves the ground-character result under LG’s assumption for the exhausted profile. Part V supplies the cognitive interpretation of the generators.
+
 **III.2 Supplied symmetries and moving subspaces.** Compact symmetry averaging, invariant compression, moving
 projection fields, frame covariance, Grassmann curvature, and characteristic classes. The group/action and, for
 bundle geometry, the base and projection field are supplied data. Distinguish the mathematical connection from a
@@ -193,7 +195,7 @@ The seven formal open questions from LG have the following destinations. The sou
 | `q:luminous-purity` | Section 5.3 leaves both properties open under R2. If the chosen algebra also admits a nonzero noncyclic vector, its cyclic ground state cannot be pure. V considers the choice of algebra. |
 | `q:phenomenal-algebra` | III.1 states what cyclicity requires. V asks which global algebra of phenomenal determinations to choose. |
 | `q:operational-structural-phase` | II.2 gives the criterion for detecting relative phase. VI asks which effects or controls realize it. |
-| `q:content-affect-algebra-choice` | V asks which subalgebras represent object content and affect in a given realization. |
+| `q:content-affect-algebra-choice` | Section 5.4 asks which subalgebras represent object content and affect. V develops the interpretation of those choices for a given realization. |
 | `q:projection-or-effect-duality-frame` | V asks which frame represents the grasper–grasped distinction inside Φ, including the choice between sharp and unsharp effects. |
 | `oq:status-phenomenal-excess` | V asks which phenomenal determinations, if any, densely generate the final defect and what those directions represent. |
 
