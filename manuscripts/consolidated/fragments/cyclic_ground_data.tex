@@ -1,0 +1,68 @@
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[Part A. For Section~\ref{sec:determination}, first subsection, after the paragraph that ends ``whether $K$ still fills $\mathcal H_\Phi$.'']}\par\smallskip
+
+The algebra need not be given as a set of operators from the start. Let $\mathfrak M$ be a unital $C^*$-algebra, $\pi:\mathfrak M\to\mathcal B(\mathcal H)$ a nondegenerate representation, and $y\in\mathcal H$ a unit vector. Call $(\mathfrak M,\pi,\mathcal H,y)$ a pointed representation. Nondegeneracy gives $\pi(1)=I$. The image $\pi(\mathfrak M)$ is norm closed \cite{BratteliRobinson}, so it is a unital $C^*$-algebra of operators and can serve as $\mathfrak D$. The vector state of $y$ is
+\begin{equation}
+ \omega_y(X)=\langle y,\pi(X)y\rangle,\qquad
+ \omega_y(X^*X)=\|\pi(X)y\|^2\geq0,\qquad
+ \omega_y(1)=\|y\|^2=1 .
+ \label{eq:pointed-vector-state}
+\end{equation}
+It is linear, positive and normalized, and it is the functional $\omega$ on $\mathfrak D$ composed with $\pi$. A phase of $y$ changes neither $\omega_y$ nor $K$. Everything defined in this section depends on $\mathfrak M$ and $\pi$ only through $\mathfrak D=\pi(\mathfrak M)$, with one exception in Section~\ref{subsec:ground-properties}, and none of it needs a Hamiltonian. For any vector $\psi$ the closure of $\mathfrak D\psi$ is a closed subspace that contains $\psi$, because $\mathfrak D$ is a unital algebra. It depends only on the ray of $\psi$ when $\psi\ne0$, and it is $\{0\}$ when $\psi=0$. R1 and R2 say that the subspaces generated from the two grounds by the two specified algebras are the whole sector spaces. LG chooses a subalgebra $\mathfrak D$ of the algebra in R2 to represent the determinations and assumes, unless stated otherwise, that $y$ is cyclic for $\mathfrak D$. For $\mathfrak D$ equal to the algebra in R2 this is R2 itself. For a smaller algebra it is a further hypothesis.
+
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[Part B. For Section~\ref{sec:determination}, first subsection, after the paragraph that ends ``requires additional information.'']}\par\smallskip
+
+The construction in the proof of Proposition~\ref{prop:cyclic-determination-content} also shows that the vector state determines the pointed representation when $y$ is cyclic. Apply it to $\omega_y$ on $\mathfrak M$. The null space $\{X:\omega_y(X^*X)=0\}$ consists of the $X$ with $\pi(X)y=0$. The completion $\mathcal H_\omega$ of the quotient carries the representation $\pi_\omega(T)[X]=[TX]$ and the vector $\Omega_\omega=[1]$. The map $[X]\mapsto\pi(X)y$ extends to an isometry $U$ of $\mathcal H_\omega$ onto $K$ with
+\begin{equation}
+ U[X]=\pi(X)y,\qquad U\Omega_\omega=y,\qquad U\pi_\omega(T)=\pi(T)U ,
+ \label{eq:gns-intertwiner}
+\end{equation}
+because both sides of the last identity send $[X]$ to $\pi(TX)y$. If $y$ is cyclic, $U$ is a unitary onto $\mathcal H$. It is the only unitary with the last two properties, since they fix it on the dense set of classes $[X]$. Two cyclic pointed representations with the same vector state are therefore unitarily equivalent through a unitary that carries one vector to the other. The vector state, the ray of $y$ and the projection $P_y$ describe the selected ground at three levels, and none of them fixes a phase of $y$.
+
+Taking $Y=X$ in Eq.~\eqref{eq:determination-covariance} gives
+\begin{equation}
+ \omega(X^*X)-|\omega(X)|^2=\bigl\|(I-P_y)Xy\bigr\|^2 .
+ \label{eq:determination-variance}
+\end{equation}
+The variance of a determination in the ground is the squared norm of the part of $Xy$ orthogonal to the ground. It vanishes exactly when $Xy$ lies on the ray of $y$.
+
+The space $K$ is invariant under $\mathfrak D$. So is $K^\perp$, because $\mathfrak D$ is closed under adjoints: for $\phi\perp K$ and $X,Z\in\mathfrak D$, $\langle Zy,X\phi\rangle=\langle X^*Zy,\phi\rangle=0$. The projection onto $K$ therefore commutes with $\mathfrak D$, and no determination takes $y$ to a vector with a component in $K^\perp$. LG calls $K^\perp$ the dark complement. It is $\{0\}$ exactly when $y$ is cyclic, so R2 excludes it for the algebra that R2 specifies. A vector orthogonal to $y$ need not lie in $K^\perp$: the centered vectors $X^\circ y$ are orthogonal to $y$ and lie in $K$. Nothing in Proposition~\ref{prop:cyclic-determination-content} uses the output space. With the physical vacuum $x$ and the algebra of R1 in place of $y$ and $\mathfrak D$, R1 makes the generated space all of $\mathcal H_\Psi$, and the centered vectors $X^\circ x$ have closed span $\mathcal H_\Psi\ominus\C x$.
+
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[Part C. A new subsection at the end of Section~\ref{sec:determination}, after ``Generating states and reading them on the five-site path''.]}\par\smallskip
+
+\subsection{Uniqueness, cyclicity, purity and faithfulness of a ground}
+\label{subsec:ground-properties}
+
+R1 and R2 ask for two properties of each ground: a unique ray at the bottom of the spectrum, and cyclicity for the specified algebra. Let $H$ be self-adjoint and bounded below, with $E_0$ the bottom of its spectrum. The spectral projection of $H$ for the point $E_0$ is the projection onto the eigenspace,
+\begin{equation}
+ P_0=E_H(\{E_0\}),\qquad \Ran P_0=\ker(H-E_0I) .
+ \label{eq:ground-spectral-projection}
+\end{equation}
+Thus $E_0$ is an eigenvalue exactly when $P_0\ne0$, and the ground ray is unique exactly when $P_0$ has rank one. A third property is a gap,
+\begin{equation}
+ H\geq E_0I+\Delta(I-P_0)\qquad\text{for some }\Delta>0 ,
+ \label{eq:ground-gap-condition}
+\end{equation}
+which says that $E_0$ is isolated in the spectrum. With a unique ground it is the gap used after Eq.~\eqref{eq:ground-return-energy}. Each of the three properties can fail while the other two hold.
+\begin{enumerate}
+\item[(a)] Unique and gapped, not cyclic. On the five-site path the ground $y$ is unique with gap $1-\cos(\pi/5)$. The cell algebra generates from it only the two-dimensional space $D$.
+\item[(b)] Cyclic and gapped, not unique. Take two separate five-site paths, with the Hamiltonian $H_5\oplus H_5$ on ten sites and the diagonal site algebra. Then $P_0$ has rank two. Every vector that is constant on each path is a ground vector, and those whose two constants are both nonzero are cyclic for the site algebra. The gap condition holds with $\Delta=1-\cos(\pi/5)$. Neither the algebra nor the spectrum selects a ray.
+\item[(c)] Unique and cyclic, not gapped. On $\ell^2(\mathbb N_0)$ with orthonormal basis $(e_n)_{n\geq0}$ let $He_0=0$ and $He_n=e_n/n$ for $n\geq1$, and let $\mathfrak D$ be the $C^*$-algebra generated by the unilateral shift $e_n\mapsto e_{n+1}$. The ground ray $\C e_0$ is unique, and $e_0$ is cyclic because the $n$th power of the shift takes $e_0$ to $e_n$. The eigenvalues $1/n$ accumulate at $0$, so no $\Delta>0$ satisfies the gap condition. Continuous spectrum does the same: on $\C\oplus L^2(0,1)$ the operator $0\oplus M_\lambda$, with $M_\lambda$ multiplication by $\lambda$, has the simple ground $1\oplus0$ and spectrum $[0,1]$.
+\end{enumerate}
+The defect of the unequal-cell path is placed differently in (a) and in the cyclic case. For the cell algebra the generated space is $D$, and the dark complement $K^\perp$ is the defect $D^\perp=\ker A^*$. For the site algebra, or any algebra for which $y$ is cyclic, the generated space is the whole path and contains the defect.
+
+Two further properties concern the vector state. A state of a unital $C^*$-algebra is pure when it is not a convex combination $t\omega_1+(1-t)\omega_2$, with $0<t<1$, of two different states. Equivalently, its GNS representation is irreducible \cite{BratteliRobinson}. A state is faithful when $\omega(X^*X)=0$ implies $X=0$. For a pointed representation, $\omega_y$ is faithful on $\mathfrak D$ exactly when $y$ is separating for $\mathfrak D$, that is, when $Xy=0$ with $X\in\mathfrak D$ implies $X=0$. Its pullback to $\mathfrak M$ is faithful exactly when, in addition, $\pi$ is injective. This is the property that depends on more than $\mathfrak D$. If $y$ is cyclic, Eq.~\eqref{eq:gns-intertwiner} identifies $\pi$ with the GNS representation, so $\omega_y$ is pure exactly when the only operators commuting with $\mathfrak D$ are the multiples of $I$.
+
+\begin{proposition}[Pure and faithful states]
+\label{prop:pure-faithful-scalars}
+A state of a unital $C^*$-algebra $\mathfrak M$ that is both pure and faithful exists only when $\mathfrak M=\C1$. In particular, if $y$ is cyclic for $\mathfrak D$ and $\dim\mathcal H\geq2$, the vector state of $y$ on $\mathfrak D$ is not both pure and faithful.
+\end{proposition}
+\begin{proof}
+Let $\omega$ be pure and faithful, with GNS data $(\pi_\omega,\mathcal H_\omega,\Omega_\omega)$. The representation is irreducible. If $\pi_\omega(X)\Omega_\omega=0$, then $\omega(X^*X)=0$ and so $X=0$. Suppose $\mathcal H_\omega$ contains a unit vector $\eta$ orthogonal to $\Omega_\omega$. Kadison's transitivity theorem \cite{Kadison1957} supplies $X\in\mathfrak M$ with $\pi_\omega(X)\Omega_\omega=0$ and $\pi_\omega(X)\eta=\eta$. Then $X\ne0$ and $\pi_\omega(X)\Omega_\omega=0$, which is excluded. Hence $\mathcal H_\omega=\C\Omega_\omega$. Then $\pi_\omega(X-\omega(X)1)\Omega_\omega=0$, and so $X=\omega(X)1$ for every $X$. For the second statement apply this to $\mathfrak D$. If $\omega_y$ were pure and faithful on $\mathfrak D$, then $\mathfrak D=\C I$, and $\mathfrak Dy=\C y$ could not be dense in $\mathcal H$. In finite dimensions the transitivity theorem reduces to the fact that an irreducible $*$-algebra of matrices contains every matrix, and $X$ can be taken to be the projection onto $\eta$.
+\end{proof}
+
+On the five-site path both cases occur. For the diagonal site algebra the fine ground $y$ is cyclic and separating, since $Xy=0$ forces every diagonal entry to vanish. Its vector state is faithful and not pure. Indeed $\omega(X)=\tfrac15\sum_kX_{kk}$ is the equal average of the five states $X\mapsto X_{kk}$, and the operators commuting with the site algebra form the site algebra itself. For the full matrix algebra only the multiples of $I$ commute with every matrix, so $\omega$ is pure. It is not faithful: for a nonzero $v\perp y$ the operator $\ket{e_1}\!\bra{v}$ annihilates $y$. This is LG's example: on $\mathcal B(\mathcal H_\Phi)$ with $\dim\mathcal H_\Phi\geq2$ the vector state of the ground is pure and not faithful. On the cell algebra $\omega$ is faithful and is the average of the two cell states with weights $1/5$ and $4/5$. For the difference between $\mathfrak D$ and $\mathfrak M$, represent $\mathfrak M=M_2\oplus\C$ on $\C^2\otimes\C^2$ by $X\oplus c\mapsto X\otimes I$. The vector $(e_0\otimes e_0+e_1\otimes e_1)/\sqrt2$ is cyclic and separating for the image, whose vector state $X\mapsto\tfrac12\Tr X$ is faithful. Its pullback to $\mathfrak M$ vanishes on the nonzero element $0\oplus1$.
+
+R2 specifies cyclicity and a unique ground ray. It does not say whether the vector state of the luminous ground on the algebra of R2 is pure or faithful, and LG leaves both open. By the proposition at most one of the two can hold when $\dim\mathcal H_\Phi\geq2$, and the examples show that the choice of algebra decides which one, if either. The expression ``pure luminosity'' in the cognitive reading does not settle the question. Purity in the sense used here means that the state is not a convex combination of two different states. It does not mean that the state lacks differentiated content.
