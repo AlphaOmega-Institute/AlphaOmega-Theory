@@ -1397,13 +1397,13 @@ Now hold $\theta$ fixed and vary the self-coupling $s$ in $H_s$. Write $\delta=j
 
 \subsection{The resolvent measured inside the prepared plane}
 
-Let $P$ be an orthogonal projection in one Hilbert space, and $Q=I-P$. Suppose that $H$ has self-adjoint diagonal blocks $H_P,H_Q$ on their respective spaces, bounded coupling $C=QHP$, and adjoint coupling $C^*$. For $z$ in the resolvent sets of $H_Q$ and $H$, the Schur--Feshbach formula gives \cite{DussonSigalStamm}
+Let $P$ be an orthogonal projection in one Hilbert space, and $Q=I-P$. Suppose that $H$ has self-adjoint diagonal blocks $H_P,H_Q$ on their respective spaces, an outward coupling $QHP$ extending to a bounded operator $C:P\mathcal H\to Q\mathcal H$, and return coupling $C^*$. For $z$ in the resolvent sets of $H_Q$ and $H$, the Schur--Feshbach formula gives \cite{DussonSigalStamm}
 \begin{equation}
  P(H-z)^{-1}\big|_{P\mathcal H}
  =\big[H_P-z-C^*(H_Q-z)^{-1}C\big]^{-1}.
  \label{eq:prepared-schur}
 \end{equation}
-Indeed, in solving $(H-z)(p+q)=h$ for $h\in P\mathcal H$, the $Q$ equation gives $q=-(H_Q-z)^{-1}Cp$. Substitution in the $P$ equation yields the formula. Below the complementary spectrum the self-energy $C^*(H_Q-z)^{-1}C$ is positive semidefinite for real $z$. Only directions coupled through $C$ and propagated by $H_Q$ contribute. For $C=0$ the plane is autonomous. More generally, with $U(t)=e^{-itH/\hbar}$, variation of constants in the $Q$ equation and unitarity give $\|QU(t)P\|\le |t|\,\|C\|/\hbar$.
+Indeed, in solving $(H-z)(p+q)=h$ for $h\in P\mathcal H$, the $Q$ equation gives $q=-(H_Q-z)^{-1}Cp$. Substitution in the $P$ equation yields the formula. Below the complementary spectrum the self-energy $C^*(H_Q-z)^{-1}C$ is positive semidefinite for real $z$. Only directions coupled through $C$ and propagated by $H_Q$ contribute. Section~\ref{subsec:signed-reduction} compares this reduction with the one obtained by reversing the outward coupling sign. For $C=0$ the plane is autonomous. More generally, with $U(t)=e^{-itH/\hbar}$, variation of constants in the $Q$ equation and unitarity give $\|QU(t)P\|\le |t|\,\|C\|/\hbar$.
 
 For the pair take $P=A_\theta A_\theta^*$ on the six-dimensional output. By Eq.~\eqref{eq:pair-invariance-amplitude}, $C=-\delta u_\theta v_\theta\ket{d}\bra{b}$, and $H_Qd=\delta v_\theta^2d$. Thus the short-time leakage bound is attained to leading order for $b$. The measured scalar resolvent is
 \[
@@ -1529,6 +1529,104 @@ Spin triplet & $-0.00177006$ & $-0.00177062$\\
 \end{center}
 At cutoff ten the correction to the singlet gap is $-0.00007715\,\lambda^2$ because the two levels move down by nearly equal amounts. At $\lambda=8\pi/243$ this term is about $0.27\%$ of the first-order gap. The rigorous finite-coupling guarantee comes from the one-sided estimate in Eq.~\eqref{eq:shell-ritz}.
 
+\subsection{Eliminating a sector for either coupling sign}
+\label{subsec:signed-reduction}
+
+In Eq.~\eqref{eq:prepared-schur}, an excitation leaves the prepared plane through $C$, propagates in its complement and returns through $C^*$. The pair and trap use the Hilbert adjoint for the return. What changes if the coupling instead has the Krein adjoint symmetry of Appendix~\ref{app:channel-branches}? We can compare the two while keeping both diagonal operators and the map $C$ fixed. Let $H_P$ and $H_Q$ be self-adjoint on $P\mathcal H$ and $Q\mathcal H$, respectively, and let $C:P\mathcal H\to Q\mathcal H$ be bounded. For $\varepsilon\in\{+1,-1\}$ put
+\begin{equation}
+ H_\varepsilon=
+ \begin{pmatrix}H_P&C^*\\ \varepsilon C&H_Q\end{pmatrix},
+ \qquad
+ \operatorname{Dom}H_\varepsilon=
+ \operatorname{Dom}H_P\oplus\operatorname{Dom}H_Q .
+ \label{eq:signed-block-generator}
+\end{equation}
+With grading $J_P=P-Q$, the two generators are $H_P\oplus H_Q$ plus $\mathsf D_C$ or $\mathsf K_C$, respectively, as defined in Eq.~\eqref{eq:weighted-channel-branches}. The product domain is invariant under $J_P$, which commutes with the diagonal operator. A bounded perturbation leaves the adjoint domain unchanged. Adding the respective adjoints from Eq.~\eqref{eq:branch-squares} gives $H_{+1}^*=H_{+1}$ and $J_PH_{-1}^*J_P=H_{-1}$. The first is Hilbert-self-adjoint and the second is Krein-self-adjoint for this grading.
+
+For $z\in\rho(H_Q)$ let $R_Q(z)=(H_Q-z)^{-1}$ and $\Sigma_C(z)=C^*R_Q(z)C$. The latter is bounded on $P\mathcal H$. The effective operator and its Schur pencil are
+\begin{equation}
+ H_{\rm eff}^{(\varepsilon)}(z)=H_P-\varepsilon\Sigma_C(z),
+ \qquad S_\varepsilon(z)=H_{\rm eff}^{(\varepsilon)}(z)-z .
+ \label{eq:signed-schur-pencil}
+\end{equation}
+Both are closed on $\operatorname{Dom}H_P$ because each is a bounded perturbation of $H_P$. An unbounded coupling would require separate domain hypotheses for the block operator and its return.
+
+\begin{proposition}[Signed Schur reduction]
+\label{prop:signed-schur}
+For either sign and every $z\in\rho(H_Q)$, one has $z\in\rho(H_\varepsilon)$ exactly when $0\in\rho(S_\varepsilon(z))$. When this holds, write $G=S_\varepsilon(z)^{-1}$ and $R=R_Q(z)$. The full inverse is
+\begin{equation}
+ (H_\varepsilon-z)^{-1}=
+ \begin{pmatrix}
+ G&-GC^*R\\
+ -\varepsilon RCG&R+\varepsilon RCGC^*R
+ \end{pmatrix}.
+ \label{eq:signed-block-inverse}
+\end{equation}
+In particular $P(H_\varepsilon-z)^{-1}\vert_{P\mathcal H}=G$. For any $z\in\rho(H_Q)$ the map $p\mapsto (p,-\varepsilon R_Q(z)Cp)$ takes $\ker S_\varepsilon(z)$ bijectively onto $\ker(H_\varepsilon-z)$.
+\end{proposition}
+\begin{proof}
+At fixed $z$ abbreviate $S=S_\varepsilon(z)$ and $R=R_Q(z)$. On the product domain of Eq.~\eqref{eq:signed-block-generator} the factorization is
+\begin{equation}
+ H_\varepsilon-z=
+ \begin{pmatrix}I&C^*R\\0&I\end{pmatrix}
+ \begin{pmatrix}S&0\\0&H_Q-z\end{pmatrix}
+ \begin{pmatrix}I&0\\\varepsilon RC&I\end{pmatrix}.
+ \label{eq:signed-schur-factorization}
+\end{equation}
+The outside factors are bounded and their inverses change the off-diagonal signs. The right factor and its inverse preserve the product domain because $RCp\in\operatorname{Dom}H_Q$. Multiplication gives $S+\varepsilon C^*RC=H_P-z$ in the upper left, and $C^*R(H_Q-z)q=C^*q$ for $q\in\operatorname{Dom}H_Q$. Since $H_Q-z$ already has a bounded inverse, the product has a bounded inverse on $\mathcal H$ exactly when $S$ has one on $P\mathcal H$. Inverting the factors in reverse order gives Eq.~\eqref{eq:signed-block-inverse}. Applying the inverse right factor to $(p,0)$ for $p\in\ker S$ gives the stated kernel correspondence.
+\end{proof}
+
+The restriction $z\in\rho(H_Q)$ matters even in two dimensions. With both diagonal entries zero and $C=1$, each full block is invertible at $z=0$, although $H_Q-z$ has no inverse there.
+
+The self-energy is the same excursion for both signs. Write $\mathsf F_C=-d_C$ and $\mathsf B_C=d_C^*$ for the orientations of Eq.~\eqref{eq:oriented-extensions}, now on $P\mathcal H\oplus Q\mathcal H$. Acting on $(p,0)$, the forward map gives $(0,-Cp)$, the embedded resolvent $0\oplus R_Q(z)$ gives $(0,-R_Q(z)Cp)$, and the backward map gives $(-\Sigma_C(z)p,0)$. Thus on the retained sector
+\begin{equation}
+ \begin{aligned}
+ \Sigma_C(z)&=-P\mathsf B_C(0\oplus R_Q(z))\mathsf F_C\big|_{P\mathcal H},\\
+ H_{\rm eff}^{(\varepsilon)}(z)&=H_P+\varepsilon P\mathsf B_C(0\oplus R_Q(z))\mathsf F_C\big|_{P\mathcal H}.
+ \end{aligned}
+ \label{eq:signed-oriented-excursion}
+\end{equation}
+The adjoint condition on the full generator fixes the sign in front of this return.
+
+The complementary dynamics are Hilbert-self-adjoint in both cases. In fact $\Sigma_C$ is the response of $H_Q$ through the port $C$ in Section~\ref{subsec:passive-positivity}. It is norm analytic on $\rho(H_Q)$ and $\Sigma_C(\bar z)=\Sigma_C(z)^*$. For $b=\operatorname{Im}z>0$, subtracting the two resolvents at $z$ and $\bar z$ gives
+\begin{equation}
+ \operatorname{Im}\Sigma_C(z)=b\,C^*R_Q(z)^*R_Q(z)C\ge0,\qquad
+ \langle p,\operatorname{Im}\Sigma_C(z)p\rangle=b\|R_Q(z)Cp\|^2 .
+ \label{eq:signed-self-energy-imaginary}
+\end{equation}
+The latter quantity vanishes exactly when $Cp=0$, since $R_Q(z)$ is injective. On $\operatorname{Dom}H_P$ the contribution of $H_P$ to the imaginary part of the effective operator vanishes. Its remaining imaginary part extends to the bounded operator
+\begin{equation}
+ \operatorname{Im}H_{\rm eff}^{(+1)}(z)=-\operatorname{Im}\Sigma_C(z)\le0,\qquad
+ \operatorname{Im}H_{\rm eff}^{(-1)}(z)=\operatorname{Im}\Sigma_C(z)\ge0 .
+ \label{eq:signed-effective-imaginary}
+\end{equation}
+
+For a real $\lambda<\inf\sigma(H_Q)$ the spectral multiplier $(s-\lambda)^{-1}$ is positive throughout the complementary spectrum. By the spectral theorem the resolvent has positive expectation on every nonzero vector, even when that spectrum is unbounded above and the multiplier approaches zero. For $p\in\operatorname{Dom}H_P$,
+\begin{equation}
+ \langle p,(H_{\rm eff}^{(\varepsilon)}(\lambda)-H_P)p\rangle
+ =-\varepsilon\langle Cp,R_Q(\lambda)Cp\rangle .
+ \label{eq:signed-static-return}
+\end{equation}
+The Hilbert effective form decreases and the Krein effective form increases by the same amount. Both shifts are strict exactly for $Cp\ne0$. This comparison requires only the complementary resolvent at $\lambda$.
+
+The measured corner is the inverse of the pencil, which contains the further term $-zI$. Return to $z=t+ib$ in the upper half-plane $\C_+$, with $b>0$, and suppose the inverse $T=S_\varepsilon(z)^{-1}$ exists. For a retained input $h$ put $p=Th$. Then $h=S_\varepsilon(z)p$, so $\operatorname{Im}\langle h,Th\rangle=-\operatorname{Im}\langle p,S_\varepsilon(z)p\rangle$. This gives
+\begin{equation}
+ \operatorname{Im}\langle h,Th\rangle
+ =b\bigl(\|p\|^2+\varepsilon\|R_Q(z)Cp\|^2\bigr).
+ \label{eq:signed-corner-imaginary}
+\end{equation}
+The second norm measures the complementary component induced by $h$ in Eq.~\eqref{eq:signed-block-inverse}. The Hilbert corner has positive imaginary part on every nonzero input. For the Krein corner, $p$ runs over the dense domain of $H_P$ as $h$ varies. Its imaginary part is therefore nonnegative for all inputs at this $z$ exactly when $\|R_Q(z)C\|\le1$. In the real-spectrum example of Eq.~\eqref{eq:passive-signed-witness}, $\|R_Q(z)C\|^2=8/5$ at $z=2+i/2$ and the corner has imaginary part $-6/5$. A Krein corner can also have nonreal poles. With $H_P=H_Q=0$ and scalar $C=g>0$ its poles are $z=\pm ig$.
+
+\begin{corollary}[Positivity on the whole retained sector]
+\label{cor:signed-full-corner}
+Suppose $\C_+\subseteq\rho(H_{-1})$. The compressed Krein resolvent has nonnegative imaginary part on the whole retained sector at every $z\in\C_+$ exactly when $C=0$.
+\end{corollary}
+\begin{proof}
+Fix a retained vector $x$ and write $\mu_x(B)=\|E_{H_Q}(B)Cx\|^2$ for its complementary spectral measure. The criterion from Eq.~\eqref{eq:signed-corner-imaginary} gives $\|R_Q(t+i\eta)Cx\|^2\le\|x\|^2$ for every real $t$ and $\eta>0$. On $[t-\eta,t+\eta]$ the squared resolvent multiplier is at least $1/(2\eta^2)$, hence the measure of that interval is at most $2\eta^2\|x\|^2$. A fixed interval of length $L$ can be covered by at most $1+L/(2\eta)$ such intervals. Sending $\eta$ to zero shows that every bounded interval has zero measure. Thus $\|Cx\|^2=\mu_x(\R)=0$. Conversely $C=0$ gives the Hilbert resolvent $(H_P-z)^{-1}$ on the retained sector.
+\end{proof}
+
+A smaller port can miss the negative weight even when the port couples directly to the complement. Augment Eq.~\eqref{eq:passive-signed-witness} by an uncoupled retained level at energy $2$. Let a scalar port $\Gamma$ prepare the normalized sum of the original retained coordinate and this new level. Then $C\Gamma=1$ and its response is $\tfrac12[2/(1-z)-1/(2-z)+1/(2-z)]=1/(1-z)$.
+
 \section{What the measured response determines}
 \label{sec:passive-response}
 
@@ -1618,7 +1716,7 @@ Both propositions use self-adjointness of $H$ in the positive Hilbert inner prod
    =\frac{3-z}{(1-z)(2-z)}=\frac{2}{1-z}-\frac{1}{2-z} .
  \label{eq:passive-signed-witness}
 \end{equation}
-The weight at the second line is negative, and the imaginary part at $z=2+i/2$ is $-6/5$. Self-adjointness for an indefinite form with real spectrum therefore does not give a positive response. Positivity then needs an additional positive realization or a separate theorem about the metric. No such positivity is assumed here.
+The weight at the second line is negative, and the imaginary part at $z=2+i/2$ is $-6/5$. Section~\ref{subsec:signed-reduction} explains when the entire retained resolvent can have positive imaginary part and how a smaller port can lose this negative weight. Self-adjointness for an indefinite form with real spectrum therefore does not give a positive response. Positivity then needs an additional positive realization or a separate theorem about the metric. No such positivity is assumed here.
 
 \subsection{The contractive form}
 \label{subsec:passive-cayley}
@@ -2745,7 +2843,7 @@ Boundary conditions can obstruct the splitting even for an off-diagonal differen
 
 \begin{proposition}[Odd adjoints on a split domain]
 \label{prop:odd-block-adjoints}
-If $X$ is closed, densely defined and odd, then $X^\sharp=-X^*$ on $\operatorname{Dom}X^*$. In particular $X^\sharp=X$ exactly when $X^*=-X$, and $X^\sharp=-X$ exactly when $X^*=X$. These equalities include the domains.
+If $X$ is densely defined and odd, then $X^\sharp=-X^*$ on $\operatorname{Dom}X^*$. In particular $X^\sharp=X$ exactly when $X^*=-X$, and $X^\sharp=-X$ exactly when $X^*=X$. These equalities include the domains.
 \end{proposition}
 \begin{proof}
 Oddness says $JXJ=-X$ as operators. Since $J$ is unitary, the Hilbert adjoint of $JXJ$ is $JX^*J$, with domain $J\operatorname{Dom}X^*$. Taking adjoints proves both the formula and $J\operatorname{Dom}X^*=\operatorname{Dom}X^*$.

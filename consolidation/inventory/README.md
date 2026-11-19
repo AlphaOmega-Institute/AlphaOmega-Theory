@@ -102,14 +102,16 @@ Section 5.4 makes two recoverable and five owed LG clauses explicit. It defines 
 
 Section 5.5 makes four owed LG clauses explicit. It defines the sharp duality frame, proves that both aspects vanish on the ground, gives a spectral construction and states the open question about the choice of frame. The section identifies which differentiated directions a fixed frame can miss. Part V still owes the argument about an independently existing subject.
 
-Appendix A and the accompanying passages in §§2, 3, 7, 10 and 12 make 16 recoverable and 21 owed clauses explicit. One new TAUM row tracks the fundamental decomposition and its sector projections. The two odd branches now have proofs on their full operator domains, and the polar factors have bounded extensions on the active carrier. The oscillator compares a single polar rotation with the mode-dependent rates of the weighted generator. TAUM’s general signed Schur reduction remains due.
+Appendix A and the accompanying passages in §§2, 3, 7, 10 and 12 make 16 recoverable and 21 owed clauses explicit. One new TAUM row tracks the fundamental decomposition and its sector projections. The two odd branches now have proofs on their full operator domains, and the polar factors have bounded extensions on the active carrier. The oscillator compares a single polar rotation with the mode-dependent rates of the weighted generator. This left the general signed Schur reduction for §8.
+
+The signed Schur reduction in §8 makes five recoverable and ten owed TAUM clauses explicit. It gives both adjoint signs, the full inverse on the common resolvent set and the positivity properties of the return. All 192 tracked TAUM clauses are explicit. The remaining 46 ledger clauses are from LG and are assigned to Part V, sometimes with another planned home. The heading queue below is a separate record of passages outside the formal entries.
 
 | Source | Explicit | Recoverable | Owed |
 | --- | ---: | ---: | ---: |
-| TAUM | 177 | 5 | 10 |
+| TAUM | 192 | 0 | 0 |
 | LG | 259 | 0 | 46 |
 | UM | 1 | 0 | 0 |
-| **All 498 clauses** | **437** | **5** | **56** |
+| **All 498 clauses** | **452** | **0** | **46** |
 
 The UM row records the conjecture introduced in the consolidated manuscript.
 
@@ -131,7 +133,7 @@ The ledger includes every formal entry in the source inventory. Supplements trac
 
 The [heading queue](heading_queue.csv) lists nonempty source heading bodies with no ledger row anchored in them. Each body runs up to the next heading. The screen skips empty or label-only bodies and the bibliography, with no minimum length. Read queued passages to decide whether to add a supplement or point to coverage elsewhere. Recheck partially tracked bodies when migrating the family. A single entry removes a heading from the queue even if nearby derivations or prose still need a home.
 
-The queue has 108 heading bodies. A new row covers TAUM’s “Fundamental decomposition”. Its unlabelled “Equal-carrier realization” (lines 505–523) is also covered in Appendix A by the Pauli formulas at `eq:balanced-channel-branches`. The row for those formulas is anchored later in TAUM, so this heading still appears in the queue. The fidelity row for “Relation to the transition channel” now covers that TAUM heading. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
+The queue has 108 heading bodies. TAUM’s domain summary for the Schur–Feshbach generators (lines 4421–4443) repeats the product-domain and bounded-coupling requirements proved in §8. Its ledger rows are anchored at the original propositions, so that summary remains in the generated queue. A new row covers TAUM’s “Fundamental decomposition”. Its unlabelled “Equal-carrier realization” (lines 505–523) is also covered in Appendix A by the Pauli formulas at `eq:balanced-channel-branches`. The row for those formulas is anchored later in TAUM, so this heading still appears in the queue. The fidelity row for “Relation to the transition channel” now covers that TAUM heading. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
 
 ### Worked entry for LG's canonical deconditioning theorem
 

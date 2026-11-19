@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-187 passed, 0 failed, 2 skipped in ...s
+193 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `189 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `195 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
@@ -54,6 +54,16 @@ inverse is unbounded while the polar phase extends to the whole active support.
 A proper isometric embedding checks the difference between norm preservation on
 the input sector and nilpotency on the direct sum.
 [Signed branch checks](test_odd_branches.py)
+
+### Signed Schur reduction
+
+Six checks cover the factorization, its four inverse blocks, and the imaginary
+and below-threshold signs of the return. A diagonal unbounded example uses
+exact cutoff sums to test which triangular factor preserves the operator domain.
+In the balanced pair, reversing the lower coupling moves the real poles off
+the real axis. A three-level example checks how a scalar port can cancel a
+negative spectral weight while the full retained resolvent still detects it.
+[Signed Schur checks](test_signed_reduction.py)
 
 ### Ground correspondence
 
@@ -259,6 +269,7 @@ checks/
   test_deconditioning.py paired relaxation and leakage on the five-site path
   test_relaxation.py    relaxation semigroup, successive moments and return instruments
   test_odd_branches.py  signed extensions, natural domains and polar factors
+  test_signed_reduction.py  Schur reduction, effective signs and port visibility
   test_index.py         rotated shift and dimensions after input enlargement
   test_determination.py cyclic generation and readout on a finite path
   test_cyclic_ground_data.py pointed states, the cyclic representation and ground conditions
