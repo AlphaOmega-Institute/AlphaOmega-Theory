@@ -63,7 +63,7 @@ factorization and phase blindness. Separate the maximal constructed algebra from
 algebra. Explain that transport of Born probabilities is not a derivation of the Born rule. Ground-inclusive
 specializations belong in III.1.
 
-The working sections on polar supports and neutral graphs now give the supportwise correspondence, its projective locus, and the phase criterion for a chosen measurement. The source material from LG §§16–19 and TAUM's polar section is allocated as follows.
+Sections 2 and 3 transport spectral measurements between the active supports, characterize the block-diagonal operators that preserve a phase graph, and distinguish the sector compressions of a graph state from its partial trace. The source material from LG §§16–19 and TAUM's polar section is allocated as follows.
 
 | Source material | Destination |
 | --- | --- |
@@ -95,9 +95,9 @@ a Hamiltonian ground, uniqueness, and a spectral gap. Develop reference fidelity
 assumptions they actually use. Introduce selected-line bridges, restricted polar orientations, weak versus strong
 compatibility, the reference-plane Pauli/phase geometry, and ground inclusion in the active graph. LG's R1 and R2 select a unique cyclic ground in each supplied representation. R3 sends the input ground to a nonzero multiple of the output ground. Keep strong polar compatibility under its additional hypothesis. V adopts these three conditions alongside R4 and R5 from II.3.
 
-The working ground section (`sec:ground-correspondence`) integrates LG’s restricted ground channel, five strong-compatibility conditions and ground-inclusive correspondence with TAUM’s conditional reference-fidelity energy identity and gap bound. It explains the cognitive interpretation of the weak bridge and tests whether it places those grounds on the aligned graph. The fuller ground-plane geometry, ground-state algebras and the doctrinal development in V remain to be migrated.
+The working ground section (`sec:ground-correspondence`) integrates LG’s restricted ground channel, five strong-compatibility conditions and ground-inclusive correspondence with TAUM’s conditional reference-fidelity energy identity and gap bound. It explains the cognitive interpretation of the weak bridge and tests whether it places those grounds on the aligned graph. Section 4.4 gives the neutral rays of the ground plane and the weights of its balanced vector on the full polar graphs. Section 4.5 states the energy–fidelity identity and the gap bound on the full form domain.
 
-The working section on determination carries forward LG’s selected algebra, concrete GNS construction, centering, covariance, and ground fidelity. The five-site example distinguishes generation from the ground from the ability to discriminate states by direct measurement. The interpretation of appearances as determinations of luminosity is introduced here. The disposition-dependent generators, conceptual judgement and grasper–grasped frame remain with Part V.
+Section 5 constructs the cyclic representation of the ground state, relates variance to its centered orbit, and gives examples separating uniqueness, cyclicity and a gap. Section 5.3 asks whether the luminous state is pure or faithful and proves the two properties can coexist only on the scalar algebra. The five-site example distinguishes generation from the ground from the ability to discriminate states by direct measurement. The interpretation of appearances as determinations of luminosity is introduced here. The disposition-dependent generators, conceptual judgement and grasper–grasped frame remain with Part V.
 
 **III.2 Supplied symmetries and moving subspaces.** Compact symmetry averaging, invariant compression, moving
 projection fields, frame covariance, Grassmann curvature, and characteristic classes. The group/action and, for
@@ -187,7 +187,7 @@ The seven formal open questions from LG have the following destinations. The sou
 | Source question | Destination and issue to preserve |
 | --- | --- |
 | `q:matter-algebra` | III.1 introduces the represented algebra needed for cyclicity. VI asks which physical operations select a nontrivial choice in a realization. |
-| `q:luminous-purity` | III.1 gives the algebraic meaning of purity and faithfulness. V keeps both open for the luminous state on its chosen algebra. |
+| `q:luminous-purity` | Section 5.3 leaves both properties open under R2. If the chosen algebra also admits a nonzero noncyclic vector, its cyclic ground state cannot be pure. V considers the choice of algebra. |
 | `q:phenomenal-algebra` | III.1 states what cyclicity requires. V asks which global algebra of phenomenal determinations to choose. |
 | `q:operational-structural-phase` | II.2 gives the criterion for detecting relative phase. VI asks which effects or controls realize it. |
 | `q:content-affect-algebra-choice` | V asks which subalgebras represent object content and affect in a given realization. |

@@ -94,12 +94,14 @@ Section 6 now gives all nine clauses of LG’s canonical deconditioning theorem.
 
 Section 13 makes 11 owed and 17 recoverable clauses explicit. All 30 tracked clauses in LG’s finite pair-transfer subsection and all 27 in its orbital-source subsection now have explicit counterparts.
 
+Sections 2–5 now state 45 previously recoverable and seven previously owed clauses on polar transport, graph geometry, ground fidelity and cyclic representations. A new TAUM row covers which Hamiltonians the fidelity result applies to. LG’s luminous-purity question is explicit as an open question in §5.3.
+
 | Source | Explicit | Recoverable | Owed |
 | --- | ---: | ---: | ---: |
-| TAUM | 142 | 17 | 31 |
-| LG | 181 | 61 | 63 |
+| TAUM | 147 | 15 | 29 |
+| LG | 229 | 18 | 58 |
 | UM | 1 | 0 | 0 |
-| **All 496 clauses** | **324** | **78** | **94** |
+| **All 497 clauses** | **377** | **33** | **87** |
 
 The UM row records the conjecture introduced in the consolidated manuscript.
 
@@ -121,7 +123,7 @@ The ledger includes every formal entry in the source inventory. Supplements trac
 
 The [heading queue](heading_queue.csv) lists nonempty source heading bodies with no ledger row anchored in them. Each body runs up to the next heading. The screen skips empty or label-only bodies and the bibliography, with no minimum length. Read queued passages to decide whether to add a supplement or point to coverage elsewhere. Recheck partially tracked bodies when migrating the family. A single entry removes a heading from the queue even if nearby derivations or prose still need a home.
 
-The queue has 110 heading bodies. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
+The queue has 109 heading bodies. The fidelity row for “Relation to the transition channel” now covers that TAUM heading. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
 
 ### Worked entry for LG's canonical deconditioning theorem
 

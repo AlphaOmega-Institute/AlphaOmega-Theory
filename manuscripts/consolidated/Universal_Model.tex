@@ -267,6 +267,19 @@ For $E$ the projection onto a unit vector $\chi$ and input a unit vector $\psi$,
 \]
 Thus $[\psi]\mapsto[V\psi]$ is a bijection of active rays preserving transition probabilities and their Fubini--Study distance $\arccos|\langle\chi,\psi\rangle|$. In particular a squared amplitude on either side refers to a specified outcome. The theorem supplies a matching outcome for each input effect. Determining which laboratory or observer procedures implement those effects requires further data.
 
+The proposition has three consequences that are used below. First, for unit vectors $\psi,\chi$ in $S$ with projections $P_\psi=\ket{\psi}\!\bra{\psi}$ and $P_\chi$,
+\begin{equation}
+ VP_\psi V^*=P_{V\psi},\qquad
+ \Tr(P_\psi P_\chi)=\Tr(P_{V\psi}P_{V\chi})=|\langle\chi,\psi\rangle|^2 .
+ \label{eq:matched-pure-projections}
+\end{equation}
+The transport of a pure state is the pure state of the transported vector. Second, conjugation by $V$ preserves spectra and functions of operators. For $X\in\mathcal B(S)$ and a number $z$ outside its spectrum, $V(X-z)^{-1}V^*$ is the inverse of $VXV^*-z$ on $D$, and conjugating by $V^*$ gives the converse. Hence $X$ and $VXV^*$ have the same spectrum, the second taken as an operator on $D$. Polynomials are transported because conjugation is multiplicative, and on $D$ one has $f(VXV^*)=Vf(X)V^*$ for a normal $X$ and a bounded Borel function $f$. Positive operators, effects and projections go to operators of the same kind. Third, let $X$ be self-adjoint with spectral measure $E_X$. Then $\Delta\mapsto VE_X(\Delta)V^*$ is a projection-valued measure on $D$ whose integral of $\lambda$ is $VXV^*$. The spectral measure of a self-adjoint operator is unique, so
+\begin{equation}
+ E_{VXV^*}(\Delta)=V\,E_X(\Delta)\,V^* .
+ \label{eq:matched-spectral-measure}
+\end{equation}
+A measurement of $X$ on $\psi$ and a measurement of $VXV^*$ on $V\psi$ therefore have the same distribution of outcomes, and not only the same mean. The same holds for an unbounded self-adjoint $X$ with dense domain in $S$: the operator $VXV^*$ with domain $V\operatorname{Dom}X$ is self-adjoint on $D$ and has the spectral measure~\eqref{eq:matched-spectral-measure}. On the full output space the extension of $VXV^*$ by zero has the spectral measure $VE_X(\Delta)V^*+1_\Delta(0)(I-\Pi_D)$. Its outcome zero collects the defect $D^\perp$ together with the eigenvalue zero of $X$, when $X$ has that eigenvalue. In that case a detector that is to register the defect separately needs the additional outcome of Eq.~\eqref{eq:matched-defect-outcome} below. The occupation detector $Z_\theta$ of Section~\ref{sec:preparation-evolution} is the extension by zero of an input observable with eigenvalues $\pm1$, so its outcome zero records the defect alone.
+
 The distinction between $A$ and $u$ matters even in two dimensions. For bounded $A$ and a state with $\Tr(A\rho A^*)>0$, normalizing the raw output gives
 \[
  \frac{A\rho A^*}{\Tr(A\rho A^*)}
@@ -348,6 +361,20 @@ Here $\mathcal R^*=\mathcal R$, $\mathcal R^2=I$, $\mathcal I^*=-\mathcal I$ and
 \end{equation}
 In particular $\mathcal N_0$ and $\mathcal N_\pi$ are the two eigenspaces of $\mathcal R$. On the full direct sum the zero extensions of these graph projections use $\Pi_S\oplus\Pi_D$ in place of $I$ and the zero extensions of the two polar operators.
 
+In blocks, the adjoint of the graph map and the graph projection are
+\begin{equation}
+ G_\varphi^*(x\oplus y)=2^{-1/2}\bigl(x+e^{-i\varphi}V^*y\bigr),\qquad
+ \Pi_\varphi=\frac12\begin{pmatrix}I_S&e^{-i\varphi}V^*\\ e^{i\varphi}V&I_D\end{pmatrix},
+ \label{eq:graph-adjoint-blocks}
+\end{equation}
+for $x\in S$ and $y\in D$. The first formula follows from $\langle G_\varphi\psi,x\oplus y\rangle=2^{-1/2}\bigl(\langle\psi,x\rangle+e^{-i\varphi}\langle V\psi,y\rangle\bigr)$, and the second by applying $G_\varphi$ to it. For $y$ in the full output space $V^*y$ is replaced by $u^*y$, which vanishes on $D^\perp$. An isometry defined on a complete space has closed range. The graph $\mathcal N_\varphi$ is therefore closed and $\Pi_\varphi$ projects onto the graph itself, with no closure taken, also when the range of $A$ is not closed. At the phases $0$ and $\pi$,
+\begin{equation}
+ \Pi_0=\tfrac12(I+\mathcal R),\qquad \Pi_\pi=\tfrac12(I-\mathcal R),\qquad
+ \Pi_0\Pi_\pi=0,\qquad \Pi_0+\Pi_\pi=I .
+ \label{eq:graph-aligned-opposite}
+\end{equation}
+Thus $\mathcal K_A=\mathcal N_0\oplus\mathcal N_\pi$ is an orthogonal decomposition into the aligned graph and the opposite graph, also called anti-aligned. On the full direct sum $I$ is replaced by $\Pi_S\oplus\Pi_D$. For two phases $G_\varphi^*G_\eta=\tfrac12\bigl(1+e^{i(\eta-\varphi)}\bigr)I_S$, so the component of a unit vector of $\mathcal N_\varphi$ on $\mathcal N_\eta$ has squared norm $\cos^2\bigl((\varphi-\eta)/2\bigr)$.
+
 \subsection{What a measurement can distinguish}
 
 To vary the sector populations as well, fix a unit $\psi\in S$ and write
@@ -386,6 +413,26 @@ takes $G_\varphi\psi$ to $2^{-1/2}(\ket{\Psi}+e^{i\varphi}\ket{\Phi})\otimes\psi
 It sends $J,\mathcal R,-i\mathcal I$ to $\sigma_z,\sigma_x,\sigma_y$ on the sector coordinate, each tensored with $I_S$. Their means on the graph state are therefore $0,\cos\varphi,\sin\varphi$, respectively. The latter two means together determine the phase modulo $2\pi$ when both measurements are available on repeated preparations.
 
 For $X\in\mathcal B(S)$ write $\iota(X)=X\oplus VXV^*$. In the same coordinates $\iota(X)=I_2\otimes X$, so $\iota(X)G_\varphi=G_\varphi X$. This identifies the matrix elements on every graph. A density operator $\rho$ on $S$ gives the same mean $\Tr(\rho X)$ in $\rho$, $V\rho V^*$ and $G_\varphi\rho G_\varphi^*$ for the three corresponding operators. Taking $X$ to be an effect gives the full input probability even when each sector has weight one half. Taking the spectral projections of a bounded self-adjoint input gives the equality for every measurable outcome set; these projections are defined in $\mathcal B(S)$ even when the selected algebra $\mathcal M$ is smaller.
+
+The map $\iota$ is a representation of $\mathcal B(S)$ on the active carrier. It is linear, with $\iota(XY)=\iota(X)\iota(Y)$ and $\iota(X^*)=\iota(X)^*$, and $\iota(I_S)=I_S\oplus I_D$ is the identity of $\mathcal K_A$, which is $\Pi_S\oplus\Pi_D$ after extension by zero to the full direct sum. It is injective because $X$ is the upper block of $\iota(X)$, and normal because both blocks are, by Proposition~\ref{prop:matched-born-probabilities}. Restricted to a selected algebra $\mathcal M$ it is an injective unital $*$-homomorphism. The paired algebra $\iota(\mathcal M)$ is therefore isomorphic to $\mathcal M$ through the upper block and to $V\mathcal MV^*$ through the lower one. Multiplying $\iota(X)G_\varphi=G_\varphi X$ on the left by $G_\varphi^*$ gives
+\begin{equation}
+ G_\varphi^*\,\iota(X)\,G_\varphi=X ,
+ \label{eq:graph-paired-compression}
+\end{equation}
+and each graph $\mathcal N_\varphi$ is invariant under every $\iota(X)$. Among block-diagonal operators this invariance characterizes the paired ones. For $T=B\oplus L$ with $B\in\mathcal B(S)$ and $L\in\mathcal B(D)$,
+\[
+ G_\varphi^*\,T\,G_\varphi=\tfrac12\bigl(B+V^*LV\bigr),\qquad
+ (I-\Pi_\varphi)\,T\,G_\varphi=G_{\varphi+\pi}\,\tfrac12\bigl(B-V^*LV\bigr),
+\]
+so $T$ maps one graph into itself exactly when $L=VBV^*$, and then it maps every graph into itself.
+
+A density operator $\rho$ on $S$ has the graph state
+\begin{equation}
+ G_\varphi\,\rho\,G_\varphi^*
+ =\frac12\begin{pmatrix}\rho&e^{-i\varphi}\rho V^*\\ e^{i\varphi}V\rho&V\rho V^*\end{pmatrix},
+ \label{eq:graph-density-blocks}
+\end{equation}
+a density operator on $\mathcal K_A$. Its compressions to the two sectors are $\tfrac12\rho$ and $\tfrac12V\rho V^*$. Each has trace one half, and dividing by that trace returns the input state and its transport. The phase appears only in the off-diagonal blocks. Deleting them leaves $\tfrac12(\rho\oplus V\rho V^*)$, the equal mixture of the graph states at $\varphi$ and $\varphi+\pi$. In the sector coordinates the graph state is the product $\ket{\varphi}\!\bra{\varphi}\otimes\rho$ with $\ket{\varphi}=2^{-1/2}(\ket{\Psi}+e^{i\varphi}\ket{\Phi})$, the graph $\mathcal N_\varphi$ is $\ket{\varphi}\otimes S$, and $\Pi_\varphi$ is $\ket{\varphi}\!\bra{\varphi}\otimes I_S$. The partial trace over the sector coordinate returns $\rho$, with trace one. It adds the two diagonal blocks after the lower one has been carried back by $V^*$, and this reduced state is what the paired observables $I_2\otimes X$ read. A sector compression keeps one diagonal block. The two operations are different. The carrier $S\oplus D$ is a direct sum of two sectors and is not the tensor product $S\otimes D$ of two systems, so the lower block $\tfrac12V\rho V^*$ is a compression and is not the reduced state of a subsystem. The tensor product that does appear, $\C^2\otimes S$, has the sector coordinate as its first factor and a single copy of the input space as its second.
 
 More generally the paired statistics on any state of $\C^2\otimes S$ depend only on its reduced state on $S$. An operator commutes with $I_2\otimes\mathcal M$ precisely when each of its four blocks commutes with $\mathcal M$. For the maximal choice $\mathcal M=\mathcal B(S)$ the blocks are scalars, so the commutant is $\mathcal B(\C^2)\otimes I_S$. The sector projections and phase operators belong to that commutant. Which, if any, can be measured? The polar map fixes their mathematical definition. A phase measurement requires a physically available cross-sector readout. The occupation detector of Section~\ref{sec:polar-matched-observables} acts within the output sector.
 
@@ -509,6 +556,157 @@ More generally, for two cells of sizes $m,n>0$ with the same counting convention
 \]
 The ground tests match exactly when the cells have equal size. This conclusion depends on the input inner product: weighting the coarse sites by the sizes of their cells makes the unscaled copying map an isometry. In the pair preparation of Section~\ref{subsec:pair-grounds-excitations}, the preparation is already isometric, so once it takes one ground to the other their tests match as well.
 
+\subsection{The plane spanned by the two grounds}
+\label{subsec:ground-plane}
+
+Proposition~\ref{prop:ground-polar-compatibility} compares the restricted map $u_0$ with the full polar map $u$. The restricted map has a polar decomposition and graphs of its own, and they need the weak bridge only. From Eq.~\eqref{eq:restricted-ground-orientation},
+\begin{equation}
+ \|AP_x\|=a,\qquad (AP_x)^*(AP_x)=a^2P_x,\qquad (AP_x)(AP_x)^*=a^2P_y,\qquad |AP_x|=aP_x .
+ \label{eq:ground-plane-restriction}
+\end{equation}
+Hence $AP_x=u_0|AP_x|$, and $u_0$ is a partial isometry with the same kernel $x^\perp$ as $AP_x$. The polar decomposition with that property is unique, so $u_0$ is the polar part of the restriction. It acts by $u_0x=y$ and $u_0^*y=x$. The partial isometries from the line of $x$ onto the line of $y$ are the operators $e^{i\beta}u_0$, and among them $AP_x=aw$ with $a>0$ holds for $w=u_0$ only. When $x$ and $y$ are the two grounds, R1 and R2 select their rays independently. Given those rays, the bridge with $a>0$ fixes the relative phase of their representatives. Replacing $x$ by $e^{i\alpha}x$ requires replacing $y$ by $e^{i\alpha}y$, and $u_0$ is unchanged. The bridge can also be stated without representatives. It gives $P_yAP_x=AP_x$ and $(I-P_y)AP_x=0$, and the third identity of Eq.~\eqref{eq:ground-plane-restriction} reads $P_y=(AP_x)(AP_x)^*/\|Ax\|^2$. Conversely, for $x\in\operatorname{Dom}A$ with $Ax\ne0$, the identity $(I-P_y)AP_x=0$ places $Ax$ on the line of $y$. The adjoint $(AP_x)^*=a\ket{x}\!\bra{y}$ is bounded and defined on all of $\mathcal H_\Phi$. It extends $P_xA^*$, which is defined on $\operatorname{Dom}A^*$ only, and $y$ need not belong to that domain. For example, let $A$ multiply the $n$th coordinate of a square-summable sequence by $n$, for $n\geq1$, and let $x$ have coordinates proportional to $n^{-2}$. Then $x\in\operatorname{Dom}A$ and $a^2=\zeta(2)/\zeta(4)=15/\pi^2$. The vector $y$ has coordinates proportional to $n^{-1}$ and lies outside $\operatorname{Dom}A^*=\operatorname{Dom}A$. The weak bridge and Eq.~\eqref{eq:ground-plane-restriction} hold, condition (v) of Proposition~\ref{prop:ground-polar-compatibility} fails, and the fidelity of Eq.~\eqref{eq:actual-ground-partner} is $F_x=\zeta(3)^2/(\zeta(2)\zeta(4))\approx0.81$.
+
+Let $\mathcal K_0=\C x\oplus\C y$ be the plane of the two reference vectors inside $\mathcal H_\Psi\oplus\mathcal H_\Phi$, with projection $P_{xy}=P_x\oplus P_y$. The sector symmetry $J$ maps the plane to itself. Apply the graph construction of Section~\ref{sec:neutral-graphs-phase} with the line map $u_0$ in place of $V$:
+\begin{equation}
+ z^0_\varphi=2^{-1/2}\bigl(x\oplus e^{i\varphi}y\bigr),\qquad
+ \mathcal N^0_\varphi=\C z^0_\varphi,\qquad z_+=z^0_0,\quad z_-=z^0_\pi .
+ \label{eq:ground-plane-vectors}
+\end{equation}
+The line $\mathcal N^0_0$ is the aligned graph of $u_0$ and $\mathcal N^0_\pi$ is the anti-aligned one. Every $z^0_\varphi$ has Hilbert norm one, zero Krein square, and squared norm $1/2$ in each sector. Normalizing its two sector components returns $x$ and $e^{i\varphi}y$. A line $\mathcal N^0_\varphi$ meets each sector in zero only, and each coordinate projection maps it bijectively onto the corresponding reference line. A vector of the line is therefore fixed by either of its components, while neither component is itself a vector of the line. Within the plane, $[z^0_\varphi,\alpha x\oplus\beta y]=2^{-1/2}(\alpha-e^{-i\varphi}\beta)$ vanishes exactly on $\mathcal N^0_\varphi$. Each line is its own Krein-orthogonal complement in $\mathcal K_0$ and so is a maximal neutral subspace of the plane. The plane is not neutral, since $x\oplus0$ has Krein square one.
+
+Conversely, every unit vector of the plane with zero Krein square is a phase times some $z^0_\varphi$. For $\alpha x\oplus\beta y$ the two conditions are $|\alpha|^2+|\beta|^2=1$ and $|\alpha|^2-|\beta|^2=0$. They give $|\alpha|=|\beta|=2^{-1/2}$, and removing the phase of $\alpha$ leaves $z^0_\varphi$ with $e^{i\varphi}=\beta/\alpha$. The neutral rays of the plane form a circle with coordinate $\varphi$. Equal weights in the two sectors define the circle. The bridge selects one point of it, the ray of $x\oplus Ax/\|Ax\|$, and the convention $Ax=ay$ with $a>0$ gives that point the coordinate $\varphi=0$.
+
+The operators that resolve the coordinate are the polar operators of $u_0$, extended by zero off the plane:
+\begin{equation}
+ \mathcal R_0=\begin{pmatrix}0&u_0^*\\ u_0&0\end{pmatrix},\qquad
+ \mathcal I_0=J\mathcal R_0=\begin{pmatrix}0&u_0^*\\ -u_0&0\end{pmatrix}.
+ \label{eq:ground-plane-operators}
+\end{equation}
+They satisfy $\mathcal R_0^*=\mathcal R_0$, $\mathcal R_0^2=P_{xy}$, $J\mathcal R_0=-\mathcal R_0J$, $\mathcal I_0^*=-\mathcal I_0$ and $\mathcal I_0^2=-P_{xy}$. In the basis $x\oplus0$, $0\oplus y$ of the plane, $J$, $\mathcal R_0$ and $-i\mathcal I_0$ are the Pauli matrices $\sigma_z$, $\sigma_x$ and $\sigma_y$, with the products $J\mathcal R_0=i(-i\mathcal I_0)$, $\mathcal R_0(-i\mathcal I_0)=iJP_{xy}$ and $(-i\mathcal I_0)J=i\mathcal R_0$. This is the sector coordinate of Section~\ref{sec:neutral-graphs-phase} for a one-dimensional input space. The projection onto $\mathcal N^0_\varphi$ is $\tfrac12\bigl(P_{xy}+\cos\varphi\,\mathcal R_0+\sin\varphi\,(-i\mathcal I_0)\bigr)$, and the means of $\mathcal R_0$, $-i\mathcal I_0$ and $J$ in $z^0_\varphi$ are $\cos\varphi$, $\sin\varphi$ and $0$. On the aligned and anti-aligned vectors
+\begin{align}
+ &\mathcal R_0z_\pm=\pm z_\pm,\qquad Jz_\pm=z_\mp,\qquad
+ \mathcal I_0z_+=z_-,\quad \mathcal I_0z_-=-z_+ ,
+ \label{eq:ground-plane-eigenlines}\\
+ &\langle z_+,z_-\rangle=0,\qquad [z_+,z_+]=[z_-,z_-]=0,\qquad [z_+,z_-]=1 .
+ \label{eq:ground-plane-witt}
+\end{align}
+The two vectors are orthonormal for the Hilbert product. For the Krein form they are two neutral vectors with product one, a hyperbolic pair, also called a Witt pair. The sector components of $z_-$ lie on the rays of $x$ and of $y$, as do those of $z_+$ and of every $z^0_\varphi$. The points of the circle differ in the relative phase only. An operator that commutes with $J$ is block-diagonal, $B\oplus L$, and has the same mean $\tfrac12(\langle x,Bx\rangle+\langle y,Ly\rangle)$ in every $z^0_\varphi$, the case of Proposition~\ref{prop:phase-readout} for the line map. Whether $\mathcal R_0$ or $-i\mathcal I_0$ can be measured is the question of Section~\ref{sec:neutral-graphs-phase}. Suppose $H_\Psi x=E_\Psi x$ and $H_\Phi y=E_\Phi y$. Under $H_\Psi\oplus H_\Phi$ the energy distribution of every $z^0_\varphi$ is $\tfrac12(\delta_{E_\Psi}+\delta_{E_\Phi})$. When the energies coincide, that single energy has probability one. The evolution takes $z^0_\varphi$ to a phase times $z^0_{\varphi+\gamma(t)}$ with $\gamma(t)=(E_\Psi-E_\Phi)t/\hbar$. This is Eq.~\eqref{eq:graph-evolution-phase} for the line map $u_0$. Each point is stationary exactly when the two energies are equal. Adding a cross-sector term $\lambda\mathcal R_0$, with $\lambda\in\mathbb R$, changes the mean energy by $\lambda\cos\varphi$, so a nonzero $\lambda$ distinguishes the aligned and anti-aligned rays.
+
+How is the plane related to the graphs of the full polar map? On the full direct sum write $\mathcal R$ and $\mathcal I$ for the polar operators with $u$ and $u^*$ in their off-diagonal blocks, and $\Pi_0$, $\Pi_\pi$ for the two graph projections of Eq.~\eqref{eq:polar-graph-projector} extended by zero. Under the weak bridge $\langle y,ux\rangle=\langle r,x\rangle=\sqrt{F_x}$, with $r$ and $F_x$ as in Eq.~\eqref{eq:actual-ground-partner}. Hence
+\begin{equation}
+ P_{xy}\,\mathcal R\,P_{xy}=\sqrt{F_x}\;\mathcal R_0,\qquad
+ P_{xy}\,\mathcal I\,P_{xy}=\sqrt{F_x}\;\mathcal I_0 .
+ \label{eq:ground-plane-compression}
+\end{equation}
+
+\begin{proposition}[The plane of the grounds and the full polar map]
+\label{prop:ground-plane-reduction}
+Assume the weak bridge. The following conditions are equivalent.
+\begin{enumerate}
+\item[(a)] The grounds are strongly compatible.
+\item[(b)] $P_{xy}$ commutes with $\mathcal R$.
+\item[(c)] $\mathcal RP_{xy}=P_{xy}\mathcal R=\mathcal R_0$ and $\mathcal IP_{xy}=P_{xy}\mathcal I=\mathcal I_0$.
+\item[(d)] $x\in S$ and $z^0_\varphi=G_\varphi x$ for every $\varphi$, so that each line $\mathcal N^0_\varphi$ lies in the graph $\mathcal N_\varphi$ of the full polar map.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Assume (a). Then $ux=y$, and $u^*y=u^*ux=x$ because $x\in S$. Hence $uP_x=\ket{y}\!\bra{x}=u_0$ and $P_yu=\ket{y}\!\bra{u^*y}=u_0$. The two off-diagonal blocks of $\mathcal RP_{xy}$ and of $P_{xy}\mathcal R$ are these operators and their adjoints, which gives the first part of (c). The second follows on multiplying by $J$, which commutes with $P_{xy}$. Condition (c) contains (b). Assume (b). The lower-left block of the commutator gives $uP_x=P_yu$, and its adjoint gives $P_xu^*=u^*P_y$. Applied to $y$ the second reads $u^*y=\langle x,u^*y\rangle x=\sqrt{F_x}\,x$. Since $y\in D$, the vector $u^*y$ has norm one. Thus $F_x=1$, which is (a). Finally $G_\varphi x=2^{-1/2}(x\oplus e^{i\varphi}ux)$ for $x\in S$, and this equals $z^0_\varphi$ exactly when $ux=y$. Condition (iii) of Proposition~\ref{prop:ground-polar-compatibility} includes $x\in S$.
+\end{proof}
+
+Without strong compatibility the balanced vector $z_+$ is divided between the two graphs of the full polar map and the complement of the active carrier. Since $G_0^*z_+=\tfrac12(\Pi_Sx+r)$ and $G_\pi^*z_+=\tfrac12(\Pi_Sx-r)$,
+\begin{equation}
+ \|\Pi_0z_+\|^2=\tfrac14\bigl(1+\|\Pi_Sx\|^2\bigr)+\tfrac12\sqrt{F_x},\qquad
+ \|\Pi_\pi z_+\|^2=\tfrac14\bigl(1+\|\Pi_Sx\|^2\bigr)-\tfrac12\sqrt{F_x},
+ \label{eq:ground-plane-graph-weights}
+\end{equation}
+and the remaining $\tfrac12\bigl(1-\|\Pi_Sx\|^2\bigr)$ is the squared norm of the component of $z_+$ in $\ker A\oplus0$. The aligned weight minus the anti-aligned weight is $\sqrt{F_x}$. Their sum $\tfrac12\bigl(1+\|\Pi_Sx\|^2\bigr)$ is the weight of $z_+$ in the active carrier. For injective $A$ the two weights are $(1\pm\sqrt{F_x})/2$. On the path with cells of sizes one and four, $F_x=9/10$ and the weights are about $0.974$ and $0.026$. In the pair preparation of Section~\ref{subsec:pair-grounds-excitations} with the symmetric Hamiltonian $H_s$, the isometry $A_\theta$ takes $g_\Psi$ to $g$. The grounds are strongly compatible and $z^0_\varphi=G_\varphi g_\Psi$.
+
+The weak bridge also places the output ground inside the final support, $y=Ax/a\in D$. The output space therefore has three parts,
+\begin{equation}
+ \mathcal H_\Phi=\C y\oplus(D\ominus\C y)\oplus D^\perp,\qquad
+ y^\perp=(D\ominus\C y)\oplus D^\perp .
+ \label{eq:ground-plane-three-parts}
+\end{equation}
+The defect $D^\perp=\ker A^*$ is orthogonal to $y$. A vector orthogonal to $y$ need not lie in the defect: the vectors of $D\ominus\C y$ are orthogonal to the output ground and are paired by $V$ with the vectors of $S\ominus\C r$. Only the component in $D^\perp$ has no partner in $S$.
+
+\subsection{How far from the ground is a state of given energy?}
+\label{subsec:fidelity-energy}
+
+Equation~\eqref{eq:ground-return-energy} was stated for the partner $r$ of the output ground, in the domain of $H_\Psi$. The same identity holds for every state of finite energy in either sector, and with a gap it bounds the distance of the state from the ground ray. Let $H$ be self-adjoint and bounded below on a Hilbert space, let $E_0$ be the bottom of its spectrum, and let $x$ be a unit vector with $Hx=E_0x$. Write $P_x$ for its projection, $Q_x=I-P_x$, and for a unit vector $\psi$
+\begin{equation}
+ F_x(\psi)=|\langle x,\psi\rangle|^2,\qquad
+ d_{\rm FS}([\psi],[x])=\arccos|\langle x,\psi\rangle|,\qquad
+ 1-F_x(\psi)=\sin^2d_{\rm FS}([\psi],[x]).
+ \label{eq:fidelity-energy-distance}
+\end{equation}
+The number $F_x$ of Eq.~\eqref{eq:actual-ground-partner} is $F_x(r)$, and $d_{\rm FS}$ is the Fubini--Study distance of Section~\ref{sec:polar-matched-observables}, measured here from the ray of $x$. The excitation energy is defined on the form domain $\operatorname{Dom}(H-E_0I)^{1/2}$, which contains $\operatorname{Dom}H$:
+\begin{equation}
+ E_{\rm exc}(\psi)=\bigl\|(H-E_0I)^{1/2}\psi\bigr\|^2,
+ \qquad E_{\rm exc}(\psi)=\langle\psi,(H-E_0I)\psi\rangle\ \text{ for }\psi\in\operatorname{Dom}H .
+ \label{eq:fidelity-energy-form}
+\end{equation}
+By the spectral theorem it is nonnegative on the whole form domain: no state has energy below $E_0$. This uses only that $E_0$ is the bottom of the spectrum, not that it is an eigenvalue. Uniqueness of the ground ray is a further assumption, as in R2.
+
+\begin{proposition}[Energy and fidelity]
+\label{prop:fidelity-energy}
+Let $\psi$ be a unit vector in the form domain.
+\begin{enumerate}
+\item[(a)] The vector $Q_x\psi$ lies in the form domain and $E_{\rm exc}(\psi)=E_{\rm exc}(Q_x\psi)$. If $F_x(\psi)<1$, put $\eta_\psi=Q_x\psi/\sqrt{1-F_x(\psi)}$. Then $\eta_\psi$ is a unit vector orthogonal to $x$, and
+\begin{equation}
+ E_{\rm exc}(\psi)=\bigl(1-F_x(\psi)\bigr)\,Z(\psi),\qquad Z(\psi)=E_{\rm exc}(\eta_\psi)\ge0 .
+ \label{eq:fidelity-energy-factor}
+\end{equation}
+If $F_x(\psi)=1$, then $E_{\rm exc}(\psi)=0$.
+\item[(b)] Suppose that $E_{\rm exc}(\phi)\ge\Delta\,\|Q_x\phi\|^2$ for every $\phi$ in the form domain, with some $\Delta>0$. Then $Z(\psi)\ge\Delta$ when $F_x(\psi)<1$, and
+\begin{equation}
+ E_{\rm exc}(\psi)\ge\Delta\,\bigl(1-F_x(\psi)\bigr)=\Delta\,\sin^2d_{\rm FS}([\psi],[x]).
+ \label{eq:fidelity-energy-gap}
+\end{equation}
+In particular $E_{\rm exc}(\psi)=0$ only on the ray of $x$.
+\item[(c)] If $H$ is bounded with top of spectrum $E_{\max}$, then $E_{\rm exc}(\psi)\le(E_{\max}-E_0)\bigl(1-F_x(\psi)\bigr)$, and $Z(\psi)\le E_{\max}-E_0$ when $F_x(\psi)<1$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The vector $x$ lies in $\operatorname{Dom}H$ and $\|(H-E_0I)^{1/2}x\|^2=\langle x,(H-E_0I)x\rangle=0$. Hence $Q_x\psi=\psi-\langle x,\psi\rangle x$ is in the form domain and $(H-E_0I)^{1/2}Q_x\psi=(H-E_0I)^{1/2}\psi$. This is the first statement of (a), and $\|Q_x\psi\|^2=1-F_x(\psi)$ gives the rest. For (b) apply the hypothesis to $\psi$ and, when $F_x(\psi)<1$, to $\eta_\psi$. For (c) use $0\le H-E_0I\le(E_{\max}-E_0)I$ on $Q_x\psi$ and on $\eta_\psi$.
+\end{proof}
+
+The hypothesis of (b) says that the spectrum of $H$ on $x^\perp$ begins at least $\Delta$ above $E_0$. It makes the ground ray unique. The number $Z(\psi)$ is defined only for $F_x(\psi)<1$. It has an operational meaning for one instrument. The L\"uders test of the chosen ray, with operations $\sigma\mapsto P_x\sigma P_x$ and $\sigma\mapsto Q_x\sigma Q_x$, leaves the state $Q_x\psi/\|Q_x\psi\|=\eta_\psi$ when $\psi$ fails, and $Z(\psi)$ is the mean excitation energy of that state. Another instrument with the same failure effect $Q_x$ can leave a different state with a different energy, as in Section~\ref{subsec:relaxation-return}. The number $Z(\psi)$ depends on the state, and it is constant only under further spectral structure, for instance when $H-E_0I$ is a multiple of the identity on $x^\perp$. For $0<F_x(\psi)<1$ there is a phase $\alpha$ with
+\begin{equation}
+ \psi=e^{i\alpha}\sqrt{F_x(\psi)}\;x+\sqrt{1-F_x(\psi)}\;\eta_\psi .
+ \label{eq:fidelity-energy-decomposition}
+\end{equation}
+At $F_x(\psi)=0$ the first term is absent and no phase is needed. At $F_x(\psi)=1$ the vector $\eta_\psi$ is not defined, and part (a) does not use it.
+
+Three cases show the range of $Z$. On the two-site path of Section~\ref{sec:ground-correspondence} the complement of the ground is one-dimensional, so $Z$ equals the gap $1$ for every state off the ground ray. The partner $(1,2)/\sqrt5$ has $E_{\rm exc}=1-F_x=1/10$. On the five-site path the gap is $1-\cos(\pi/5)\approx0.19$ and the top of the spectrum is $1+\cos(\pi/5)\approx1.81$. The site state $e_2$ of Section~\ref{sec:determination} has fidelity $1/5$ with the constant ground, excitation energy $1$ and $Z=5/4$. Third, the form domain is larger than the operator domain when $H$ is unbounded, and the proposition applies there. For the number operator $N$ of Section~\ref{sec:four-maps}, with ground $e_0$ and gap one, let $\psi$ have probabilities proportional to $(n+1)^{-5/2}$ on the vectors $e_n$. Its mean energy is finite and its second moment is infinite, so it lies in the form domain and outside $\operatorname{Dom}N$. In terms of the zeta function,
+\begin{equation}
+ F_{e_0}(\psi)=\frac1{\zeta(5/2)}\approx0.745,\qquad
+ E_{\rm exc}(\psi)=\frac{\zeta(3/2)}{\zeta(5/2)}-1\approx0.947,\qquad Z(\psi)\approx3.72 .
+ \label{eq:fidelity-energy-oscillator}
+\end{equation}
+
+Without the bound of (c) a fidelity close to one does not control the energy. Suppose $H$ is unbounded above. For each $k\ge2$ choose a bounded interval above $E_0+k^2$ that meets the spectrum, and a unit vector $\phi_k$ in the range of its spectral projection. Then $\phi_k$ lies in $\operatorname{Dom}H$, is orthogonal to $x$, and has $E_{\rm exc}(\phi_k)\ge k^2$. The states $\sqrt{1-1/k}\;x+\phi_k/\sqrt k$ have fidelity $1-1/k$ and excitation energy at least $k$. In the other direction a gap suffices: by Eq.~\eqref{eq:fidelity-energy-gap}, states whose excitation energy tends to zero converge to the ray of $x$ in the Fubini--Study distance.
+
+Convergence to the ground ray can also be read from the components. A nonzero vector $cx+\eta$ with $\eta\perp x$ and $c\ne0$ has, after normalization,
+\begin{equation}
+ F_x=\frac{|c|^2}{|c|^2+\|\eta\|^2}=\frac1{1+\|\eta\|^2/|c|^2}.
+ \label{eq:fidelity-energy-ratio}
+\end{equation}
+A sequence of such vectors converges to the ray of $x$ exactly when $\|\eta_n\|/|c_n|\to0$. For determinations $X_n$ acting on the ground $y$ of Section~\ref{sec:determination}, $c_n=\omega(X_n)$ and $\eta_n=X_n^\circ y$. Let $X_ny\ne0$ for every $n$, so that the states $X_ny/\|X_ny\|$ are defined. They converge to the ground ray exactly when $\omega(X_n)\ne0$ from some $n$ on and $\|X_n^\circ y\|/|\omega(X_n)|\to0$.
+
+The proposition concerns one Hamiltonian and one ground. It applies to the input with $H_\Psi$ and $x$, and to the output with $H_\Phi$ and $y$, separately. The polar map always relates the fidelities of the two sides. Under the weak bridge, for a unit vector $\psi$ in $S$,
+\begin{equation}
+ F_y(V\psi)=F_r(\psi),\qquad r=u^*y,
+ \label{eq:fidelity-energy-transport}
+\end{equation}
+with $r$ the partner of Eq.~\eqref{eq:actual-ground-partner}. Under strong compatibility this is $F_x(\psi)$. The graph maps $G_\varphi$ of Section~\ref{sec:neutral-graphs-phase} are isometries as well, so for unit vectors $\psi,\chi$ in $S$ the rays of $\psi$, $V\psi$ and $G_\varphi\psi$ have the same Fubini--Study distances from those of $\chi$, $V\chi$ and $G_\varphi\chi$. The energies are a separate matter. When both are finite, the mean excitation energies of $\psi$ and $V\psi$ agree exactly when the two ground-shifted forms agree on that state after the output form is pulled back,
+\begin{equation}
+ \bigl\|(H_\Phi-E_0^\Phi I)^{1/2}V\psi\bigr\|^2=\bigl\|(H_\Psi-E_0^\Psi I)^{1/2}\psi\bigr\|^2 ,
+ \label{eq:fidelity-energy-forms}
+\end{equation}
+with $E_0^\Psi$ and $E_0^\Phi$ the two ground energies. R1--R5 do not require this. Intertwining together with equal ground energies implies it for every state, and the converse fails. Two examples show the difference. On the unequal-cell path the equality fails: the coarse ground has energy zero and its image under $V$ has energy $1/16$ on the fine path. In the trap of Section~\ref{sec:pair-currents} it holds for every prepared state, because the input Hamiltonian is the compression $A^*H_\Phi A$ and the two ground energies are equal. Yet at nonzero field $A$ does not intertwine the evolutions and the prepared excitation leaves the prepared plane. Equal means do not give equal distributions of energy either. The input excitation has energy $E_2$ with certainty, and its image $e_\lambda$ has the energies $E_2-2\hbar\Omega_{\rm B}$ and $E_2+2\hbar\Omega_{\rm B}$ with probability $1/2$ each.
+
+The proposition needs a self-adjoint operator bounded below and a ground vector, and nothing else. It can be applied to a supplied sector Hamiltonian, to the return $A^*A$, or to the effective operator $H_P-C^*(H_Q-z)^{-1}C$ of Eq.~\eqref{eq:prepared-schur} at a real $z$ in the resolvent set of $H_Q$, where it is self-adjoint. The hypotheses have to be checked in each case. For $A^*A$ the form domain is $\operatorname{Dom}A$ and the form is $\|A\psi\|^2$. If $x$ spans $\ker A$, then $E_0=0$ and $E_{\rm exc}(\psi)=\|A\psi\|^2$, the hypothesis of (b) is the lower bound of Section~\ref{sec:cohomology-index} that makes the range of $A$ closed, and the image $Ax$ is zero. A reference vector with nonzero image is in general not a ground of $A^*A$. Under strong compatibility it is an eigenvector of $A^*A$ with eigenvalue $a^2$, which need not be the bottom of the spectrum. No cyclicity is used.
+
 \section{What can an observer distinguish?}
 \label{sec:determination}
 
@@ -516,6 +714,15 @@ In the opening example the observer sees a flash and judges it bright. The aware
 
 \subsection{Determinations acting on a ground}
 Let $y$ be a unit vector in $\mathcal H_\Phi$ and choose a unital $C^*$-algebra $\mathfrak D\subseteq\mathcal B(\mathcal H_\Phi)$. Put $\omega(X)=\langle y,Xy\rangle$ and $K=\overline{\mathfrak D y}$. In the cognitive model we take $y$ to be the luminous ground and choose $\mathfrak D$ to represent determinations acting within the appearance. R2 gives cyclicity for its specified algebra. Choosing a smaller algebra leaves open whether $K$ still fills $\mathcal H_\Phi$.
+
+The algebra need not be given as a set of operators from the start. Let $\mathfrak M$ be a unital $C^*$-algebra, $\pi:\mathfrak M\to\mathcal B(\mathcal H)$ a nondegenerate representation, and $y\in\mathcal H$ a unit vector. Call $(\mathfrak M,\pi,\mathcal H,y)$ a pointed representation. Nondegeneracy gives $\pi(1)=I$. The image $\pi(\mathfrak M)$ is norm closed \cite{BratteliRobinson}, so it is a unital $C^*$-algebra of operators and can serve as $\mathfrak D$. The vector state of $y$ is
+\begin{equation}
+ \omega_y(X)=\langle y,\pi(X)y\rangle,\qquad
+ \omega_y(X^*X)=\|\pi(X)y\|^2\geq0,\qquad
+ \omega_y(1)=\|y\|^2=1 .
+ \label{eq:pointed-vector-state}
+\end{equation}
+It is linear, positive and normalized, and it is the functional $\omega$ on $\mathfrak D$ composed with $\pi$. A phase of $y$ changes neither $\omega_y$ nor $K$. The algebra $\mathfrak D$ and the vector $y$ determine the functional $\omega$ and the space $K$. The vector state $\omega_y$ on $\mathfrak M$ depends on $\pi$ as well. For example, the two coordinate evaluations of $\C^2$, as representations on $\C$, have the same image, the scalars, and they give the element $(1,0)$ the values $1$ and $0$. Once $y$ is given, the construction needs no Hamiltonian. The ground and the gap in Section~\ref{subsec:ground-properties} do. For any vector $\psi$ the closure of $\mathfrak D\psi$ is a closed subspace that contains $\psi$, because $\mathfrak D$ is a unital algebra. It depends only on the ray of $\psi$ when $\psi\ne0$, and it is $\{0\}$ when $\psi=0$. R1 and R2 say that the subspaces generated from the two grounds by the two specified algebras are the whole sector spaces. LG chooses a subalgebra $\mathfrak D$ of the algebra in R2 to represent the determinations and assumes, unless stated otherwise, that $y$ is cyclic for $\mathfrak D$. For $\mathfrak D$ equal to the algebra in R2 this is R2 itself. For a smaller algebra it is a further hypothesis.
 
 \begin{proposition}[The space generated from a reference vector]
 \label{prop:cyclic-determination-content}
@@ -532,6 +739,22 @@ This is the concrete Gelfand--Naimark--Segal construction for the vector state $
 
 The covariance matrix of a finite list of determinations is a Gram matrix. Its rank counts the independent directions they generate orthogonally to the ground. For $Xy\ne0$, the normalized vector $Xy/\|Xy\|$ passes the ground test with probability $|\omega(X)|^2/\omega(X^*X)$. A centered determination can give probability zero even though it acts on the ground itself. If $y$ is cyclic, the cognitive interpretation reads every appearance as a determination of luminosity, allowing norm limits. In that reading, ground fidelity measures the undifferentiated component of an appearance. Assigning a cognitive meaning to an operator, or supplying a physical procedure that implements it, requires additional information.
 
+The construction in the proof of Proposition~\ref{prop:cyclic-determination-content} also shows that the vector state determines the pointed representation when $y$ is cyclic. Apply it to $\omega_y$ on $\mathfrak M$. The null space $\{X:\omega_y(X^*X)=0\}$ consists of the $X$ with $\pi(X)y=0$. The completion $\mathcal H_\omega$ of the quotient carries the representation $\pi_\omega(T)[X]=[TX]$ and the vector $\Omega_\omega=[1]$. The map $[X]\mapsto\pi(X)y$ extends to an isometry $U$ of $\mathcal H_\omega$ onto $K$ with
+\begin{equation}
+ U[X]=\pi(X)y,\qquad U\Omega_\omega=y,\qquad U\pi_\omega(T)=\pi(T)U ,
+ \label{eq:gns-intertwiner}
+\end{equation}
+because both sides of the last identity send $[X]$ to $\pi(TX)y$. If $y$ is cyclic, $U$ is a unitary onto $\mathcal H$. It is the only unitary with the last two properties, since they fix it on the dense set of classes $[X]$. Two cyclic pointed representations with the same vector state are therefore unitarily equivalent through a unitary that carries one vector to the other. The vector state, the ray of $y$ and the projection $P_y$ describe the selected ground at three levels, and none of them fixes a phase of $y$.
+
+Taking $Y=X$ in Eq.~\eqref{eq:determination-covariance} gives
+\begin{equation}
+ \omega(X^*X)-|\omega(X)|^2=\bigl\|(I-P_y)Xy\bigr\|^2 .
+ \label{eq:determination-variance}
+\end{equation}
+The variance of a determination in the ground is the squared norm of the part of $Xy$ orthogonal to the ground. It vanishes exactly when $Xy\in\C y$. This includes $Xy=0$, for which there is no normalized vector $Xy/\|Xy\|$.
+
+The space $K$ is invariant under $\mathfrak D$. So is $K^\perp$, because $\mathfrak D$ is closed under adjoints: for $\phi\perp K$ and $X,Z\in\mathfrak D$, $\langle Zy,X\phi\rangle=\langle X^*Zy,\phi\rangle=0$. The projection onto $K$ therefore commutes with $\mathfrak D$, and no determination takes $y$ to a vector with a component in $K^\perp$. LG calls $K^\perp$ the dark complement. It is $\{0\}$ exactly when $y$ is cyclic, so R2 excludes it for the algebra that R2 specifies. A vector orthogonal to $y$ need not lie in $K^\perp$: the centered vectors $X^\circ y$ are orthogonal to $y$ and lie in $K$. Nothing in Proposition~\ref{prop:cyclic-determination-content} uses the output space. With the physical vacuum $x$ and the algebra of R1 in place of $y$ and $\mathfrak D$, R1 makes the generated space all of $\mathcal H_\Psi$, and the centered vectors $X^\circ x$ have closed span $\mathcal H_\Psi\ominus\C x$.
+
 \subsection{Generating states and reading them on the five-site path}
 In Section~\ref{sec:ground-correspondence}, consider first the algebra of diagonal operators constant on each cell. Acting on the fine ground $y$ generates exactly the two-dimensional preparation range $D$. Allowing all diagonal site operators generates the entire five-dimensional space: for any $h$, the diagonal entries $\sqrt5\,h(k)$ give $Xy=h$. Centering therefore gives one independent direction for the cell algebra and four for the site algebra. The fine ground gives the two cells probabilities $1/5$ and $4/5$. The native coarse ground gives its two sites $1/2$ each. These are the weights induced by the two grounds when one asks which cell or site is occupied.
 
@@ -546,6 +769,41 @@ The sign change is the relative-phase calculation of Proposition~\ref{prop:phase
 The agreement extends to any finite sequence in which each outcome operation pulls site-diagonal effects back to site-diagonal effects. Starting with the final site readout and pulling it back along a recorded sequence leaves a diagonal effect at every step, even when earlier outcomes determine the choice of later operation. The path Hamiltonian supplies a control outside this class. Write $p_\psi(3,\tau)=|\langle e_3,e^{-i\tau H_5}\psi\rangle|^2$, with $\tau=t/\hbar$. Expansion at zero gives $p_\xi(3,\tau)-p_\eta(3,\tau)=\tau^2/8+O(\tau^4)$: the second derivatives are $1/8$ and $-1/8$, respectively, and the probabilities are even since $H_5,\xi,\eta$ are real in the site basis. A short wait followed by the same site count therefore detects a difference. The site algebra generates both states from the ground throughout this example. Which measurements discriminate them depends on the controls available before the count.
 
 For the flash, an account of the judgement \emph{bright} must specify which distinctions the observer can read and how those distinctions enter the judgement. Agreement on that report leaves open whether the appearances were alike.
+
+\subsection{Uniqueness, cyclicity, purity and faithfulness of a ground}
+\label{subsec:ground-properties}
+
+R1 and R2 ask for two properties of each ground: a unique ray at the bottom of the spectrum, and cyclicity for the specified algebra. Let $H$ be self-adjoint and bounded below, with $E_0$ the bottom of its spectrum. The spectral projection of $H$ for the point $E_0$ is the projection onto the eigenspace,
+\begin{equation}
+ P_0=E_H(\{E_0\}),\qquad \Ran P_0=\ker(H-E_0I) .
+ \label{eq:ground-spectral-projection}
+\end{equation}
+Thus $E_0$ is an eigenvalue exactly when $P_0\ne0$, and the ground ray is unique exactly when $P_0$ has rank one. A third property is a gap,
+\begin{equation}
+ H\geq E_0I+\Delta(I-P_0)\qquad\text{for some }\Delta>0 ,
+ \label{eq:ground-gap-condition}
+\end{equation}
+which says that $E_0$ is isolated in the spectrum. With a unique ground it is the gap used after Eq.~\eqref{eq:ground-return-energy}. Each of the three properties can fail while the other two hold.
+\begin{enumerate}
+\item[(a)] Unique and gapped, not cyclic. On the five-site path the ground $y$ is unique with gap $1-\cos(\pi/5)$. The cell algebra generates from it only the two-dimensional space $D$.
+\item[(b)] Cyclic and gapped, not unique. Take two separate five-site paths, with the Hamiltonian $H_5\oplus H_5$ on ten sites and the diagonal site algebra. Then $P_0$ has rank two. Every vector that is constant on each path is a ground vector, and those whose two constants are both nonzero are cyclic for the site algebra. The gap condition holds with $\Delta=1-\cos(\pi/5)$. Neither the algebra nor the spectrum selects a ray.
+\item[(c)] Unique and cyclic, not gapped. On $\ell^2(\mathbb N_0)$ with orthonormal basis $(e_n)_{n\geq0}$ let $He_0=0$ and $He_n=e_n/n$ for $n\geq1$, and let $\mathfrak D$ be the $C^*$-algebra generated by the unilateral shift $e_n\mapsto e_{n+1}$. The ground ray $\C e_0$ is unique, and $e_0$ is cyclic because the $n$th power of the shift takes $e_0$ to $e_n$. The eigenvalues $1/n$ accumulate at $0$, so no $\Delta>0$ satisfies the gap condition. Continuous spectrum does the same: on $\C\oplus L^2(0,1)$ the operator $0\oplus M_\lambda$, with $M_\lambda$ multiplication by $\lambda$, has the simple ground $1\oplus0$ and spectrum $[0,1]$.
+\end{enumerate}
+The defect of the unequal-cell path is placed differently in (a) and in the cyclic case. For the cell algebra the generated space is $D$, and the dark complement $K^\perp$ is the defect $D^\perp=\ker A^*$. For the site algebra, or any algebra for which $y$ is cyclic, the generated space is the whole path and contains the defect.
+
+Two further properties concern the vector state. A state of a unital $C^*$-algebra is pure when it is not a convex combination $t\omega_1+(1-t)\omega_2$, with $0<t<1$, of two different states. Equivalently, its GNS representation is irreducible \cite{BratteliRobinson}. A state is faithful when $\omega(X^*X)=0$ implies $X=0$. For a pointed representation, $\omega_y$ is faithful on $\mathfrak D$ exactly when $y$ is separating for $\mathfrak D$, that is, when $Xy=0$ with $X\in\mathfrak D$ implies $X=0$. Its pullback to $\mathfrak M$ is faithful exactly when, in addition, $\pi$ is injective. Purity is decided on the generated space. Equation~\eqref{eq:gns-intertwiner} identifies the GNS representation with the restriction of $\mathfrak D$ to $K$, so $\omega_y$ is pure exactly when the only operators on $K$ that commute with this restriction are the multiples of the identity. If $y$ is cyclic, $K=\mathcal H$, and the condition concerns the operators commuting with $\mathfrak D$. For the scalars acting on $\C^2$, $K=\C y$ and the state is pure, although every matrix commutes with the scalars.
+
+\begin{proposition}[Pure and faithful states]
+\label{prop:pure-faithful-scalars}
+A state of a unital $C^*$-algebra $\mathfrak M$ that is both pure and faithful exists only when $\mathfrak M=\C1$. In particular, if $y$ is cyclic for $\mathfrak D$ and $\dim\mathcal H\geq2$, the vector state of $y$ on $\mathfrak D$ is not both pure and faithful.
+\end{proposition}
+\begin{proof}
+Let $\omega$ be pure and faithful, with GNS data $(\pi_\omega,\mathcal H_\omega,\Omega_\omega)$. The representation is irreducible. If $\pi_\omega(X)\Omega_\omega=0$, then $\omega(X^*X)=0$ and so $X=0$. Suppose $\mathcal H_\omega$ contains a unit vector $\eta$ orthogonal to $\Omega_\omega$. Kadison's transitivity theorem \cite{Kadison1957} supplies $X\in\mathfrak M$ with $\pi_\omega(X)\Omega_\omega=0$ and $\pi_\omega(X)\eta=\eta$. Then $X\ne0$ and $\pi_\omega(X)\Omega_\omega=0$, which is excluded. Hence $\mathcal H_\omega=\C\Omega_\omega$. Then $\pi_\omega(X-\omega(X)1)\Omega_\omega=0$, and so $X=\omega(X)1$ for every $X$. For the second statement apply this to $\mathfrak D$. If $\omega_y$ were pure and faithful on $\mathfrak D$, then $\mathfrak D=\C I$, and $\mathfrak Dy=\C y$ could not be dense in $\mathcal H$. In finite dimensions the transitivity theorem reduces to the fact that an irreducible $*$-algebra of matrices contains every matrix, and $X$ can be taken to be the projection onto $\eta$.
+\end{proof}
+
+On the five-site path both cases occur. For the diagonal site algebra the fine ground $y$ is cyclic and separating, since $Xy=0$ forces every diagonal entry to vanish. Its vector state is faithful and not pure. Indeed $\omega(X)=\tfrac15\sum_kX_{kk}$ is the equal average of the five states $X\mapsto X_{kk}$, and the operators commuting with the site algebra form the site algebra itself. For the full matrix algebra only the multiples of $I$ commute with every matrix, so $\omega$ is pure. It is not faithful: for a nonzero $v\perp y$ the operator $\ket{e_1}\!\bra{v}$ annihilates $y$. This is LG's example: on $\mathcal B(\mathcal H_\Phi)$ with $\dim\mathcal H_\Phi\geq2$ the vector state of the ground is pure and not faithful. On the cell algebra $\omega$ is faithful and is the average of the two cell states with weights $1/5$ and $4/5$. For the difference between $\mathfrak D$ and $\mathfrak M$, represent $\mathfrak M=M_2\oplus\C$ on $\C^2\otimes\C^2$ by $X\oplus c\mapsto X\otimes I$. The vector $(e_0\otimes e_0+e_1\otimes e_1)/\sqrt2$ is cyclic and separating for the image, whose vector state $X\mapsto\tfrac12\Tr X$ is faithful. Its pullback to $\mathfrak M$ vanishes on the nonzero element $0\oplus1$.
+
+R2 specifies cyclicity and a unique ground ray. It does not say whether the vector state of the luminous ground on the algebra of R2 is pure or faithful, and LG leaves both open. By the proposition at most one of the two can hold when $\dim\mathcal H_\Phi\geq2$, and the examples show that the choice of algebra decides which one, if either. Every nonzero vector is cyclic for the algebra of all bounded operators, and LG asks for an algebra large enough for the ground to be cyclic but not so large that cyclicity becomes vacuous. Suppose this is read as requiring some other nonzero vector that is not cyclic. Then the state of the ground is not pure. Indeed, a pure state of a cyclic vector gives an irreducible representation. In an irreducible representation the closed subspace generated from a nonzero vector is a nonzero invariant subspace, hence the whole space, so every nonzero vector is cyclic. On the five-site path the site vector $e_1$ is not cyclic for the site algebra, and the state of the ground is not pure. R2 does not impose this reading. A realization that imposes it settles the purity question in the negative and leaves faithfulness open. The expression ``pure luminosity'' in the cognitive reading does not settle the question. Purity in the sense used here means that the state is not a convex combination of two different states. It does not mean that the state lacks differentiated content.
 
 \section{Asymmetric nonduality across two moments}
 \label{sec:asymmetric-nonduality-moments}
@@ -2301,6 +2559,7 @@ This weight can be spread over several radial levels. Complete departure at $t=\
 \raggedright
 \bibitem{Yiannopoulos2020} A.~Yiannopoulos, \emph{The Structure of Dharmak\=irti's Philosophy: A Study of Object-Cognition in the Perception Chapter (pratyak\d{s}apariccheda) of the Pram\=a\d{n}asamuccaya, the Pram\=a\d{n}av\=arttika, and Their Earliest Commentaries}, Ph.D. dissertation, Emory University, 2020. \href{https://etd.library.emory.edu/downloads/p2676w57z}{Emory University repository}.
 \bibitem{StockmanRider2023} A.~Stockman and A.~T. Rider, Formulae for generating standard and individual human cone spectral sensitivities, \emph{Color Research \& Application} \textbf{48} (2023), 818--840. \href{https://doi.org/10.1002/col.22879}{doi:10.1002/col.22879}.
+\bibitem{Kadison1957} R.~V. Kadison, Irreducible operator algebras, \emph{Proc. Natl. Acad. Sci. USA} \textbf{43} (1957), 273--276. \href{https://doi.org/10.1073/pnas.43.3.273}{doi:10.1073/pnas.43.3.273}.
 \bibitem{Kalman1963} R.~E. Kalman, Mathematical description of linear dynamical systems, \emph{J. SIAM Control} \textbf{1} (1963), 152--192. \href{https://doi.org/10.1137/0301010}{doi:10.1137/0301010}.
 \bibitem{Hegerfeldt1998} G.~C. Hegerfeldt, Causality, particle localization and positivity of the energy, in \emph{Irreversibility and Causality}, Lecture Notes in Physics \textbf{504} (1998), 238--245. \href{https://doi.org/10.1007/BFb0106784}{doi:10.1007/BFb0106784}.
 \bibitem{Gilbert1963} E.~G. Gilbert, Controllability and observability in multivariable control systems, \emph{J. SIAM Control} \textbf{1} (1963), 128--151. \href{https://doi.org/10.1137/0301009}{doi:10.1137/0301009}.
