@@ -98,11 +98,13 @@ compatibility, the reference-plane Pauli/phase geometry, and ground inclusion in
 
 The working ground section (`sec:ground-correspondence`) integrates LG’s restricted ground channel, five strong-compatibility conditions and ground-inclusive correspondence with TAUM’s conditional reference-fidelity energy identity and gap bound. It explains the cognitive interpretation of the weak bridge and tests whether it places those grounds on the aligned graph. Section 4.4 gives the neutral rays of the ground plane and the weights of its balanced vector on the full polar graphs. Section 4.5 states the energy–fidelity identity and the gap bound on the full form domain.
 
-Section 5 constructs the cyclic representation of the ground state, relates variance to its centered orbit, and gives examples separating uniqueness, cyclicity and a gap. Section 5.3 asks whether the luminous state is pure or faithful and proves the two properties can coexist only on the scalar algebra. The five-site example distinguishes generation from the ground from the ability to discriminate states by direct measurement. The interpretation of appearances as determinations of luminosity is introduced here. The disposition-dependent generators, conceptual judgement and grasper–grasped frame remain with Part V.
+Section 5 constructs the cyclic representation of the ground state, relates variance to its centered orbit, and gives examples separating uniqueness, cyclicity and a gap. Section 5.3 asks whether the luminous state is pure or faithful and proves the two properties can coexist only on the scalar algebra. The five-site example distinguishes generation from the ground from the ability to discriminate states by direct measurement. The interpretation of appearances as determinations of luminosity is introduced here. Part V develops disposition-dependent selection, conceptual judgement and the cognitive reading of the grasper–grasped frame.
 
 Section 5.1 uses the variance to decide when a bounded operator preserves the ground line. Section 6.5 gives the corresponding criterion for an entire unitary group, including what can be inferred from two return times. Section 6.6 states when a moment’s chosen ground projector is the whole bottom spectral projection.
 
 Section 5.4 gives the mathematics of a selected generator family. It distinguishes word outputs, their conditional rays and the effects available to distinguish them. It also proves the ground-character result under LG’s assumption for the exhausted profile. Part V supplies the cognitive interpretation of the generators.
+
+Section 5.5 defines the sharp duality frame within the appearance sector. Its support can miss differentiated directions. The section gives the exact criterion for zero probabilities of both aspects to identify the ground and describes the conditional state for a specified Lüders measurement.
 
 **III.2 Supplied symmetries and moving subspaces.** Compact symmetry averaging, invariant compression, moving
 projection fields, frame covariance, Grassmann curvature, and characteristic classes. The group/action and, for
@@ -196,7 +198,7 @@ The seven formal open questions from LG have the following destinations. The sou
 | `q:phenomenal-algebra` | III.1 states what cyclicity requires. V asks which global algebra of phenomenal determinations to choose. |
 | `q:operational-structural-phase` | II.2 gives the criterion for detecting relative phase. VI asks which effects or controls realize it. |
 | `q:content-affect-algebra-choice` | Section 5.4 asks which subalgebras represent object content and affect. V develops the interpretation of those choices for a given realization. |
-| `q:projection-or-effect-duality-frame` | V asks which frame represents the grasper–grasped distinction inside Φ, including the choice between sharp and unsharp effects. |
+| `q:projection-or-effect-duality-frame` | Section 5.5 states the choice among sharp projections, unsharp effects, a state-dependent tensor factorization and other decompositions. V considers their cognitive interpretation. |
 | `oq:status-phenomenal-excess` | V asks which phenomenal determinations, if any, densely generate the final defect and what those directions represent. |
 
 ### Appendices

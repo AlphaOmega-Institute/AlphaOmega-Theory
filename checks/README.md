@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-176 passed, 0 failed, 2 skipped in ...s
+181 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `178 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `183 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
@@ -105,6 +105,12 @@ vanishing outcomes and different vectors on the same ray, agreement on a
 chosen readout algebra, and the ground character of a family that preserves
 the ground line under both its generators and their adjoints.
 [Generator family checks](test_generator_families.py)
+
+Five checks for §5.5 verify the grading, the weight outside the sharp frame, and
+the spectral construction. They compare ground and differentiated states at zero
+frame weight, test the support bound for unsharp effects, and compute the
+conditional states of two operations with the same outcome effect.
+[Duality frame checks](test_duality_frame.py)
 
 ### Pair model — LG, `sec:finite-pair-realization`
 
@@ -245,6 +251,7 @@ checks/
   test_determination.py cyclic generation and readout on a finite path
   test_cyclic_ground_data.py pointed states, the cyclic representation and ground conditions
   test_generator_families.py generator families, word order and content equivalence
+  test_duality_frame.py sharp and unsharp frame effects, grading and conditional states
   lib/                  Fock-space operators and small linear-algebra helpers
   pair/                 pair model, controls, §13 currents and readout
   orbital/              orbital model and its checks

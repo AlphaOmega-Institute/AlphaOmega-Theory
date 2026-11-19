@@ -867,6 +867,42 @@ Every product and every linear combination of operators that map $\C y$ into its
 
 The cyclic representation that $\mathfrak D_{\mathsf G}$ generates from $y$ is one-dimensional. It is irreducible, so the state of $y$ on $\mathfrak D_{\mathsf G}$ is pure, and by Proposition~\ref{prop:pure-faithful-scalars} it is faithful only when $\mathfrak D_{\mathsf G}=\C I$. The condition concerns the family alone. The family consisting of the path Hamiltonian $H_5$ keeps the fine ground, since $H_5y=0$. Its algebra consists of the polynomials in $H_5$, each of which acts on $y$ by its constant term, while the spectral projections of $H_5$ at its four positive eigenvalues annihilate $y$. The site algebra still makes $y$ cyclic. The adjoints matter. For a unit vector $w\perp y$ the operator $\ket{y}\!\bra{w}$ maps the line into itself, and so does every word in it without adjoints. Its adjoint does not, and the $*$-algebra it generates takes $y$ to a space of dimension two.
 
+\subsection{A frame on the differentiated part of a state}
+\label{subsec:duality-frame}
+
+Write $Q_y=I-P_y$. LG assigns a frame to a normalized appearance $\phi$ with $Q_y\phi\ne0$. A sharp frame is a pair of orthogonal projections $P_+$ and $P_-$ on $\mathcal H_\Phi$ with
+\begin{equation}
+ P_+P_-=0,\qquad P_{\rm d}=P_++P_-,\qquad P_{\rm d}\leq I-P_y .
+ \label{eq:duality-frame}
+\end{equation}
+The sum $P_{\rm d}$ is then a projection, and $\Gamma_{\rm d}=P_+-P_-$ satisfies $\Gamma_{\rm d}^*=\Gamma_{\rm d}$ and $\Gamma_{\rm d}^2=P_{\rm d}$. On the range of $P_{\rm d}$ it is an involution. Its two signs label subspaces within $\mathcal H_\Phi$, whereas the signs of $J$ in Section~\ref{sec:neutral-graphs-phase} label the two sectors. LG reads $P_+$ and $P_-$ as the grasper and grasped aspects of differentiated content, and lets the frame depend on the disposition profile and on the state. That reading and that dependence belong to the cognitive model. We fix a frame and evaluate its projections on arbitrary inputs, including the ground $y$.
+
+\begin{proposition}[A frame and the ground]
+\label{prop:duality-frame-ground}
+For every sharp frame, $P_+y=P_-y=P_{\rm d}y=0$. For every unit vector $\phi$, its differentiated component $Q_y\phi$ satisfies
+\begin{equation}
+ P_\pm\phi=P_\pm Q_y\phi,\qquad
+ \|Q_y\phi\|^2=\|P_+\phi\|^2+\|P_-\phi\|^2+\bigl\|(Q_y-P_{\rm d})\phi\bigr\|^2 .
+ \label{eq:duality-frame-norms}
+\end{equation}
+If $E_+,E_-\geq0$ are effects with $E_++E_-\leq I-P_y$, then $E_+y=E_-y=0$.
+\end{proposition}
+\begin{proof}
+For projections, $P_{\rm d}\leq I-P_y$ means $P_{\rm d}=P_{\rm d}(I-P_y)$, and $P_\pm=P_\pm P_{\rm d}$ because $P_+P_-=0$. Hence $P_\pm=P_\pm(I-P_y)$, which annihilates $y$ and gives the first identity. The operator $Q_y-P_{\rm d}$ is a projection orthogonal to $P_+$ and $P_-$, so $Q_y\phi$ splits into three orthogonal parts. For the effects, $0\leq\langle y,E_\pm y\rangle\leq\langle y,(I-P_y)y\rangle=0$, so $\|E_\pm^{1/2}y\|=0$.
+\end{proof}
+
+The last term of Eq.~\eqref{eq:duality-frame-norms} is the differentiated weight outside the frame. On $\C^3$, take $y=e_0$, $P_+=P_{e_1}$ and $P_-=0$. The frame misses half the weight of $(e_1+e_2)/\sqrt2$ and all the weight of $e_2$. In general,
+\[
+ \ker P_{\rm d}=\C y\oplus\Ran(Q_y-P_{\rm d}).
+\]
+Thus zero probability for both aspects characterizes the premeasurement ray $[y]$ exactly when the fixed sharp frame covers $y^\perp$, that is, when $P_{\rm d}=Q_y$. Under R3, Eq.~\eqref{eq:ground-plane-three-parts} splits $y^\perp$ into $D\ominus\C y$ and $D^\perp$. Whenever $D\ominus\C y$ is nonzero, the support bound allows a paired direction to serve as an aspect direction.
+
+The first moment of $\Gamma_{\rm d}$ gives the difference of the two aspect probabilities, and its second moment gives their sum because $\Gamma_{\rm d}^2=P_{\rm d}$. If both sign spaces are nonzero, take unit vectors $a\in\Ran P_+$ and $b\in\Ran P_-$. On $(a+b)/\sqrt2$ the moments are zero and one, respectively. On the ground both are zero. For unsharp effects the total aspect probability vanishes exactly on unit vectors in $\ker(E_++E_-)$. For example, $E_+=E_-=Q_y/4$ gives total effect $Q_y/2$ with kernel $\C y$.
+
+One way to obtain a frame is spectral. LG allows a realization to choose, from each profile's family of duality generators, a bounded self-adjoint operator whose spectral subspaces supply the two aspects. For a concrete choice, take such an operator $\Upsilon$ with $\Upsilon y=0$ and let $P_+$ and $P_-$ be the spectral projections of $\Upsilon$ for $(0,\infty)$ and $(-\infty,0)$. Their sum projects onto $(\ker\Upsilon)^\perp\subseteq y^\perp$, and $\Gamma_{\rm d}=\operatorname{sgn}(\Upsilon)$ with $\operatorname{sgn}(0)=0$. Conversely, every fixed sharp frame has this spectral form by taking $\Upsilon=\Gamma_{\rm d}$. Whether a specified family contains that generator is a further condition.
+
+For the fixed measurement $\{P_+,P_-,I-P_{\rm d}\}$ with L\"uders operations, the outcome $+$ has probability $\|P_+\phi\|^2$. When this is positive, the conditional ray is represented by $P_+\phi/\|P_+\phi\|$. For rank-one $P_+$ every successful input yields the same ray. At the ground this outcome has probability zero. The third outcome leaves the normalized vector $(I-P_{\rm d})\phi/\|(I-P_{\rm d})\phi\|$ whenever it occurs. When $P_{\rm d}=Q_y$, observing that outcome once prepares the ground and establishes only that the input had a nonzero ground component. Section~\ref{subsec:relaxation-return} explains how another instrument with the same effects can leave different states. What would count as an independently existing subject is a question for the cognitive model. Whether a realization should use sharp projections, unsharp effects, a state-dependent tensor factorization or a more general operator-valued decomposition is open.
+
 \section{Asymmetric nonduality across two moments}
 \label{sec:asymmetric-nonduality-moments}
 
