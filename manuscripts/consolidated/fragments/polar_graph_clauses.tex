@@ -1,0 +1,131 @@
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[Part A. For Section~\ref{sec:polar-matched-observables}, first subsection, after the paragraph that ends ``requires further data.'']}\par\smallskip
+
+The proposition has three consequences that are used below. First, for unit vectors $\psi,\chi$ in $S$ with projections $P_\psi=\ket{\psi}\!\bra{\psi}$ and $P_\chi$,
+\begin{equation}
+ VP_\psi V^*=P_{V\psi},\qquad
+ \Tr(P_\psi P_\chi)=\Tr(P_{V\psi}P_{V\chi})=|\langle\chi,\psi\rangle|^2 .
+ \label{eq:matched-pure-projections}
+\end{equation}
+The transport of a pure state is the pure state of the transported vector. Second, conjugation by $V$ preserves spectra and functions of operators. For $X\in\mathcal B(S)$ and a number $z$ outside its spectrum, $V(X-z)^{-1}V^*$ is the inverse of $VXV^*-z$ on $D$, and conjugating by $V^*$ gives the converse. Hence $X$ and $VXV^*$ have the same spectrum, the second taken as an operator on $D$. Polynomials are transported because conjugation is multiplicative, and on $D$ one has $f(VXV^*)=Vf(X)V^*$ for a normal $X$ and a bounded Borel function $f$. Positive operators, effects and projections go to operators of the same kind. Third, let $X$ be self-adjoint with spectral measure $E_X$. Then $\Delta\mapsto VE_X(\Delta)V^*$ is a projection-valued measure on $D$ whose integral of $\lambda$ is $VXV^*$. The spectral measure of a self-adjoint operator is unique, so
+\begin{equation}
+ E_{VXV^*}(\Delta)=V\,E_X(\Delta)\,V^* .
+ \label{eq:matched-spectral-measure}
+\end{equation}
+A measurement of $X$ on $\psi$ and a measurement of $VXV^*$ on $V\psi$ therefore have the same distribution of outcomes, and not only the same mean. The same holds for an unbounded self-adjoint $X$ with dense domain in $S$: the operator $VXV^*$ with domain $V\operatorname{Dom}X$ is self-adjoint on $D$ and has the spectral measure~\eqref{eq:matched-spectral-measure}. On the full output space the extension of $VXV^*$ by zero has the spectral measure $VE_X(\Delta)V^*+1_\Delta(0)(I-\Pi_D)$. Its outcome zero collects the defect $D^\perp$ together with the eigenvalue zero of $X$, when $X$ has that eigenvalue. In that case a detector that is to register the defect separately needs the additional outcome of Eq.~\eqref{eq:matched-defect-outcome} below. The occupation detector $Z_\theta$ of Section~\ref{sec:preparation-evolution} is the extension by zero of an input observable with eigenvalues $\pm1$, so its outcome zero records the defect alone.
+
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[Part B1. For Section~\ref{sec:neutral-graphs-phase}, at the end of the first subsection, after the paragraph that ends ``the zero extensions of the two polar operators.'']}\par\smallskip
+
+In blocks, the adjoint of the graph map and the graph projection are
+\begin{equation}
+ G_\varphi^*(x\oplus y)=2^{-1/2}\bigl(x+e^{-i\varphi}V^*y\bigr),\qquad
+ \Pi_\varphi=\frac12\begin{pmatrix}I_S&e^{-i\varphi}V^*\\ e^{i\varphi}V&I_D\end{pmatrix},
+ \label{eq:graph-adjoint-blocks}
+\end{equation}
+for $x\in S$ and $y\in D$. The first formula follows from $\langle G_\varphi\psi,x\oplus y\rangle=2^{-1/2}\bigl(\langle\psi,x\rangle+e^{-i\varphi}\langle V\psi,y\rangle\bigr)$, and the second by applying $G_\varphi$ to it. For $y$ in the full output space $V^*y$ is replaced by $u^*y$, which vanishes on $D^\perp$. An isometry defined on a complete space has closed range. The graph $\mathcal N_\varphi$ is therefore closed and $\Pi_\varphi$ projects onto the graph itself, with no closure taken, also when the range of $A$ is not closed. At the phases $0$ and $\pi$,
+\begin{equation}
+ \Pi_0=\tfrac12(I+\mathcal R),\qquad \Pi_\pi=\tfrac12(I-\mathcal R),\qquad
+ \Pi_0\Pi_\pi=0,\qquad \Pi_0+\Pi_\pi=I .
+ \label{eq:graph-aligned-opposite}
+\end{equation}
+Thus $\mathcal K_A=\mathcal N_0\oplus\mathcal N_\pi$ is an orthogonal decomposition into the aligned graph and the opposite graph, also called anti-aligned. On the full direct sum $I$ is replaced by $\Pi_S\oplus\Pi_D$. For two phases $G_\varphi^*G_\eta=\tfrac12\bigl(1+e^{i(\eta-\varphi)}\bigr)I_S$, so the component of a unit vector of $\mathcal N_\varphi$ on $\mathcal N_\eta$ has squared norm $\cos^2\bigl((\varphi-\eta)/2\bigr)$.
+
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[Part B2. For Section~\ref{sec:neutral-graphs-phase}, subsection ``Paired observables and the sector coordinate'', after the paragraph that ends ``even when the selected algebra $\mathcal M$ is smaller.'']}\par\smallskip
+
+The map $\iota$ is a representation of $\mathcal B(S)$ on the active carrier. It is linear, with $\iota(XY)=\iota(X)\iota(Y)$ and $\iota(X^*)=\iota(X)^*$, and $\iota(I_S)=I_S\oplus I_D$ is the identity of $\mathcal K_A$, which is $\Pi_S\oplus\Pi_D$ after extension by zero to the full direct sum. It is injective because $X$ is the upper block of $\iota(X)$, and normal because both blocks are, by Proposition~\ref{prop:matched-born-probabilities}. Restricted to a selected algebra $\mathcal M$ it is an injective unital $*$-homomorphism. The paired algebra $\iota(\mathcal M)$ is therefore isomorphic to $\mathcal M$ through the upper block and to $V\mathcal MV^*$ through the lower one. Multiplying $\iota(X)G_\varphi=G_\varphi X$ on the left by $G_\varphi^*$ gives
+\begin{equation}
+ G_\varphi^*\,\iota(X)\,G_\varphi=X ,
+ \label{eq:graph-paired-compression}
+\end{equation}
+and each graph $\mathcal N_\varphi$ is invariant under every $\iota(X)$. Among block-diagonal operators this invariance characterizes the paired ones. For $T=B\oplus L$ with $B\in\mathcal B(S)$ and $L\in\mathcal B(D)$,
+\[
+ G_\varphi^*\,T\,G_\varphi=\tfrac12\bigl(B+V^*LV\bigr),\qquad
+ (I-\Pi_\varphi)\,T\,G_\varphi=G_{\varphi+\pi}\,\tfrac12\bigl(B-V^*LV\bigr),
+\]
+so $T$ maps one graph into itself exactly when $L=VBV^*$, and then it maps every graph into itself.
+
+A density operator $\rho$ on $S$ has the graph state
+\begin{equation}
+ G_\varphi\,\rho\,G_\varphi^*
+ =\frac12\begin{pmatrix}\rho&e^{-i\varphi}\rho V^*\\ e^{i\varphi}V\rho&V\rho V^*\end{pmatrix},
+ \label{eq:graph-density-blocks}
+\end{equation}
+a density operator on $\mathcal K_A$. Its compressions to the two sectors are $\tfrac12\rho$ and $\tfrac12V\rho V^*$. Each has trace one half, and dividing by that trace returns the input state and its transport. The phase appears only in the off-diagonal blocks. Deleting them leaves $\tfrac12(\rho\oplus V\rho V^*)$, the equal mixture of the graph states at $\varphi$ and $\varphi+\pi$. In the sector coordinates the graph state is the product $\ket{\varphi}\!\bra{\varphi}\otimes\rho$ with $\ket{\varphi}=2^{-1/2}(\ket{\Psi}+e^{i\varphi}\ket{\Phi})$, the graph $\mathcal N_\varphi$ is $\ket{\varphi}\otimes S$, and $\Pi_\varphi$ is $\ket{\varphi}\!\bra{\varphi}\otimes I_S$. The partial trace over the sector coordinate returns $\rho$, with trace one. It adds the two diagonal blocks after the lower one has been carried back by $V^*$, and this reduced state is what the paired observables $I_2\otimes X$ read. A sector compression keeps one diagonal block. The two operations are different. The carrier $S\oplus D$ is a direct sum of two sectors and is not the tensor product $S\otimes D$ of two systems, so the lower block $\tfrac12V\rho V^*$ is a compression and is not the reduced state of a subsystem. The tensor product that does appear, $\C^2\otimes S$, has the sector coordinate as its first factor and a single copy of the input space as its second.
+
+%%% PREVIEW MARKER (delete at integration)
+\par\medskip\noindent\textbf{[Part C. A new subsection for Section~\ref{sec:ground-correspondence}, after ``Grounds selected by two path Hamiltonians''.]}\par\smallskip
+
+\subsection{The plane spanned by the two grounds}
+\label{subsec:ground-plane}
+
+Proposition~\ref{prop:ground-polar-compatibility} compares the restricted map $u_0$ with the full polar map $u$. The restricted map has a polar decomposition and graphs of its own, and they need the weak bridge only. From Eq.~\eqref{eq:restricted-ground-orientation},
+\begin{equation}
+ \|AP_x\|=a,\qquad (AP_x)^*(AP_x)=a^2P_x,\qquad (AP_x)(AP_x)^*=a^2P_y,\qquad |AP_x|=aP_x .
+ \label{eq:ground-plane-restriction}
+\end{equation}
+Hence $AP_x=u_0|AP_x|$, and $u_0$ is a partial isometry with the same kernel $x^\perp$ as $AP_x$. The polar decomposition with that property is unique, so $u_0$ is the polar part of the restriction. It acts by $u_0x=y$ and $u_0^*y=x$. The partial isometries from the line of $x$ onto the line of $y$ are the operators $e^{i\beta}u_0$, and among them $AP_x=aw$ with $a>0$ holds for $w=u_0$ only. The bridge thus fixes the two rays and the relative phase of their representatives: replacing $x$ by $e^{i\alpha}x$ requires replacing $y$ by $e^{i\alpha}y$, and $u_0$ is unchanged. The bridge can also be stated without representatives. It gives $P_yAP_x=AP_x$ and $(I-P_y)AP_x=0$, and the third identity of Eq.~\eqref{eq:ground-plane-restriction} reads $P_y=(AP_x)(AP_x)^*/\|Ax\|^2$. Conversely, for $x\in\operatorname{Dom}A$ with $Ax\ne0$, the identity $(I-P_y)AP_x=0$ places $Ax$ on the line of $y$. The adjoint $(AP_x)^*=a\ket{x}\!\bra{y}$ is bounded and defined on all of $\mathcal H_\Phi$. It extends $P_xA^*$, which is defined on $\operatorname{Dom}A^*$ only, and $y$ need not belong to that domain. For example, let $A$ multiply the $n$th coordinate of a square-summable sequence by $n$, for $n\geq1$, and let $x$ have coordinates proportional to $n^{-2}$. Then $x\in\operatorname{Dom}A$ and $a^2=\zeta(2)/\zeta(4)=15/\pi^2$. The vector $y$ has coordinates proportional to $n^{-1}$ and lies outside $\operatorname{Dom}A^*=\operatorname{Dom}A$. The weak bridge and Eq.~\eqref{eq:ground-plane-restriction} hold, condition (v) of Proposition~\ref{prop:ground-polar-compatibility} fails, and the fidelity of Eq.~\eqref{eq:actual-ground-partner} is $F_x=\zeta(3)^2/(\zeta(2)\zeta(4))\approx0.81$.
+
+Let $\mathcal K_0=\C x\oplus\C y$ be the plane of the two reference vectors inside $\mathcal H_\Psi\oplus\mathcal H_\Phi$, with projection $P_{xy}=P_x\oplus P_y$. The sector symmetry $J$ maps the plane to itself. Apply the graph construction of Section~\ref{sec:neutral-graphs-phase} with the line map $u_0$ in place of $V$:
+\begin{equation}
+ z^0_\varphi=2^{-1/2}\bigl(x\oplus e^{i\varphi}y\bigr),\qquad
+ \mathcal N^0_\varphi=\C z^0_\varphi,\qquad z_+=z^0_0,\quad z_-=z^0_\pi .
+ \label{eq:ground-plane-vectors}
+\end{equation}
+The line $\mathcal N^0_0$ is the aligned graph of $u_0$ and $\mathcal N^0_\pi$ is the anti-aligned one. Every $z^0_\varphi$ has Hilbert norm one, zero Krein square, and squared norm $1/2$ in each sector. Normalizing its two sector components returns $x$ and $e^{i\varphi}y$. A line $\mathcal N^0_\varphi$ meets each sector in zero only, and each coordinate projection maps it bijectively onto the corresponding reference line. A vector of the line is therefore fixed by either of its components, while neither component is itself a vector of the line. Within the plane, $[z^0_\varphi,\alpha x\oplus\beta y]=2^{-1/2}(\alpha-e^{-i\varphi}\beta)$ vanishes exactly on $\mathcal N^0_\varphi$. Each line is its own Krein-orthogonal complement in $\mathcal K_0$ and so is a maximal neutral subspace of the plane. The plane is not neutral, since $x\oplus0$ has Krein square one.
+
+Conversely, every unit vector of the plane with zero Krein square is a phase times some $z^0_\varphi$. For $\alpha x\oplus\beta y$ the two conditions are $|\alpha|^2+|\beta|^2=1$ and $|\alpha|^2-|\beta|^2=0$. They give $|\alpha|=|\beta|=2^{-1/2}$, and removing the phase of $\alpha$ leaves $z^0_\varphi$ with $e^{i\varphi}=\beta/\alpha$. The neutral rays of the plane form a circle with coordinate $\varphi$. Equal weights in the two sectors define the circle. The bridge selects one point of it, the ray of $x\oplus Ax/\|Ax\|$, and the convention $Ax=ay$ with $a>0$ gives that point the coordinate $\varphi=0$.
+
+The operators that resolve the coordinate are the polar operators of $u_0$, extended by zero off the plane:
+\begin{equation}
+ \mathcal R_0=\begin{pmatrix}0&u_0^*\\ u_0&0\end{pmatrix},\qquad
+ \mathcal I_0=J\mathcal R_0=\begin{pmatrix}0&u_0^*\\ -u_0&0\end{pmatrix}.
+ \label{eq:ground-plane-operators}
+\end{equation}
+They satisfy $\mathcal R_0^*=\mathcal R_0$, $\mathcal R_0^2=P_{xy}$, $J\mathcal R_0=-\mathcal R_0J$, $\mathcal I_0^*=-\mathcal I_0$ and $\mathcal I_0^2=-P_{xy}$. In the basis $x\oplus0$, $0\oplus y$ of the plane, $J$, $\mathcal R_0$ and $-i\mathcal I_0$ are the Pauli matrices $\sigma_z$, $\sigma_x$ and $\sigma_y$, with the products $J\mathcal R_0=i(-i\mathcal I_0)$, $\mathcal R_0(-i\mathcal I_0)=iJP_{xy}$ and $(-i\mathcal I_0)J=i\mathcal R_0$. This is the sector coordinate of Section~\ref{sec:neutral-graphs-phase} for a one-dimensional input space. The projection onto $\mathcal N^0_\varphi$ is $\tfrac12\bigl(P_{xy}+\cos\varphi\,\mathcal R_0+\sin\varphi\,(-i\mathcal I_0)\bigr)$, and the means of $\mathcal R_0$, $-i\mathcal I_0$ and $J$ in $z^0_\varphi$ are $\cos\varphi$, $\sin\varphi$ and $0$. On the aligned and anti-aligned vectors
+\begin{align}
+ &\mathcal R_0z_\pm=\pm z_\pm,\qquad Jz_\pm=z_\mp,\qquad
+ \mathcal I_0z_+=z_-,\quad \mathcal I_0z_-=-z_+ ,
+ \label{eq:ground-plane-eigenlines}\\
+ &\langle z_+,z_-\rangle=0,\qquad [z_+,z_+]=[z_-,z_-]=0,\qquad [z_+,z_-]=1 .
+ \label{eq:ground-plane-witt}
+\end{align}
+The two vectors are orthonormal for the Hilbert product. For the Krein form they are two neutral vectors with product one, a hyperbolic pair, also called a Witt pair. The sector components of $z_-$ lie on the rays of $x$ and of $y$, as do those of $z_+$ and of every $z^0_\varphi$. The points of the circle differ in the relative phase only. An operator that commutes with $J$ is block-diagonal, $B\oplus L$, and has the same mean $\tfrac12(\langle x,Bx\rangle+\langle y,Ly\rangle)$ in every $z^0_\varphi$, the case of Proposition~\ref{prop:phase-readout} for the line map. Whether $\mathcal R_0$ or $-i\mathcal I_0$ can be measured is the question of Section~\ref{sec:neutral-graphs-phase}. Mean energy does not distinguish the points either. If $x$ and $y$ are eigenvectors of sector Hamiltonians with eigenvalues $E_\Psi$ and $E_\Phi$, every $z^0_\varphi$ has the mean energy $(E_\Psi+E_\Phi)/2$, and the two sector evolutions take $z^0_\varphi$ to a phase times $z^0_{\varphi+\gamma(t)}$ with $\gamma(t)=(E_\Psi-E_\Phi)t/\hbar$. This is Eq.~\eqref{eq:graph-evolution-phase} for the line map $u_0$. Each point is stationary exactly when the two energies are equal.
+
+How is the plane related to the graphs of the full polar map? On the full direct sum write $\mathcal R$ and $\mathcal I$ for the polar operators with $u$ and $u^*$ in their off-diagonal blocks, and $\Pi_0$, $\Pi_\pi$ for the two graph projections of Eq.~\eqref{eq:polar-graph-projector} extended by zero. Under the weak bridge $\langle y,ux\rangle=\langle r,x\rangle=\sqrt{F_x}$, with $r$ and $F_x$ as in Eq.~\eqref{eq:actual-ground-partner}. Hence
+\begin{equation}
+ P_{xy}\,\mathcal R\,P_{xy}=\sqrt{F_x}\;\mathcal R_0,\qquad
+ P_{xy}\,\mathcal I\,P_{xy}=\sqrt{F_x}\;\mathcal I_0 .
+ \label{eq:ground-plane-compression}
+\end{equation}
+
+\begin{proposition}[The plane of the grounds and the full polar map]
+\label{prop:ground-plane-reduction}
+Assume the weak bridge. The following conditions are equivalent.
+\begin{enumerate}
+\item[(a)] The grounds are strongly compatible.
+\item[(b)] $P_{xy}$ commutes with $\mathcal R$.
+\item[(c)] $\mathcal RP_{xy}=P_{xy}\mathcal R=\mathcal R_0$ and $\mathcal IP_{xy}=P_{xy}\mathcal I=\mathcal I_0$.
+\item[(d)] $x\in S$ and $z^0_\varphi=G_\varphi x$ for every $\varphi$, so that each line $\mathcal N^0_\varphi$ lies in the graph $\mathcal N_\varphi$ of the full polar map.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Assume (a). Then $ux=y$, and $u^*y=u^*ux=x$ because $x\in S$. Hence $uP_x=\ket{y}\!\bra{x}=u_0$ and $P_yu=\ket{y}\!\bra{u^*y}=u_0$. The two off-diagonal blocks of $\mathcal RP_{xy}$ and of $P_{xy}\mathcal R$ are these operators and their adjoints, which gives the first part of (c). The second follows on multiplying by $J$, which commutes with $P_{xy}$. Condition (c) contains (b). Assume (b). The lower-left block of the commutator gives $uP_x=P_yu$, and its adjoint gives $P_xu^*=u^*P_y$. Applied to $y$ the second reads $u^*y=\langle x,u^*y\rangle x=\sqrt{F_x}\,x$. Since $y\in D$, the vector $u^*y$ has norm one. Thus $F_x=1$, which is (a). Finally $G_\varphi x=2^{-1/2}(x\oplus e^{i\varphi}ux)$ for $x\in S$, and this equals $z^0_\varphi$ exactly when $ux=y$. Condition (iii) of Proposition~\ref{prop:ground-polar-compatibility} includes $x\in S$.
+\end{proof}
+
+Without strong compatibility the balanced vector $z_+$ is divided between the two graphs of the full polar map and the complement of the active carrier. Since $G_0^*z_+=\tfrac12(\Pi_Sx+r)$ and $G_\pi^*z_+=\tfrac12(\Pi_Sx-r)$,
+\begin{equation}
+ \|\Pi_0z_+\|^2=\tfrac14\bigl(1+\|\Pi_Sx\|^2\bigr)+\tfrac12\sqrt{F_x},\qquad
+ \|\Pi_\pi z_+\|^2=\tfrac14\bigl(1+\|\Pi_Sx\|^2\bigr)-\tfrac12\sqrt{F_x},
+ \label{eq:ground-plane-graph-weights}
+\end{equation}
+and the remaining $\tfrac12\bigl(1-\|\Pi_Sx\|^2\bigr)$ is the squared norm of the component of $z_+$ in $\ker A\oplus0$. For injective $A$ the two weights are $(1\pm\sqrt{F_x})/2$. On the path with cells of sizes one and four, $F_x=9/10$ and the weights are about $0.974$ and $0.026$. In the pair preparation of Section~\ref{subsec:pair-grounds-excitations} with the symmetric Hamiltonian $H_s$, the isometry $A_\theta$ takes $g_\Psi$ to $g$. The grounds are strongly compatible and $z^0_\varphi=G_\varphi g_\Psi$.
+
+The weak bridge also places the output ground inside the final support, $y=Ax/a\in D$. The output space therefore has three parts,
+\begin{equation}
+ \mathcal H_\Phi=\C y\oplus(D\ominus\C y)\oplus D^\perp,\qquad
+ y^\perp=(D\ominus\C y)\oplus D^\perp .
+ \label{eq:ground-plane-three-parts}
+\end{equation}
+The defect $D^\perp=\ker A^*$ is orthogonal to $y$. A vector orthogonal to $y$ need not lie in the defect: the vectors of $D\ominus\C y$ are orthogonal to the output ground and are paired by $V$ with the vectors of $S\ominus\C r$. Only the component in $D^\perp$ has no partner in $S$.
