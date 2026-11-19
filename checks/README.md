@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-165 passed, 0 failed, 2 skipped in ...s
+172 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `167 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `174 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
@@ -63,6 +63,13 @@ state left by a Lüders ground test. They include the number-operator example of
 finite-energy state outside the operator domain and the trap compression that preserves
 mean energy while changing its distribution.
 [Fidelity and energy checks](test_fidelity_energy.py)
+
+Seven checks across §§4–7 distinguish operators that preserve the ground line from
+unitary groups that return to it at isolated times. They compare the shifted input
+return on its active space and on the whole input, identify the output return's
+zero eigenspace, and verify that channels with the same preparation can move or
+preserve the ground although the differential squares to zero.
+[Ground preservation and return checks](test_ground_preservation.py)
 
 ### Deconditioning across two moments
 
@@ -222,6 +229,7 @@ checks/
   test_labels.py        cited labels must exist in the manuscripts
   test_linalg.py        nearby eigenvalues must not double-count spectral mass
   test_ground_bridge.py raw and polar transport of ground states
+  test_ground_preservation.py ground line, unitary returns and the two return operators
   test_polar_graphs.py  polar transport, graph states and the ground plane
   test_fidelity_energy.py excitation energy, ground fidelity and the spectral gap
   test_deconditioning.py paired relaxation and leakage on the five-site path

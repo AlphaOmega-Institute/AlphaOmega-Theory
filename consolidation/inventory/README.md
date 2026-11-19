@@ -96,12 +96,14 @@ Section 13 makes 11 owed and 17 recoverable clauses explicit. All 30 tracked cla
 
 Sections 2–5 now state 45 previously recoverable and seven previously owed clauses on polar transport, graph geometry, ground fidelity and cyclic representations. A new TAUM row covers which Hamiltonians the fidelity result applies to. LG’s luminous-purity question is explicit as an open question in §5.3.
 
+Sections 4–7 make ten recoverable LG clauses and one owed clause explicit. They give the criteria for an operator or a unitary group to preserve the ground, state the spectral requirement for a unique ground at each moment, and test the return operators as candidate Hamiltonians. Section 7.1 explains why the forward differential vanishes on the output summand before any dynamics are specified. Its proposed identification with reflexivity remains open in the ledger.
+
 | Source | Explicit | Recoverable | Owed |
 | --- | ---: | ---: | ---: |
 | TAUM | 147 | 15 | 29 |
-| LG | 229 | 18 | 58 |
+| LG | 240 | 8 | 57 |
 | UM | 1 | 0 | 0 |
-| **All 497 clauses** | **377** | **33** | **87** |
+| **All 497 clauses** | **388** | **23** | **86** |
 
 The UM row records the conjecture introduced in the consolidated manuscript.
 

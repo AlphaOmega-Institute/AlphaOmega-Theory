@@ -85,6 +85,7 @@ The working section `sec:cohomology-index` now carries TAUM’s two-term complex
 | TAUM `thm:partner-unitary-equivalence`, `cor:spectral-projection-pairing`, `cor:eigenvector-pairing`, `thm:closed-range-criterion` | The proposition, its proof and the closed-range criterion immediately following |
 | TAUM `def:Fredholm-channel`, `thm:index-formulas`, `cor:odd-Fredholm`, `eq:supertrace`, `thm:heat-index`; LG `def:fredholm-awareness`, `thm:index-as-phenomenal-excess`, `id:index-unpaired-count` | `eq:index-graded`, `eq:index-heat` and their single-channel interpretation |
 | LG `eq:bounded-transform-awareness`, `eq:unilateral-shift-example`, `eq:shift-index-minus-one` | §7.3, including the ground-preserving family `eq:index-shift-family`; the extension calculation follows in `eq:index-extension-counts` |
+| LG `rem:annihilation-not-destruction`, `eq:shifted-physical-return-model` | §7.1 explains why the forward differential vanishes on the output sector and tests the shifted input return on the active support. The full output return has the final defect as its zero eigenspace. |
 
 ### III. Additional structures and their consequences
 
@@ -98,6 +99,8 @@ compatibility, the reference-plane Pauli/phase geometry, and ground inclusion in
 The working ground section (`sec:ground-correspondence`) integrates LG’s restricted ground channel, five strong-compatibility conditions and ground-inclusive correspondence with TAUM’s conditional reference-fidelity energy identity and gap bound. It explains the cognitive interpretation of the weak bridge and tests whether it places those grounds on the aligned graph. Section 4.4 gives the neutral rays of the ground plane and the weights of its balanced vector on the full polar graphs. Section 4.5 states the energy–fidelity identity and the gap bound on the full form domain.
 
 Section 5 constructs the cyclic representation of the ground state, relates variance to its centered orbit, and gives examples separating uniqueness, cyclicity and a gap. Section 5.3 asks whether the luminous state is pure or faithful and proves the two properties can coexist only on the scalar algebra. The five-site example distinguishes generation from the ground from the ability to discriminate states by direct measurement. The interpretation of appearances as determinations of luminosity is introduced here. The disposition-dependent generators, conceptual judgement and grasper–grasped frame remain with Part V.
+
+Section 5.1 uses the variance to decide when a bounded operator preserves the ground line. Section 6.5 gives the corresponding criterion for an entire unitary group, including what can be inferred from two return times. Section 6.6 states when a moment’s chosen ground projector is the whole bottom spectral projection.
 
 **III.2 Supplied symmetries and moving subspaces.** Compact symmetry averaging, invariant compression, moving
 projection fields, frame covariance, Grassmann curvature, and characteristic classes. The group/action and, for

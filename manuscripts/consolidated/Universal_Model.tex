@@ -515,6 +515,13 @@ Positive functional calculus for $|A|=(A^*A)^{1/2}$ gives (i) exactly when (ii) 
 
 The balanced vector $(x\oplus y)/\sqrt2$ always has zero Krein square and lies on the graph of the restricted line map. By Section~\ref{sec:neutral-graphs-phase}, it lies on the aligned graph of the full polar correspondence exactly under condition (iii). In particular, when $A$ has a kernel, normalizing a shortened $ux$ can discard a component of $x$. Equality in (iii) includes the unit norm. Neither R4 nor R5 is required for the proposition.
 
+Under strong polar compatibility the output ground is an eigenvector of the output return as well. By (v), $A^*y=ax$, and $x\in\operatorname{Dom}A$, so $y\in\operatorname{Dom}(AA^*)$ and
+\begin{equation}
+ AA^*y=aAx=a^2y .
+ \label{eq:ground-output-return}
+\end{equation}
+By (i), the two grounds are eigenvectors of $A^*A$ and $AA^*$ with the same positive eigenvalue $a^2$. The weak bridge alone does not give this. On the unequal-cell path below, $AA^*y$ is not a multiple of $y$.
+
 \subsection{Which input state does the output ground test select?}
 
 Under the weak bridge $y\in\Ran A\subseteq D$, so it always has a unique unit partner $r$ in $S$. It can be found without applying the potentially unbounded adjoint $A^*$:
@@ -752,6 +759,13 @@ Taking $Y=X$ in Eq.~\eqref{eq:determination-covariance} gives
  \label{eq:determination-variance}
 \end{equation}
 The variance of a determination in the ground is the squared norm of the part of $Xy$ orthogonal to the ground. It vanishes exactly when $Xy\in\C y$. This includes $Xy=0$, for which there is no normalized vector $Xy/\|Xy\|$.
+
+A bounded operator $X$ on $\mathcal H_\Phi$ maps the ground line into itself exactly when
+\begin{equation}
+ (I-P_y)XP_y=0,\qquad\text{equivalently}\qquad Xy=\omega(X)\,y ,
+ \label{eq:ground-line-kept}
+\end{equation}
+that is, when the variance in Eq.~\eqref{eq:determination-variance} vanishes. It then keeps the ground ray, in the sense that $Xy/\|Xy\|$ is a phase times $y$, exactly when $\omega(X)\ne0$. The condition is one-sided. For a unit vector $w\perp y$, the operator $\ket{y}\!\bra{w}$ sends $y$ to zero and maps the line into itself, while its adjoint sends $y$ to $w$. Both $X$ and $X^*$ map the line into itself exactly when $X$ commutes with $P_y$, because the two conditions remove the two off-diagonal blocks of $X$ with respect to $\C y\oplus y^\perp$. The line then reduces $X$. For a unitary $U$ one condition gives the other, since $Uy=cy$ implies $U^*y=\bar cy$. A bounded self-adjoint operator maps the line into itself exactly when $y$ is an eigenvector.
 
 The space $K$ is invariant under $\mathfrak D$. So is $K^\perp$, because $\mathfrak D$ is closed under adjoints: for $\phi\perp K$ and $X,Z\in\mathfrak D$, $\langle Zy,X\phi\rangle=\langle X^*Zy,\phi\rangle=0$. The projection onto $K$ therefore commutes with $\mathfrak D$, and no determination takes $y$ to a vector with a component in $K^\perp$. LG calls $K^\perp$ the dark complement. It is $\{0\}$ exactly when $y$ is cyclic, so R2 excludes it for the algebra that R2 specifies. A vector orthogonal to $y$ need not lie in $K^\perp$: the centered vectors $X^\circ y$ are orthogonal to $y$ and lie in $K$. Nothing in Proposition~\ref{prop:cyclic-determination-content} uses the output space. With the physical vacuum $x$ and the algebra of R1 in place of $y$ and $\mathfrak D$, R1 makes the generated space all of $\mathcal H_\Psi$, and the centered vectors $X^\circ x$ have closed span $\mathcal H_\Psi\ominus\C x$.
 
@@ -1009,6 +1023,19 @@ Fixing the ground does not make that weight decrease. If a unitary evolution fix
 \end{equation}
 for every state. The weight outside the ground never changes, so such an evolution is ground-attractive only on the basin $\{P_y\}$. A unitary can carry one chosen vector to $y$. It cannot do so while leaving $y$ in place. A ground-attractive evolution with a larger basin is therefore not unitary on the appearance space. It can still be the reduced description of a unitary evolution on a larger space.
 
+For a strongly continuous unitary group $U_t=e^{-itG}$ with self-adjoint generator $G$, the following conditions are equivalent:
+\begin{equation}
+ \begin{gathered}
+ \text{(i) }U_tP_yU_t^*=P_y\ \text{for every real }t,\qquad
+ \text{(ii) }U_ty=e^{-itg}y\ \text{for some real }g\text{ and every }t,\\
+ \text{(iii) }y\in\operatorname{Dom}G\ \text{and}\ Gy=gy .
+ \end{gathered}
+ \label{eq:relaxation-unitary-group}
+\end{equation}
+If (i) holds, then $U_ty=\chi(t)y$ with $|\chi(t)|=1$. The group law and strong continuity make $\chi$ a continuous homomorphism from $\R$ into the unit circle, so $\chi(t)=e^{-itg}$ for a real $g$. By the spectral theorem the derivative of $U_th$ at $t=0$ exists exactly when $h\in\operatorname{Dom}G$, and it is then $-iGh$. For $h=y$ the derivative is $-igy$, which gives (iii). Conversely, the spectral theorem gives $e^{-itG}y=e^{-itg}y$ for an eigenvector.
+
+The times at which the projection returns, $U_tP_yU_t^*=P_y$, are those with $|\langle y,U_ty\rangle|=1$. By the group law they form a subgroup of $\R$, and it is closed because $t\mapsto\langle y,U_ty\rangle$ is continuous. A closed subgroup of $\R$ is $\{0\}$, a lattice $c\mathbb Z$ with $c>0$, or $\R$ itself. A single return is therefore not enough: for $G=\operatorname{diag}(0,1)$ and $y=(1,1)/\sqrt2$ the projection returns exactly at the multiples of $2\pi$. Two return times with an irrational ratio are enough, because they generate a dense subgroup. The scalar phase in (ii) is the one-dimensional case of the intertwining relation in Eq.~\eqref{eq:graph-evolution-phase}, with trivial input evolution. Section~\ref{sec:symmetry-average} uses the same character argument for a group that leaves a pure state invariant.
+
 Canonical deconditioning has such a description at each time. Let the space of an environment be $\mathcal H_{\mathrm e}=\C\oplus y^\perp$, with vectors written $(c,k)$, and define
 \begin{equation}
  \iota_th=L_yh\otimes(1,0)+\sqrt{1-s^2}\;y\otimes(0,Q_yh),\qquad h\in\mathcal H_\Phi .
@@ -1036,6 +1063,8 @@ and the given sequence of states \emph{contracts with factors} $q_n\in[0,1]$ whe
  \label{eq:relaxation-contraction}
 \end{equation}
 The first is a property of the channels. The second concerns the particular states $\sigma_n$.
+
+At each moment LG specifies a rank-one ground projection $P_{y_n}$. For a Hamiltonian $H_n$ to select that ray uniquely, its full spectral projection at the bottom of its spectrum must equal $P_{y_n}$, as in Eq.~\eqref{eq:ground-spectral-projection}. This is the uniqueness part of R2 imposed at that moment. For a degenerate bottom, $P_{y_n}$ would be one choice inside a larger spectral projection.
 
 \begin{proposition}[Stabilization across moments]
 \label{prop:relaxation-moments}
@@ -1121,6 +1150,29 @@ Give the input degree zero and the output degree one. In the two-term Hilbert co
  \label{eq:index-cohomology}
 \end{equation}
 Inside the direct sum write $d_A(x,y)=(0,Ax)$ on $\operatorname{Dom}A\oplus\mathcal H_\Phi$. Its Laplacian is $\Delta=d_A^*d_A+d_Ad_A^*=\operatorname{diag}(A^*A,AA^*)$ on the natural product domain. The returns $A^*A$ and $AA^*$ are positive self-adjoint operators. The physical and appearance Hamiltonians used earlier were specified independently.
+
+The differential has no second step. Its image lies in the output summand, and it vanishes there:
+\begin{equation}
+ d_A(x,y)\in0\oplus\mathcal H_\Phi,\qquad d_A(0,y)=0,\qquad d_A^2=0 .
+ \label{eq:index-no-second-step}
+\end{equation}
+The last identity holds on the whole domain $\operatorname{Dom}A\oplus\mathcal H_\Phi$, because $d_A$ maps that domain into itself. The same holds for $-d_A$. In this sense the model generates no sequence $x\mapsto Ax\mapsto A(Ax)\mapsto\cdots$. An output vector is not an input to the same map. The opening section takes a cognition to be manifest in its own occurrence. On that reading no second act is needed to make it manifest. Whether the vanishing of $d_A$ on the output summand expresses this reflexivity is a further identification.
+
+The identity $d_A(0,y)=0$ holds for every $A$ and before any evolution is chosen. It does not describe an evolution that removes $y$. It records that the map is not applied to output vectors. It places no condition on how a channel treats the grounds. In the shift example below, the channels that attain Eq.~\eqref{eq:index-channel-coherence} share one preparation $A$ for every value of the channel probability $a$. For $a=0$ the channel carries the input ground $f_0$ to the output ground $g_1$. For $a>0$ it sends the input ground to the missing line $g_0$ with probability $a$.
+
+The returns vanish only on the kernels. For $x\in\operatorname{Dom}(A^*A)$,
+\begin{equation}
+ \langle x,A^*Ax\rangle=\|Ax\|^2,\qquad
+ \ker(A^*A)=\ker A,\qquad \ker(AA^*)=\ker A^* .
+ \label{eq:return-kernels}
+\end{equation}
+No bridge is needed for this. It constrains any attempt to take the returns as the sector Hamiltonians. If $H_\Psi=A^*A$ had the ground $x$ with energy zero, then $Ax=0$, contrary to the weak bridge. An eigenvalue of $A^*A$ at $x$ would equal $\langle x,A^*Ax\rangle=a^2$, so $x$ is an eigenvector of $A^*A$ only under strong compatibility, condition (i) of Proposition~\ref{prop:ground-polar-compatibility}. Without it $x$ is a ground of no shift of $A^*A$.
+
+LG proposes the shifted return $A^*A-a^2I$ on the active input $S$. Under strong compatibility $x\in S$ and $A^*Ax=a^2x$, so $x$ is a ground of this operator exactly when $a^2$ is the bottom of the spectrum of $A^*A$ on $S$, and the unique ground when that eigenvalue is also simple. The restriction to $S$ matters. For $A=\operatorname{diag}(0,1,2)$ and $x=y=(0,1,0)$ the grounds are strongly compatible with $a=1$. On the whole input space $A^*A-I$ has the eigenvalues $-1,0,3$, and the kernel of $A$ lies below $x$. On $S$ the eigenvalues are $0$ and $3$, and $x$ is the unique ground.
+
+On the full output space, R3 and R5 already exclude $AA^*$, shifted or not, as a Hamiltonian whose ground is $y$. By R5 the bottom of the spectrum of $AA^*$ is the eigenvalue zero, with eigenspace $\ker A^*\ne\{0\}$. By R3 the vector $y=Ax/a$ lies in the range of $A$ and is orthogonal to that whole eigenspace. The shifted return $AA^*-a^2I$ acts as $-a^2I$ on the defect. Strong compatibility adds that $y$ is an eigenvector of $AA^*$ with eigenvalue $a^2$ by Eq.~\eqref{eq:ground-output-return}.
+
+On the unequal-cell path $A^*A=\operatorname{diag}(1/4,1)$, whose ground is the first coarse site and not the constant ground of the two-site path. In the pair preparation $A_\theta$ is an isometry, so $A^*A=I$ selects no ray. On the two-particle space $A_\theta A_\theta^*$ is the projection onto $D$, with the four-dimensional complement $\C d\oplus W$ as its zero eigenspace.
 
 \begin{proposition}[Harmonic representatives and spectral pairing]\label{prop:index-harmonic-pairing}
 Each reduced degree-one class $[y]$ has the unique representative $(I-\Pi_D)y$ in $\ker A^*$. Taking this representative preserves the quotient norm. The full harmonic space is $\ker\Delta=\ker A\oplus\ker A^*$ and
