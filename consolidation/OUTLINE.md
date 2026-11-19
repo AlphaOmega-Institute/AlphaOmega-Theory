@@ -6,11 +6,11 @@ proposal.
 
 ## Source and review scope
 
-The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Its first five sections cover preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. Sections 6–8 treat asymmetric nonduality across two moments, cohomology and the index, and effective dynamics in the pair and orbital models. Section 9 develops the passive response of a self-adjoint system observed through the same port that prepares it. Section 10 follows a prepared plane as the apparatus turns and the system evolves, relating the geometry of that family to the measured response of §8. Section 11 asks which vectors a supplied compact symmetry fixes and when a port measures exactly the dynamics on that subspace. Section 12 compares four maps with the same algebraic relations and different spectra and responses. Section 13 identifies the currents that prepare and read the pair and relates them to angular momentum and the two quadrupoles on the bare orbital shell. The numbering can change as other result families are integrated.
+The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens with the problem of perception and a table of explanatory tasks. Its first five sections cover preparation and its dynamical reach, polar supports and matched observables, neutral graphs and relative phase, the ground correspondence, and the determination algebra. Sections 6–8 treat asymmetric nonduality across two moments, cohomology and the index, and effective dynamics in the pair and orbital models. Section 9 develops the passive response of a self-adjoint system observed through the same port that prepares it. Section 10 follows a prepared plane as the apparatus turns and the system evolves, relating the geometry of that family to the measured response of §8. Section 11 asks which vectors a supplied compact symmetry fixes and when a port measures exactly the dynamics on that subspace. Section 12 compares four maps with the same algebraic relations and different spectra and responses. Section 13 identifies the currents that prepare and read the pair and relates them to angular momentum and the two quadrupoles on the bare orbital shell. Appendix A proves the classification and polar factorizations of the two odd branches of a closed channel.
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
-- The [migration ledger](inventory/migration.csv) compares source clauses with the consolidated introduction and §§1–13. It distinguishes a statement’s source kind from its role in the draft and records passage locators, evidence and outstanding clauses. The all-channel strengthening of R5 is attributed to the consolidated manuscript (`UM`). The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains the fields.
+- The [migration ledger](inventory/migration.csv) compares source clauses with the consolidated introduction, §§1–13 and Appendix A. It distinguishes a statement’s source kind from its role in the draft and records passage locators, evidence and outstanding clauses. The all-channel strengthening of R5 is attributed to the consolidated manuscript (`UM`). The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains the fields.
 - Supplements cover the pair and orbital equations used in §§1–3, 8 and 13. The [source reading queue](inventory/heading_queue.csv) identifies further passages without a direct ledger entry. Read the surrounding derivations when migrating a partially tracked section.
 - The inventory now includes all used, declared theorem-like environments: 106 TAUM entries and 175 LG entries,
   including LG's 17 model choices and 29 doctrinal identifications.
@@ -55,7 +55,7 @@ Introduce the five optional realization hypotheses in plain terms. End the openi
 **II.1 Carrier, channel, adjoints, and returns.** One treatment of the two complex Hilbert sectors, positive and
 indefinite products, the closed typed channel, natural domains, graded orientations, odd-adjoint conversion,
 canonical Hilbert/Krein branches, and positive partner returns. Include LG's correction to an untyped nilpotent
-isometry here. Move the distinguished-reference subsection out of the bare-channel assumptions.
+isometry here. Appendix A now proves the classification on grading-invariant domains and gives the exact domains of the ordered returns, their common form and the reciprocal magnitude. Its reference-vector calculation applies to any unit input in the domain of the channel. Section 4 supplies the separate ground hypotheses.
 
 **II.2 Polar supports, correspondence, and observables.** Polar decomposition and rotations; active-support
 isometric graphs, neutral geometry, transition-probability and effect transport; paired observable algebra; sector
@@ -67,7 +67,7 @@ Sections 2 and 3 transport spectral measurements between the active supports, ch
 
 | Source material | Destination |
 | --- | --- |
-| Polar reflection and rotation, the neutral graph and its projectivization, sector factorization, phase blindness | II.2, drafted in `sec:neutral-graphs-phase`. The odd-branch factorizations and normalized transitions remain with their operator domains in the common architecture. |
+| Polar reflection and rotation, the neutral graph and its projectivization, sector factorization, phase blindness | II.2, drafted in `sec:neutral-graphs-phase`. Appendix A gives the odd-branch factorizations and the normalized forward and backward maps on the full carrier. Section 3.4 gives the rotation on both the active and harmonic spaces. |
 | `choice:active-physical-observable-algebra`, `choice:correspondence-versus-generation` | II.2 states the two selections. III.3 treats generators and V applies the choices to cognition. |
 | `cor:ground-inclusive-BRLC` | III.1, drafted in `sec:ground-correspondence` with the reference and bridge hypotheses |
 | `id:BRLC-doctrinal`, `id:one-event-two-compressions` | V, after the mathematical graph and paired representation |
@@ -203,8 +203,7 @@ The seven formal open questions from LG have the following destinations. The sou
 
 ### Appendices
 
-- **A. Domains and technical proofs:** retain TAUM's domain appendix and integrate any additional LG requirements.
-  Long physical-realization proofs may live here if that improves the main argument; they remain inside the TeX.
+- **A. The two odd branches of a closed channel.** The working appendix brings together TAUM’s domain and sign conventions and LG’s typed, odd and polar maps. A coupled boundary condition shows where the operator classification requires a grading-invariant domain. Section 12 illustrates the difference between a weighted branch and its polar rotation on the oscillator.
 - **B. Notation and operator types:** one charter for Ψ, Φ and A. Distinguish all projection types.
 - **C. Attribution and verification scope:** preserve scholarly provenance and precise primary citations. State what
   computations check and where they do not replace proof. Consolidate the bibliography and remove obsolete

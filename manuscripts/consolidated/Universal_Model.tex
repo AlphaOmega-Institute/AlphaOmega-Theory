@@ -248,6 +248,14 @@ Retain the densely defined closed map $A=u|A|$ of Section~\ref{sec:preparation-e
 \end{equation}
 Here $u$ is the bounded polar partial isometry that vanishes on $\ker A$. Its restriction $V=u|_S:S\to D$ is unitary, including when $A$ has a kernel or a nonclosed range. All probabilities below use the positive Hilbert inner products. Neither sector needs a ground vector.
 
+The identity $A=u|A|$ determines $u$ on $\Ran|A|$, hence on its closure $S$. The prescribed zero action on $\ker A$ fixes it on the rest of $\mathcal H_\Psi$. Taking the Hilbert adjoint gives $A^*=|A|u^*$ on the domain $\{y:u^*y\in\operatorname{Dom}|A|\}$. On $D$, the positive operator $V(|A|\vert_S)V^*$ has square $AA^*\vert_D$. On $D^\perp=\ker A^*$ the positive square root is zero. Consequently
+\begin{equation}
+ |A^*|=(AA^*)^{1/2}=u|A|u^*,\qquad
+ A^*=|A|u^*=u^*|A^*|,\qquad \overline{\Ran|A^*|}=D .
+ \label{eq:channel-polar-intertwining}
+\end{equation}
+Both operator equalities hold with their natural domains. In particular $V$ takes $S\cap\operatorname{Dom}|A|$ onto $D\cap\operatorname{Dom}|A^*|$.
+
 \begin{proposition}[Born Rule Locus Correspondence, effect form]
 \label{prop:matched-born-probabilities}
 For a density operator $\rho$ on $S$ and an effect $0\leq E\leq I_S$, put $\rho_D=V\rho V^*$ and $E_D=VEV^*$ on $D$. Then
@@ -339,7 +347,7 @@ The polar map pairs a vector $\psi$ with $V\psi$ and preserves the probability o
 
 \subsection{The graph selected by the polar map}
 
-On the active carrier $\mathcal K_A=S\oplus D$, use the Hilbert inner product for probabilities. The sector symmetry $J(x\oplus y)=x\oplus(-y)$ supplies a second form, $[z,w]=\langle z,Jw\rangle$. For $\varphi\in\R/(2\pi\mathbb Z)$ write
+On the active carrier $\mathcal K_A=S\oplus D$, use the Hilbert inner product for probabilities. The fundamental decomposition of the full carrier and the domains of its odd operators are given in Appendix~\ref{app:channel-branches}. The sector symmetry $J(x\oplus y)=x\oplus(-y)$ supplies a second form, $[z,w]=\langle z,Jw\rangle$. For $\varphi\in\R/(2\pi\mathbb Z)$ write
 \[
  G_\varphi\psi=2^{-1/2}(\psi\oplus e^{i\varphi}V\psi),
  \qquad \mathcal N_\varphi=\Ran G_\varphi .
@@ -440,13 +448,19 @@ If every physically admissible measurement effect on $\mathcal K_A$ commutes wit
 
 \subsection{A polar rotation before a population measurement}
 
-Suppose an apparatus can distinguish the two sectors. Its signed population observable is $J$, with input-sector effect $P_\Psi=(I+J)/2$ on $\mathcal K_A$. Every normalized graph state $G_\varphi\psi$ gives mean imbalance zero and input-sector probability $1/2$. Now suppose the apparatus can also apply the polar rotation $\mathcal U_\alpha=\exp(\alpha\mathcal I)$ before counting. Since $\mathcal I^2=-I$ on $\mathcal K_A$, this Hilbert-unitary rotation equals $I\cos\alpha+\mathcal I\sin\alpha$ there. On the full carrier the exponential fixes the inactive complement pointwise. Using $J\mathcal I=\mathcal R$ and $\mathcal I J=-\mathcal R$ gives
+Suppose an apparatus can distinguish the two sectors. Its signed population observable is $J$, with input-sector effect $P_\Psi=(I+J)/2$ on $\mathcal K_A$. Every normalized graph state $G_\varphi\psi$ gives mean imbalance zero and input-sector probability $1/2$. Now suppose the apparatus can also apply the polar rotation $\mathcal U_\alpha=\exp(\alpha\mathcal I)$ before counting. Write $\Pi=\Pi_S\oplus\Pi_D$ and extend $\mathcal I$ by zero on $\mathcal K_A^\perp$. Its square on the full carrier is $-\Pi$. The exponential series gives
+\begin{equation}
+ \mathcal U_\alpha=(I-\Pi)+\Pi\cos\alpha+\mathcal I\sin\alpha,\qquad
+ \mathcal U_\pi=I-2\Pi,\qquad \mathcal U_{2\pi}=I .
+ \label{eq:full-polar-rotation}
+\end{equation}
+The bounded skew-adjoint generator gives Hilbert-unitaries continuous in operator norm, with $\mathcal U_\alpha\mathcal U_\beta=\mathcal U_{\alpha+\beta}$. Each rotation fixes the inactive complement pointwise. On $\mathcal K_A$, using $J\mathcal I=\mathcal R$ and $\mathcal I J=-\mathcal R$ gives
 \begin{equation}
  \mathcal U_\alpha^*J\mathcal U_\alpha
  =J\cos(2\alpha)+\mathcal R\sin(2\alpha).
  \label{eq:rotated-sector-imbalance}
 \end{equation}
-At $\alpha=\pi/4$ the effective observable is $\mathcal R$. Its mean is $\cos\varphi$, and the probability of the $\Psi$ outcome is $(1+\cos\varphi)/2$. Thus the aligned graph ($\varphi=0$) goes entirely into the input sector, and the opposite graph ($\varphi=\pi$) entirely into the output sector. At $\alpha=\pi/2$ the rotation $\mathcal U_{\pi/2}=\mathcal I$ exchanges the two sectors and sends $J$ to $-J$ under conjugation. The doubled angle in Eq.~\eqref{eq:rotated-sector-imbalance} accounts for the difference. Both the pulse and a detector that distinguishes the sectors are additional operational assumptions. A paired readout $I_2\otimes X$ commutes with the pulse and gives the same statistics as before it.
+On the active carrier, at $\alpha=\pi/4$ the effective observable is $\mathcal R$. Its mean is $\cos\varphi$, and the probability of the $\Psi$ outcome is $(1+\cos\varphi)/2$. Thus the aligned graph ($\varphi=0$) goes entirely into the input sector, and the opposite graph ($\varphi=\pi$) entirely into the output sector. On that carrier the quarter-turn $\mathcal U_{\pi/2}=\mathcal I$ exchanges the two active summands and sends $J$ to $-J$ under conjugation. The doubled angle in Eq.~\eqref{eq:rotated-sector-imbalance} accounts for the difference. Both the pulse and a detector that distinguishes the sectors are additional operational assumptions. A paired readout $I_2\otimes X$ commutes with the pulse and gives the same statistics as before it.
 
 This example gives an exact test for superselection on the active carrier. Let $F$ range over the outcome effects of the available detectors. For a protocol $\Lambda$ preceding the detector, define its adjoint on effects by $\Tr(\Lambda(\rho)F)=\Tr(\rho\,\Lambda^*(F))$. Include the empty protocol and all allowed sequences; for a measurement branch use its trace-nonincreasing operation, so the trace gives the joint outcome probability. By Proposition~\ref{prop:phase-readout}, relative phase is invisible throughout these experiments exactly when
 \begin{equation}
@@ -1233,7 +1247,7 @@ Give the input degree zero and the output degree one. In the two-term Hilbert co
  \overline H^1_A=\mathcal H_\Phi/D,\qquad D=\overline{\Ran A}.
  \label{eq:index-cohomology}
 \end{equation}
-Inside the direct sum write $d_A(x,y)=(0,Ax)$ on $\operatorname{Dom}A\oplus\mathcal H_\Phi$. Its Laplacian is $\Delta=d_A^*d_A+d_Ad_A^*=\operatorname{diag}(A^*A,AA^*)$ on the natural product domain. The returns $A^*A$ and $AA^*$ are positive self-adjoint operators. The physical and appearance Hamiltonians used earlier were specified independently.
+Inside the direct sum write $d_A(x,y)=(0,Ax)$ on $\operatorname{Dom}A\oplus\mathcal H_\Phi$. Its Laplacian is $\Delta=d_A^*d_A+d_Ad_A^*=\operatorname{diag}(A^*A,AA^*)$ on the natural product domain. The returns $A^*A$ and $AA^*$ are positive self-adjoint operators. On $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$, the Hilbert branch $d_A+d_A^*$ and the Krein branch $d_A^*-d_A$ have the same magnitude $\sqrt\Delta$. Their squares are $\Delta$ and $-\Delta$ on $\operatorname{Dom}\Delta$. Appendix~\ref{app:channel-branches} proves these signs and gives the domains of the two ordered returns. The physical and appearance Hamiltonians used earlier were specified independently.
 
 The differential has no second step. Its image lies in the output summand, and it vanishes there:
 \begin{equation}
@@ -1272,6 +1286,15 @@ The identities $(\Ran A)^\perp=\ker A^*$ and $(\Ran A^*)^\perp=\ker A$ give both
 
 The range is closed exactly when there is a $c>0$ with $\|Ax\|\ge c\|x\|$ for all $x\in\operatorname{Dom}A\cap S$. Indeed, for closed range the inverse on $S$ is bounded by the closed graph theorem. Conversely, the bound makes the active preimages of a convergent sequence of images Cauchy, and closedness of $A$ supplies the limiting image. Equivalently, both active returns are bounded below by $c^2$ in the quadratic-form sense. In this case $\Ran A^*$ is closed as well, and the closures in the decomposition may be omitted. When $\Ran A$ is not closed, the ordinary quotient is non-Hausdorff. For example, $Ae_n=e_n/(n+1)$ on $\ell^2(\mathbb N_0)$ has dense proper range. Its reduced degree-one space vanishes although the vector with coordinates $1/(n+1)$ has no preimage in $\ell^2$.
 
+For a closed range, adding the two active form bounds gives
+\begin{equation}
+ \|\sqrt\Delta\, z\|^2\ge c^2\|z\|^2
+ \quad\bigl(z\in(S\oplus D)\cap\operatorname{Dom}\sqrt\Delta\bigr),
+ \qquad \sigma(\Delta|_{S\oplus D})\subseteq[c^2,\infty).
+ \label{eq:active-laplacian-gap}
+\end{equation}
+Conversely, restricting this bound to $z=(x,0)$ recovers the lower bound for $A$ and hence closed range.
+
 \subsection{Fredholm balance and the heat trace}
 
 A Fredholm channel has closed range and finite $k=\dim\ker A$ and $d_1=\dim\ker A^*$. With $J=\operatorname{diag}(I_\Psi,-I_\Phi)$ on the full sum and $P_{\ker\Delta}$ the harmonic projection, the index is
@@ -1280,7 +1303,16 @@ A Fredholm channel has closed range and finite $k=\dim\ker A$ and $d_1=\dim\ker 
      =\Tr(JP_{\ker\Delta}),\qquad \operatorname{ind}A^*=-\operatorname{ind}A .
  \label{eq:index-graded}
 \end{equation}
-Indeed, $J$ acts with opposite signs on the two harmonic summands. The odd operators $d_A+d_A^*$ and $d_A^*-d_A$ on $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$ both have closed range $(\ker\Delta)^\perp$ and kernel $\ker\Delta$, so their ungraded indices are zero. For the heat trace, assume in addition that $e^{-tA^*A}$ and $e^{-tAA^*}$ are trace class at the specified $t>0$. The active contributions cancel by Proposition~\ref{prop:index-harmonic-pairing}. Each harmonic vector contributes one to its sector trace, giving
+Indeed, $J$ acts with opposite signs on the two harmonic summands. The odd operators $d_A+d_A^*$ and $d_A^*-d_A$ on $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$ both have closed range $(\ker\Delta)^\perp$ and kernel $\ker\Delta$, so their ungraded indices are zero.
+
+For every block-diagonal trace-class operator $X=X_\Psi\oplus X_\Phi$ the graded trace is
+\begin{equation}
+ \operatorname{Str}_J(X):=\Tr(JX)=\Tr_{\mathcal H_\Psi}(X_\Psi)-\Tr_{\mathcal H_\Phi}(X_\Phi).
+ \label{eq:graded-trace-general}
+\end{equation}
+For Fredholm $A$, taking $X=P_{\ker\Delta}$ gives Eq.~\eqref{eq:index-graded}.
+
+For the heat trace, assume in addition that $e^{-tA^*A}$ and $e^{-tAA^*}$ are trace class at the specified $t>0$. The active contributions cancel by Proposition~\ref{prop:index-harmonic-pairing}. Each harmonic vector contributes one to its sector trace, giving
 \begin{equation}
  \Tr(J e^{-t\Delta})=\Tr(e^{-tA^*A})-\Tr(e^{-tAA^*})=\operatorname{ind}A .
  \label{eq:index-heat}
@@ -1927,7 +1959,7 @@ At a point $x$ and for a direction $Y$, the spaces $\mathcal L_x$ and $\mathcal 
  Y\Pi=d_Y+d_Y^*,\qquad J_\Pi\,Y\Pi=d_Y^*-d_Y,\qquad (Y\Pi)^2=d_Y^*d_Y+d_Yd_Y^* .
  \label{eq:moving-two-odd}
 \end{equation}
-These are the two odd operators named after Eq.~\eqref{eq:index-graded} and the Laplacian of that section. The derivative $Y\Pi$ is Hilbert-self-adjoint. It is the tangent vector to the family of subspaces. Multiplying it by the symmetry gives $J_\Pi\,Y\Pi$, which is Hilbert-skew-adjoint and is self-adjoint for the form $[\cdot,\cdot]_x$, in the sense $T^\sharp=J_\Pi T^*J_\Pi$ of Section~\ref{sec:neutral-graphs-phase}. The results of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index} that concern a single bounded map therefore apply to each $B_Y(x)$: its polar decomposition, the pairing of the nonzero spectra of $B_Y^*B_Y$ and $B_YB_Y^*$, and its index when it is Fredholm. A moving subspace adds no new algebra at one point and in one direction. What it adds is a relation between different directions.
+These are the two branches of Eq.~\eqref{eq:weighted-channel-branches} and their partner Laplacian, for the bounded tangent map $B_Y(x)$. The derivative $Y\Pi$ is Hilbert-self-adjoint. It is the tangent vector to the family of subspaces. Multiplying it by the symmetry gives $J_\Pi\,Y\Pi$, which is Hilbert-skew-adjoint and is self-adjoint for the form $[\cdot,\cdot]_x$, in the sense $T^\sharp=J_\Pi T^*J_\Pi$ of Section~\ref{sec:neutral-graphs-phase}. The results of Sections~\ref{sec:polar-matched-observables}, \ref{sec:neutral-graphs-phase} and~\ref{sec:cohomology-index} that concern a single bounded map therefore apply to each $B_Y(x)$: its polar decomposition, the pairing of the nonzero spectra of $B_Y^*B_Y$ and $B_YB_Y^*$, and its index when it is Fredholm. A moving subspace adds no new algebra at one point and in one direction. What it adds is a relation between different directions.
 
 \subsection{The projected connection and its curvature}
 \label{subsec:moving-connection}
@@ -2386,7 +2418,7 @@ Equation~\eqref{eq:four-maps-oscillator-returns} holds on the basis vectors, and
 the map is bounded below, so it is injective with closed range. The kernel of $A^*=a$ is spanned by $e_0$, and the index is $0-1$. The spectra are those of the diagonal operators $N+I$ and $N$. The operator $(N+I)^{1/2}$ is positive with trivial kernel and $\mathsf S(N+I)^{1/2}e_n=\sqrt{n+1}\,e_{n+1}$, which is the polar decomposition. For any function $f$ on the non-negative integers with summable values, $\Tr f(N+I)-\Tr f(N)=\sum_{n\ge1}f(n)-\sum_{n\ge0}f(n)=-f(0)$. The two cases $f(x)=e^{-tx}$ and $f(x)=e^{-\pi tx^2}$ give Eq.~\eqref{eq:four-maps-oscillator-heat}.
 \end{proof}
 
-The first identity in Eq.~\eqref{eq:four-maps-oscillator-heat} is the heat-trace formula of Eq.~\eqref{eq:index-heat}. That formula did not apply to the shift itself, whose return is the identity. The oscillator map has the same polar isometry, and its returns have trace-class heat operators.
+The first identity in Eq.~\eqref{eq:four-maps-oscillator-heat} is the heat-trace formula of Eq.~\eqref{eq:index-heat}. That formula did not apply to the shift itself, whose input return is the identity. The oscillator map has the same polar isometry, and its returns have trace-class heat operators. On the plane spanned by $e_n\oplus0$ and $0\oplus e_{n+1}$, the operator $\mathsf K_A$ of Eq.~\eqref{eq:weighted-channel-branches} maps the first vector to $-\sqrt{n+1}$ times the second and the second to $\sqrt{n+1}$ times the first. Writing $q_n=e_n\oplus0$, $p_n=0\oplus e_{n+1}$ and $\omega_n=\sqrt{n+1}$, we have $e^{t\mathsf K_A}q_n=\cos(t\omega_n)q_n-\sin(t\omega_n)p_n$. The polar rotation of Eq.~\eqref{eq:full-polar-rotation} has unit angular speed on every such plane.
 
 \begin{proposition}[Mellin transform of the heat trace]
 \label{prop:four-maps-mellin}
@@ -2689,6 +2721,202 @@ Without the filter the prepared excitation is $e_Q$ of Section~\ref{subsec:orbit
  \label{eq:pair-currents-unfiltered}
 \end{equation}
 This weight can be spread over several radial levels. Complete departure at $t=\pi/(4|\Omega_{\rm B}|)$ is then not a transfer to one specified line, and it does not ensure a later complete return. Finally, conservation of $L$ does not prevent the departure. The prepared excitation $e_\lambda$ combines two eigenvectors of different energies, and its line is not invariant under their relative phase.
+
+\appendix
+
+\section{The two odd branches of a closed channel}
+\label{app:channel-branches}
+
+What information does the sector grading add to a preparation $A$? On the full direct sum it fixes how the Hilbert adjoint of an odd operator changes when one uses the indefinite form. For a closed channel the two possible branch signs give opposite squares and the same positive magnitude. The distinction matters already for the oscillator in Section~\ref{subsec:four-maps-oscillator}, where one application can be defined even when a second is not.
+
+\subsection{The fundamental decomposition and the odd adjoint}
+
+The input and output Hilbert spaces are the positive and negative summands of the full carrier $\mathcal K=\mathcal H_\Psi\oplus\mathcal H_\Phi$. For $z=(x,y)$ and $w=(x',y')$, its Hilbert product is $\langle z,w\rangle=\langle x,x'\rangle+\langle y,y'\rangle$, linear in the second argument. The fundamental symmetry and the sector projections are
+\begin{equation}
+ J(x,y)=(x,-y),\qquad P_\Psi=\tfrac12(I+J),\qquad P_\Phi=\tfrac12(I-J),
+ \qquad [z,w]=\langle z,Jw\rangle .
+ \label{eq:carrier-grading}
+\end{equation}
+Here $J=J^*=J^{-1}$, $P_\Psi+P_\Phi=I$ and $P_\Psi P_\Phi=0$. The two summands are orthogonal for both products. Their indefinite squares are $\|x\|^2$ and $-\|y\|^2$, respectively. This is the fundamental decomposition of the Krein space \cite{Bognar1974}. Norms, operator domains, closures and ordinary adjoints throughout use the Hilbert product. The two summands may have different dimensions.
+
+For a densely defined operator $X$ on $\mathcal K$, its Krein adjoint for $[\cdot,\cdot]$ is $X^\sharp=JX^*J$ with domain $J\operatorname{Dom}X^*$. The operator is \emph{odd} if $J\operatorname{Dom}X=\operatorname{Dom}X$ and $JXz=-XJz$ there. Invariance under $J$ gives invariance under both sector projections. Hence the domain splits into the direct sum of its intersections with the sectors, each dense in its sector. On a domain that splits this way, oddness is equivalent to the vanishing of both diagonal blocks.
+
+Boundary conditions can obstruct the splitting even for an off-diagonal differential expression. On two copies of $L^2(0,1)$, let $X(f,g)=(g',f')$ with $f,g\in H^1(0,1)$ and $f(0)=g(0)$. Smooth pairs supported in the interior give density, and the boundary condition is closed in the graph norm by continuity of the $H^1$ trace. The pair $(1,1)$ belongs to this domain while $J(1,1)=(1,-1)$ does not.
+
+\begin{proposition}[Odd adjoints on a split domain]
+\label{prop:odd-block-adjoints}
+If $X$ is closed, densely defined and odd, then $X^\sharp=-X^*$ on $\operatorname{Dom}X^*$. In particular $X^\sharp=X$ exactly when $X^*=-X$, and $X^\sharp=-X$ exactly when $X^*=X$. These equalities include the domains.
+\end{proposition}
+\begin{proof}
+Oddness says $JXJ=-X$ as operators. Since $J$ is unitary, the Hilbert adjoint of $JXJ$ is $JX^*J$, with domain $J\operatorname{Dom}X^*$. Taking adjoints proves both the formula and $J\operatorname{Dom}X^*=\operatorname{Dom}X^*$.
+\end{proof}
+
+\subsection{The two orientations and their products}
+
+For the closed densely defined preparation $A$ of Section~\ref{sec:preparation-evolution}, let $d_A$ be the differential of Eq.~\eqref{eq:index-no-second-step}. TAUM chooses a minus sign on the forward orientation. On the full sum write the signed forward and backward operators as
+\begin{equation}
+\begin{aligned}
+ \mathsf F=-d_A:\ (x,y)&\longmapsto(0,-Ax),
+ &\operatorname{Dom}\mathsf F&=\operatorname{Dom}A\oplus\mathcal H_\Phi,\\
+ \mathsf B=d_A^*:\ (x,y)&\longmapsto(A^*y,0),
+ &\operatorname{Dom}\mathsf B&=\mathcal H_\Psi\oplus\operatorname{Dom}A^*.
+\end{aligned}
+ \label{eq:oriented-extensions}
+\end{equation}
+Indeed, pairing $d_A(x,y)$ against $(h,k)$ gives $\langle Ax,k\rangle$, which extends continuously in $x$ in the Hilbert norm precisely for $k\in\operatorname{Dom}A^*$. The unused coordinate $h$ is unrestricted. The graph of $d_A$ is closed because the graph of $A$ is closed. The operator $A^*$ is closed and densely defined, and $A^{**}=A$. Thus $d_A,d_A^*,\mathsf F,\mathsf B$ are all closed and densely defined. Each orientation takes its domain into itself, since the coordinate on which it acts is zero in its image. This gives
+\begin{equation}
+ \mathsf F^2=0\ \text{on }\operatorname{Dom}\mathsf F,\qquad
+ \mathsf B^2=0\ \text{on }\operatorname{Dom}\mathsf B,\qquad
+ \mathsf F^*=-\mathsf B,\quad \mathsf B^*=-\mathsf F,\quad
+ \mathsf F^\sharp=\mathsf B,\quad \mathsf B^\sharp=\mathsf F .
+ \label{eq:oriented-adjoints}
+\end{equation}
+The square domains are exactly the indicated first-order domains. The Hilbert adjoints follow from $d_A^{**}=d_A$ and the Krein adjoints from Proposition~\ref{prop:odd-block-adjoints}.
+
+Following one orientation by the other gives a return to the starting sector:
+\begin{equation}
+\begin{aligned}
+ -\mathsf B\mathsf F(x,y)&=(A^*Ax,0),
+ &\operatorname{Dom}(\mathsf B\mathsf F)&=\operatorname{Dom}(A^*A)\oplus\mathcal H_\Phi,\\
+ -\mathsf F\mathsf B(x,y)&=(0,AA^*y),
+ &\operatorname{Dom}(\mathsf F\mathsf B)&=\mathcal H_\Psi\oplus\operatorname{Dom}(AA^*).
+\end{aligned}
+ \label{eq:oriented-products}
+\end{equation}
+The first composition requires $x\in\operatorname{Dom}A$ and $Ax\in\operatorname{Dom}A^*$. The second requires $y\in\operatorname{Dom}A^*$ and $A^*y\in\operatorname{Dom}A$. Both operators on the left of Eq.~\eqref{eq:oriented-products} are positive self-adjoint. Each acts as its sector return on one summand and as zero on the other. Their common domain is $\operatorname{Dom}\Delta=\operatorname{Dom}(A^*A)\oplus\operatorname{Dom}(AA^*)$, where $\Delta=\operatorname{diag}(A^*A,AA^*)$. Taking the anticommutator and the commutator in the indicated order gives
+\begin{equation}
+ \mathsf F\mathsf B+\mathsf B\mathsf F=-\Delta,\qquad
+ \mathsf F\mathsf B-\mathsf B\mathsf F=J\Delta .
+ \label{eq:oriented-brackets}
+\end{equation}
+
+An arbitrary unit reference $x\in\operatorname{Dom}A$ supplies the signed image $w=\mathsf F(x,0)=(0,-Ax)$. Its Hilbert norm and indefinite square are
+\begin{equation}
+ \|w\|^2=\|Ax\|^2,\qquad [w,w]=-\|Ax\|^2,\qquad
+ \mathsf Fw=0,\qquad \mathsf Bw=(-A^*Ax,0)\ \ (x\in\operatorname{Dom}(A^*A)).
+ \label{eq:branch-reference-image}
+\end{equation}
+The image vanishes exactly for $x\in\ker A$. The backward step exists exactly under the stronger product-domain condition just stated. No ground or cyclicity hypothesis enters this calculation. When $Ax\ne0$, the output vectors $Ax$ and $-Ax$ represent the same ray.
+
+\subsection{Which map preserves norms?}
+
+LG uses the signed forward extension $\mathsf F$ of Eq.~\eqref{eq:oriented-extensions}. The three maps have the following source and target spaces.
+\begin{equation}
+ \begin{aligned}
+ A &: \operatorname{Dom}A\subseteq\mathcal H_\Psi\longrightarrow\mathcal H_\Phi,\\
+ \mathsf F=-d_A &: \operatorname{Dom}A\oplus\mathcal H_\Phi\longrightarrow
+                 \mathcal H_\Psi\oplus\mathcal H_\Phi,\\
+ V=u|_S &: S\longrightarrow D .
+ \end{aligned}
+ \label{eq:typed-odd-polar}
+\end{equation}
+The typed map carries the magnitude $|A|$ through $A=u|A|$. The signed extension sends $x\oplus0$ to $0\oplus(-Ax)$ and a pure output-sector vector to zero. The support map $V$ of Eq.~\eqref{eq:polar-active-supports} is unitary, so its inverse is $V^*:D\to S$. The Hilbert adjoint $A^*$ carries the return magnitude on its own domain in $\mathcal H_\Phi$.
+
+\begin{proposition}[Norm preservation and the two sectors]
+\label{prop:typed-odd-isometry}
+If an operator $T$ on a normed space maps its domain into itself and $T^2=0$ there, norm preservation on that domain forces the domain to be $\{0\}$. For a bounded isometry $A:\mathcal H_\Psi\to\mathcal H_\Phi$, the signed forward extension preserves the norm on the input summand and has square zero on the full carrier. In this case
+\begin{equation}
+ A^*A=I_\Psi,\qquad AA^*=\Pi_{\Ran A},\qquad
+ \mathcal H_\Phi=\Ran A\oplus\ker A^* .
+ \label{eq:typed-isometric-range}
+\end{equation}
+The range of $A$ is closed, and $A$ is unitary onto $\mathcal H_\Phi$ exactly when $\ker A^*=\{0\}$.
+\end{proposition}
+\begin{proof}
+For $h\in\operatorname{Dom}T$, invariance and norm preservation give $\|h\|=\|Th\|=\|T^2h\|=0$. Also, $Th=h$ alone gives $h=T^2h=0$, without any norm assumption. In particular the only fixed vector of either $\mathsf F$ or $\mathsf B$ is zero.
+
+For a typed isometry, $\|\mathsf F(x\oplus0)\|=\|Ax\|=\|x\|$. Its image lies in the output summand, where the next application gives zero. Imposing norm preservation there too would invoke the obstruction on the whole carrier. The image of the input Hilbert space under $A$ is complete and hence closed. The operator $AA^*$ acts as the identity on $\Ran A$ by $A^*A=I_\Psi$, and vanishes on $(\Ran A)^\perp=\ker A^*$. This proves Eq.~\eqref{eq:typed-isometric-range} and the surjectivity criterion.
+\end{proof}
+
+\subsection{Classification, magnitude and common zero modes}
+
+On the first-order domain $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$ the two orientations give the Hilbert and Krein branches, respectively,
+\begin{equation}
+ \mathsf D_A=\mathsf B-\mathsf F=\begin{pmatrix}0&A^*\\A&0\end{pmatrix},
+ \qquad
+ \mathsf K_A=\mathsf B+\mathsf F=\begin{pmatrix}0&A^*\\-A&0\end{pmatrix}
+ =J\mathsf D_A .
+ \label{eq:weighted-channel-branches}
+\end{equation}
+\begin{proposition}[Classification of the two odd branches]
+\label{prop:odd-channel-branches}
+Every closed densely defined odd Krein-self-adjoint operator on the given fundamental decomposition is $\mathsf K_A$ for a unique closed densely defined $A:\operatorname{Dom}A\subseteq\mathcal H_\Psi\to\mathcal H_\Phi$. Every closed densely defined odd Hilbert-self-adjoint operator is $\mathsf D_A$ for a unique such $A$. Conversely, each $A$ gives both branches with the adjoints and squares
+\begin{equation}
+\begin{aligned}
+ \mathsf D_A^*&=\mathsf D_A,&\mathsf D_A^\sharp&=-\mathsf D_A,&\mathsf D_A^2&=\Delta,\\
+ \mathsf K_A^*&=-\mathsf K_A,&\mathsf K_A^\sharp&=\mathsf K_A,&\mathsf K_A^2&=-\Delta .
+\end{aligned}
+ \label{eq:branch-squares}
+\end{equation}
+Both squares have domain $\operatorname{Dom}\Delta$.
+\end{proposition}
+\begin{proof}
+Write $X(x,y)=(Cy,Lx)$ on the split domain $\operatorname{Dom}L\oplus\operatorname{Dom}C$. Each off-diagonal block is closed: a convergent graph sequence for one block is a graph sequence for $X$ with the other coordinate zero. Pairing against the two sectors independently gives $X^*(h,k)=(L^*k,C^*h)$ on $\operatorname{Dom}C^*\oplus\operatorname{Dom}L^*$. If $X^\sharp=X$, Proposition~\ref{prop:odd-block-adjoints} gives $X^*=-X$. Hence $C=-L^*$ and $C^*=-L$, with equality of domains. This fixes $A=-L$ including its domain and gives $X=\mathsf K_A$. If $X^*=X$, the same calculation gives $C=L^*$ and $A=L$, hence $X=\mathsf D_A$.
+
+Conversely, for closed densely defined $A$ the block formula for the adjoint and $A^{**}=A$ give the two Hilbert adjoints in Eq.~\eqref{eq:branch-squares}. The branches are closed, odd, and have the indicated Krein adjoints. A second application requires both $Ax\in\operatorname{Dom}A^*$ and $A^*y\in\operatorname{Dom}A$, exactly the conditions in Eq.~\eqref{eq:oriented-products}. Multiplication on that domain gives the signed squares.
+\end{proof}
+
+It follows that $\mathsf D_A^*\mathsf D_A=\mathsf K_A^*\mathsf K_A=\Delta$, hence $|\mathsf D_A|=|\mathsf K_A|=\Delta^{1/2}$. The two positive self-adjoint sector returns have closed quadratic forms with domains $\operatorname{Dom}\bigl((A^*A)^{1/2}\bigr)=\operatorname{Dom}A$ and $\operatorname{Dom}\bigl((AA^*)^{1/2}\bigr)=\operatorname{Dom}A^*$. Indeed polar decomposition of $A$ and of $A^*$ gives $\|(A^*A)^{1/2}x\|=\|Ax\|$ and $\|(AA^*)^{1/2}y\|=\|A^*y\|$ on these respective domains. Their direct sum gives the common form on every $z=(x,y)\in\operatorname{Dom}A\oplus\operatorname{Dom}A^*$:
+\begin{equation}
+ \|\mathsf D_A z\|^2=\|\mathsf K_A z\|^2=\|Ax\|^2+\|A^*y\|^2
+ =\|\Delta^{1/2}z\|^2 .
+ \label{eq:branch-return-form}
+\end{equation}
+For the oscillator preparation of Section~\ref{subsec:four-maps-oscillator}, the state in Eq.~\eqref{eq:fidelity-energy-oscillator} has probabilities proportional to $(n+1)^{-5/2}$. Its mean of $N+I$ is finite but its second moment is infinite. Thus $A\psi$ exists and Eq.~\eqref{eq:branch-return-form} applies to $(\psi,0)$, while $A^*A\psi$ is undefined.
+
+The two block actions vanish exactly when $Ax=0$ and $A^*y=0$, so $\ker\mathsf D_A=\ker\mathsf K_A=\ker\Delta=\ker A\oplus\ker A^*$ for every closed densely defined $A$. The opposite signs of the squares leave both the magnitude and the zero modes unchanged.
+
+In one dimension per sector, $J=\sigma_z$. An odd matrix $M=\left(\begin{smallmatrix}0&a\\b&0\end{smallmatrix}\right)$ satisfies $M^\sharp=M$ exactly when $b=-\bar a$. For $a=|a|e^{i\theta}\ne0$, the diagonal unitary $W=\operatorname{diag}(e^{-i\theta/2},e^{i\theta/2})$ commutes with $J$, and
+\begin{equation}
+ W^*JW=J,\qquad WMW^*=|a|\begin{pmatrix}0&1\\-1&0\end{pmatrix}=|a|\,i\sigma_y .
+ \label{eq:odd-scalar-normal-form}
+\end{equation}
+More generally, suppose the sectors are specified as two copies of one Hilbert space $\mathcal H$ and the channel between the copies is represented by a self-adjoint operator $\Lambda$. Then $\mathcal K$ is identified with $\C^2\otimes\mathcal H$, with $J=\sigma_z\otimes I$. On $\operatorname{Dom}\Lambda\oplus\operatorname{Dom}\Lambda$,
+\begin{equation}
+ \mathsf D_\Lambda=\sigma_x\otimes\Lambda,\qquad
+ \mathsf K_\Lambda=i\sigma_y\otimes\Lambda,\qquad
+ |\mathsf D_\Lambda|=|\mathsf K_\Lambda|=I_2\otimes|\Lambda| .
+ \label{eq:balanced-channel-branches}
+\end{equation}
+
+\subsection{The polar factors of the two branches}
+Extend $\mathcal R$ and $\mathcal I$ of Section~\ref{sec:neutral-graphs-phase} by zero on $\ker\Delta=\ker A\oplus\ker A^*$. Their blocks on $\mathcal K$ now contain $u$ and $u^*$ in place of $V$ and $V^*$. With $\Pi=\Pi_S\oplus\Pi_D$, block multiplication gives $\mathcal R^2=\Pi$, $\mathcal I^2=-\Pi$ and $\mathcal I=J\mathcal R$. They restrict to isometries on $\mathcal K_A$. The two weighted branches have the polar factorizations
+\begin{equation}
+ \begin{aligned}
+ \mathsf D_A&=\mathcal R\sqrt\Delta=\sqrt\Delta\,\mathcal R,\\
+ \mathsf K_A&=\mathcal I\sqrt\Delta=\sqrt\Delta\,\mathcal I ,
+ \end{aligned}
+ \qquad
+ \sqrt\Delta=|A|\oplus|A^*| .
+ \label{eq:branch-polar-factorization}
+\end{equation}
+Each product has domain $\operatorname{Dom}A\oplus\operatorname{Dom}A^*$. Indeed, Eq.~\eqref{eq:channel-polar-intertwining} pairs the active domains of $|A|$ and $|A^*|$ under $V$, and their kernels lie in their domains. Hence $\mathcal Rz$ belongs to $\operatorname{Dom}\sqrt\Delta$ exactly when $z$ does, and the same holds for $\mathcal I z$. Multiplying the blocks in either order gives $(A^*y,Ax)$ and $(A^*y,-Ax)$, respectively, for $z=(x,y)$. Since $\sqrt\Delta$ is the common magnitude and its range is dense in $\mathcal K_A$, the factors are the polar phases with this initial support.
+
+The reciprocal magnitude can be unbounded. Define $L$ by spectral calculus for $\Delta$, using $\lambda^{-1/2}$ at $\lambda>0$ and zero at $\lambda=0$. For the scalar spectral measure $\mu_z(B)=\langle z,E_\Delta(B)z\rangle$, its domain is
+\begin{equation}
+ \operatorname{Dom}L
+ =\left\{z:\int_{(0,\infty)}\lambda^{-1}\,d\mu_z(\lambda)<\infty\right\}
+ =\ker\Delta\oplus\Ran\sqrt\Delta .
+ \label{eq:inverse-phase-domain}
+\end{equation}
+Indeed $L\sqrt\Delta\,h=\Pi h$ for $h\in\operatorname{Dom}\sqrt\Delta$, while $\sqrt\Delta\,Lz=\Pi z$ for $z\in\operatorname{Dom}L$. On $\Ran\sqrt\Delta$ the products $\mathsf D_A L$ and $\mathsf K_A L$ therefore agree with $\mathcal R$ and $\mathcal I$. Each extends uniquely by continuity to $\mathcal K_A$ and by zero on $\ker\Delta$ to the stated polar phase. For the diagonal map $Ae_n=e_n/(n+1)$ of Section~\ref{sec:cohomology-index}, $L$ multiplies by $n+1$ in each sector, whereas $\mathcal R$ exchanges the sectors isometrically.
+
+Replacing $A$ by $u$ in the two signed orientations gives bounded operators on all of $\mathcal K$,
+\begin{equation}
+ \widehat{\mathsf F}=\begin{pmatrix}0&0\\-u&0\end{pmatrix},
+ \qquad
+ \widehat{\mathsf B}=\begin{pmatrix}0&u^*\\0&0\end{pmatrix}.
+ \label{eq:support-normalized-pair}
+\end{equation}
+Each has square zero. Since $\widehat{\mathsf F}^*=-\widehat{\mathsf B}$ and $J$ changes the sign of an off-diagonal operator under conjugation, they are mutual Krein adjoints. Their sum is $\mathcal I$, and $\widehat{\mathsf B}-\widehat{\mathsf F}=\mathcal R$. The support identities $u^*u=\Pi_S$ and $uu^*=\Pi_D$ give
+\begin{equation}
+ -\widehat{\mathsf B}\widehat{\mathsf F}=\Pi_S\oplus0,\qquad
+ -\widehat{\mathsf F}\widehat{\mathsf B}=0\oplus\Pi_D,\qquad
+ -\{\widehat{\mathsf F},\widehat{\mathsf B}\}=\Pi .
+ \label{eq:support-normalized-products}
+\end{equation}
+
+A single $A$ determines both orientations and the two odd branches in Eq.~\eqref{eq:weighted-channel-branches}. Conversely, on this fundamental decomposition a closed densely defined odd operator in either adjoint class determines its channel uniquely (Proposition~\ref{prop:odd-channel-branches}). The same $A$ thus underlies the polar geometry of Sections~\ref{sec:polar-matched-observables} and~\ref{sec:neutral-graphs-phase} and the paired spectra of Section~\ref{sec:cohomology-index}. Choosing which operator generates a physical evolution requires further data.
 
 \begingroup\small
 \begin{thebibliography}{99}

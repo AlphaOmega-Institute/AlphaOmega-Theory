@@ -7,8 +7,9 @@ The wrapper takes every line of Universal_Model.tex before \\begin{document}, so
 fragment is typeset with the same packages, environments and macros. Labels that live
 in the main file are read from an auxiliary run of the main file, so cross-references
 print their real numbers. They are printed without a hyperlink, because their targets
-are not in the standalone PDF. The fragment's section and equation counters continue
-from the end of the main file. Nothing is written into Universal_Model.tex.
+are not in the standalone PDF. The section counter continues from the last numbered
+section before the appendices. Equation numbering continues from the end of the main
+file. Nothing is written into Universal_Model.tex.
 
 The script reports LaTeX warnings, bad boxes and pdfTeX warnings such as links to
 missing destinations.
@@ -48,7 +49,8 @@ def main():
     bibliography = re.search(r"\\begin\{thebibliography\}.*?\\end\{thebibliography\}", main_text, flags=re.S).group(0)
     if extra_bib.exists():
         bibliography = bibliography.replace("\\end{thebibliography}", extra_bib.read_text(encoding="utf-8") + "\n\\end{thebibliography}")
-    sections = len(re.findall(r"^\\section\{", main_text, flags=re.M))
+    main_sections = re.split(r"^[ \t]*\\appendix\b", main_text, maxsplit=1, flags=re.M)[0]
+    sections = len(re.findall(r"^[ \t]*\\section(?=\{|\[)", main_sections, flags=re.M))
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         # a copy of the main file that also reports its last equation number

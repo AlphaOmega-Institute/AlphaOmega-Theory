@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-181 passed, 0 failed, 2 skipped in ...s
+187 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `183 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `189 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
@@ -43,6 +43,17 @@ blocks, so their port weights sum to the total spectral mass without double-coun
 It also checks that numerically coincident eigenvalues are merged at the declared
 absolute spectral tolerance. A regression covers square roots and inverse square roots
 of positive Hermitian matrices with real and complex floating-point inputs.
+
+### Signed orientations and operator domains
+
+Six checks recover the channel of an odd Krein-self-adjoint matrix, verify both ordered
+return signs, and factor the two branches for a complex channel with a kernel and a
+defect. Two diagonal examples have exact cutoff sums. For one, the first step has
+finite norm while the norms of its truncated returns diverge. For the other, the generalized
+inverse is unbounded while the polar phase extends to the whole active support.
+A proper isometric embedding checks the difference between norm preservation on
+the input sector and nilpotency on the direct sum.
+[Signed branch checks](test_odd_branches.py)
 
 ### Ground correspondence
 
@@ -247,6 +258,7 @@ checks/
   test_fidelity_energy.py excitation energy, ground fidelity and the spectral gap
   test_deconditioning.py paired relaxation and leakage on the five-site path
   test_relaxation.py    relaxation semigroup, successive moments and return instruments
+  test_odd_branches.py  signed extensions, natural domains and polar factors
   test_index.py         rotated shift and dimensions after input enlargement
   test_determination.py cyclic generation and readout on a finite path
   test_cyclic_ground_data.py pointed states, the cyclic representation and ground conditions

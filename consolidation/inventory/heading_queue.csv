@@ -77,7 +77,6 @@ TAUM,245,278,Introduction and scope > Primitive data and derived structures,3,eq
 TAUM,279,321,Introduction and scope > One closed excursion in three forms,5,eq:intro-curvature eq:intro-self-energy eq:intro-effective eq:intro-response,standard
 TAUM,322,350,Introduction and scope > Reference states and topology,1,eq:intro-reference-image,standard
 TAUM,351,370,Introduction and scope > Logical organization,0,,standard
-TAUM,374,439,Bipartite Krein geometry > Fundamental decomposition,8,eq:J eq:Krein-form eq:fundamental-decomposition eq:sector-projections,named
 TAUM,505,523,Bipartite Krein geometry > Equal-carrier realization,2,,standard
 TAUM,1188,1196,Reference-state geometry and excitation energy,0,sec:reference-state,standard
 TAUM,1350,1356,Polar geometry of the transition channel,0,sec:polar,standard
