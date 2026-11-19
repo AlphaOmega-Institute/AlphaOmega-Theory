@@ -66,6 +66,10 @@ def test_factorization_gap_bound_and_decomposition():
         assert_allclose(np.vdot(x, eta), 0, atol=1e-12)
         scale = _excitation(H, E0, eta)
         assert_allclose(energy, (1 - F) * scale, atol=1e-12)
+        # eta is what the Lueders test of the ray of x leaves on failure
+        failed = Q @ np.outer(psi, psi.conj()) @ Q
+        assert_allclose(failed / np.trace(failed), np.outer(eta, eta.conj()), atol=1e-12)
+        assert_allclose(np.trace(failed).real, 1 - F, atol=1e-12)
         assert gap - 1e-12 <= scale <= width + 1e-12
         assert energy >= gap * (1 - F) - 1e-12
         assert_allclose(1 - F, np.sin(_distance(x, psi))**2, atol=1e-12)
@@ -79,6 +83,18 @@ def test_factorization_gap_bound_and_decomposition():
         assert_allclose(_fidelity(x, orthogonal), 0, atol=1e-12)
         assert_allclose(_excitation(H, E0, orthogonal), _excitation(H, E0, Q @ orthogonal), atol=1e-12)
         assert_allclose(_excitation(H, E0, np.exp(0.7j) * x), 0, atol=1e-12)
+    # Another instrument with the same failure effect leaves another energy: levels 0, 1, 3 and
+    # psi = (e_0 + e_1) / sqrt 2.  The Lueders test leaves e_1; a test that prepares e_2 on failure
+    # has the same failure probability and leaves energy 3 instead of Z = 1.
+    H = np.diag([0.0, 1.0, 3.0])
+    x = np.array([1.0, 0.0, 0.0])
+    psi = np.array([1.0, 1.0, 0.0]) / np.sqrt(2)
+    Q = np.eye(3) - np.outer(x, x)
+    lueders = Q @ np.outer(psi, psi) @ Q
+    prepared = np.trace(Q @ np.outer(psi, psi)) * np.diag([0.0, 0.0, 1.0])
+    assert_allclose(np.trace(lueders), np.trace(prepared), atol=1e-14)
+    assert_allclose(np.trace(H @ lueders) / np.trace(lueders), 1.0, atol=1e-14)          # Z
+    assert_allclose(np.trace(H @ prepared) / np.trace(prepared), 3.0, atol=1e-14)
     # with a degenerate ground level the identity holds for either ground vector and no gap bound does
     H, levels, basis = _hamiltonian(rng, 5, degeneracy=2)
     x, other = basis[:, 0], basis[:, 1]
@@ -119,12 +135,17 @@ def test_a_state_of_finite_energy_outside_the_operator_domain():
 
 
 def test_fidelity_near_one_does_not_bound_an_unbounded_energy():
-    # levels 0 (ground) and k^2 for k = 1, 2, ...; the state sqrt(1 - 1/k) x + phi_k / sqrt k
+    # the number operator: ground e_0, and phi_k any unit vector in the spectral interval [k^2, k^2 + 3]
+    rng = np.random.default_rng(57)
     for k in (2, 10, 100, 1000):
-        fidelity = 1 - 1 / k
-        energy = (1 / k) * k**2
-        assert_allclose(energy, k)
-        assert_allclose(energy, (1 - fidelity) * k**2)                      # the scale Z is k^2
+        levels = np.arange(k**2, k**2 + 4)
+        amplitudes = _unit(rng, 4)
+        phi_energy = np.sum(levels * abs(amplitudes)**2)
+        assert k**2 <= phi_energy <= k**2 + 3
+        fidelity = 1 - 1 / k                                                # of sqrt(1 - 1/k) e_0 + phi_k / sqrt k
+        energy = phi_energy / k
+        assert energy >= k                                                  # at least k, with no prescribed mean
+        assert_allclose(energy, (1 - fidelity) * phi_energy)                # the scale Z is the energy of phi_k
         assert energy >= 1 * (1 - fidelity)                                 # the gap is one
     # with a gap, small energy forces a small distance from the ground ray
     rng = np.random.default_rng(52)
@@ -155,8 +176,9 @@ def test_path_examples():
     assert_allclose(_fidelity(x, r), 9 / 10)
     assert_allclose(_excitation(H2, 0, r), 1 / 10)
     rng = np.random.default_rng(53)
-    for _ in range(20):                                   # one excited direction: the scale is the gap for every state
+    for _ in range(20):                                   # one excited direction: the scale is the gap off the ground ray
         psi = _unit(rng, 2)
+        assert _fidelity(x, psi) < 1
         assert_allclose(_excitation(H2, 0, psi), 1 - _fidelity(x, psi), atol=1e-12)
     spectrum = np.linalg.eigvalsh(H5)
     assert_allclose(spectrum, 1 - np.cos(np.arange(5) * np.pi / 5), atol=1e-12)
@@ -191,7 +213,8 @@ def test_fidelity_is_transported_by_the_polar_map_and_energy_is_not():
             graph = lambda v: np.concatenate([v, np.exp(1j * phase) * V @ v]) / np.sqrt(2)
             assert_allclose(np.linalg.norm(graph(psi)), 1, atol=1e-12)
             assert_allclose(_distance(graph(psi), graph(chi)), distance, atol=1e-10)
-    # energies are transported only by an intertwining map: the unequal-cell path
+    # Mean excitation energies agree exactly when the pulled-back, ground-shifted forms agree.
+    # On the unequal-cell path they do not.
     copying = np.repeat(np.eye(2), [1, 4], axis=0) / 2
     V, _ = polar(copying)
     H2 = np.array([[0.5, -0.5], [-0.5, 0.5]])
@@ -202,6 +225,24 @@ def test_fidelity_is_transported_by_the_polar_map_and_energy_is_not():
     assert not np.allclose(H5 @ V, V @ H2)
     assert_allclose(x @ H2 @ x, 0, atol=1e-12)
     assert_allclose((V @ x) @ H5 @ (V @ x), 1 / 16, atol=1e-12)             # the image of the coarse ground has energy
+    assert not np.allclose(V.T @ H5 @ V, H2)                                # the two forms differ (both ground energies are zero)
+    # In the trap the input Hamiltonian is the compression and the ground energies agree: the means
+    # agree for every prepared state although the preparation does not intertwine at nonzero field.
+    E0, E2, Omega = -1.3, 0.4, 0.17
+    H_out = np.diag([E0, E2 - 2 * Omega, E2 + 2 * Omega]).astype(complex)   # basis G, F_plus, F_minus
+    A = np.column_stack([[1, 0, 0], np.array([0, 1, 1]) / np.sqrt(2)]).astype(complex)
+    H_in = A.conj().T @ H_out @ A
+    assert_allclose(H_in, np.diag([E0, E2]), atol=1e-14)
+    assert_allclose(np.linalg.eigvalsh(H_in)[0], np.linalg.eigvalsh(H_out)[0], atol=1e-14)
+    assert not np.allclose(H_out @ A, A @ H_in)
+    rng = np.random.default_rng(58)
+    for _ in range(50):
+        psi = _unit(rng, 2)
+        assert_allclose(_excitation(H_out, E0, A @ psi), _excitation(H_in, E0, psi), atol=1e-12)
+    # the same mean with different distributions of energy
+    excitation = np.array([0, 1], dtype=complex)
+    assert_allclose(H_in @ excitation, E2 * excitation, atol=1e-14)         # energy E_2 with certainty
+    assert_allclose(abs(A @ excitation)**2, [0, 0.5, 0.5], atol=1e-14)      # one half at each of E_2 -+ 2 Omega
 
 
 def test_recovery_of_the_ground_ray_along_a_sequence():
@@ -224,6 +265,11 @@ def test_recovery_of_the_ground_ray_along_a_sequence():
         assert _distance(y, state) < previous
         previous = _distance(y, state)
     assert previous < 5e-3
+    # if omega(X) = 0 the state is orthogonal to the ground and the ratio is not defined
+    centered_only = B - np.vdot(y, B @ y) * np.eye(n)
+    assert_allclose(np.vdot(y, centered_only @ y), 0, atol=1e-12)
+    assert np.linalg.norm(centered_only @ y) > 0.1
+    assert_allclose(_fidelity(y, centered_only @ y / np.linalg.norm(centered_only @ y)), 0, atol=1e-12)
     # a sequence whose ratio does not tend to zero stays away from the ground ray
     for scale in (1.0, 1e-3, 1e-6):
         X = scale * (np.eye(n) + B)

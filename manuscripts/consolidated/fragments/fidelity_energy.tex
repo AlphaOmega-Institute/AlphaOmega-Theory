@@ -26,47 +26,52 @@ Let $\psi$ be a unit vector in the form domain.
  \label{eq:fidelity-energy-factor}
 \end{equation}
 If $F_x(\psi)=1$, then $E_{\rm exc}(\psi)=0$.
-\item[(b)] Suppose that $E_{\rm exc}(\phi)\ge\Delta\,\|Q_x\phi\|^2$ for every $\phi$ in the form domain, with some $\Delta>0$. Then $Z(\psi)\ge\Delta$ and
+\item[(b)] Suppose that $E_{\rm exc}(\phi)\ge\Delta\,\|Q_x\phi\|^2$ for every $\phi$ in the form domain, with some $\Delta>0$. Then $Z(\psi)\ge\Delta$ when $F_x(\psi)<1$, and
 \begin{equation}
  E_{\rm exc}(\psi)\ge\Delta\,\bigl(1-F_x(\psi)\bigr)=\Delta\,\sin^2d_{\rm FS}([\psi],[x]).
  \label{eq:fidelity-energy-gap}
 \end{equation}
 In particular $E_{\rm exc}(\psi)=0$ only on the ray of $x$.
-\item[(c)] If $H$ is bounded with top of spectrum $E_{\max}$, then $Z(\psi)\le E_{\max}-E_0$ and $E_{\rm exc}(\psi)\le(E_{\max}-E_0)\bigl(1-F_x(\psi)\bigr)$.
+\item[(c)] If $H$ is bounded with top of spectrum $E_{\max}$, then $E_{\rm exc}(\psi)\le(E_{\max}-E_0)\bigl(1-F_x(\psi)\bigr)$, and $Z(\psi)\le E_{\max}-E_0$ when $F_x(\psi)<1$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-The vector $x$ lies in $\operatorname{Dom}H$ and $\|(H-E_0I)^{1/2}x\|^2=\langle x,(H-E_0I)x\rangle=0$. Hence $Q_x\psi=\psi-\langle x,\psi\rangle x$ is in the form domain and $(H-E_0I)^{1/2}Q_x\psi=(H-E_0I)^{1/2}\psi$. This is the first statement of (a), and $\|Q_x\psi\|^2=1-F_x(\psi)$ gives the rest. For (b) apply the hypothesis to $\psi$ and to $\eta_\psi$. For (c) use $0\le H-E_0I\le(E_{\max}-E_0)I$ on $\eta_\psi$.
+The vector $x$ lies in $\operatorname{Dom}H$ and $\|(H-E_0I)^{1/2}x\|^2=\langle x,(H-E_0I)x\rangle=0$. Hence $Q_x\psi=\psi-\langle x,\psi\rangle x$ is in the form domain and $(H-E_0I)^{1/2}Q_x\psi=(H-E_0I)^{1/2}\psi$. This is the first statement of (a), and $\|Q_x\psi\|^2=1-F_x(\psi)$ gives the rest. For (b) apply the hypothesis to $\psi$ and, when $F_x(\psi)<1$, to $\eta_\psi$. For (c) use $0\le H-E_0I\le(E_{\max}-E_0)I$ on $Q_x\psi$ and on $\eta_\psi$.
 \end{proof}
 
-The hypothesis of (b) says that the spectrum of $H$ on $x^\perp$ begins at least $\Delta$ above $E_0$. It makes the ground ray unique. The number $Z(\psi)$ is the mean excitation energy of $\eta_\psi$, the state that an ideal projective ground test leaves when $\psi$ fails it. It depends on the state, and it is constant only under further spectral structure, for instance when $H-E_0I$ is a multiple of the identity on $x^\perp$. For $0<F_x(\psi)<1$ there is a phase $\alpha$ with
+The hypothesis of (b) says that the spectrum of $H$ on $x^\perp$ begins at least $\Delta$ above $E_0$. It makes the ground ray unique. The number $Z(\psi)$ is defined only for $F_x(\psi)<1$. It has an operational meaning for one instrument. The L\"uders test of the chosen ray, with operations $\sigma\mapsto P_x\sigma P_x$ and $\sigma\mapsto Q_x\sigma Q_x$, leaves the state $Q_x\psi/\|Q_x\psi\|=\eta_\psi$ when $\psi$ fails, and $Z(\psi)$ is the mean excitation energy of that state. Another instrument with the same failure effect $Q_x$ can leave a different state with a different energy, as in Section~\ref{subsec:relaxation-return}. The number $Z(\psi)$ depends on the state, and it is constant only under further spectral structure, for instance when $H-E_0I$ is a multiple of the identity on $x^\perp$. For $0<F_x(\psi)<1$ there is a phase $\alpha$ with
 \begin{equation}
  \psi=e^{i\alpha}\sqrt{F_x(\psi)}\;x+\sqrt{1-F_x(\psi)}\;\eta_\psi .
  \label{eq:fidelity-energy-decomposition}
 \end{equation}
 At $F_x(\psi)=0$ the first term is absent and no phase is needed. At $F_x(\psi)=1$ the vector $\eta_\psi$ is not defined, and part (a) does not use it.
 
-Three cases show the range of $Z$. On the two-site path of Section~\ref{sec:ground-correspondence} the complement of the ground is one-dimensional, so $Z$ equals the gap $1$ for every state. The partner $(1,2)/\sqrt5$ has $E_{\rm exc}=1-F_x=1/10$. On the five-site path the gap is $1-\cos(\pi/5)\approx0.19$ and the top of the spectrum is $1+\cos(\pi/5)\approx1.81$. The site state $e_2$ of Section~\ref{sec:determination} has fidelity $1/5$ with the constant ground, excitation energy $1$ and $Z=5/4$. Third, the form domain is larger than the operator domain when $H$ is unbounded, and the proposition applies there. For the number operator $N$ of Section~\ref{sec:four-maps}, with ground $e_0$ and gap one, let $\psi$ have probabilities proportional to $(n+1)^{-5/2}$ on the vectors $e_n$. Its mean energy is finite and its second moment is infinite, so it lies in the form domain and outside $\operatorname{Dom}N$. In terms of the zeta function,
+Three cases show the range of $Z$. On the two-site path of Section~\ref{sec:ground-correspondence} the complement of the ground is one-dimensional, so $Z$ equals the gap $1$ for every state off the ground ray. The partner $(1,2)/\sqrt5$ has $E_{\rm exc}=1-F_x=1/10$. On the five-site path the gap is $1-\cos(\pi/5)\approx0.19$ and the top of the spectrum is $1+\cos(\pi/5)\approx1.81$. The site state $e_2$ of Section~\ref{sec:determination} has fidelity $1/5$ with the constant ground, excitation energy $1$ and $Z=5/4$. Third, the form domain is larger than the operator domain when $H$ is unbounded, and the proposition applies there. For the number operator $N$ of Section~\ref{sec:four-maps}, with ground $e_0$ and gap one, let $\psi$ have probabilities proportional to $(n+1)^{-5/2}$ on the vectors $e_n$. Its mean energy is finite and its second moment is infinite, so it lies in the form domain and outside $\operatorname{Dom}N$. In terms of the zeta function,
 \begin{equation}
  F_{e_0}(\psi)=\frac1{\zeta(5/2)}\approx0.745,\qquad
  E_{\rm exc}(\psi)=\frac{\zeta(3/2)}{\zeta(5/2)}-1\approx0.947,\qquad Z(\psi)\approx3.72 .
  \label{eq:fidelity-energy-oscillator}
 \end{equation}
 
-Without the bound of (c) a fidelity close to one does not control the energy. If $H$ is unbounded there are, for large $k$, unit vectors $\phi_k$ orthogonal to $x$ with $E_{\rm exc}(\phi_k)=k^2$. The states $\sqrt{1-1/k}\;x+\phi_k/\sqrt k$ have fidelity $1-1/k$ and excitation energy $k$. In the other direction a gap suffices: by Eq.~\eqref{eq:fidelity-energy-gap}, states whose excitation energy tends to zero converge to the ray of $x$ in the Fubini--Study distance.
+Without the bound of (c) a fidelity close to one does not control the energy. Suppose $H$ is unbounded above. For each $k\ge2$ choose a bounded interval above $E_0+k^2$ that meets the spectrum, and a unit vector $\phi_k$ in the range of its spectral projection. Then $\phi_k$ lies in $\operatorname{Dom}H$, is orthogonal to $x$, and has $E_{\rm exc}(\phi_k)\ge k^2$. The states $\sqrt{1-1/k}\;x+\phi_k/\sqrt k$ have fidelity $1-1/k$ and excitation energy at least $k$. In the other direction a gap suffices: by Eq.~\eqref{eq:fidelity-energy-gap}, states whose excitation energy tends to zero converge to the ray of $x$ in the Fubini--Study distance.
 
 Convergence to the ground ray can also be read from the components. A nonzero vector $cx+\eta$ with $\eta\perp x$ and $c\ne0$ has, after normalization,
 \begin{equation}
  F_x=\frac{|c|^2}{|c|^2+\|\eta\|^2}=\frac1{1+\|\eta\|^2/|c|^2}.
  \label{eq:fidelity-energy-ratio}
 \end{equation}
-A sequence of such vectors converges to the ray of $x$ exactly when $\|\eta_n\|/|c_n|\to0$. For determinations $X_n$ acting on the ground $y$ of Section~\ref{sec:determination}, $c_n=\omega(X_n)$ and $\eta_n=X_n^\circ y$. The states $X_ny/\|X_ny\|$ therefore return to the ground ray exactly when $\|X_n^\circ y\|/|\omega(X_n)|\to0$.
+A sequence of such vectors converges to the ray of $x$ exactly when $\|\eta_n\|/|c_n|\to0$. For determinations $X_n$ acting on the ground $y$ of Section~\ref{sec:determination}, $c_n=\omega(X_n)$ and $\eta_n=X_n^\circ y$. Let $X_ny\ne0$ for every $n$, so that the states $X_ny/\|X_ny\|$ are defined. They converge to the ground ray exactly when $\omega(X_n)\ne0$ from some $n$ on and $\|X_n^\circ y\|/|\omega(X_n)|\to0$.
 
-The proposition concerns one Hamiltonian and one ground. It applies to the input with $H_\Psi$ and $x$, and to the output with $H_\Phi$ and $y$, separately. The polar map relates the fidelities of the two sides and not their energies. Under the weak bridge, for a unit vector $\psi$ in $S$,
+The proposition concerns one Hamiltonian and one ground. It applies to the input with $H_\Psi$ and $x$, and to the output with $H_\Phi$ and $y$, separately. The polar map always relates the fidelities of the two sides. Under the weak bridge, for a unit vector $\psi$ in $S$,
 \begin{equation}
  F_y(V\psi)=F_r(\psi),\qquad r=u^*y,
  \label{eq:fidelity-energy-transport}
 \end{equation}
-with $r$ the partner of Eq.~\eqref{eq:actual-ground-partner}. Under strong compatibility this is $F_x(\psi)$. The graph maps $G_\varphi$ of Section~\ref{sec:neutral-graphs-phase} are isometries as well, so for unit vectors $\psi,\chi$ in $S$ the rays of $\psi$, $V\psi$ and $G_\varphi\psi$ have the same Fubini--Study distances from those of $\chi$, $V\chi$ and $G_\varphi\chi$. The energies of $\psi$ and $V\psi$ are not related in this way unless $V$ intertwines the two Hamiltonians, which R1--R5 do not require. On the unequal-cell path the coarse ground has energy zero and its image under $V$ has energy $1/16$ on the fine path.
+with $r$ the partner of Eq.~\eqref{eq:actual-ground-partner}. Under strong compatibility this is $F_x(\psi)$. The graph maps $G_\varphi$ of Section~\ref{sec:neutral-graphs-phase} are isometries as well, so for unit vectors $\psi,\chi$ in $S$ the rays of $\psi$, $V\psi$ and $G_\varphi\psi$ have the same Fubini--Study distances from those of $\chi$, $V\chi$ and $G_\varphi\chi$. The energies are a separate matter. When both are finite, the mean excitation energies of $\psi$ and $V\psi$ agree exactly when the two ground-shifted forms agree on that state after the output form is pulled back,
+\begin{equation}
+ \bigl\|(H_\Phi-E_0^\Phi I)^{1/2}V\psi\bigr\|^2=\bigl\|(H_\Psi-E_0^\Psi I)^{1/2}\psi\bigr\|^2 ,
+ \label{eq:fidelity-energy-forms}
+\end{equation}
+with $E_0^\Psi$ and $E_0^\Phi$ the two ground energies. R1--R5 do not require this. Intertwining together with equal ground energies implies it for every state, and the converse fails. Two examples show the difference. On the unequal-cell path the equality fails: the coarse ground has energy zero and its image under $V$ has energy $1/16$ on the fine path. In the trap of Section~\ref{sec:pair-currents} it holds for every prepared state, because the input Hamiltonian is the compression $A^*H_\Phi A$ and the two ground energies are equal. Yet at nonzero field $A$ does not intertwine the evolutions and the prepared excitation leaves the prepared plane. Equal means do not give equal distributions of energy either. The input excitation has energy $E_2$ with certainty, and its image $e_\lambda$ has the energies $E_2-2\hbar\Omega_{\rm B}$ and $E_2+2\hbar\Omega_{\rm B}$ with probability $1/2$ each.
 
 The proposition needs a self-adjoint operator bounded below and a ground vector, and nothing else. It can be applied to a supplied sector Hamiltonian, to the return $A^*A$, or to the effective operator $H_P-C^*(H_Q-z)^{-1}C$ of Eq.~\eqref{eq:prepared-schur} at a real $z$ in the resolvent set of $H_Q$, where it is self-adjoint. The hypotheses have to be checked in each case. For $A^*A$ the form domain is $\operatorname{Dom}A$ and the form is $\|A\psi\|^2$. If $x$ spans $\ker A$, then $E_0=0$ and $E_{\rm exc}(\psi)=\|A\psi\|^2$, the hypothesis of (b) is the lower bound of Section~\ref{sec:cohomology-index} that makes the range of $A$ closed, and the image $Ax$ is zero. A reference vector with nonzero image is in general not a ground of $A^*A$. Under strong compatibility it is an eigenvector of $A^*A$ with eigenvalue $a^2$, which need not be the bottom of the spectrum. No cyclicity is used.

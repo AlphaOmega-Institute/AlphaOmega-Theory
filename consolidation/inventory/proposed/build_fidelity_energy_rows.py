@@ -37,7 +37,7 @@ UPDATES = {
          "Part (a) holds for every unit vector of the form domain, which contains Dom H, with the case of fidelity one stated separately and without reference to a preparation."),
     ("TAUM", "def:conditional-excitation-scale", "Nonnegative conditional excitation scale for any eligible state"):
         ("definition|proved result", "eq:fidelity-energy-factor", "",
-         "The scale Z is defined as the excitation energy of the normalized orthogonal component and shown nonnegative. The text says that it depends on the state, when it is constant, and bounds it by the gap and by the width of a bounded spectrum."),
+         "For fidelity below one the scale Z is defined as the excitation energy of the normalized orthogonal component and shown nonnegative. The text gives it an operational meaning through the Lüders test of the chosen ray, says that it depends on the state and when it is constant, and bounds it by the gap and by the width of a bounded spectrum."),
     ("TAUM", "cor:fidelity-gap", "General inequality on the full quadratic-form domain"):
         ("proved result", "eq:fidelity-energy-form eq:fidelity-energy-gap", "",
          "The excitation energy is defined on the form domain by the square root, and part (b) proves the inequality for every unit vector there under the form gap. A state of the number operator with finite mean and infinite second moment shows that the form domain is strictly larger."),
@@ -49,7 +49,7 @@ UPDATES = {
          "Displayed for fidelity strictly between zero and one, with the two boundary cases: no phase at zero, no conditional vector at one."),
     ("LG", "prop:ground-fidelity-factorization", "Arbitrary normalized form-domain states on either side"):
         ("proved result", "prop:fidelity-energy eq:fidelity-energy-factor eq:fidelity-energy-transport", "",
-         "Part (a) is proved on the square-root form domain from the fact that the square root annihilates the ground. The text applies it to the input and to the output separately and says what the polar map does and does not transport."),
+         "Part (a) is proved on the square-root form domain from the fact that the square root annihilates the ground. The text applies it to the input and to the output separately. The polar map transports fidelities, and mean excitation energies agree exactly when the pulled-back, ground-shifted forms agree, which the unequal-cell path violates and the trap satisfies without intertwining."),
     ("LG", "cor:ground-gap-fidelity", "Arbitrary normalized finite-form-energy states on either side"):
         ("proved result", "eq:fidelity-energy-gap", "",
          "Part (b), with the gap stated as an inequality of forms on the form domain."),
@@ -59,7 +59,7 @@ UPDATES = {
          "The graph maps, the aligned one among them, are isometries, so the rays of two vectors, of their images and of their graph vectors have the same distances."),
     ("LG", "thm:projective-ground-recovery", "Recovery of fidelity and Fubini–Study convergence from the ratio of components"):
         ("proved result", "eq:fidelity-energy-ratio", "",
-         "The fidelity is displayed as a function of the ratio of the two components, convergence to the ground ray is equivalent to that ratio tending to zero, and the statement is specialized to determinations acting on the ground."),
+         "The fidelity is displayed as a function of the ratio of the two components. For determinations with nonzero image of the ground, convergence to the ground ray is equivalent to a nonzero mean from some index on together with the ratio tending to zero."),
     ("LG", "prop:no-state-below-ground", "Spectral and form lower bounds; unique ground ray when assumed"):
         ("proved result", "eq:fidelity-energy-form prop:fidelity-energy", "",
          "After the definition the text states that the excitation energy is nonnegative on the whole form domain, using only that the level is the bottom of the spectrum, and that uniqueness of the ground ray is a further assumption. Part (b) shows that a gap implies it."),

@@ -27,6 +27,35 @@ Nothing here changes `Universal_Model.tex` or the shared ledger.
 | LG `cor:BRLC-FS-isometry`, the graph maps | paragraph containing `eq:fidelity-energy-transport` |
 | TAUM "Relation to the transition channel" | last paragraph |
 
+## Revision after review of `1ebdd1f`
+
+The review kept the block as Section 4.4 and asked for one correction and three smaller
+changes. All are made.
+
+1. **Correction.** I wrote that the energies of a state and its image are not related
+   unless the polar isometry intertwines the Hamiltonians. That is false. The trap of
+   Section 13 is a counterexample: its input Hamiltonian is the compression and the
+   ground energies agree, so every prepared state has the same mean excitation energy
+   on both sides, while at nonzero field the preparation does not intertwine. The text
+   now states the general condition, agreement of the pulled-back, ground-shifted forms
+   on the state (`eq:fidelity-energy-forms`), and sets two examples side by side: the
+   unequal-cell path, where the mean changes, and the trap, where the mean is kept and
+   the distribution of energy is not. The comment in the check is corrected and the trap
+   is tested.
+2. **The scale Z.** It is defined only for fidelity below one, and every statement about
+   it now says so, including the one for the two-site path. Its operational meaning is
+   tied to the Lüders test of the chosen ray, with the remark that another instrument
+   with the same failure effect can leave a different energy.
+3. **Recovery.** The statement for determinations now requires a nonzero image of the
+   ground, so that the state is defined, and a nonzero mean from some index on, so that
+   the ratio is defined.
+4. **The unbounded example.** The vector is taken from a bounded spectral interval above
+   `E_0 + k²`. It has excitation energy at least `k²`, and the weighted state at least
+   `k`. No vector of exactly prescribed mean is needed.
+
+One further qualification is mine: intertwining implies the equality of the two shifted
+forms only together with equal ground energies.
+
 ## Change in the clause count
 
 I searched the whole ledger for clauses that name fidelity, the gap, the form domain or
@@ -72,17 +101,18 @@ Offered for review as additions.
    function.
 3. The sequence showing that a fidelity tending to one does not bound the energy of an
    unbounded Hamiltonian, set against the converse that a gap gives.
-4. The transport statement `eq:fidelity-energy-transport`, and the energy `1/16` of the
-   image of the coarse ground on the fine path.
+4. The transport statement `eq:fidelity-energy-transport`, the condition
+   `eq:fidelity-energy-forms` for equal mean energies, the energy `1/16` of the image of
+   the coarse ground on the fine path, and the trap as a case of equal means with
+   different distributions. The trap example is the reviewer's.
 5. The reading of the gap hypothesis for `A*A` as the closed-range bound.
 
 ## Sentences that interpret
 
-- "The number `Z(ψ)` is the mean excitation energy of `η_ψ`, the state that an ideal
-  projective ground test leaves when `ψ` fails it." TAUM calls `Z` the conditional
-  excitation scale. I named the instrument because Section 6 distinguishes an effect
-  from the instrument that realizes it.
-- "The polar map relates the fidelities of the two sides and not their energies."
+- The operational reading of `Z(ψ)` through the Lüders test of the chosen ray. TAUM calls
+  `Z` the conditional excitation scale and gives no instrument.
+- "The polar map always relates the fidelities of the two sides." and "The energies are
+  a separate matter."
 - "A reference vector with nonzero image is in general not a ground of `A*A`."
 
 ## Names
