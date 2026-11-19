@@ -21,6 +21,39 @@ three parts one after another with their markers and numbers the subsection 13.1
 place it is 5.3. `cyclic_ground_data_bibliography.tex` adds one entry, Kadison's 1957
 paper on the transitivity theorem.
 
+## Revision after review of `ebdcb24`
+
+The review accepted the proposition and its proof and asked for three corrections. All
+are made.
+
+1. **The purity test.** The check decided purity by the commutant on the whole space,
+   also when the vector generates only part of it. For the scalars on `ℂ²` and `ℂ³` the
+   unique state is pure and faithful, and the check called it mixed. So the two cases in
+   which the proposition is an equality were never tested. The check now decides purity
+   by the commutant of the GNS representation, through the existing `gns` helper, and
+   classifies all nine cases `M_k ⊗ I_m` correctly: pure exactly when `min(k, m) = 1`,
+   and pure and faithful exactly when `k = 1`. The text had the same gap in a weaker
+   form. It stated the criterion for a cyclic vector only. It now says that purity is
+   decided on the generated space and gives the scalars on `ℂ²` as the example.
+2. **What the image determines.** Part A said that everything in the section depends on
+   the abstract algebra and its representation only through the image. That is false
+   for the abstract state: the two coordinate evaluations of `ℂ²` have the same image
+   and give `(1, 0)` the values 1 and 0. The sentence now says that the image and the
+   vector determine the concrete state and the generated space, that the abstract state
+   also depends on the representation, and that the ground and the gap of Section 5.3
+   use a Hamiltonian.
+3. **Zero variance.** The condition is `Xy ∈ ℂy`, which includes `Xy = 0`, where there is
+   no normalized vector. The text, the check and the evidence of the variance row now
+   say so.
+
+The review also pointed out a consequence for LG's next open question. If cyclicity is
+required to be nonvacuous, in the sense that some other nonzero vector is not cyclic,
+the state of the ground cannot be pure, because in an irreducible representation every
+nonzero vector is cyclic. I added it to the last paragraph of part C with the site
+algebra as the example, and a check that every nonzero vector is cyclic for the full
+matrix algebra and that a site vector is not cyclic for the site algebra. The
+observation is the reviewer's.
+
 ## Source results a reader can now find
 
 | Source (LG) | Fragment |
@@ -35,7 +68,7 @@ paper on the transitivity theorem.
 | `prop:physical-centered-cyclic` | B, last two sentences |
 | `def:ground-datum`, the rank-one criterion | C, `eq:ground-spectral-projection` |
 | `rem:ground-properties-independent`, failure of the reverse deductions | C, `eq:ground-gap-condition` and examples (a) to (c) |
-| `def:pure-faithful-state` | C, the paragraph before the proposition |
+| `def:pure-faithful-state` | C, the paragraph before the proposition, including purity on the generated space |
 | `q:luminous-purity` | C, `prop:pure-faithful-scalars`, the examples and the last paragraph |
 
 ## Change in the clause count
@@ -94,13 +127,19 @@ Offered for review as additions.
    that is not faithful; the cell algebra gives a faithful state that is not pure and is
    not cyclic.
 3. An example where the abstract and concrete faithfulness differ: `M_2 ⊕ ℂ` on
-   `ℂ² ⊗ ℂ²` with the maximally entangled vector.
-4. The examples for the independence of uniqueness, cyclicity and a gap: two separate
+   `ℂ² ⊗ ℂ²` with the maximally entangled vector. An example where the abstract state
+   differs while the image is the same: the two coordinate evaluations of `ℂ²`.
+4. Purity is decided by the commutant of the algebra restricted to the generated space,
+   with the scalars on `ℂ²` as a state that is pure although the commutant on the whole
+   space is every matrix.
+5. The consequence of nonvacuous cyclicity: some other nonzero vector not cyclic implies
+   that the state of the ground is not pure. This is the reviewer's observation.
+6. The examples for the independence of uniqueness, cyclicity and a gap: two separate
    paths (cyclic and gapped, not unique) and the operator with eigenvalues `1/n` with the
    algebra of the unilateral shift (unique and cyclic, not gapped). LG states these
    failures without examples.
-5. The uniqueness of the GNS intertwiner, not only its existence.
-6. The invariance of the complement of the generated space and the location of the defect
+7. The uniqueness of the GNS intertwiner, not only its existence.
+8. The invariance of the complement of the generated space and the location of the defect
    of the unequal-cell path: it is the complement for the cell algebra and lies inside the
    generated space for an algebra with a cyclic ground.
 
@@ -111,6 +150,10 @@ Offered for review as additions.
 - "LG calls K⊥ the dark complement." The name is LG's.
 - "Neither the algebra nor the spectrum selects a ray."
 - "the examples show that the choice of algebra decides which one, if either."
+- "Suppose this is read as requiring some other nonzero vector that is not cyclic." The
+  reading of LG's phrase "not so large that cyclicity becomes vacuous" is a proposal.
+- "A realization that imposes it settles the purity question in the negative and leaves
+  faithfulness open."
 - The last two sentences, on the expression "pure luminosity". LG has a warning to the
   same effect.
 
@@ -127,7 +170,7 @@ in (c) has no letter, because `S` is the initial support. "Dark complement" is L
 - The three marker lines, each preceded by the comment `%%% PREVIEW MARKER`, are to be
   deleted, and the entry of `cyclic_ground_data_bibliography.tex` added to the
   bibliography.
-- Part A refers forward to the new subsection for the exception concerning faithfulness.
+- Part A refers forward to the new subsection for the ground and the gap.
 - The fragment uses no label from the fidelity or ground-plane blocks, so it can be
   integrated before or after them.
 - For a trial I inserted the three parts at the places named above in a copy of the

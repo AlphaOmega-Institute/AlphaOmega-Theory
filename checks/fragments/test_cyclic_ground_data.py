@@ -54,6 +54,13 @@ def commutant_dimension(basis_of_algebra):
     return null_space(np.vstack(rows)).shape[1]
 
 
+def state_is_pure(basis_of_algebra, y):
+    """The vector state is pure when the GNS representation, which is the restriction of the
+    algebra to the generated space, has only scalars in its commutant."""
+    _, left = gns(basis_of_algebra, y)
+    return commutant_dimension(left) == 1
+
+
 def is_separating(basis_of_algebra, y):
     """y is separating when X -> X y is injective on the algebra."""
     images = np.column_stack([X @ y for X in basis_of_algebra])
@@ -212,9 +219,12 @@ def test_variance_generated_space_and_its_complement():
         omega = lambda T: np.vdot(y, T @ y)
         variance = omega(dag(X) @ X) - abs(omega(X)) ** 2
         assert_allclose(variance, np.linalg.norm(Q @ X @ y) ** 2, atol=1e-10)
-    # zero variance exactly on the ray
-    X = projection(y) * 2.5 + Q @ random_complex(n, n) @ Q
-    assert_allclose(np.vdot(y, dag(X) @ X @ y) - abs(np.vdot(y, X @ y)) ** 2, 0, atol=1e-10)
+    # zero variance exactly when X y is a multiple of y, zero included
+    for factor in (2.5, 0.0):
+        X = factor * projection(y) + Q @ random_complex(n, n) @ Q
+        assert_allclose(X @ y, factor * y, atol=1e-10)
+        assert_allclose(np.vdot(y, dag(X) @ X @ y) - abs(np.vdot(y, X @ y)) ** 2, 0, atol=1e-10)
+    assert np.linalg.norm(Q @ X @ Q) > 0.1           # X itself is not zero
 
     # The unequal-cell path of Section 4: the cell algebra generates D = Ran A from the fine
     # ground, and the complement of the generated space is the defect ker A*.
@@ -298,11 +308,13 @@ def test_purity_and_faithfulness_on_the_five_site_path():
     assert_allclose(generated_space(sites, y), np.eye(5), atol=1e-12)
     assert is_separating(sites, y)
     assert commutant_dimension(sites) == 5
+    assert not state_is_pure(sites, y)
     X = np.diag(random_complex(5))
     assert_allclose(omega(X), np.mean(np.diag(X)), atol=1e-12)
     # full matrix algebra: pure, not faithful
     full = matrix_units(5)
     assert commutant_dimension(full) == 1
+    assert state_is_pure(full, y)
     assert not is_separating(full, y)
     v = unit(random_complex(5))
     v -= np.vdot(y, v) * y
@@ -315,7 +327,18 @@ def test_purity_and_faithfulness_on_the_five_site_path():
     assert is_separating(cells, y)
     c1, c2 = random_complex(2)
     assert_allclose(omega(c1 * cells[0] + c2 * cells[1]), c1 / 5 + 4 * c2 / 5, atol=1e-12)
+    assert not state_is_pure(cells, y)
+    # purity is decided on the generated space, not on the whole space
+    P_K = generated_space(cells, y)
+    K_basis = np.linalg.eigh(P_K)[1][:, -2:]
+    assert commutant_dimension([dag(K_basis) @ X @ K_basis for X in cells]) == 2
     assert commutant_dimension(cells) == 1 + 16
+
+    # Irreducible: every nonzero vector is cyclic. Reducible with y cyclic: some nonzero vector
+    # is not cyclic, and the state of y is not pure.
+    for _ in range(3):
+        assert rank(generated_space(full, random_complex(5))) == 5
+    assert rank(generated_space(sites, np.eye(5)[1])) == 1
 
 
 def test_pure_and_faithful_only_for_the_scalars():
@@ -326,15 +349,34 @@ def test_pure_and_faithful_only_for_the_scalars():
             y = unit(random_complex(k * m))
             cyclic = rank(generated_space(algebra, y)) == k * m
             separating = is_separating(algebra, y)
-            pure = commutant_dimension(algebra) == 1
+            pure = state_is_pure(algebra, y)
             assert cyclic == (m <= k)
             assert separating == (k <= m)
-            assert pure == (m == 1)
+            # the restriction to the generated space is M_k (x) I_r with r = min(k, m)
+            assert pure == (min(k, m) == 1)
+            # pure and faithful only for the scalars, cyclic or not
+            assert (pure and separating) == (k == 1)
             if cyclic and pure and separating:
                 assert k == m == 1
             # the GNS space of a faithful state has the dimension of the algebra
             coordinates, _ = gns(algebra, y)
             assert coordinates.shape[0] == (k * k if separating else rank(generated_space(algebra, y)))
+    # the scalars on C^2: pure and faithful, not cyclic, while the whole-space commutant is M_2
+    scalars = [np.eye(2, dtype=complex)]
+    y = unit(random_complex(2))
+    assert state_is_pure(scalars, y) and is_separating(scalars, y)
+    assert rank(generated_space(scalars, y)) == 1 and commutant_dimension(scalars) == 4
+    # Two coordinate evaluations of C^2 = diag(a, b) on C: both are unital *-homomorphisms
+    # with image the scalars, and with y = 1 they give diag(1, 0) the values 1 and 0.
+    evaluations = (lambda X: X[:1, :1], lambda X: X[1:, 1:])
+    one = np.ones(1)
+    for evaluation in evaluations:
+        a, b = np.diag(random_complex(2)), np.diag(random_complex(2))
+        assert_allclose(evaluation(a @ b), evaluation(a) @ evaluation(b), atol=1e-12)
+        assert_allclose(evaluation(dag(a)), dag(evaluation(a)), atol=1e-12)
+        assert_allclose(evaluation(np.eye(2)), np.eye(1), atol=1e-12)
+    values = [np.vdot(one, evaluation(np.diag([1.0, 0.0])) @ one) for evaluation in evaluations]
+    assert_allclose(values, [1, 0], atol=1e-12)
     # In an irreducible algebra of matrices, the projection onto a vector orthogonal to y
     # is a nonzero element that annihilates y: transitivity in finite dimensions.
     y = unit(random_complex(4))

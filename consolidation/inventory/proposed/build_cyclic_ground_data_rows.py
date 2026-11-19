@@ -35,7 +35,7 @@ UPDATES = {
     ("LG", "def:pointed-representation", "General abstract pointed quadruple"):
         ("definition", "eq:pointed-vector-state sec:determination",
          r"Call $(\mathfrak M,\pi,\mathcal H,y)$ a pointed representation.",
-         "An abstract unital C*-algebra with a nondegenerate representation and a unit vector is named, without a Hamiltonian or cyclicity. The closed image serves as the concrete algebra of the section."),
+         "An abstract unital C*-algebra with a nondegenerate representation and a unit vector is named, without a Hamiltonian or cyclicity. The closed image serves as the concrete algebra of the section. The image and the vector determine the concrete state and the generated space, while the state on the abstract algebra also depends on the representation, as two coordinate evaluations show."),
     ("LG", "def:vector-state", "Vector functional for any represented algebra"):
         ("definition", "eq:pointed-vector-state", "",
          "The vector state is defined on the abstract algebra and identified with the concrete functional composed with the representation."),
@@ -57,7 +57,7 @@ UPDATES = {
     ("LG", "def:pure-faithful-state", "Purity, irreducibility, abstract and concrete faithfulness"):
         ("definition|proved result", "subsec:ground-properties prop:pure-faithful-scalars",
          r"Its pullback to $\mathfrak M$ is faithful exactly when, in addition, $\pi$ is injective.",
-         "Purity as extremality and its equivalence with irreducibility of the GNS representation are stated, and in the cyclic case with triviality of the commutant. Faithfulness is defined, identified with the separating property on the concrete algebra, and distinguished for the abstract algebra by an example."),
+         "Purity as extremality and its equivalence with irreducibility of the GNS representation are stated. Purity is decided on the generated space, by the commutant of the restricted algebra, and in the cyclic case by the commutant of the algebra. Faithfulness is defined, identified with the separating property on the concrete algebra, and distinguished for the abstract algebra by an example."),
     ("LG", "def:physical-cyclic-subspace", "Closed orbit of any physical vector"):
         ("definition", "sec:determination",
          r"It depends only on the ray of $\psi$ when $\psi\ne0$, and it is $\{0\}$ when $\psi=0$.",
@@ -77,14 +77,14 @@ UPDATES = {
     ("LG", "q:luminous-purity", "Open status of purity and faithfulness of luminous vector state"):
         ("open question|proved result", "prop:pure-faithful-scalars subsec:ground-properties",
          r"It does not say whether the vector state of the luminous ground on the algebra of R2 is pure or faithful, and LG leaves both open.",
-         "The two questions are posed separately. The proposition shows that a state is pure and faithful only on the scalars, so at most one holds for a ground in a space of dimension at least two. Examples on the five-site path show either one, and the text distinguishes technical purity from the expression pure luminosity."),
+         "The two questions are posed separately. The proposition shows that a state is pure and faithful only on the scalars, so at most one holds for a ground in a space of dimension at least two. Examples on the five-site path show either one. If cyclicity is required to be nonvacuous, in that some other nonzero vector is not cyclic, the state of the ground is not pure. The text distinguishes technical purity from the expression pure luminosity."),
     ("LG", "choice:determination-algebra", "Cyclicity of the selected algebra"):
         ("hypothesis", "sec:determination",
          r"LG chooses a subalgebra $\mathfrak D$ of the algebra in R2 to represent the determinations and assumes, unless stated otherwise, that $y$ is cyclic for $\mathfrak D$.",
          "Stated as LG's default, with the remark that it is R2 for the full specified algebra and a further hypothesis for a smaller one."),
     ("LG", "prop:covariance-content-inner-product", "Variance equals squared norm of the projected component"):
         ("proved result", "eq:determination-variance", "",
-         "Displayed, with the statement that the variance vanishes exactly when the image of the ground lies on its ray."),
+         "Displayed, with the statement that the variance vanishes exactly when the image of the ground is a multiple of the ground, zero included, and that a zero image has no normalized vector."),
 }
 
 # (source, source_key, line, clause, planned_homes, draft_status, draft_labels, draft_quote, evidence)
