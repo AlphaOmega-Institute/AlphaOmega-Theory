@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-195 passed, 0 failed, 2 skipped in ...s
+196 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `197 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `198 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
@@ -75,6 +75,10 @@ growth for a continuous uniform spectral measure.
 | `test_normalizing_polar_image_can_hide_a_kernel_component` | For a projection, a ground with a kernel component maps onto the designated output ray with squared norm 1/2. Normalizing the image discards that loss. | UM `prop:ground-polar-compatibility` |
 | `test_path_ground_measurement_depends_on_cell_sizes` | Path Hamiltonians select constant grounds. Pullback across cells of sizes 1 and 4 gives ground-test probability 9/10 and excess energy 1/10. Equal cell sizes give probability 1 and zero excess energy. | UM `prop:ground-polar-compatibility`, `eq:ground-return-energy` |
 
+On the unequal cells, the same check compares the weighted and polar returns
+of the fine ground. It also checks the three appearances from §16, which
+give different support weights and the same conditional polar ray in §17.
+
 Seven checks for §§2–4 cover spectral measurements on the active and full output spaces,
 the graph projections and density operators, and the compression of the full polar
 operators to the ground plane. They compare the two graph weights with the ground
@@ -105,6 +109,11 @@ ground spaces, and return instruments on the unequal-cell path.
 [Relaxation checks](test_relaxation.py)
 
 ### Index and the common defect
+
+The ground-preserving preparation in §17 sends an excited input to a chosen
+output ray. A check compares two Kraus descriptions on all matrix units,
+verifies the total range for both descriptions, and checks that the ranges
+fill the output when the admitted targets span it.
 
 `test_index.py` checks the two input columns and three output coordinates that contain the entire change to LG's unilateral shift. Rotations of one microradian and π/2 each preserve the ground and the isometry, change the map by rank one, and leave zero common defect with the original shift. A second check extends a map with a one-dimensional kernel and a two-dimensional defect. It verifies how many kernel and defect dimensions remain when the new input columns cover one or both defect directions (UM `eq:index-shift-family`, `eq:index-extension-counts`).
 

@@ -4,8 +4,11 @@ from numpy.testing import assert_allclose
 from scipy.linalg import polar
 
 LABELS = {
-    "LG": ["thm:ground-channel-polar", "thm:strong-ground-equivalences"],
-    "UM": ["prop:ground-polar-compatibility", "eq:ground-return-energy"],
+    "LG": ["thm:ground-channel-polar", "thm:strong-ground-equivalences",
+           "prop:normalized-volition-inverse", "eq:raw-volition-vector-return"],
+    "UM": ["prop:ground-polar-compatibility", "eq:ground-return-energy",
+           "subsec:volition-returns", "subsec:volition-actualization",
+           "eq:weighted-volition", "eq:jug-physical-return"],
 }
 
 
@@ -78,3 +81,30 @@ def test_path_ground_measurement_depends_on_cell_sizes():
         assert_allclose(partner, np.sqrt(cell_sizes) / np.sqrt(sum(cell_sizes)))
         assert_allclose(abs(coarse_ground @ partner) ** 2, expected_probability)
         assert_allclose(partner @ coarse_hamiltonian @ partner, 1 - expected_probability, atol=1e-14)
+        if cell_sizes == (1, 4):
+            weighted = channel.T @ fine_ground
+            assert_allclose(weighted, np.array([1, 4]) / (2 * np.sqrt(5)))
+            assert_allclose(weighted @ weighted, 17 / 20)
+            assert_allclose(abs(coarse_ground @ weighted) ** 2 / (weighted @ weighted), 25 / 34)
+
+    # On the path with unequal cells, the two judgement operations of §16
+    # change the support weight even though their conditional returns agree.
+    copying_map = np.repeat(np.eye(2), [1, 4], axis=0) / 2
+    orientation, _ = polar(copying_map)
+    e1, e2, e3, e4, _ = np.eye(5)
+    f, h = (e1 - e2) / np.sqrt(2), (e3 - e4) / np.sqrt(2)
+    assert_allclose(orientation.T @ f, np.array([1, -0.5]) / np.sqrt(2), atol=1e-14)
+    assert_allclose(copying_map.T @ f, np.array([1, -1]) / (2 * np.sqrt(2)), atol=1e-14)
+    assert_allclose(orientation.T @ h, 0, atol=1e-14)
+    assert_allclose(copying_map.T @ h, 0, atol=1e-14)
+    cases = (
+        ((f + h) / np.sqrt(2), 5 / 16),
+        ((f + 2 * h) / np.sqrt(5), 1 / 8),
+        ((2 * f + h) / np.sqrt(5), 1 / 2),
+    )
+    for appearance, expected_weight in cases:
+        partner = orientation.T @ appearance
+        weighted = copying_map.T @ appearance
+        assert_allclose(partner @ partner, expected_weight)
+        assert_allclose(partner / np.linalg.norm(partner), np.array([2, -1]) / np.sqrt(5))
+        assert_allclose(weighted / np.linalg.norm(weighted), np.array([1, -1]) / np.sqrt(2))

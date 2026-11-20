@@ -1,13 +1,14 @@
-"""Finite blocks of the grounded shift family and finite input extensions."""
+"""Finite examples of the joint output space of maps and channels."""
 import numpy as np
 from numpy.testing import assert_allclose
-from scipy.linalg import expm
+from scipy.linalg import expm, orth
 
 from lib.linalg import rank
 
 LABELS = {
     "UM": ["eq:index-shift-family", "eq:index-shift-energy",
-           "eq:index-channel-coherence", "eq:index-extension-counts"],
+           "eq:index-channel-coherence", "eq:index-extension-counts",
+           "subsec:admissible-presentations", "eq:ground-compatible-preparation-channel"],
     "LG": ["eq:unilateral-shift-example", "eq:shift-index-minus-one"],
 }
 
@@ -130,3 +131,63 @@ def test_input_extension_counts_independent_new_output_directions():
         image_dimension = rank(extended)
         assert extended.shape[0] - image_dimension == 2 - projected_rank
         assert extended.shape[1] - image_dimension == 1 + len(columns) - projected_rank
+
+
+def test_ground_preserving_preparations_and_the_joint_output_space():
+    x, excited = np.eye(2)
+    y, first, second = np.eye(3)
+    ground_state = np.outer(y, y)
+    ground_map = np.outer(y, x)
+    targets = (y, first, second, (y + 1j * first) / np.sqrt(2))
+    reachable = []
+    coherent_maps = []
+    for target in targets:
+        excited_map = np.outer(target, excited)
+        prepared_state = np.outer(target, target.conj())
+        mixed_maps = (
+            (ground_map + excited_map) / np.sqrt(2),
+            (ground_map - excited_map) / np.sqrt(2),
+        )
+        assert_allclose(excited_map @ x, 0)
+        for op in mixed_maps:
+            assert_allclose(op @ x, y / np.sqrt(2))
+
+        # The two lists describe the same channel on all four matrix units.
+        # It records the input populations and discards either coherence.
+        for operators in ((ground_map, excited_map), mixed_maps):
+            assert_allclose(sum(k.conj().T @ k for k in operators), np.eye(2), atol=1e-14)
+            for left in (x, excited):
+                for right in (x, excited):
+                    matrix_unit = np.outer(left, right)
+                    output = sum(k @ matrix_unit @ k.conj().T for k in operators)
+                    expected = matrix_unit[0, 0] * ground_state + matrix_unit[1, 1] * prepared_state
+                    assert_allclose(output, expected, atol=1e-14)
+
+            # In finite dimensions the total Kraus range is the support of Φ(I).
+            columns = orth(np.column_stack(operators))
+            support = orth(ground_state + prepared_state)
+            assert_allclose(columns @ columns.conj().T, support @ support.conj().T, atol=1e-14)
+        reachable.extend(mixed_maps)
+
+        if np.vdot(y, target) == 0:
+            coherent = ground_map + excited_map
+            coherent_maps.append(coherent)
+            assert_allclose(coherent.conj().T @ coherent, np.eye(2))
+            assert len(y) - rank(coherent) == 1
+            # Both preparations agree on basis inputs. Only the isometry keeps
+            # the coherence of a superposition, detected in its output ray.
+            image = coherent @ ((x + excited) / np.sqrt(2))
+            measure_prepare_output = (ground_state + prepared_state) / 2
+            assert_allclose(np.vdot(image, image), 1)
+            assert_allclose(np.vdot(image, measure_prepare_output @ image), 0.5)
+    assert rank(np.column_stack(reachable)) == len(y)
+    assert rank(np.column_stack(coherent_maps)) == len(y)
+
+    # Full output support alone can also occur for a channel with just one
+    # accessible density matrix, the maximally mixed three-level state.
+    constant = [np.outer(out, inp) / np.sqrt(3) for out in np.eye(3) for inp in np.eye(2)]
+    for left in (x, excited):
+        for right in (x, excited):
+            unit = np.outer(left, right)
+            output = sum(k @ unit @ k.conj().T for k in constant)
+            assert_allclose(output, np.trace(unit) * np.eye(3) / 3, atol=1e-14)

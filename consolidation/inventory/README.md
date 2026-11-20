@@ -80,7 +80,7 @@ permanent identifiers.
 
 ## Migration into the consolidated manuscript
 
-[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction, §§1–16 and Appendix A of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
+[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction, §§1–17 and Appendix A of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
 
 Section 9 brought all 26 entries from TAUM’s passive-response section into the draft. Together with §1, it states 40 previously tracked clauses and five from the surrounding discussion. Splitting the Hilbert response in TAUM’s architecture theorem from its signed reduction brought the ledger to 219 explicit, 109 recoverable and 157 owed.
 
@@ -110,14 +110,16 @@ Section 14 makes sixteen owed LG clauses explicit. They cover the claim statuses
 
 Section 15 makes eighteen owed LG clauses explicit. It locates exact realization at the ground, distinguishes a later judgment or record, and states what canonical deconditioning can attain in finite time. It relates LG’s readings of continuity across moments and of the Third and Fourth Yogas to the conditions on the state, the channels and the active algebra. The ordinary attainability of exact ground orthogonality is recorded as an open question.
 
-Section 16 makes nine owed LG clauses explicit. It models how a disposition profile permits a sensory image and its conceptual identification, constructs a judgement through exclusion and superimposition, and tests its conditional state against specified content effects. The grasper and grasped are aspects of the same event. The three remaining clauses concern Volition and mental causation.
+Section 16 makes nine owed LG clauses explicit. It models how a disposition profile permits a sensory image and its conceptual identification, constructs a judgement through exclusion and superimposition, and tests its conditional state against specified content effects. The grasper and grasped are aspects of the same event.
+
+Section 17 makes the final three tracked LG clauses explicit as interpretations. It distinguishes the Hilbert adjoint from the polar return, interprets return through the final support as constrained actualization, and asks which physical preparations count as presentations. The manuscript’s conjecture about common phenomenal excess keeps its status as a conjecture.
 
 | Source | Explicit | Recoverable | Owed |
 | --- | ---: | ---: | ---: |
 | TAUM | 192 | 0 | 0 |
-| LG | 303 | 0 | 3 |
+| LG | 306 | 0 | 0 |
 | UM | 1 | 0 | 0 |
-| **All 499 clauses** | **496** | **0** | **3** |
+| **All 499 clauses** | **499** | **0** | **0** |
 
 The UM row records the conjecture introduced in the consolidated manuscript.
 
@@ -139,7 +141,7 @@ The ledger includes every formal entry in the source inventory. Supplements trac
 
 The [heading queue](heading_queue.csv) lists nonempty source heading bodies with no ledger row anchored in them. Each body runs up to the next heading. The screen skips empty or label-only bodies and the bibliography, with no minimum length. Read queued passages to decide whether to add a supplement or point to coverage elsewhere. Recheck partially tracked bodies when migrating the family. A single entry removes a heading from the queue even if nearby derivations or prose still need a home.
 
-The queue has 107 heading bodies. The new LG row is anchored in “Recognition without fabrication” at line 6463. TAUM’s domain summary for the Schur–Feshbach generators (lines 4421–4443) repeats the product-domain and bounded-coupling requirements proved in §8. Its ledger rows are anchored at the original propositions, so that summary remains in the generated queue. A new row covers TAUM’s “Fundamental decomposition”. Its unlabelled “Equal-carrier realization” (lines 505–523) is also covered in Appendix A by the Pauli formulas at `eq:balanced-channel-branches`. The row for those formulas is anchored later in TAUM, so this heading still appears in the queue. The fidelity row for “Relation to the transition channel” now covers that TAUM heading. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
+All 499 tracked clauses now have manuscript locators. The separate queue still has 107 source heading bodies without a ledger anchor in that body. For example, the LG headings “Raw ground return” and “Raw Volition and spectral reweighting” remain in the queue. Section 17 treats their domain and weighting distinctions under rows anchored at LG’s definitions and identifications. The new LG row is anchored in “Recognition without fabrication” at line 6463. TAUM’s domain summary for the Schur–Feshbach generators (lines 4421–4443) repeats the product-domain and bounded-coupling requirements proved in §8. Its ledger rows are anchored at the original propositions, so that summary remains in the generated queue. A new row covers TAUM’s “Fundamental decomposition”. Its unlabelled “Equal-carrier realization” (lines 505–523) is also covered in Appendix A by the Pauli formulas at `eq:balanced-channel-branches`. The row for those formulas is anchored later in TAUM, so this heading still appears in the queue. The fidelity row for “Relation to the transition channel” now covers that TAUM heading. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
 
 ### Worked entry for LG's canonical deconditioning theorem
 

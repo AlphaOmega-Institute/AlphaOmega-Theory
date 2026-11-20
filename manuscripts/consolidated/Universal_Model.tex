@@ -2957,6 +2957,57 @@ For example, one profile uses $(P_f,P_h)$ throughout. On $a$ its two aspect weig
 
 Does the positive aspect supply a subject who exists independently of the seeing? For a fixed frame the component $P_+\phi$ is obtained from the entire state, and its squared norm gives the probability of that outcome in the projective test of Section~\ref{subsec:duality-frame}. For the fixed first profile, every successful positive outcome prepares $[f]$, an ordinary appearance ray in $\mathcal H_\Phi$ that can also be prepared in its own right. Its recurrence follows from the one-dimensional range of the fixed projection $P_f$. It supplies no independent bearer of the other aspect or of the act of seeing. On the proposed reading, the seeing was manifest before either component was singled out.
 
+\section{What can an appearance return to the physical world?}
+\label{sec:volition-admissibility}
+
+The observer who saw the jug reaches for it. What contribution could the judgement make to the reach? For a given awareness map we can calculate which part of the judgement has a physical partner, which physical state the polar map assigns to it, and what information that assignment loses. To connect the calculation to a movement we would also need a physical operation and an observation of the hand. The distinction matters both for what we call Volition and for the conjecture about appearances beyond physical presentation.
+
+\subsection{Two senses of a return}
+\label{subsec:volition-returns}
+
+We use \emph{Volition} for the reverse orientation of the awareness map. At the level of the typed map we represent Volition by the Hilbert adjoint $A^*$. For $A=u|A|$, its action and its domain are
+\begin{equation}
+ A^*\phi=|A|u^*\phi,\qquad
+ \operatorname{Dom}A^*=\{\phi\in\mathcal H_\Phi:u^*\phi\in\operatorname{Dom}|A|\}.
+ \label{eq:weighted-volition}
+\end{equation}
+The bounded map $u^*$ gives the reverse direction of the polar pairing. It takes $D=\overline{\Ran A}$ isometrically onto $S=(\ker A)^\perp$ and annihilates $D^\perp$. The adjoint also applies the magnitude $|A|$ to the result. Consequently it can change the returned ray even when both returns are defined and nonzero. An unbounded $A^*$ cannot serve as an everywhere-defined operation on states. The reverse direction and its weighting are fixed once $A$ is given. We interpret these two forms of return as Volition.
+
+Even at the ground, which map one uses matters. The weak bridge $Ax=ay$, $a>0$, puts the phenomenal ground $y$ in $D$. The polar map of the restriction to the ground line returns $y$ to $x$. The full polar map returns $y$ to $u^*y=|A|x/a$ by Eq.~\eqref{eq:actual-ground-partner}. The weak bridge alone need not even put $y$ in $\operatorname{Dom}A^*$, as the example in Section~\ref{subsec:ground-plane} shows. Strong compatibility makes $u^*y=x$ and $A^*y=ax$ (Proposition~\ref{prop:ground-polar-compatibility}). On the unequal-cell path the restricted return, the full polar return and the normalized adjoint return pass the physical ground test with probabilities $1$, $9/10$ and $25/34$, respectively. In fact $u^*y=(1,2)/\sqrt5$ and $A^*y=(1,4)/(2\sqrt5)$. Thus even a certain return through the full polar map need not prepare the physical ground.
+
+\subsection{What could a judgement contribute to an action?}
+\label{subsec:volition-actualization}
+
+We interpret mental causation as the constrained passage from a phenomenal determination to its physical partner. For a unit appearance $\phi$ the polar return first retains $\Pi_D\phi$ and then sends it to $u^*\phi$. Its weight is $w_A(\phi)=\|\Pi_D\phi\|^2=\|u^*\phi\|^2$. Positive weight specifies a conditional physical ray $[u^*\phi]$. At zero weight the return supplies no ray. This assigns a possible physical outcome without introducing a second agent to choose it. To use $w_A$ as a frequency one must specify how the return is realized. For the operation $\rho\mapsto u^*\rho u$ in Section~\ref{subsec:relaxation-return}, $\Tr(\Pi_D\rho)$ is the probability of success. A different instrument can have the same success effect and prepare a different physical state.
+
+Use that operation on the judgement of Section~\ref{subsec:ordinary-judgement}, with the unequal-cell map as the physical correspondence. Write $\phi=\alpha f+\beta h$ for a unit vector on the two contrast lines. The entries of $h$ sum to zero on each cell, so $u^*h=0$. The two returns and the success probability are
+\begin{equation}
+ u^*\phi=\frac{\alpha}{\sqrt2}(1,-\tfrac12),\qquad
+ A^*\phi=\frac{\alpha}{2\sqrt2}(1,-1),\qquad
+ w_A(\phi)=\frac58|\alpha|^2 .
+ \label{eq:jug-physical-return}
+\end{equation}
+For the sensory appearance $a$, the return succeeds with probability $5/16$. After the selected judgement $SF$ its probability is $1/8$, and after the reversed order $FS$ it is $1/2$. The latter two probabilities are conditional on success of the respective word. Whenever the polar return succeeds, it leaves the same physical ray, that of $(2,-1)/\sqrt5$. An observer who records successes and failures can distinguish the three preparations statistically over repeated trials. An observer given only the successfully returned state obtains the same statistics in all three cases.
+
+In this realization the judgement changes how often a return occurs. A prediction about reaching for the jug would require identifying that return with an available physical operation and specifying which later measurement records the reach. A component in $D^\perp$ gives zero in this particular return. An intervening operation could mix it into $D$, and any claimed contribution to a later report would then depend on that operation as well.
+
+\subsection{Which physical presentations count?}
+\label{subsec:admissible-presentations}
+
+A direction lost in one return can have a partner under a different preparation. Equation~\eqref{eq:joint-presentation-space} puts all admitted ranges into one closed linear span $D_{\mathcal C}$. R3 puts $y$ in that span. If every determination in the algebra for which $y$ is cyclic can act after preparation and the resulting presentations are admitted, the span contains every $Xy$ and hence the whole appearance space (Proposition~\ref{prop:cyclic-common-excess}). Conversely, the shift of Eq.~\eqref{eq:index-shift-energy} gives an exact common defect under a specified restriction. An output line at an excitation energy absent from the input is missed by every energy-intertwining map. The original shift fills its orthogonal complement. A time-translation covariant channel can nevertheless populate the missing line by transferring energy. Which of these operations represents a physical presentation changes the answer.
+
+The distinction can be tested while keeping the ground fixed. Take a two-dimensional physical input with orthonormal basis $x,e$, the first vector its ground. For any unit appearance $t$ consider the channel
+\begin{equation}
+ \mathcal M_t(\rho)=\Tr(P_x\rho)P_y+\Tr(P_e\rho)P_t,\qquad
+ K_0=\ket y\!\bra x,\quad K_1=\ket t\!\bra e .
+ \label{eq:ground-compatible-preparation-channel}
+\end{equation}
+The two Kraus operators obey $\sum_jK_j^*K_j=I$. The channel carries the physical vacuum to $P_y$ and prepares $P_t$ from $P_e$. If such devices are physically available for every $t$ and their outputs count as presentations, every ray has a physical preparation. Even for $t\perp y$ this device acts differently from the coherent map $x\mapsto y$, $e\mapsto t$. On $(x+e)/\sqrt2$ the device gives an equal mixture, while the isometry gives the pure ray of $(y+t)/\sqrt2$. In a three-dimensional output each such isometry separately has a one-dimensional defect. Allowing all unit $t\perp y$ already makes their common defect zero.
+
+One need not decide which Kraus representation a device uses in order to ask what it can populate. For unit vectors $v$ in the input and $z$ in the output, its output weight on $z$ is $\sum_j|\langle z,K_jv\rangle|^2$. Vanishing for all $v$ is equivalent to $z$ being orthogonal to every Kraus range. Their closed span therefore depends only on the channel. This support answers a weaker question than exact preparation of a chosen ray. For instance a device that prepares $I/3$ on a three-dimensional space for every input has full support and produces just one mixed state.
+
+Conjecture~\ref{conj:asymmetric-nonduality} remains open. To establish it one would need independent grounds for treating a particular direction as a genuine possibility of appearance, and physical grounds for a family of presentations exhaustive enough that missing all of them has the claimed significance. The shift exhibits a common missing direction once coherent preparations are required to intertwine the specified dynamics. Whether an analogous restriction applies to the observer who first sees, then judges, and finally reaches for the jug is a physical question the correspondence leaves unresolved.
+
 \appendix
 
 \section{The two odd branches of a closed channel}
