@@ -12,11 +12,11 @@ LABELS = {
     "LG": ["def:phenomenally-complete-profile", "prop:word-order-sensitivity",
            "def:content-equivalent-states", "q:content-affect-algebra-choice",
            "choice:exhausted-profile-ground-triviality", "prop:exhausted-words-ground-preserve",
-           "thm:exhausted-profile-character"],
+           "thm:exhausted-profile-character", "eq:unconditioned-ground-two-conditions"],
     "UM": ["subsec:generator-families", "eq:family-generated-space", "eq:word-order",
            "eq:family-content-equivalence", "prop:ground-keeping-family", "eq:ground-character",
            "prop:cyclic-determination-content", "eq:path-readout-states", "eq:ground-line-kept",
-           "prop:pure-faithful-scalars"],
+           "prop:pure-faithful-scalars", "subsec:cognitive-ground-excess"],
 }
 
 RNG = np.random.default_rng(4944)
@@ -245,6 +245,16 @@ def test_a_family_that_keeps_the_ground():
         centered = X1 - omega(X1) * np.eye(5)
         assert_allclose(centered @ Y, 0, atol=1e-10)
     assert rank(generated(basis, Y)) == 1
+    # A separate evolution can fix the ground while the site family differentiates it,
+    # or move the ground while the H-generated family acts there by a character.
+    first_site = site(0)
+    centered_site_ground = first_site @ Y - omega(first_site) * Y
+    assert_allclose(np.linalg.norm(centered_site_ground)**2, 4/25, atol=1e-12)
+    for tau in (np.pi/3, np.pi, 2*np.pi):
+        assert_allclose(expm(-1j * tau * H) @ Y, Y, atol=1e-12)
+        pulsed = expm(-1j * tau * first_site) @ Y
+        survival = abs(np.vdot(Y, pulsed))**2
+        assert_allclose(survival, 1 - (16/25)*np.sin(tau/2)**2, atol=1e-12)
     # The vector state on this algebra is a character, hence pure, and not faithful:
     # the spectral projections of H at its other eigenvalues annihilate y.
     values, vectors = np.linalg.eigh(H)

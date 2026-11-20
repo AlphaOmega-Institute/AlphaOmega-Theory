@@ -80,7 +80,7 @@ permanent identifiers.
 
 ## Migration into the consolidated manuscript
 
-[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction, §§1–13 and Appendix A of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
+[The clause ledger](migration.csv) compares the TAUM and LG sources at `8e9fde9` with the introduction, §§1–14 and Appendix A of the consolidated TeX. It records where a reader can find a claim and what the manuscript still owes. The six annotations above concern a different question, the minimal hypotheses of selected proofs.
 
 Section 9 brought all 26 entries from TAUM’s passive-response section into the draft. Together with §1, it states 40 previously tracked clauses and five from the surrounding discussion. Splitting the Hilbert response in TAUM’s architecture theorem from its signed reduction brought the ledger to 219 explicit, 109 recoverable and 157 owed.
 
@@ -104,14 +104,16 @@ Section 5.5 makes four owed LG clauses explicit. It defines the sharp duality fr
 
 Appendix A and the accompanying passages in §§2, 3, 7, 10 and 12 make 16 recoverable and 21 owed clauses explicit. One new TAUM row tracks the fundamental decomposition and its sector projections. The two odd branches now have proofs on their full operator domains, and the polar factors have bounded extensions on the active carrier. The oscillator compares a single polar rotation with the mode-dependent rates of the weighted generator. This left the general signed Schur reduction for §8.
 
-The signed Schur reduction in §8 makes five recoverable and ten owed TAUM clauses explicit. It gives both adjoint signs, the full inverse on the common resolvent set and the positivity properties of the return. All 192 tracked TAUM clauses are explicit. The remaining 46 ledger clauses are from LG and are assigned to Part V, sometimes with another planned home. The heading queue below is a separate record of passages outside the formal entries.
+The signed Schur reduction in §8 makes five recoverable and ten owed TAUM clauses explicit. It gives both adjoint signs, the full inverse on the common resolvent set and the positivity properties of the return. All 192 tracked TAUM clauses are explicit. This left 46 owed LG clauses with a planned home in Part V. The heading queue below is a separate record of passages outside the formal entries.
+
+Section 14 makes fifteen owed LG clauses explicit. They cover the claim statuses, the names of the two sectors, the vacuum and luminosity, the relational ground and its companion, the reading of the active graph as a cognitive event, and the open status of a single map’s defect. One new row records the conjunction at `eq:unconditioned-ground-two-conditions` under the exhausted profile. LG supplies the two endpoint conditions and leaves the evolution of the family unspecified.
 
 | Source | Explicit | Recoverable | Owed |
 | --- | ---: | ---: | ---: |
 | TAUM | 192 | 0 | 0 |
-| LG | 259 | 0 | 46 |
+| LG | 275 | 0 | 31 |
 | UM | 1 | 0 | 0 |
-| **All 498 clauses** | **452** | **0** | **46** |
+| **All 499 clauses** | **468** | **0** | **31** |
 
 The UM row records the conjecture introduced in the consolidated manuscript.
 
@@ -133,7 +135,7 @@ The ledger includes every formal entry in the source inventory. Supplements trac
 
 The [heading queue](heading_queue.csv) lists nonempty source heading bodies with no ledger row anchored in them. Each body runs up to the next heading. The screen skips empty or label-only bodies and the bibliography, with no minimum length. Read queued passages to decide whether to add a supplement or point to coverage elsewhere. Recheck partially tracked bodies when migrating the family. A single entry removes a heading from the queue even if nearby derivations or prose still need a home.
 
-The queue has 108 heading bodies. TAUM’s domain summary for the Schur–Feshbach generators (lines 4421–4443) repeats the product-domain and bounded-coupling requirements proved in §8. Its ledger rows are anchored at the original propositions, so that summary remains in the generated queue. A new row covers TAUM’s “Fundamental decomposition”. Its unlabelled “Equal-carrier realization” (lines 505–523) is also covered in Appendix A by the Pauli formulas at `eq:balanced-channel-branches`. The row for those formulas is anchored later in TAUM, so this heading still appears in the queue. The fidelity row for “Relation to the transition channel” now covers that TAUM heading. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
+The queue has 107 heading bodies. The new LG row is anchored in “Recognition without fabrication” at line 6463. TAUM’s domain summary for the Schur–Feshbach generators (lines 4421–4443) repeats the product-domain and bounded-coupling requirements proved in §8. Its ledger rows are anchored at the original propositions, so that summary remains in the generated queue. A new row covers TAUM’s “Fundamental decomposition”. Its unlabelled “Equal-carrier realization” (lines 505–523) is also covered in Appendix A by the Pauli formulas at `eq:balanced-channel-branches`. The row for those formulas is anchored later in TAUM, so this heading still appears in the queue. The fidelity row for “Relation to the transition channel” now covers that TAUM heading. TAUM’s unlabelled closing table (lines 4025–4048) has been reviewed. The `sec:examples` ledger row locates its counterpart at `subsec:four-maps-table` in §12. That row is anchored at the opening of the source section, so the generated queue still lists the closing heading.
 
 ### Worked entry for LG's canonical deconditioning theorem
 
