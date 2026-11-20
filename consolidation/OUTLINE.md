@@ -155,7 +155,7 @@ algebras; dispositions and generator classes; the operator-stage model; derived 
 rig pa; reflexive terminality; non-alteration, deconditioning, momentariness, and the Third/Fourth Yoga account;
 Volition, actualization, and the proposed interpretation of excess/index.
 
-Working §14 (`sec:cognitive-ground`) opens Part V with the matter and appearance sectors, the two selections of luminosity and the restricted ground graph. It distinguishes the sector components of the relational ground from the probabilities of matched measurements, and the restricted line map from the full polar isometry. The unequal-cell path supplies the numerical comparison. Section 14.4 locates any common excess orthogonally to the luminous ground and records LG’s open readings of a single-map defect. The physical family and its exhaustiveness still need independent grounds. The ledger now has 31 owed LG clauses.
+Working §14 (`sec:cognitive-ground`) opens Part V with the matter and appearance sectors, the two selections of luminosity and the restricted ground graph. It distinguishes the sector components of the relational ground from the probabilities of matched measurements, and the restricted line map from the full polar isometry. The unequal-cell path supplies the numerical comparison. Section 14.4 locates any common excess orthogonally to the luminous ground and records LG’s open readings of a single-map defect. The physical family and its exhaustiveness still need independent grounds. Section 14.2 applies the phenomenal energy bound to the Fourth Yoga. The ledger now has 30 owed LG clauses.
 
 The arguments in working §6 have three planned homes. Preserve the labels and the links from the two-flash discussion during reorganization.
 

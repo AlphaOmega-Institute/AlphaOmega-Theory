@@ -106,14 +106,14 @@ Appendix A and the accompanying passages in §§2, 3, 7, 10 and 12 make 16 recov
 
 The signed Schur reduction in §8 makes five recoverable and ten owed TAUM clauses explicit. It gives both adjoint signs, the full inverse on the common resolvent set and the positivity properties of the return. All 192 tracked TAUM clauses are explicit. This left 46 owed LG clauses with a planned home in Part V. The heading queue below is a separate record of passages outside the formal entries.
 
-Section 14 makes fifteen owed LG clauses explicit. They cover the claim statuses, the names of the two sectors, the vacuum and luminosity, the relational ground and its companion, the reading of the active graph as a cognitive event, and the open status of a single map’s defect. One new row records the conjunction at `eq:unconditioned-ground-two-conditions` under the exhausted profile. LG supplies the two endpoint conditions and leaves the evolution of the family unspecified.
+Section 14 makes sixteen owed LG clauses explicit. They cover the claim statuses, the names of the two sectors, the vacuum and luminosity, the relational ground and its companion, the exclusion of a lower energy level for the Fourth Yoga, the reading of the active graph as a cognitive event, and the open status of a single map’s defect. One new row records the conjunction at `eq:unconditioned-ground-two-conditions` under the exhausted profile. LG supplies the two endpoint conditions and leaves the evolution of the family unspecified.
 
 | Source | Explicit | Recoverable | Owed |
 | --- | ---: | ---: | ---: |
 | TAUM | 192 | 0 | 0 |
-| LG | 275 | 0 | 31 |
+| LG | 276 | 0 | 30 |
 | UM | 1 | 0 | 0 |
-| **All 499 clauses** | **468** | **0** | **31** |
+| **All 499 clauses** | **469** | **0** | **30** |
 
 The UM row records the conjecture introduced in the consolidated manuscript.
 
