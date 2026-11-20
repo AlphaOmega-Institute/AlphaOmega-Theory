@@ -10,7 +10,7 @@ The [working manuscript](../manuscripts/consolidated/Universal_Model.tex) opens 
 
 - Both manuscript sources: Theory commit `8e9fde9`.
 - Initial statement inventory and six proof annotations: `58b8354`.
-- The [migration ledger](inventory/migration.csv) compares source clauses with the consolidated introduction, §§1–14 and Appendix A. It distinguishes a statement’s source kind from its role in the draft and records passage locators, evidence and outstanding clauses. The all-channel strengthening of R5 is attributed to the consolidated manuscript (`UM`). The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains the fields.
+- The [migration ledger](inventory/migration.csv) compares source clauses with the consolidated introduction, §§1–15 and Appendix A. It distinguishes a statement’s source kind from its role in the draft and records passage locators, evidence and outstanding clauses. The all-channel strengthening of R5 is attributed to the consolidated manuscript (`UM`). The [ledger guide](inventory/README.md#migration-into-the-consolidated-manuscript) explains the fields.
 - Supplements cover the pair and orbital equations used in §§1–3, 8 and 13. The [source reading queue](inventory/heading_queue.csv) identifies further passages without a direct ledger entry. Read the surrounding derivations when migrating a partially tracked section.
 - The inventory now includes all used, declared theorem-like environments: 106 TAUM entries and 175 LG entries,
   including LG's 17 model choices and 29 doctrinal identifications.
@@ -155,7 +155,9 @@ algebras; dispositions and generator classes; the operator-stage model; derived 
 rig pa; reflexive terminality; non-alteration, deconditioning, momentariness, and the Third/Fourth Yoga account;
 Volition, actualization, and the proposed interpretation of excess/index.
 
-Working §14 (`sec:cognitive-ground`) opens Part V with the matter and appearance sectors, the two selections of luminosity and the restricted ground graph. It distinguishes the sector components of the relational ground from the probabilities of matched measurements, and the restricted line map from the full polar isometry. The unequal-cell path supplies the numerical comparison. Section 14.4 locates any common excess orthogonally to the luminous ground and records LG’s open readings of a single-map defect. The physical family and its exhaustiveness still need independent grounds. Section 14.2 applies the phenomenal energy bound to the Fourth Yoga. The ledger now has 30 owed LG clauses.
+Working §14 (`sec:cognitive-ground`) opens Part V with the matter and appearance sectors, the two selections of luminosity and the restricted ground graph. It distinguishes the sector components of the relational ground from the probabilities of matched measurements, and the restricted line map from the full polar isometry. The unequal-cell path supplies the numerical comparison. Section 14.4 locates any common excess orthogonally to the luminous ground and records LG’s open readings of a single-map defect. The physical family and its exhaustiveness still need independent grounds. Section 14.2 applies the phenomenal energy bound to the Fourth Yoga.
+
+Working §15 takes up realization and practice. LG assigns distinct meanings to the intrinsic manifestness of a cognition, realization at the luminous ground, and a later judgment that realization occurred. The canonical deconditioning law explains why a state initially off the ground approaches it only in the limit. LG represents the Third and Fourth Yogas with the same density operator and assigns the Fourth an additional condition on the active algebra. Nine LG clauses on ordinary cognition and three on Volition and mental causation remain owed.
 
 The arguments in working §6 have three planned homes. Preserve the labels and the links from the two-flash discussion during reorganization.
 
@@ -170,7 +172,7 @@ when it belongs to a specifically chosen cognitive model: extracting every lemma
 reason for its assumptions. Operational, causal, and doctrinal identifications remain distinguishable, and none
 becomes an empirical result merely because its mathematical objects have been constructed.
 
-LG’s unanchored source passages also matter here. The recognition word at LG lines 5133–5162 is already present in §6. For the cognitive argument, carry the distinction among intrinsic manifestness, deconditioning, exact arrival at the ground, and subsequent ascertainment (LG 5954–5976). Section 14.4 brings the two conditions at LG 6451–6472 together. The evolution fixes the realized ground, and the exhausted algebra produces no differentiation there. Specifying the change of the active family over time would require additional dynamics.
+LG’s unanchored source passages also matter here. The recognition word at LG lines 5133–5162 is already present in §6. Section 15 takes up LG’s distinction among intrinsic manifestness, deconditioning, exact realization, and subsequent ascertainment (LG 5954–5976). Section 14.4 brings the two conditions at LG 6451–6472 together. The evolution fixes the realized ground, and the exhausted algebra produces no differentiation there. Specifying the change of the active family over time would require additional dynamics.
 
 #### Grasper–grasped frame and recollection (planned)
 

@@ -30,7 +30,8 @@ LABELS = {
            "prop:relaxation-moments", "eq:relaxation-product", "eq:relaxation-return",
            "eq:relaxation-paired-weight", "eq:relaxation-return-bound", "eq:relaxation-restricted-return",
            "eq:moment-deconditioning", "eq:moment-excess-decay", "prop:two-moment-deconditioning",
-           "eq:restricted-ground-orientation", "eq:actual-ground-partner"],
+           "eq:restricted-ground-orientation", "eq:actual-ground-partner",
+           "subsec:realization-practice"],
 }
 
 
@@ -157,6 +158,21 @@ def test_weight_outside_the_ground_decays_exactly():
         assert _deviation(relaxed, y) > 0
         # the reset to the ground is the value s = 0, which no finite time attains
         assert_allclose(_relax(sigma, y, 0.0), _projection(y), atol=1e-12)
+
+    # At full reset every input reaches the ground. Selecting the ground
+    # outcome of a projective test can produce the same state with a different probability.
+    y, excited = np.eye(2)
+    ground = _projection(y)
+    superposition = (y + 1j * np.sqrt(3) * excited) / 2
+    for phi, probability in ((y, 1.0), (superposition, 0.25), (excited, 0.0)):
+        state = _projection(phi)
+        assert_allclose(_relax(state, y, 0.0), ground, atol=1e-14)
+        selected = ground @ state @ ground
+        assert_allclose(np.trace(selected), probability, atol=1e-14)
+        if probability:
+            assert_allclose(selected / probability, ground, atol=1e-14)
+        else:
+            assert_allclose(selected, 0, atol=1e-14)
 
 
 def test_distance_to_the_ground_under_relaxation():
