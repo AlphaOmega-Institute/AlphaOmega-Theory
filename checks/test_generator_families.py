@@ -1,6 +1,4 @@
-"""Checks for the subsection on families of generators: the space a family generates,
-the order of two generators on the ground, equality of states on a chosen content
-algebra, and a family whose generators keep the ground line."""
+"""Generator families, word order and readout, including the worked example of judgement."""
 import numpy as np
 from numpy.testing import assert_allclose
 from scipy.linalg import expm
@@ -12,11 +10,13 @@ LABELS = {
     "LG": ["def:phenomenally-complete-profile", "prop:word-order-sensitivity",
            "def:content-equivalent-states", "q:content-affect-algebra-choice",
            "choice:exhausted-profile-ground-triviality", "prop:exhausted-words-ground-preserve",
-           "thm:exhausted-profile-character", "eq:unconditioned-ground-two-conditions"],
+           "thm:exhausted-profile-character", "eq:unconditioned-ground-two-conditions",
+           "choice:apoha-filter-superimposition", "choice:vasana-dependent-duality-frame"],
     "UM": ["subsec:generator-families", "eq:family-generated-space", "eq:word-order",
            "eq:family-content-equivalence", "prop:ground-keeping-family", "eq:ground-character",
            "prop:cyclic-determination-content", "eq:path-readout-states", "eq:ground-line-kept",
-           "prop:pure-faithful-scalars", "subsec:cognitive-ground-excess"],
+           "prop:pure-faithful-scalars", "subsec:cognitive-ground-excess",
+           "subsec:ordinary-judgement", "subsec:ordinary-frame"],
 }
 
 RNG = np.random.default_rng(4944)
@@ -274,3 +274,78 @@ def test_a_family_that_keeps_the_ground():
     for X in word_algebra_basis([G]):
         assert_allclose(X @ Y - np.vdot(Y, X @ Y) * Y, 0, atol=1e-12)
     assert rank(generated(star_algebra_basis([G]), Y)) == 2
+
+
+def test_jug_image_and_conditional_judgement():
+    e1, e2, e3, e4, _ = np.eye(5)
+    f = unit(e1 - e2)
+    h = unit(e3 - e4)
+    image = unit(f + h)
+    difference_mode = unit(f - h)
+    image_generator = np.outer(image, Y.conj())
+    assert_allclose(image_generator @ Y, image, atol=1e-12)
+    assert_allclose(np.vdot(Y, image), 0, atol=1e-12)
+
+    f_projector, h_projector = projection(f), projection(h)
+    feature_plane = f_projector + h_projector
+    selection = f_projector + h_projector / 2
+    swap = np.eye(5) - 2 * projection(difference_mode)
+    judgement = swap @ selection
+    assert_allclose(np.linalg.eigvalsh(selection), [0, 0, 0, 1/2, 1], atol=1e-12)
+    assert_allclose(swap @ f, h, atol=1e-12)
+    assert_allclose(swap @ h, f, atol=1e-12)
+    assert_allclose(dag(judgement) @ judgement, selection @ selection, atol=1e-12)
+
+    judged = judgement @ image
+    judged_ray = unit(judged)
+    assert_allclose(judged_ray, unit(f + 2 * h), atol=1e-12)
+    reversed_order = selection @ swap @ image
+    for output, f_weight in ((judged, 1/5), (reversed_order, 4/5)):
+        conditional_state = unit(output)
+        assert_allclose(np.vdot(output, output), 5/8, atol=1e-12)
+        assert_allclose(abs(np.vdot(f, conditional_state))**2, f_weight, atol=1e-12)
+        assert_allclose(feature_plane @ conditional_state, conditional_state, atol=1e-12)
+    assert_allclose(abs(np.vdot(f, image))**2, 1/2, atol=1e-12)
+    assert_allclose(feature_plane @ image, image, atol=1e-12)
+
+    # The filter erases a difference which an input measurement could resolve.
+    erased = unit(e1 + e2 - e3 - e4)
+    first_image = unit(image + erased)
+    second_image = unit(image - erased)
+    distinguishing_effect = projection(first_image)
+    assert_allclose(distinguishing_effect @ first_image, first_image, atol=1e-12)
+    assert_allclose(distinguishing_effect @ second_image, 0, atol=1e-12)
+    for state in (first_image, second_image, unit(Y + image)):
+        output = judgement @ state
+        assert_allclose(output, judged / np.sqrt(2), atol=1e-12)
+        assert_allclose(np.vdot(output, output), 5/16, atol=1e-12)
+
+    first_frame = (f_projector, h_projector)
+
+    def frame_for_ray(state):
+        projected = feature_plane @ state
+        if np.linalg.norm(projected) < 1e-12:
+            return first_frame
+        positive = projection(unit(projected))
+        return positive, feature_plane - positive
+
+    # The second profile selects a frame from the given ray.
+    second_frame = frame_for_ray(image)
+    assert_allclose(second_frame, (projection(image), projection(difference_mode)), atol=1e-12)
+    assert_allclose(frame_for_ray(1j * image), second_frame, atol=1e-12)
+    assert_allclose(frame_for_ray(Y), first_frame, atol=1e-12)
+    for frame, expected in ((first_frame, [1/2, 1/2]), (second_frame, [1, 0])):
+        assert_allclose(frame[0] + frame[1], feature_plane, atol=1e-12)
+        probabilities = [np.vdot(image, aspect @ image) for aspect in frame]
+        assert_allclose(probabilities, expected, atol=1e-12)
+        for aspect in frame:
+            assert_allclose(aspect @ Y, 0, atol=1e-12)
+    adapted_positive, adapted_negative = frame_for_ray(judged_ray)
+    assert_allclose(adapted_positive, projection(judged_ray), atol=1e-12)
+    assert_allclose(adapted_negative @ judged_ray, 0, atol=1e-12)
+    assert_allclose(np.vdot(judged_ray, second_frame[0] @ judged_ray), 9/10, atol=1e-12)
+    # On its defining input this variable frame reproduces the fixed plane test.
+    for state in (Y, image, judged_ray, unit(2 * f + h + 1j * Y)):
+        positive, negative = frame_for_ray(state)
+        assert_allclose(positive @ state, feature_plane @ state, atol=1e-12)
+        assert_allclose(negative @ state, 0, atol=1e-12)
