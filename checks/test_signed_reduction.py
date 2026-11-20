@@ -1,6 +1,7 @@
 """Signed Schur reduction with bounded coupling and self-adjoint diagonal blocks."""
 import numpy as np
 from numpy.testing import assert_allclose
+from scipy.integrate import quad
 from scipy.linalg import block_diag
 
 from lib.fock import dag
@@ -207,3 +208,24 @@ def test_krein_corner_sign_and_real_spectrum_witness():
         assert_allclose(np.vdot(port, retained_corner @ port), 1 / (1 - z), atol=1e-13)
         if z == 2 + 0.5j:
             assert_allclose(np.linalg.eigvalsh(imaginary_part(retained_corner)), [-6 / 5, 2])
+
+
+def test_resolvent_growth_near_complementary_spectral_mass():
+    # At the complementary level of the §9 witness, C sends a unit input
+    # to a vector of squared norm 2. The atom gives a pole of order one.
+    complement = np.array([[3.0]])
+    coupled_input = np.array([np.sqrt(2)])
+    # For the atomless comparison take H_Q f(s) = s f(s) and C1(s) = 1
+    # in L²([-1, 1], ds/2). Even with no eigenvector at 0, the norm grows.
+    for eta in (0.25, 0.125, 0.0625, 0.03125):
+        at_atom = resolvent(complement, 3 + 1j * eta) @ coupled_input
+        assert_allclose(eta * np.linalg.norm(at_atom), np.sqrt(2))
+
+        def squared_multiplier(s):
+            return 0.5 / (s * s + eta * eta)
+
+        squared_norm = quad(squared_multiplier, -1, 1)[0]
+        assert_allclose(eta * squared_norm, np.arctan(1 / eta), rtol=1e-12)
+        # The interval [-eta, eta] has mass eta. On it the squared
+        # resolvent multiplier is at least 1/(2 eta²).
+        assert squared_norm >= 1 / (2 * eta) > 1

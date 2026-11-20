@@ -22,10 +22,10 @@ python checks/run_all.py -k orbital         # only checks whose name contains "o
 The standard run should end with
 
 ```
-193 passed, 0 failed, 2 skipped in ...s
+194 passed, 0 failed, 2 skipped in ...s
 ```
 
-and the full run with `195 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
+and the full run with `196 passed, 0 failed, 0 skipped`. The exit status is nonzero if any
 check fails. The same files also run under `pytest checks` (set `CHECKS_FULL=1` for the
 slow checks).
 
@@ -57,12 +57,14 @@ the input sector and nilpotency on the direct sum.
 
 ### Signed Schur reduction
 
-Six checks cover the factorization, its four inverse blocks, and the imaginary
+Seven checks cover the factorization, its four inverse blocks, and the imaginary
 and below-threshold signs of the return. A diagonal unbounded example uses
 exact cutoff sums to test which triangular factor preserves the operator domain.
 In the balanced pair, reversing the lower coupling moves the real poles off
 the real axis. A three-level example checks how a scalar port can cancel a
 negative spectral weight while the full retained resolvent still detects it.
+The spectral-limit check compares the resolvent near an eigenvalue with its
+growth for a continuous uniform spectral measure.
 [Signed Schur checks](test_signed_reduction.py)
 
 ### Ground correspondence

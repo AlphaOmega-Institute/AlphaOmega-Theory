@@ -155,6 +155,8 @@ algebras; dispositions and generator classes; the operator-stage model; derived 
 rig pa; reflexive terminality; non-alteration, deconditioning, momentariness, and the Third/Fourth Yoga account;
 Volition, actualization, and the proposed interpretation of excess/index.
 
+The 46 remaining ledger clauses belong to LG. Five entries supply the opening discussion of LG’s claim statuses (`def:status-taxonomy`), the traditional sector names (`id:fundamental-sectors`), the vacuum as the matter-sector representative of emptiness (`id:vacuum-emptiness`), its cyclic generation of that sector (`id:matter-vacuum`), and the two descriptions of luminosity (`id:awareness-of-emptiness`). R1 and R2 select the rays independently. Under R3 the vacuum’s image and the intrinsically selected luminous ground give the same ray. LG leaves the status of the single-channel defect open at `oq:status-phenomenal-excess`. The stronger conjecture in §6 also requires an independently specified family of physical presentations.
+
 The arguments in working §6 have three planned homes. Preserve the labels and the links from the two-flash discussion during reorganization.
 
 | Planned home | Material now in §6 |
@@ -167,6 +169,8 @@ Refer internally to general theorems instead of repeating them in new notation. 
 when it belongs to a specifically chosen cognitive model: extracting every lemma into Part II would obscure the
 reason for its assumptions. Operational, causal, and doctrinal identifications remain distinguishable, and none
 becomes an empirical result merely because its mathematical objects have been constructed.
+
+LG’s unanchored source passages also matter here. The recognition word at LG lines 5133–5162 is already present in §6. For the cognitive argument, carry the distinction among intrinsic manifestness, deconditioning, exact arrival at the ground, and subsequent ascertainment (LG 5954–5976). LG 6451–6472 links the exhausted determination algebra to ground-fixing evolution. Sections 5 and 6 establish those two mathematical conditions separately.
 
 #### Grasper–grasped frame and recollection (planned)
 
@@ -183,6 +187,8 @@ Use the Monday–Tuesday example to pose the open question. Monday’s and Tuesd
 One synthesis and open-problem section, merging the existing summaries. Identify which observables, operations,
 interfaces, dynamics, symmetries, and couplings are supplied and which have been derived in each realization.
 Connect the long-term unification aim to actual missing restrictions rather than to the breadth of examples alone.
+
+The reading queue includes open research questions outside the formal ledger. TAUM asks how the curvature of a family of active subspaces relates to its Fredholm index bundle (lines 4214–4216), and which gluing maps assemble local channels, indices and response kernels (4236–4239). LG asks when the ground rays of a family of cognitive realizations form line bundles with a fiberwise ground orientation (`eq:ground-line-bundle-target`). Section 10 supplies geometry for a specified regular projection field. The choice and regularity of such a field across cognitive contexts remain to be established.
 
 The current gauge question belongs here as an investigation: can an independently justified redundancy or constraint
 select currently free structure while preserving the intended observable content? Keep distinct frame covariance,
