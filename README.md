@@ -76,3 +76,7 @@ The `PrimitiveSpectra/` directory, `PrimitiveSpectra.lean`, and the Lake/Lean co
 - [AlphaOmega-LQCD](https://github.com/AlphaOmega-Institute/AlphaOmega-LQCD): lattice engine and associated computations.
 - [magenta-gap](https://github.com/AlphaOmega-Institute/magenta-gap): color-model calculations and supporting material.
 
+
+## License
+
+Copyright © 2026 Alpha Omega Lattice Corporation, doing business as AlphaOmega Institute. Software, meaning the Python scripts and the Lean formalization with its build files, is licensed under the PolyForm Noncommercial License 1.0.0. Everything else, including the manuscripts, notes and data tables, is licensed under CC BY-NC 4.0. See [LICENSE.md](LICENSE.md) for details. Commercial use requires a separate license from Alpha Omega Lattice Corporation.
