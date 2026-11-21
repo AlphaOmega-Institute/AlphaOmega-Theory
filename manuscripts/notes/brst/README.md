@@ -7,7 +7,7 @@ separate from the consolidated manuscript and are not part of it.
 |---|---|
 | `brst_shift_note.tex` | *The shift example as a BRST model*. The charge of a preparation, its cohomology, evolution on the quotient, gauge-invariant operators, a spectral obstruction, and the shift example of manuscript Section 7. |
 | `brst_families_note.tex` | *Several presentations: redundancy and the reduced space*. The charge of a chain of maps and two treatments of redundancy among presentations. |
-| `test_brst_shift.py`, `test_brst_families.py` | Standalone checks of every finite-dimensional claim (22 and 12 checks). |
+| `test_brst_shift.py`, `test_brst_families.py` | Standalone checks of every finite-dimensional claim (23 and 12 checks). |
 
 Section and equation numbers refer to `manuscripts/consolidated/Universal_Model.tex` at
 commit `67acdd8`.
@@ -24,10 +24,10 @@ commit `67acdd8`.
     dynamics the two conditions are independent, and the spectral exclusion holds under either.
     In the shift, for presentations satisfying R3, both are equivalent to intertwining by
     every presentation, which is the manuscript's admissibility condition (Proposition 9).
-  - To exclude transfers by interventions, every admitted operation also acts on the
-    quotient: its Kraus operators map the range and the kernel of the charge into themselves.
-    The first premise does not imply this one. It protects exact events, and for
-    sector-preserving interventions the whole matched part.
+  - To exclude transfers by interventions, we choose a sufficient premise: every admitted
+    operation also acts on the quotient, so its Kraus operators map the range and the kernel
+    of the charge into themselves. The first premise does not imply this one. It protects
+    exact events, and for sector-preserving interventions the whole matched part.
 - Reading. The reduced space records what remains unpaired by the specified presentation.
   *Empty* is represented by exactness with respect to a named charge.
   The stronger reading, that it inventories real appearances, is noted and not adopted.
@@ -72,7 +72,7 @@ numbering is unchanged.
 
 1. Interventions. The evolution premise constrains free evolution only. In the shift the
    dynamics preserves the charge, and the covariant operator taking the exact ground event to
-   the missing line remains available. Excluding it needs a second premise: every admitted
+   the missing line remains available. Excluding it uses a second, sufficient premise: every admitted
    operation acts on the quotient. This premise is stated in Section 4 of the first note and
    recorded in its abstract, Section 1 and Section 5.
 2. Members and families. New Remark 8 of the first note: conservation of each member's charge
@@ -127,9 +127,33 @@ accepted.
    the role of the ground condition, the reverse example with R3, and each claim about the
    scope of the intervention premise.
 
+## Revisions after the fifth review
+
+Proposition 9, the revised Remark 8 and the claim about sector-preserving interventions
+were accepted.
+
+1. Chosen premise. The premise on interventions is called a chosen sufficient premise
+   throughout. The clause tying sector preservation to the superselection rule is removed:
+   the manuscript's Section 3 restricts what measurements distinguish and allows a sector
+   swap among controls. The sentence on even operators in Section 3 of the first note now
+   speaks of effects.
+2. Carrier implementations. The zero extension of a channel from inputs to appearances is one
+   implementation among several. The reflection R + P_N gives the same output on every bare
+   input and fixes every exact event. Whether a channel satisfies the premise depends on its
+   implementation.
+3. A test that can exclude implementations. For a trace-preserving operation that preserves
+   exact events, a Stinespring argument bounds the defect weight of a unit bare input by one
+   half. The bound is zero when the whole output lies in the appearance sector. The
+   sector-mixing example attains one half. Eq. (95) bounds the line weight from above. An
+   independent observation of a positive line weight, with the whole output in the
+   appearance sector, would exclude every implementation that preserves exact events.
+4. Presentations. Only a finite Kraus family, such as the one attaining Eq. (95), is said to
+   be treatable as presentations. The reset channel's joint row is not closable.
+5. Checks. A new check covers the two implementations, the bound on random operations, its
+   zero case and its attainment, and the reset channel.
+
 ## Points for review, most important first
 
-1. Proposition 9 of the first note and its proof.
-2. The Interventions paragraph of Section 4: the two cases of the second premise, and the
-   statement that channels from inputs to appearances enter as presentations.
-3. Remark 8: the reverse example with a shared lower ground.
+1. The defect bound of Section 4 (p at most one half, zero for an output in the appearance
+   sector) and its use with Eq. (95).
+2. The two carrier implementations, and the revised statement on presentations.

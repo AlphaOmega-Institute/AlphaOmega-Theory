@@ -615,6 +615,91 @@ def test_scope_of_the_intervention_premise():
     assert not preserves(X, R)
 
 
+def test_carrier_implementations_and_the_defect_bound():
+    """Section 4, Interventions. The reflection R + P_N gives the same output as the zero
+    extension of V on bare inputs and fixes exact events. A trace-preserving operation that
+    preserves exact events sends at most half of a bare input into the defect, and none when the
+    whole output lies in the appearance sector; the sector-mixing example attains one half. The
+    reset channel |g1><f_j| has a joint row that is not closable."""
+    A = shift()
+    n, m = A.shape
+    d = m + n
+    J = grading(m, n)
+    Q, PG = charge(A)
+    V, PS, PD, _ = polar_data(A)
+    Rpol = np.block([[np.zeros((m, m)), V.conj().T], [V, np.zeros((n, n))]])
+    PN = np.eye(d) - block(PS, PD)
+    G = orth(PG, rcond=TOL)
+    Gm = orth(J @ PG @ J, rcond=TOL)
+    Nn = orth(PN, rcond=TOL)
+    kerQ = null_space(Q, rcond=TOL)
+
+    def preserves(X, basis):
+        return np.allclose((np.eye(X.shape[0]) - basis @ basis.conj().T) @ X @ basis, 0, atol=1e-9)
+
+    # two carrier implementations of the same action on bare inputs
+    swap = Rpol + PN
+    zero_ext = np.zeros((d, d))
+    zero_ext[m:, :m] = V
+    assert np.allclose(swap.conj().T @ swap, np.eye(d))
+    for _ in range(3):
+        s = PS @ rc(m)
+        b = np.r_[s, np.zeros(n)]
+        assert np.allclose(swap @ b, zero_ext @ b)
+    assert np.allclose(swap @ G, G)                                          # fixes every exact event
+    assert preserves(swap, G) and preserves(swap, kerQ) and not np.allclose(swap @ Q, Q @ swap)
+    assert not preserves(zero_ext, G)
+    # the bound p <= 1/2 for random exact-preserving operations (Stinespring isometries)
+    e = 3
+    Eid = np.eye(e)
+    defect = block(np.zeros((m, m)), np.eye(n) - PD)
+    for _ in range(100):
+        cols = []
+        for space, k in ((np.kron(G, Eid), G.shape[1]),
+                         (np.kron(np.column_stack([G, Nn]), Eid), Nn.shape[1]),
+                         (np.eye(d * e), Gm.shape[1])):
+            for _ in range(k):
+                v = space @ rc(space.shape[1])
+                for c in cols:
+                    v = v - np.vdot(c, v) * c
+                cols.append(v / np.linalg.norm(v))
+        Ust = np.column_stack(cols) @ np.column_stack([G, Nn, Gm]).conj().T
+        assert np.allclose(Ust.conj().T @ Ust, np.eye(d), atol=1e-9)
+        kraus = [Ust.reshape(d, e, d)[:, j, :] for j in range(e)]
+        assert all(preserves(K, G) and preserves(K, kerQ) for K in kraus)
+        s = PS @ rc(m)
+        s /= np.linalg.norm(s)
+        b = np.r_[s, np.zeros(n)]
+        assert sum(np.linalg.norm(defect @ K @ b) ** 2 for K in kraus) <= 0.5 + 1e-9
+    # an output entirely in the appearance sector: ||(P_G (x) I) U b||^2 = (1 - p)/2, so p = 0
+    for _ in range(20):
+        h = rc(n, e)
+        h /= np.linalg.norm(h)
+        Ub = np.vstack([np.zeros((m, e)), h])
+        p = np.linalg.norm((np.eye(n) - PD) @ h) ** 2
+        assert np.isclose(np.linalg.norm(PG @ Ub) ** 2, (1 - p) / 2)
+    # the sector-mixing example attains p = 1/2 and leaves a quarter in the physical sector
+    f0 = np.r_[np.eye(m)[0], np.zeros(n)]
+    g1 = np.r_[np.zeros(m), np.eye(n)[1]]
+    g0 = np.r_[np.zeros(m), np.eye(n)[0]]
+    zm = (f0 - g1) / np.sqrt(2)
+    K1, K2 = np.outer(g0, zm.conj()), np.eye(d) - np.outer(zm, zm.conj())
+    assert np.isclose(sum(np.linalg.norm(defect @ K @ f0) ** 2 for K in (K1, K2)), 0.5)
+    physical = block(np.eye(m), np.zeros((n, n)))
+    assert np.isclose(sum(np.linalg.norm(physical @ K @ f0) ** 2 for K in (K1, K2)), 0.25)
+    # reset channel: Kraus operators |g1><f_j| sum to the identity; the joint row is not closable
+    M = 40
+    kraus = [np.outer(np.eye(M + 1)[1], np.eye(M)[j]) for j in range(M)]
+    assert np.allclose(sum(K.T @ K for K in kraus), np.eye(M))
+    row = np.hstack(kraus)
+    for k in (4, 16, 36):
+        psi = np.zeros(M * M)
+        for j in range(k):
+            psi[j * M + j] = 1 / k                                           # f_j / k in slot j
+        assert np.isclose(np.linalg.norm(psi), 1 / np.sqrt(k))               # tends to zero
+        assert np.allclose(row @ psi, np.eye(M + 1)[1])                      # image stays g1
+
+
 def test_ghost_number_is_half_the_polar_reflection():
     for A in (rc(5, 3), rc(5, 2) @ rc(2, 3), shift()):
         n, m = A.shape
