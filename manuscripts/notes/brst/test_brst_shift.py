@@ -435,9 +435,9 @@ def test_resonant_family_keeps_redundancies_until_quotiented():
     r = int((s > TOL).sum())
     Qr, _ = charge(B @ Vh[:r].conj().T)
     assert cohomology(Qr, grading(r, n))[1:] == (0, 0)
-    # the half-turn prepares the missing line exactly
+    # the quarter-turn prepares the missing line exactly
     assert np.allclose(rotated_shift(np.pi / 2) @ np.eye(m)[1], -np.eye(n)[0])
-    # direct return of g0: zero through the shift, one through the half-turn
+    # direct return of g0: zero through the shift, one through the quarter-turn
     g0 = np.eye(n)[0]
     for M, ret in ((A, 0.0), (rotated_shift(np.pi / 2), 1.0)):
         V, _, _, _ = polar_data(M)
@@ -492,19 +492,127 @@ def test_member_and_joint_conservation_are_independent():
     B = np.hstack(members)
     assert not conserved(B, H, H_out, 2)
     assert np.allclose(B.conj().T @ np.eye(4)[3], 0)                        # in the common defect
-    # (b)
-    H2 = np.diag([0.0, 1.0])
-    u0 = np.array([0.9, 0, np.sqrt(0.19), 0])
-    u1 = np.array([0, 0.3, 0, np.sqrt(0.91)])
-    U = np.column_stack([u0, u1])
-    B = np.array([[1.0, 0.5], [0.5, 1.0]]) @ U.conj().T                     # W|B| with W u_j = g_j
+    # (b) with a shared lower ground, so that R3 holds for both members
+    H3 = np.diag([0.0, 1.0, 2.0])
+    ug = np.zeros(6); ug[[0, 3]] = 1 / np.sqrt(2)
+    u0 = np.zeros(6); u0[1], u0[4] = 0.9, np.sqrt(0.19)
+    u1 = np.zeros(6); u1[2], u1[5] = 0.3, np.sqrt(0.91)
+    U = np.column_stack([ug, u0, u1])
+    absB = np.eye(3)
+    absB[1:, 1:] = [[1.0, 0.5], [0.5, 1.0]]
+    B = absB @ U.conj().T                                                   # W|B| with W u_g = h0, W u_j = h_{j+1}
     assert np.allclose(polar_data(B)[0], U.conj().T)
-    assert conserved(B, H2, H2, 2)
+    assert conserved(B, H3, H3, 2)
     for c in range(2):
-        Ac = B[:, 2 * c:2 * c + 2]
-        V, _, _, _ = polar_data(Ac)
-        assert not np.allclose(V, np.diag(np.diag(V)))
-        assert not conserved(Ac, H2, H2, 1)
+        Ac = B[:, 3 * c:3 * c + 3]
+        assert np.allclose(Ac[:, 0], np.eye(3)[0] / np.sqrt(2))             # R3: e0 -> h0 / sqrt2
+        assert not conserved(Ac, H3, H3, 1)
+    # both examples use three input energies, unlike the shift
+
+
+def test_shift_member_and_joint_conservation_coincide_under_R3():
+    """Proposition 9: in the shift, for presentations with A f0 in C g1, conservation of every
+    member's charge, conservation of the joint charge and intertwining by every member are
+    equivalent, at resonance and away from it. Without that condition a conserved charge does not
+    force intertwining."""
+    A = shift()
+    n, m = A.shape
+
+    def conserved(M, H_in, H_out, copies):
+        Q, _ = charge(M)
+        T = block(*([H_in] * copies), H_out)
+        return np.allclose(T @ Q, Q @ T, atol=1e-9)
+
+    def intertwines(M, H_in, H_out):
+        return np.allclose(H_out @ M, M @ H_in, atol=1e-9)
+
+    def intertwiner(eps):
+        W = np.zeros((n, m), complex)
+        W[1, 0] = np.exp(1j * RNG.normal())
+        targets = [0] + list(range(2, n)) if eps == 1.0 else list(range(2, n))
+        W[targets, 1:] = np.linalg.qr(rc(len(targets), m - 1))[0][:, :m - 1]
+        return W
+
+    def excited_positive():
+        Y = rc(m - 1, m - 1)
+        P = np.eye(m, dtype=complex)
+        P[1:, 1:] = Y @ Y.conj().T + 0.1 * np.eye(m - 1)
+        return P
+
+    for eps in (1.0, 2.5, 0.4):
+        H_psi, H_phi = hamiltonians(eps)
+        for _ in range(12):
+            members = []
+            for kind in RNG.integers(0, 3, size=3):
+                if kind == 0:
+                    members.append(intertwiner(eps) @ np.diag(RNG.uniform(0.5, 2, m)))
+                elif kind == 1:
+                    members.append(rotated_shift(RNG.uniform(0.2, 1.4)))
+                else:
+                    members.append(intertwiner(eps) @ excited_positive())
+            for M in members:
+                assert np.allclose(M[:, 0], M[1, 0] * np.eye(n)[1])        # A f0 in C g1
+            B = np.hstack(members)
+            a = all(conserved(M, H_psi, H_phi, 1) for M in members)
+            b = conserved(B, H_psi, H_phi, len(members))
+            c = all(intertwines(M, H_psi, H_phi) for M in members)
+            assert a == b == c
+    # the ground condition cannot be dropped
+    H_psi, H_phi = hamiltonians(2.5)
+    P = np.eye(m)
+    P[:2, :2] = [[2.0, 0.5], [0.5, 1.0]]
+    assert conserved(A @ P, H_psi, H_phi, 1) and not intertwines(A @ P, H_psi, H_phi)
+    assert not np.allclose((A @ P)[:, 0], (A @ P)[1, 0] * np.eye(n)[1])
+
+
+def test_scope_of_the_intervention_premise():
+    """Section 4, Interventions. The premise is sufficient, not necessary; for sector-preserving
+    Kraus operators it is commutation with the charge and protects the whole matched part; for
+    sector-mixing ones it protects exact events only; a channel from inputs to appearances,
+    extended by zero, fails it under R4."""
+    A = shift()
+    n, m = A.shape
+    J = grading(m, n)
+    Q, _ = charge(A)
+    R = orth(Q, rcond=TOL)
+    Kq = null_space(Q, rcond=TOL)
+
+    def preserves(X, basis):
+        return np.allclose((np.eye(X.shape[0]) - basis @ basis.conj().T) @ X @ basis, 0, atol=1e-9)
+
+    f0 = np.r_[np.eye(m)[0], np.zeros(n)]
+    g1 = np.r_[np.zeros(m), np.eye(n)[1]]
+    g0 = np.r_[np.zeros(m), np.eye(n)[0]]
+    zp, zm = (f0 + g1) / np.sqrt(2), (f0 - g1) / np.sqrt(2)
+    # J: does not act on the quotient, yet preserves the missing-line weight of every state
+    assert not preserves(J, R)
+    v = rc(m + n)
+    assert np.isclose(abs(np.vdot(g0, J @ v)), abs(np.vdot(g0, v)))
+    # sector-preserving operators: acting on the quotient <=> commuting; invariant ones keep S (+) D
+    matched = orth(np.column_stack([np.r_[np.eye(m)[:, j], np.zeros(n)] for j in range(m)] +
+                                   [np.r_[np.zeros(m), A[:, j]] for j in range(m)]), rcond=TOL)
+    for _ in range(3):
+        X_psi, X_phi = even_invariant(A, rc(m, m), rc(m, m), rc(n, n))
+        X = block(X_psi, X_phi)
+        assert preserves(X, R) and preserves(X, Kq) and np.allclose(X @ Q, Q @ X, atol=1e-9)
+        assert preserves(X, matched)
+        Y = block(X_psi + 0.3 * rc(m, m), X_phi)
+        assert not preserves(Y, R) and not np.allclose(Y @ Q, Q @ Y, atol=1e-6)
+    # sector-mixing Kraus operators: exact events protected, the bare input is not
+    K1 = np.outer(g0, zm.conj())
+    K2 = np.eye(m + n) - np.outer(zm, zm.conj())
+    assert np.allclose(K1.conj().T @ K1 + K2.conj().T @ K2, np.eye(m + n))
+    assert all(preserves(X, R) and preserves(X, Kq) for X in (K1, K2))
+    assert not np.allclose(K2 @ Q, Q @ K2)                                  # acts on the quotient without commuting
+    weight = lambda u: sum(abs(np.vdot(g0, X @ u)) ** 2 for X in (K1, K2))
+    assert np.isclose(weight(zp), 0) and np.allclose(K2 @ zp, zp)
+    assert np.isclose(weight(f0), 0.5)
+    # a channel from inputs to appearances, extended by zero, fails the premise under R4
+    L = np.zeros((n, m))
+    L[0, 1] = 1                                                             # f1 -> g0
+    X = np.zeros((m + n, m + n))
+    X[m:, :m] = L
+    assert not preserves(X, R)
 
 
 def test_ghost_number_is_half_the_polar_reflection():

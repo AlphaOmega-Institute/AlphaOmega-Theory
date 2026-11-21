@@ -7,7 +7,7 @@ separate from the consolidated manuscript and are not part of it.
 |---|---|
 | `brst_shift_note.tex` | *The shift example as a BRST model*. The charge of a preparation, its cohomology, evolution on the quotient, gauge-invariant operators, a spectral obstruction, and the shift example of manuscript Section 7. |
 | `brst_families_note.tex` | *Several presentations: redundancy and the reduced space*. The charge of a chain of maps and two treatments of redundancy among presentations. |
-| `test_brst_shift.py`, `test_brst_families.py` | Standalone checks of every finite-dimensional claim (20 and 12 checks). |
+| `test_brst_shift.py`, `test_brst_families.py` | Standalone checks of every finite-dimensional claim (22 and 12 checks). |
 
 Section and equation numbers refer to `manuscripts/consolidated/Universal_Model.tex` at
 commit `67acdd8`.
@@ -20,11 +20,14 @@ commit `67acdd8`.
   - For the results on dynamics and admissibility, the observer's evolution acts on the
     quotient defined by the preparation. For a sector-preserving unitary evolution this is
     equivalent to commuting with the charge, and hence to intertwining by the polar map. For a
-    family it can be imposed on each member's quotient or on the joint quotient. The two
-    conditions are independent, and the spectral exclusion holds under either.
+    family it can be imposed on each member's quotient or on the joint quotient. For general
+    dynamics the two conditions are independent, and the spectral exclusion holds under either.
+    In the shift, for presentations satisfying R3, both are equivalent to intertwining by
+    every presentation, which is the manuscript's admissibility condition (Proposition 9).
   - To exclude transfers by interventions, every admitted operation also acts on the
     quotient: its Kraus operators map the range and the kernel of the charge into themselves.
-    The first premise does not imply this one.
+    The first premise does not imply this one. It protects exact events, and for
+    sector-preserving interventions the whole matched part.
 - Reading. The reduced space records what remains unpaired by the specified presentation.
   *Empty* is represented by exactness with respect to a named charge.
   The stronger reading, that it inventories real appearances, is noted and not adopted.
@@ -77,8 +80,8 @@ numbering is unchanged.
    now states the exclusion under either condition. Only the joint condition makes the
    evolution act on the family's reduced space.
 3. Efficacy. The sentence calling the excess "less efficacious" is replaced. The excess has
-   zero direct return through this presentation (the half-turn returns the same direction
-   with probability one). Its efficacy in another operation is left open.
+   zero direct return through this presentation (the quarter-turn returns the same
+   direction with probability one). Its efficacy in another operation is left open.
 4. Exactness names a charge. On the unequal-cell path the relational ground is exact for the
    charge of the restricted ground map and has no class for the full charge.
 5. Kinds of zero. Section 5 of the second note distinguishes a bare redundant input, which is
@@ -92,12 +95,41 @@ numbering is unchanged.
    aligned pair, both independence examples, the Kraus-representation independence of the
    second premise, exactness for the restricted ground charge, and the direct returns.
 
+## Revisions after the fourth review
+
+Proposition 6 and Corollary 7 were kept, and the revisions on emptiness and efficacy were
+accepted.
+
+1. Shift equivalence. New Proposition 9 of the first note: in the shift, for presentations
+   with A f0 in C g1, conservation of every member's charge, conservation of the joint charge
+   and intertwining by every presentation are equivalent, at resonance and away from it. The
+   premise therefore recovers exactly the class of presentations the manuscript assumes. The
+   ground condition cannot be dropped, as an example shows. The abstract and Section 5 state
+   the result.
+2. Remark 8. The independence is stated for general dynamics. The reverse example now has a
+   shared lower ground, so that R3 holds for both members. Both examples use three input
+   energies, whereas the shift has two.
+3. Interventions, now a paragraph of their own.
+   - The second premise is sufficient for excluding transfer from an exact event, not
+     necessary: the sector sign J does not act on the quotient but preserves the
+     missing-line weight.
+   - For sector-preserving Kraus operators the premise is equivalent to commuting with the
+     charge, and it protects the whole matched part.
+   - For sector-mixing operators it protects exact events only. In an example, an operation
+     acts on the quotient, leaves the exact ground event fixed, and moves half the weight of
+     the bare input into the missing line.
+   - The channels of Eq. (95), extended by zero, fail the premise under R4, so they enter as
+     presentations.
+   - Using Eq. (95) as a test requires saying how the preparation and intervention realize
+     the graph event being tested.
+4. Wording. The README and test comments call the rotation through pi/2 a quarter-turn.
+5. Checks. New checks cover Proposition 9 on random families at three excitation energies,
+   the role of the ground condition, the reverse example with R3, and each claim about the
+   scope of the intervention premise.
+
 ## Points for review, most important first
 
-1. Section 4 of the first note: the second premise, on interventions, and its wording in
-   terms of Kraus operators.
-2. Remark 8 of the first note: the two independence examples and the member-wise form of the
-   exclusion in Corollary 7.
-3. Section 5 of the first note: exactness relative to a named charge, and the replacement
-   sentence on efficacy.
-4. Commitment (iii) of the first note and Section 5 of the second: the two kinds of zero.
+1. Proposition 9 of the first note and its proof.
+2. The Interventions paragraph of Section 4: the two cases of the second premise, and the
+   statement that channels from inputs to appearances enter as presentations.
+3. Remark 8: the reverse example with a shared lower ground.

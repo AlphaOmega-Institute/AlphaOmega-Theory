@@ -368,8 +368,8 @@ def test_shift_families_at_resonance():
     A = shift(N)
     n, m = A.shape
     H_psi, H_phi = hamiltonians(1.0, N)
-    half_turn = rotated_shift(np.pi / 2, N)
-    assert np.allclose(half_turn @ np.eye(m)[1], -np.eye(n)[0])           # f1 -> -g0
+    quarter_turn = rotated_shift(np.pi / 2, N)
+    assert np.allclose(quarter_turn @ np.eye(m)[1], -np.eye(n)[0])           # f1 -> -g0
     for alpha in (0.7, np.pi / 2):
         B = np.hstack([A, rotated_shift(alpha, N)])
         assert np.allclose(H_phi @ B, B @ np.kron(np.eye(2), H_psi))       # both intertwine at eps = 1
