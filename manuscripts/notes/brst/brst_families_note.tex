@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\HP}{\mathcal H_\Psi}
+\newcommand{\HF}{\mathcal H_\Phi}
+\newcommand{\Ran}{\operatorname{Ran}}
+\title{Several presentations: redundancy and the reduced space}
+\author{Working note, sequel to ``The shift example as a BRST model''}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+A family of preparations can present the same appearance in more than one way. The charge of the joint map keeps these redundant presentations in its reduced space, and when an excess is also present that space is indefinite. We extend the charge from one map to any chain of maps. Its cohomology is that of the chain, with Krein sign alternating by degree. Two treatments of redundancy follow. If every redundant presentation is gauge, the reduced space is exactly the common excess and is definite. If only redundancy explained by shared appearances is gauge, a new class can survive from three presentations on. It measures the failure of inclusion--exclusion for the presented subspaces and has the opposite sign to the excess. The common excess, the object of the conjecture, is the same in both treatments.
+\end{abstract}
+
+\section{The problem}
+
+Let $A_c:\HP\to\HF$, $c=1,\dots,k$, be preparations and $B=(A_c)_c:\bigoplus_c\HP\to\HF$ their joint map, $B(\psi_c)_c=\sum_cA_c\psi_c$. The common defect of the family is $\ker B^*=\bigcap_c\ker A_c^*$, the manuscript's $D_{\mathcal C}^\perp$. The charge of the previous note, applied to $B$, has reduced space $\ker B\oplus\ker B^*$, with positive Krein norm on $\ker B$ and negative norm on the excess. Elements of $\ker B$ are \emph{redundant presentations}: combinations of inputs whose presentations cancel. Whenever presentations overlap and an excess remains, the reduced space is indefinite. Restricting $B$ to $(\ker B)^\perp$ removes the redundancy by hand. Here we treat it systematically, in the way reducible gauge symmetries are treated by adding ghosts for ghosts.
+
+All finite-dimensional claims are checked in \texttt{test\_brst\_families.py}. As in the previous note, the Krein form is used as the inner product of the reduced theory. That is the one assumption that departs from the manuscript.
+
+\section{The charge of a chain}
+
+Let $C_p\xrightarrow{d_p}C_{p+1}\to\cdots\xrightarrow{d_{q-1}}C_q$ be a finite chain of Hilbert spaces and bounded maps with $d_{j+1}d_j=0$ and closed ranges (automatic in finite dimensions). Give $C_j$ the Krein sign $(-1)^j$. On $\mathcal C=\bigoplus_jC_j$ this is the fundamental symmetry $J$. Let $V_j$ be the polar part of $d_j$, with initial space $(\ker d_j)^\perp$ and final space $\Ran d_j$, and let $G_j=\{s\oplus V_js\}$ be its graph in $C_j\oplus C_{j+1}$. Put
+\[
+ Q=\sum_jP_{G_j}J,\qquad N=\tfrac12\sum_j\mathcal R_j,\qquad
+ \mathcal R_j=\begin{pmatrix}0&V_j^*\\ V_j&0\end{pmatrix}\ \text{on }C_j\oplus C_{j+1}.
+\]
+
+\begin{theorem}\label{thm:chain}
+$Q^2=0$, $Q^\sharp=Q$, $[N,Q]=Q$ and $N^\sharp=-N$. The reduced space $\ker Q/\Ran Q$ is isomorphic to $\bigoplus_j\mathsf H_j$, where $\mathsf H_j=\ker d_j\ominus\Ran d_{j-1}$ is the cohomology of the chain in degree $j$. The induced Krein form is $(-1)^j$ times the Hilbert form on $\mathsf H_j$.
+\end{theorem}
+
+\begin{proof}
+Since $d_jd_{j-1}=0$, each $C_j$ splits orthogonally as $\Ran d_{j-1}\oplus\mathsf H_j\oplus(\ker d_j)^\perp$. The block $E_j=(\ker d_j)^\perp\oplus\Ran d_j\subseteq C_j\oplus C_{j+1}$ contains $G_j$. Different blocks are orthogonal: $E_j$ and $E_{j+1}$ meet $C_{j+1}$ in $\Ran d_j$ and $(\ker d_{j+1})^\perp$, which are orthogonal because $\Ran d_j\subseteq\ker d_{j+1}$. All blocks are orthogonal to $\bigoplus_j\mathsf H_j$, and each block is $J$-invariant, with opposite signs on its two summands. On $E_j$, $Q$ is the charge of the previous note for the unitary $V_j:(\ker d_j)^\perp\to\Ran d_j$, possibly with $J$ replaced by $-J$, which changes neither nilpotence nor Krein self-adjointness. Its cohomology there is zero, because $V_j$ has neither kernel nor defect within $E_j$. On $\bigoplus_j\mathsf H_j$, $Q=0$. Cross terms between blocks vanish, so $Q^2=0$ and $Q^\sharp=Q$, and the reduced space is $\bigoplus_j\mathsf H_j$ with the stated form. For the grading, on $E_j$ we have $\mathcal R_jP_{G_j}=P_{G_j}$ and $J\mathcal R_j=-\mathcal R_jJ$, so $[\mathcal R_j,P_{G_j}J]=2P_{G_j}J$ whatever the sign of $J$ on $E_j$. Blocks do not interact, so $[N,Q]=Q$, and $\mathcal R_j^\sharp=-\mathcal R_j$.
+\end{proof}
+
+The two-term chain $\HP\xrightarrow{A}\HF$ in degrees $0,1$ gives back the single charge, with reduced space $\ker A\oplus\ker A^*$.
+
+\begin{remark}[Dynamics]
+Give each $C_j$ a self-adjoint $H_j$ and suppose every map intertwines, $H_{j+1}d_j=d_jH_j$. Taking adjoints gives $H_jd_j^*=d_j^*H_{j+1}$, so $d_j^*d_j$ commutes with $H_j$. Hence $|d_j|$ commutes with $H_j$, the polar part intertwines, and $(\ker d_j)^\perp$ and $\Ran d_j$ reduce $H_j$ and $H_{j+1}$. By the criterion of the previous note, applied block by block, $Q$ commutes with $\bigoplus_jH_j$. A chain of intertwining maps has an invariant charge.
+\end{remark}
+
+\section{Treating every redundancy as gauge}
+
+Adjoin the space of redundancies in degree $-1$:
+\[
+ \ker B\xrightarrow{\ \iota\ }\bigoplus_c\HP\xrightarrow{\ B\ }\HF,
+ \qquad\text{degrees }-1,0,1,
+\]
+with $\iota$ the inclusion. The chain is exact at $\ker B$ and at $\bigoplus_c\HP$, and its top cohomology is $\ker B^*$.
+
+\begin{corollary}\label{cor:resolved}
+The reduced space of this chain is the common excess $\bigcap_c\ker A_c^*$, with negative Krein norm. It is definite. If the joint map intertwines given dynamics, $\ker B$ is invariant, the inclusion intertwines the restricted dynamics, and the charge is invariant.
+\end{corollary}
+
+Each redundant presentation is paired with an element of degree $-1$, a ghost for a ghost in the language of Batalin--Vilkovisky quantization. In the shift of the previous note, a family made of the shift $A$ and a second intertwiner has a nonzero redundancy space. The resolved reduced space is exactly the missing line, and the dynamics remains invariant. For excitation energies other than one, the spectral obstruction of the previous note still forces the missing line into the common defect.
+
+\section{Treating only shared appearances as gauge}
+
+A narrower choice counts as gauge only the redundancy that is explained by an appearance shared between presentations. Work with the presented subspaces $D_c=\overline{\Ran A_c}$, each identified with the active inputs of $A_c$ through its polar part. For three presentations the chain is
+\[
+ D_1\cap D_2\cap D_3\xrightarrow{\ \epsilon\ }\bigoplus_{i<j}(D_i\cap D_j)\xrightarrow{\ \delta\ }\bigoplus_cD_c\xrightarrow{\ \sigma\ }\HF,
+ \qquad\text{degrees }-2,-1,0,1.
+\]
+Here $\sigma$ adds, $\delta$ places a shared vector $w\in D_i\cap D_j$ as $+w$ in slot $i$ and $-w$ in slot $j$, and $\epsilon(w)=(w,-w,w)$ in the slots $(12),(13),(23)$.
+
+\begin{proposition}\label{prop:cech}
+For three presentations, the cohomology vanishes in degrees $-2$ and $-1$. In degree $1$ it is the common excess $\HF\ominus(D_1+D_2+D_3)$. In degree $0$ it is the \emph{collective redundancy} $\ker\sigma/\Ran\delta$, of dimension
+\[
+ \sum_c\dim D_c-\sum_{i<j}\dim(D_i\cap D_j)+\dim(D_1\cap D_2\cap D_3)-\dim(D_1+D_2+D_3).
+\]
+It vanishes exactly when inclusion--exclusion holds for the three subspaces. Two presentations never have collective redundancy.
+\end{proposition}
+
+\begin{proof}
+$\epsilon$ is injective. If $\delta(w_{12},w_{13},w_{23})=0$, the three slots give $w_{12}+w_{13}=0$, $w_{23}=w_{12}$ and $w_{13}+w_{23}=0$. So $w=w_{12}$ lies in all three pairwise intersections, hence in the triple intersection, and the triple equals $\epsilon(w)$. The degree-$1$ statement is the definition of the defect. The dimension of $\mathsf H_0$ follows from the alternating sum of dimensions, which equals the alternating sum of cohomology dimensions. For two presentations, $\ker\sigma=\{(d,-d):d\in D_1\cap D_2\}=\Ran\delta$.
+\end{proof}
+
+By Theorem~\ref{thm:chain} the reduced space for this treatment is the collective redundancy with \emph{positive} norm, together with the excess with negative norm. Two examples:
+\begin{itemize}
+\item Three settings that each prepare a single ray in a two-level appearance space, at angles $0$, $\pi/3$ and $2\pi/3$. Any two span the space, and no two share an appearance. The collective redundancy is one-dimensional, the excess is zero, and the reduced space is positive.
+\item The same three rays inside a plane of a three-level space. The collective redundancy and the excess are each one-dimensional, so the reduced space is indefinite. This is a no-ghost violation that no sign convention removes.
+\end{itemize}
+Three random planes in $\C^3$, or three random lines in $\C^3$, satisfy inclusion--exclusion and leave no collective redundancy.
+
+A collective redundancy is a combination of inputs, one for each preparation, whose presentations cancel although no two of the preparations share an appearance. If the presentations intertwine given dynamics, every $D_c$ reduces $\HF$, so do the intersections, and the chain carries the restricted dynamics. By the Remark its charge is invariant.
+
+\section{What follows for the reading}
+
+The top-degree cohomology is the common excess in every treatment, so the object of the conjecture does not depend on how redundancy is handled. What depends on the treatment is whether anything else survives beside the excess.
+
+\emph{Every redundancy is gauge.} The reduced space is the excess and is definite. On the reading of the previous note, every redundant presentation is empty: present among the inputs, with no standing in the reduced space.
+
+\emph{Only shared appearances are gauge.} Collective redundancy survives with positive norm. When an excess is also present, the reduced space is indefinite and the reduction is inconsistent. On the adopted reading the collective redundancy would be a direction that is not empty. It would lie on the physical side, unlike the excess. So if an excess is present, as the conjecture requires, consistency demands one of two things. Either the admissible families satisfy inclusion--exclusion, which always holds for at most two presentations, or all redundancy is counted as gauge.
+
+\emph{Open.} With four or more presentations the full chain continues with quadruple and higher intersections, and classes may appear in further degrees. Those are not treated here. The shared-appearance chain uses the presented subspaces and their polar identifications, whereas the redundancy space $\ker B$ depends on the weights of the maps through $|A_c|$. Under R4 its dimension does not. Which redundancies count as gauge is a choice, like the choice of the Krein form as an inner product, and needs its own physical or contemplative argument.
+
+\end{document}
