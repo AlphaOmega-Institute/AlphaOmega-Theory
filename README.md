@@ -79,4 +79,4 @@ The `PrimitiveSpectra/` directory, `PrimitiveSpectra.lean`, and the Lake/Lean co
 
 ## License
 
-Copyright © 2026 Alpha Omega Lattice Corporation, doing business as AlphaOmega Institute. Software, meaning the Python scripts and the Lean formalization with its build files, is licensed under the PolyForm Noncommercial License 1.0.0. Everything else, including the manuscripts, notes and data tables, is licensed under CC BY-NC 4.0. See [LICENSE.md](LICENSE.md) for details. Commercial use requires a separate license from Alpha Omega Lattice Corporation.
+Copyright © 2026 Alpha Omega Lattice Corporation, doing business as AlphaOmega Institute. Software, meaning the Python scripts and the Lean formalization with its build files, is licensed under the PolyForm Noncommercial License 1.0.0. Everything else, including the manuscripts, notes and data tables, is licensed under CC BY-NC 4.0. See [LICENSE.md](LICENSE.md) for details. For commercial uses that require permission beyond the applicable license, contact Alpha Omega Lattice Corporation.
