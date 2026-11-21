@@ -370,6 +370,65 @@ def test_the_ground_is_pure_gauge():
     assert (plus, minus) == (1, 2)
 
 
+def test_evolution_acts_on_the_quotient_iff_it_commutes_with_the_charge():
+    A = rc(5, 3)
+    n, m = A.shape
+    Q, PG = charge(A)
+    V, PS, PD, _ = polar_data(A)
+    defect = np.eye(n) - PD
+    H_psi = herm(m)
+    good = block(H_psi, V @ H_psi @ V.conj().T + defect @ herm(n) @ defect)
+    bad = block(H_psi, V @ (H_psi + 0.2 * herm(m)) @ V.conj().T + defect @ herm(n) @ defect)
+    R = orth(Q, rcond=TOL)
+    for H, invariant in ((good, True), (bad, False)):
+        preserved = all(np.allclose((np.eye(m + n) - R @ R.conj().T) @ expm(-1j * t * H) @ R, 0, atol=1e-9)
+                        for t in (0.4, -1.3, 2.2))
+        commutes = all(np.allclose(expm(-1j * t * H) @ Q, Q @ expm(-1j * t * H), atol=1e-9)
+                       for t in (0.4, -1.3, 2.2))
+        assert preserved == commutes == invariant
+
+
+def test_it_is_the_polar_map_that_must_intertwine():
+    H = np.diag([0.0, 1.0])
+    A = np.array([[2.0, 0.5], [0.5, 1.0]])                                 # positive invertible, mixes energies
+    assert not np.allclose(H @ A, A @ H)
+    V, _, _, _ = polar_data(A)
+    assert np.allclose(V, np.eye(2))
+    Q, _ = charge(A)
+    assert np.allclose(block(H, H) @ Q, Q @ block(H, H))
+
+
+def test_spectral_obstruction_with_a_degenerate_eigenvalue():
+    m, n, lam = 3, 6, 2.5
+    H_in = np.diag([0.0, 1.0, 1.0])
+    W = np.linalg.qr(rc(n, m))[0]                                          # isometry with defect of dimension 3
+    defect = np.eye(n) - W @ W.conj().T
+    Dperp = orth(defect, rcond=TOL)
+    mix = np.linalg.qr(rc(3, 3))[0]
+    H_out = W @ H_in @ W.conj().T + Dperp @ mix @ np.diag([lam, lam, 4.0]) @ mix.conj().T @ Dperp.conj().T
+    Q, _ = charge(W)
+    assert np.allclose(block(H_in, H_out) @ Q, Q @ block(H_in, H_out), atol=1e-9)
+    vals, vecs = np.linalg.eigh(H_out)
+    eig = vecs[:, np.isclose(vals, lam)]
+    assert eig.shape[1] == 2                                               # lam is degenerate
+    assert np.allclose(W.conj().T @ eig, 0, atol=1e-9)                      # every eigenvector in the defect
+
+
+def test_resonant_family_keeps_redundancies_until_quotiented():
+    A = shift()
+    n, m = A.shape
+    B = np.hstack((A, rotated_shift(0.7)))
+    assert np.allclose(B @ np.r_[np.eye(m)[0], -np.eye(m)[0]], 0)          # (f0, -f0) is redundant
+    QB, _ = charge(B)
+    assert cohomology(QB, grading(2 * m, n))[1:] == (2 * m - n, 0)         # nonzero without any excess
+    _, s, Vh = np.linalg.svd(B)
+    r = int((s > TOL).sum())
+    Qr, _ = charge(B @ Vh[:r].conj().T)
+    assert cohomology(Qr, grading(r, n))[1:] == (0, 0)
+    # the half-turn prepares the missing line exactly
+    assert np.allclose(rotated_shift(np.pi / 2) @ np.eye(m)[1], -np.eye(n)[0])
+
+
 def test_relational_ground_needs_strong_compatibility():
     """On the unequal-cell path (weak but not strong compatibility) the manuscript's relational
     ground (x + y)/sqrt2 is not closed, and the ground plane is not invariant."""

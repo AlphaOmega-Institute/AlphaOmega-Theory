@@ -125,9 +125,13 @@ def test_resolution_leaves_exactly_the_common_excess():
 # ---- Proposition 3: redundancy explained by shared appearances (three presentations) --------
 
 def intersection(*bases):
+    """Orthonormal basis of the intersection of the column spaces, with an absolute tolerance.
+    (A relative tolerance fails when the matrix below is pure roundoff, for example for two
+    copies of the full space.)"""
     n = bases[0].shape[0]
     M = sum(np.eye(n) - B @ B.conj().T for B in bases)
-    return null_space(M, rcond=1e-8)
+    U, s, _ = np.linalg.svd(M)
+    return U[:, s < 1e-8]
 
 
 def cech_three(Ds, n):
@@ -276,6 +280,61 @@ def test_intertwining_chains_have_invariant_charges():
         Ht = total[off[k + 1]:off[k + 2], off[k + 1]:off[k + 2]]
         assert np.allclose(Ht @ d, d @ Hs, atol=1e-9)
     assert np.allclose(total @ Q, Q @ total, atol=1e-9)
+
+
+def test_intersection_helper_handles_identical_and_full_spaces():
+    full = np.linalg.qr(rc(3, 3))[0]
+    assert intersection(full, full).shape[1] == 3
+    sub = orth(rc(5, 2))
+    assert intersection(sub, sub).shape[1] == 2
+    assert intersection(sub, sub, sub).shape[1] == 2
+    other = orth(rc(5, 2))
+    assert intersection(sub, other).shape[1] == 0
+    line_in_plane = orth(np.column_stack([sub[:, 0]]))
+    assert intersection(line_in_plane, sub).shape[1] == 1
+
+
+def test_collective_redundancy_with_a_shared_ground():
+    """Every pair shares g, yet three distinct lines in a plane orthogonal to g give one
+    cancellation that the shared g cannot explain."""
+    g = np.array([1, 0, 0], complex)
+    lines = [np.array([0, np.cos(t), np.sin(t)], complex) for t in (0.0, np.pi / 3, 2 * np.pi / 3)]
+    Ds = [orth(np.column_stack([g, L])) for L in lines]
+    assert all(intersection(Ds[i], Ds[j]).shape[1] == 1 for i, j in ((0, 1), (0, 2), (1, 2)))
+    assert intersection(*Ds).shape[1] == 1
+    assert collective_redundancy(Ds, 3) == (1, 0)
+    dims, maps, degrees, dD, dP, dT = cech_three(Ds, 3)
+    assert chain_cohomology_dims(dims, maps) == [0, 0, 1, 0]
+    Q, J, _ = chain_charge(dims, maps, degrees)
+    assert cohomology(Q, J)[1:] == (1, 0)
+
+
+def rotated_shift(alpha, N=6):
+    U = np.eye(N + 1)
+    c, s = np.cos(alpha), np.sin(alpha)
+    U[0, 0], U[2, 0], U[0, 2], U[2, 2] = c, s, -s, c
+    return U @ shift(N)
+
+
+def test_shift_families_at_resonance():
+    """At eps = 1 a second intertwiner can prepare g0. Families then have no common defect, and
+    the resolved reduced space is zero; the single joint charge keeps the redundancies."""
+    N = 6
+    A = shift(N)
+    n, m = A.shape
+    H_psi, H_phi = hamiltonians(1.0, N)
+    half_turn = rotated_shift(np.pi / 2, N)
+    assert np.allclose(half_turn @ np.eye(m)[1], -np.eye(n)[0])           # f1 -> -g0
+    for alpha in (0.7, np.pi / 2):
+        B = np.hstack([A, rotated_shift(alpha, N)])
+        assert np.allclose(H_phi @ B, B @ np.kron(np.eye(2), H_psi))       # both intertwine at eps = 1
+        assert np.linalg.matrix_rank(B, tol=TOL) == n                      # no common defect
+        Q1, J1, _ = chain_charge([2 * m, n], [B], [0, 1])
+        kernel_dim = 2 * m - n
+        assert cohomology(Q1, J1)[1:] == (kernel_dim, 0)                  # redundancies remain
+        K = null_space(B, rcond=TOL)
+        Q, J, _ = chain_charge([K.shape[1], 2 * m, n], [K, B], [-1, 0, 1])
+        assert cohomology(Q, J)[1:] == (0, 0)                              # resolved: zero
 
 
 if __name__ == "__main__":
