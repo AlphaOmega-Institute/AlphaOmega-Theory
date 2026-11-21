@@ -98,7 +98,7 @@ def test_two_term_chain_is_the_single_presentation_charge():
     assert (plus, minus) == (3 - 2, 5 - 2)
 
 
-# ---- Corollary 2: resolving redundancy ---------------------------------------------------
+# ---- Corollary 3: resolving redundancy ---------------------------------------------------
 
 def test_resolution_leaves_exactly_the_common_excess():
     for k_members, m, n, rank in ((2, 3, 5, 2), (3, 2, 5, 2), (2, 4, 6, 3)):
@@ -122,16 +122,19 @@ def test_resolution_leaves_exactly_the_common_excess():
             assert np.allclose(P @ H[off:], H[off:], atol=1e-8)
 
 
-# ---- Proposition 3: redundancy explained by shared appearances (three presentations) --------
+# ---- Proposition 4: redundancy explained by shared appearances (three presentations) --------
 
 def intersection(*bases):
     """Orthonormal basis of the intersection of the column spaces, with an absolute tolerance.
-    (A relative tolerance fails when the matrix below is pure roundoff, for example for two
-    copies of the full space.)"""
+    The complementary projectors are stacked, so a vector at angle t from the intersection has
+    singular value of order t rather than t^2 (summing them would give t^2 / 2, and two lines
+    1e-5 apart would be merged). A relative tolerance fails when the stack is pure roundoff, for
+    example for two copies of the full space."""
     n = bases[0].shape[0]
-    M = sum(np.eye(n) - B @ B.conj().T for B in bases)
-    U, s, _ = np.linalg.svd(M)
-    return U[:, s < 1e-8]
+    M = np.vstack([np.eye(n) - B @ B.conj().T for B in bases])
+    _, s, Vh = np.linalg.svd(M)
+    s = np.r_[s, np.zeros(n - len(s))]
+    return Vh.conj().T[:, s < 1e-8]
 
 
 def cech_three(Ds, n):
@@ -292,6 +295,48 @@ def test_intersection_helper_handles_identical_and_full_spaces():
     assert intersection(sub, other).shape[1] == 0
     line_in_plane = orth(np.column_stack([sub[:, 0]]))
     assert intersection(line_in_plane, sub).shape[1] == 1
+
+
+def test_intersection_helper_separates_nearby_lines():
+    """Two distinct lines 1e-5 radians apart meet only in zero, and the three-presentation chain
+    built with a third line passes its own checks."""
+    t = 1e-5
+    L1, L2 = line(1, 0, 0), line(np.cos(t), np.sin(t), 0)
+    assert intersection(L1, L2).shape[1] == 0
+    assert intersection(L1, L1).shape[1] == 1
+    for L3, expected in ((line(0, 0, 1), (0, 0)), (line(0, 1, 0), (1, 1))):
+        Ds = [L1, L2, L3]
+        dims, maps, degrees, dD, dP, dT = cech_three(Ds, 3)
+        assert dP == [0, 0, 0] and dT == 0
+        assert chain_cohomology_dims(dims, maps)[2:] == list(expected)
+        assert collective_redundancy(Ds, 3) == expected
+        Q, J, _ = chain_charge(dims, maps, degrees)
+        assert cohomology(Q, J)[1:] == expected
+
+
+def test_bare_redundancy_has_no_class_and_its_aligned_pair_is_exact():
+    """Section 5: a redundant input k is a boundary of the resolved chain. In the graph charge the
+    bare vector (0, k, 0) is not closed, Q(0, k, 0) = (k, k, 0)/2, while the aligned pair
+    (k, k, 0)/sqrt2 is exact."""
+    N = 6
+    A = shift(N)
+    n, m = A.shape
+    C = np.zeros((n, m), complex)
+    C[1, 0] = 1
+    C[2:, 1:] = np.linalg.qr(rc(n - 2, m - 1))[0][:, :m - 1]
+    B = np.hstack([A, C])
+    K = null_space(B, rcond=TOL)
+    r = K.shape[1]
+    Q, J, _ = chain_charge([r, 2 * m, n], [K, B], [-1, 0, 1])
+    exact = orth(Q, rcond=TOL)
+    for _ in range(3):
+        k = K @ rc(r)
+        lift = K.conj().T @ k                                         # k as an element of degree -1
+        bare = np.r_[np.zeros(r), k, np.zeros(n)]
+        pair = np.r_[lift, k, np.zeros(n)] / np.sqrt(2)
+        assert np.allclose(Q @ bare, np.r_[lift, k, np.zeros(n)] / 2, atol=1e-9)
+        assert not np.allclose(Q @ bare, 0, atol=1e-6)                 # not closed: no class
+        assert np.allclose(exact @ exact.conj().T @ pair, pair, atol=1e-9)   # exact: zero class
 
 
 def test_collective_redundancy_with_a_shared_ground():

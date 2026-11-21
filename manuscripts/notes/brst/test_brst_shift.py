@@ -341,10 +341,20 @@ def test_no_invariant_operator_moves_gauge_into_the_physical_space():
     H_psi, H_phi = hamiltonians(eps)
     assert np.allclose(H_phi @ K[m:, m:] - K[m:, m:] @ H_phi, eps * K[m:, m:])   # [H_phi, K] = eps K
     assert not np.allclose(K @ Q, Q @ K, atol=1e-6)
+    assert np.allclose(block(H_psi, H_phi) @ Q, Q @ block(H_psi, H_phi), atol=TOL)   # the evolution premise holds
     z_plus = np.r_[np.eye(m)[0], g[1]] / np.sqrt(2)                         # ground event, exact
     assert in_span(R, z_plus)
     image = K @ z_plus                                                     # = (0 + g0)/sqrt2
     assert in_span(Hc, image) and not np.allclose(image, 0)                # a nonzero physical class
+    # the second premise is independent of the Kraus representation: an isometric recombination
+    # of operators that preserve Ran Q and ker Q preserves them too
+    ops = [block(*even_invariant(A, rc(m, m), rc(m, m), rc(n, n))) for _ in range(2)]
+    iso = np.linalg.qr(rc(3, 2))[0]
+    kerQ = null_space(Q, rcond=TOL)
+    for j in range(3):
+        Kj = iso[j, 0] * ops[0] + iso[j, 1] * ops[1]
+        assert all(in_span(R, Kj @ R[:, i]) for i in range(R.shape[1]))
+        assert all(in_span(kerQ, Kj @ kerQ[:, i]) for i in range(kerQ.shape[1]))
 
 
 def test_the_ground_is_pure_gauge():
@@ -427,6 +437,11 @@ def test_resonant_family_keeps_redundancies_until_quotiented():
     assert cohomology(Qr, grading(r, n))[1:] == (0, 0)
     # the half-turn prepares the missing line exactly
     assert np.allclose(rotated_shift(np.pi / 2) @ np.eye(m)[1], -np.eye(n)[0])
+    # direct return of g0: zero through the shift, one through the half-turn
+    g0 = np.eye(n)[0]
+    for M, ret in ((A, 0.0), (rotated_shift(np.pi / 2), 1.0)):
+        V, _, _, _ = polar_data(M)
+        assert np.isclose(np.linalg.norm(V.conj().T @ g0) ** 2, ret)
 
 
 def test_relational_ground_needs_strong_compatibility():
@@ -439,6 +454,10 @@ def test_relational_ground_needs_strong_compatibility():
     assert np.isclose((x @ V.conj().T @ y) ** 2, 0.9)
     z0 = np.r_[x, y] / np.sqrt(2)
     assert np.isclose(np.linalg.norm(Q @ z0) ** 2, (1 - np.sqrt(0.9)) / 2)
+    assert abs(np.vdot(z0, grading(2, 5) @ z0)) < TOL                      # Krein-null
+    # exact for the rank-one charge of the restricted ground map u0 = |y><x|
+    Q0, _ = charge(np.outer(y, x))
+    assert in_span(orth(Q0, rcond=TOL), z0)
     plane = np.column_stack([np.r_[x, np.zeros(5)], np.r_[np.zeros(2), y]])
     P = plane @ plane.T
     assert not np.allclose(P @ Q @ P, Q @ P)
@@ -447,6 +466,45 @@ def test_relational_ground_needs_strong_compatibility():
     assert in_span(orth(Q, rcond=TOL), event)
     Hc, _, _ = cohomology(Q, grading(2, 5))
     assert np.allclose(Hc[2:].conj().T @ y, 0)
+
+
+def test_member_and_joint_conservation_are_independent():
+    """Remark 'Members and families'. (a) Two injective members with the same ground, range and
+    polar map I each have a conserved charge, while the joint charge is not conserved; with an
+    extra output level lam, Proposition 6 applied to each member still puts its eigenvector in
+    the common defect. (b) A joint charge can be conserved while neither member's charge is."""
+    H = np.diag([0.0, 1.0, 2.0])
+    A1 = np.eye(3)
+    A2 = np.eye(3)
+    A2[1:, 1:] = [[2, 1], [1, 2]]
+    def conserved(M, H_in, H_out, copies):
+        Q, _ = charge(M)
+        T = block(*([H_in] * copies), H_out)
+        return np.allclose(T @ Q, Q @ T, atol=TOL)
+    assert conserved(A1, H, H, 1) and conserved(A2, H, H, 1)
+    assert np.allclose(A2 @ np.eye(3)[0], A1 @ np.eye(3)[0])                # same ground
+    assert not conserved(np.hstack([A1, A2]), H, H, 2)
+    lam = 3.5
+    H_out = np.diag([0.0, 1.0, 2.0, lam])
+    W = np.eye(4)[:, :3]
+    members = (W @ A1, W @ A2)
+    assert all(conserved(M, H, H_out, 1) for M in members)
+    B = np.hstack(members)
+    assert not conserved(B, H, H_out, 2)
+    assert np.allclose(B.conj().T @ np.eye(4)[3], 0)                        # in the common defect
+    # (b)
+    H2 = np.diag([0.0, 1.0])
+    u0 = np.array([0.9, 0, np.sqrt(0.19), 0])
+    u1 = np.array([0, 0.3, 0, np.sqrt(0.91)])
+    U = np.column_stack([u0, u1])
+    B = np.array([[1.0, 0.5], [0.5, 1.0]]) @ U.conj().T                     # W|B| with W u_j = g_j
+    assert np.allclose(polar_data(B)[0], U.conj().T)
+    assert conserved(B, H2, H2, 2)
+    for c in range(2):
+        Ac = B[:, 2 * c:2 * c + 2]
+        V, _, _, _ = polar_data(Ac)
+        assert not np.allclose(V, np.diag(np.diag(V)))
+        assert not conserved(Ac, H2, H2, 1)
 
 
 def test_ghost_number_is_half_the_polar_reflection():
