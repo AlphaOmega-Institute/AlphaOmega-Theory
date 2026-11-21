@@ -683,6 +683,10 @@ def test_carrier_implementations_and_the_defect_bound():
         phase_blind = np.allclose(F @ J, J @ F, atol=1e-9)
         assert phase_blind == np.allclose(F @ np.column_stack([G, Gm]), 0, atol=1e-9)
         assert not phase_blind or p < 1e-9                                   # phase-blind => no transfer
+        n_s = np.r_[s, V @ s] / np.sqrt(2)
+        m_s = np.r_[s, -V @ s] / np.sqrt(2)
+        assert np.isclose(np.vdot(n_s, F @ n_s).real, 0, atol=1e-9)
+        assert np.isclose(np.vdot(m_s, F @ m_s).real, 2 * p)                 # exact prediction 0 and 2p
     # an output entirely in the appearance sector: ||(P_G (x) I) U b||^2 = (1 - p)/2, so p = 0
     for _ in range(20):
         h = rc(n, e)
@@ -708,7 +712,10 @@ def test_carrier_implementations_and_the_defect_bound():
         p = sum(np.linalg.norm(defect @ K @ f0) ** 2 for K in kraus)
         q = sum(np.linalg.norm(physical @ K @ f0) ** 2 for K in kraus)
         assert np.isclose(q, a ** 2) and np.isclose(p, 2 * a * (1 - a))
-    assert np.isclose(2 * 0.1 * (1 - 0.1), 0.18)                             # q = 1% allows p <= 18%
+    f = lambda q: 2 * np.sqrt(q) * (1 - np.sqrt(q))
+    threshold = lambda Qmax: f(min(Qmax, 0.25))                             # only an upper limit on q
+    assert np.isclose(threshold(0.01), 0.18) and np.isclose(threshold(0.64), 0.5)
+    assert np.isclose(f(0.64), 0.32) and 0.25 <= 0.64 and f(0.25) > f(0.64)  # q = 1/4, p = 1/2 allowed
     # the example read with a detector for the missing line distinguishes z+ from z-
     zp = (f0 + g1) / np.sqrt(2)
     F = sum(K.conj().T @ defect @ K for K in (K1, K2))

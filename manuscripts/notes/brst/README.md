@@ -171,3 +171,13 @@ confirmed.
 4. Presentations. Families whose joint row is bounded are included, not only finite ones.
 5. Checks. The new check covers the curve bound on random operations, its attainment and the
    detector statement.
+
+## Revisions after the seventh review
+
+Accepted as a working note.
+
+1. Upper limits. If the apparatus establishes only q <= Q, the sharp threshold is
+   2 sqrt(Q') (1 - sqrt(Q')) with Q' = min(Q, 1/4), because the bound peaks at q = 1/4. The
+   1% to 18% example is unchanged. For Q >= 1/4 the threshold is one half.
+2. Exact detector prediction. If the bare input clicks with probability p, the aligned event
+   clicks with probability zero and its anti-aligned partner with probability 2p.
