@@ -152,8 +152,22 @@ were accepted.
 5. Checks. A new check covers the two implementations, the bound on random operations, its
    zero case and its attainment, and the reset channel.
 
-## Points for review, most important first
+## Revisions after the sixth review
 
-1. The defect bound of Section 4 (p at most one half, zero for an output in the appearance
-   sector) and its use with Eq. (95).
-2. The two carrier implementations, and the revised statement on presentations.
+The notes were accepted as working notes, with the defect bound and the Section 3 wording
+confirmed.
+
+1. The defect bound is stated as a curve. Let q be the weight left in the physical sector.
+   Then the defect weight satisfies p <= 2 sqrt(q) (1 - sqrt(q)), and every point of the
+   curve is attained by an explicit family of operations. The maximum of one half occurs only
+   at q = 1/4. A measured physical weight of at most 1% therefore allows at most 18% in the
+   defect, which gives an experimental tolerance.
+2. Superselection. Consider an intervention that preserves exact events, followed by a
+   detector for the missing line. The combined effect vanishes on aligned events. It is
+   phase-blind only if it vanishes on the whole matched part. So positive transfer from a bare
+   input, combined with that detector, reads the relative phase.
+3. Eq. (95) gives p_f <= 1 - c^2. Full retained coherence forces zero line weight, and a
+   measured lower bound c < 1 leaves positive weight possible.
+4. Presentations. Families whose joint row is bounded are included, not only finite ones.
+5. Checks. The new check covers the curve bound on random operations, its attainment and the
+   detector statement.

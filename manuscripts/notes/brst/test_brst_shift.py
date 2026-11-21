@@ -618,9 +618,11 @@ def test_scope_of_the_intervention_premise():
 def test_carrier_implementations_and_the_defect_bound():
     """Section 4, Interventions. The reflection R + P_N gives the same output as the zero
     extension of V on bare inputs and fixes exact events. A trace-preserving operation that
-    preserves exact events sends at most half of a bare input into the defect, and none when the
-    whole output lies in the appearance sector; the sector-mixing example attains one half. The
-    reset channel |g1><f_j| has a joint row that is not closable."""
+    preserves exact events and leaves weight q of a unit bare input in the physical sector sends
+    at most p = 2 sqrt(q)(1 - sqrt(q)) <= 1/2 into the defect; every point of that curve is
+    attained. Followed by a detector for the missing line, such an operation is phase-blind only
+    if it moves nothing from the matched part into the line. The reset channel |g1><f_j| has a
+    joint row that is not closable."""
     A = shift()
     n, m = A.shape
     d = m + n
@@ -653,6 +655,7 @@ def test_carrier_implementations_and_the_defect_bound():
     e = 3
     Eid = np.eye(e)
     defect = block(np.zeros((m, m)), np.eye(n) - PD)
+    physical = block(np.eye(m), np.zeros((n, n)))
     for _ in range(100):
         cols = []
         for space, k in ((np.kron(G, Eid), G.shape[1]),
@@ -670,7 +673,16 @@ def test_carrier_implementations_and_the_defect_bound():
         s = PS @ rc(m)
         s /= np.linalg.norm(s)
         b = np.r_[s, np.zeros(n)]
-        assert sum(np.linalg.norm(defect @ K @ b) ** 2 for K in kraus) <= 0.5 + 1e-9
+        p = sum(np.linalg.norm(defect @ K @ b) ** 2 for K in kraus)
+        q = sum(np.linalg.norm(block(np.eye(m), np.zeros((n, n))) @ K @ b) ** 2 for K in kraus)
+        assert p <= 2 * np.sqrt(q) * (1 - np.sqrt(q)) + 1e-9 <= 0.5 + 1e-9    # sqrt q + sqrt(1-q-p) >= 1
+        # with a detector for the missing line: zero on aligned events; phase-blind only if the
+        # whole matched part is annihilated, so positive transfer from a bare input reads the phase
+        F = sum(K.conj().T @ defect @ K for K in kraus)
+        assert np.allclose(F @ G, 0, atol=1e-9)
+        phase_blind = np.allclose(F @ J, J @ F, atol=1e-9)
+        assert phase_blind == np.allclose(F @ np.column_stack([G, Gm]), 0, atol=1e-9)
+        assert not phase_blind or p < 1e-9                                   # phase-blind => no transfer
     # an output entirely in the appearance sector: ||(P_G (x) I) U b||^2 = (1 - p)/2, so p = 0
     for _ in range(20):
         h = rc(n, e)
@@ -685,8 +697,28 @@ def test_carrier_implementations_and_the_defect_bound():
     zm = (f0 - g1) / np.sqrt(2)
     K1, K2 = np.outer(g0, zm.conj()), np.eye(d) - np.outer(zm, zm.conj())
     assert np.isclose(sum(np.linalg.norm(defect @ K @ f0) ** 2 for K in (K1, K2)), 0.5)
-    physical = block(np.eye(m), np.zeros((n, n)))
     assert np.isclose(sum(np.linalg.norm(physical @ K @ f0) ** 2 for K in (K1, K2)), 0.25)
+    # every point of the curve p = 2 sqrt(q)(1 - sqrt(q)) is attained
+    P0 = np.outer(g0, g0)
+    for a in (0.0, 0.1, 0.5, 0.8, 1.0):
+        w = (2 * a - 1) * zm + 2 * np.sqrt(a * (1 - a)) * g0
+        kraus = [np.eye(d) - np.outer(zm, zm) - P0 + np.outer(w, zm), P0]
+        assert np.allclose(sum(K.conj().T @ K for K in kraus), np.eye(d))
+        assert all(preserves(K, G) and preserves(K, kerQ) for K in kraus)
+        p = sum(np.linalg.norm(defect @ K @ f0) ** 2 for K in kraus)
+        q = sum(np.linalg.norm(physical @ K @ f0) ** 2 for K in kraus)
+        assert np.isclose(q, a ** 2) and np.isclose(p, 2 * a * (1 - a))
+    assert np.isclose(2 * 0.1 * (1 - 0.1), 0.18)                             # q = 1% allows p <= 18%
+    # the example read with a detector for the missing line distinguishes z+ from z-
+    zp = (f0 + g1) / np.sqrt(2)
+    F = sum(K.conj().T @ defect @ K for K in (K1, K2))
+    assert np.isclose(np.vdot(zp, F @ zp).real, 0) and np.isclose(np.vdot(zm, F @ zm).real, 1)
+    assert not np.allclose(F @ J, J @ F)
+    # a sector-preserving invariant unitary gives a phase-blind detector effect
+    X_psi = PS @ np.linalg.qr(rc(m, m))[0] @ PS
+    Ue = block(X_psi, V @ X_psi @ V.conj().T + (np.eye(n) - PD))
+    Fe = Ue.conj().T @ defect @ Ue
+    assert np.allclose(Fe @ J, J @ Fe) and np.allclose(Fe @ np.column_stack([G, Gm]), 0, atol=1e-9)
     # reset channel: Kraus operators |g1><f_j| sum to the identity; the joint row is not closable
     M = 40
     kraus = [np.outer(np.eye(M + 1)[1], np.eye(M)[j]) for j in range(M)]
